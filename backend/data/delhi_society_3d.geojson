@@ -1,0 +1,2499 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "SURFACE_PARCEL",
+        "base_ulpin": "IND280145987621",
+        "ulpin_3d": "IND280145987621-S00-0000",
+        "name": "Surface Land Parcel Boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.060016,
+              28.5821737,
+              215.0
+            ],
+            [
+              77.060384,
+              28.5821737,
+              215.0
+            ],
+            [
+              77.060384,
+              28.5824263,
+              215.0
+            ],
+            [
+              77.060016,
+              28.5824263,
+              215.0
+            ],
+            [
+              77.060016,
+              28.5821737,
+              215.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-U-01-39F1",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "PARK-B101",
+        "name": "Basement Parking Bay #01",
+        "level": -1,
+        "domain": "U",
+        "type": "RESTRICTED_COMMON_PARKING",
+        "owner": "Rajesh Kumar (Flat 101 Link)",
+        "carpet_area_m2": 30.0,
+        "volume_m3": 99.0,
+        "z_min_msl": 211.5,
+        "z_max_msl": 214.8,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600824,
+                28.5823316,
+                211.5
+              ],
+              [
+                77.0601438,
+                28.5823316,
+                211.5
+              ],
+              [
+                77.0601438,
+                28.5823767,
+                211.5
+              ],
+              [
+                77.0600824,
+                28.5823767,
+                211.5
+              ],
+              [
+                77.0600824,
+                28.5823316,
+                211.5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600824,
+                28.5823316,
+                214.8
+              ],
+              [
+                77.0601438,
+                28.5823316,
+                214.8
+              ],
+              [
+                77.0601438,
+                28.5823767,
+                214.8
+              ],
+              [
+                77.0600824,
+                28.5823767,
+                214.8
+              ],
+              [
+                77.0600824,
+                28.5823316,
+                214.8
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-U-01-0004",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "PARK-B102",
+        "name": "Basement Parking Bay #02",
+        "level": -1,
+        "domain": "U",
+        "type": "RESTRICTED_COMMON_PARKING",
+        "owner": "Priya Sharma (Flat 102 Link)",
+        "carpet_area_m2": 30.0,
+        "volume_m3": 99.0,
+        "z_min_msl": 211.5,
+        "z_max_msl": 214.8,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0601438,
+                28.5823316,
+                211.5
+              ],
+              [
+                77.0602051,
+                28.5823316,
+                211.5
+              ],
+              [
+                77.0602051,
+                28.5823767,
+                211.5
+              ],
+              [
+                77.0601438,
+                28.5823767,
+                211.5
+              ],
+              [
+                77.0601438,
+                28.5823316,
+                211.5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0601438,
+                28.5823316,
+                214.8
+              ],
+              [
+                77.0602051,
+                28.5823316,
+                214.8
+              ],
+              [
+                77.0602051,
+                28.5823767,
+                214.8
+              ],
+              [
+                77.0601438,
+                28.5823767,
+                214.8
+              ],
+              [
+                77.0601438,
+                28.5823316,
+                214.8
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-U-01-161F",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "PARK-B103",
+        "name": "Basement Parking Bay #03",
+        "level": -1,
+        "domain": "U",
+        "type": "RESTRICTED_COMMON_PARKING",
+        "owner": "Amitabh Verma (Flat 201 Link)",
+        "carpet_area_m2": 30.0,
+        "volume_m3": 99.0,
+        "z_min_msl": 211.5,
+        "z_max_msl": 214.8,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602051,
+                28.5823316,
+                211.5
+              ],
+              [
+                77.0602664,
+                28.5823316,
+                211.5
+              ],
+              [
+                77.0602664,
+                28.5823767,
+                211.5
+              ],
+              [
+                77.0602051,
+                28.5823767,
+                211.5
+              ],
+              [
+                77.0602051,
+                28.5823316,
+                211.5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602051,
+                28.5823316,
+                214.8
+              ],
+              [
+                77.0602664,
+                28.5823316,
+                214.8
+              ],
+              [
+                77.0602664,
+                28.5823767,
+                214.8
+              ],
+              [
+                77.0602051,
+                28.5823767,
+                214.8
+              ],
+              [
+                77.0602051,
+                28.5823316,
+                214.8
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-U-01-E59D",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "PARK-B104",
+        "name": "Basement Parking Bay #04",
+        "level": -1,
+        "domain": "U",
+        "type": "RESTRICTED_COMMON_PARKING",
+        "owner": "Sunita Rao (Flat 202 Link)",
+        "carpet_area_m2": 30.0,
+        "volume_m3": 99.0,
+        "z_min_msl": 211.5,
+        "z_max_msl": 214.8,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600824,
+                28.5822233,
+                211.5
+              ],
+              [
+                77.0601438,
+                28.5822233,
+                211.5
+              ],
+              [
+                77.0601438,
+                28.5822684,
+                211.5
+              ],
+              [
+                77.0600824,
+                28.5822684,
+                211.5
+              ],
+              [
+                77.0600824,
+                28.5822233,
+                211.5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600824,
+                28.5822233,
+                214.8
+              ],
+              [
+                77.0601438,
+                28.5822233,
+                214.8
+              ],
+              [
+                77.0601438,
+                28.5822684,
+                214.8
+              ],
+              [
+                77.0600824,
+                28.5822684,
+                214.8
+              ],
+              [
+                77.0600824,
+                28.5822233,
+                214.8
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-U-01-9FA1",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "PARK-B105",
+        "name": "Basement Parking Bay #05",
+        "level": -1,
+        "domain": "U",
+        "type": "RESTRICTED_COMMON_PARKING",
+        "owner": "Vikram Malhotra (Flat 301 Link)",
+        "carpet_area_m2": 30.0,
+        "volume_m3": 99.0,
+        "z_min_msl": 211.5,
+        "z_max_msl": 214.8,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0601438,
+                28.5822233,
+                211.5
+              ],
+              [
+                77.0602051,
+                28.5822233,
+                211.5
+              ],
+              [
+                77.0602051,
+                28.5822684,
+                211.5
+              ],
+              [
+                77.0601438,
+                28.5822684,
+                211.5
+              ],
+              [
+                77.0601438,
+                28.5822233,
+                211.5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0601438,
+                28.5822233,
+                214.8
+              ],
+              [
+                77.0602051,
+                28.5822233,
+                214.8
+              ],
+              [
+                77.0602051,
+                28.5822684,
+                214.8
+              ],
+              [
+                77.0601438,
+                28.5822684,
+                214.8
+              ],
+              [
+                77.0601438,
+                28.5822233,
+                214.8
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-U-01-5FAF",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "PARK-B106",
+        "name": "Basement Parking Bay #06 (Unapproved Extension)",
+        "level": -1,
+        "domain": "U",
+        "type": "RESTRICTED_COMMON_PARKING",
+        "owner": "Builder Reserved / Unsanctioned",
+        "carpet_area_m2": 40.0,
+        "volume_m3": 132.0,
+        "z_min_msl": 211.5,
+        "z_max_msl": 214.8,
+        "is_watertight": true,
+        "has_violation": true
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0603176,
+                28.5822233,
+                211.5
+              ],
+              [
+                77.0603993,
+                28.5822233,
+                211.5
+              ],
+              [
+                77.0603993,
+                28.5822684,
+                211.5
+              ],
+              [
+                77.0603176,
+                28.5822684,
+                211.5
+              ],
+              [
+                77.0603176,
+                28.5822233,
+                211.5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0603176,
+                28.5822233,
+                214.8
+              ],
+              [
+                77.0603993,
+                28.5822233,
+                214.8
+              ],
+              [
+                77.0603993,
+                28.5822684,
+                214.8
+              ],
+              [
+                77.0603176,
+                28.5822684,
+                214.8
+              ],
+              [
+                77.0603176,
+                28.5822233,
+                214.8
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-U-01-5BB7",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "UTIL-B101",
+        "name": "Basement Substation & Pump Room",
+        "level": -1,
+        "domain": "U",
+        "type": "COMMON_UTILITY",
+        "owner": "Aura Residency RWA",
+        "carpet_area_m2": 25.0,
+        "volume_m3": 82.5,
+        "z_min_msl": 211.5,
+        "z_max_msl": 214.8,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602664,
+                28.5823316,
+                211.5
+              ],
+              [
+                77.0603176,
+                28.5823316,
+                211.5
+              ],
+              [
+                77.0603176,
+                28.5823767,
+                211.5
+              ],
+              [
+                77.0602664,
+                28.5823767,
+                211.5
+              ],
+              [
+                77.0602664,
+                28.5823316,
+                211.5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602664,
+                28.5823316,
+                214.8
+              ],
+              [
+                77.0603176,
+                28.5823316,
+                214.8
+              ],
+              [
+                77.0603176,
+                28.5823767,
+                214.8
+              ],
+              [
+                77.0602664,
+                28.5823767,
+                214.8
+              ],
+              [
+                77.0602664,
+                28.5823316,
+                214.8
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-S00-76B4",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "COMM-G01",
+        "name": "Grand Entrance Lobby & Admin Office",
+        "level": 0,
+        "domain": "S",
+        "type": "COMMON_AMENITY",
+        "owner": "Aura Residency RWA",
+        "carpet_area_m2": 432.0,
+        "volume_m3": 1209.6,
+        "z_min_msl": 215.2,
+        "z_max_msl": 218.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                215.2
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                215.2
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                215.2
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                215.2
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                215.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                218.0
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                218.0
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                218.0
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                218.0
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                218.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+01-48A2",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "LOBBY-100",
+        "name": "Floor 1 Elevator Lobby & Fire Corridor",
+        "level": 1,
+        "domain": "A",
+        "type": "COMMON_CIRCULATION",
+        "owner": "Aura Residency RWA",
+        "carpet_area_m2": 36.0,
+        "volume_m3": 100.8,
+        "z_min_msl": 218.2,
+        "z_max_msl": 221.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0601693,
+                28.5822729,
+                218.2
+              ],
+              [
+                77.0602307,
+                28.5822729,
+                218.2
+              ],
+              [
+                77.0602307,
+                28.5823271,
+                218.2
+              ],
+              [
+                77.0601693,
+                28.5823271,
+                218.2
+              ],
+              [
+                77.0601693,
+                28.5822729,
+                218.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0601693,
+                28.5822729,
+                221.0
+              ],
+              [
+                77.0602307,
+                28.5822729,
+                221.0
+              ],
+              [
+                77.0602307,
+                28.5823271,
+                221.0
+              ],
+              [
+                77.0601693,
+                28.5823271,
+                221.0
+              ],
+              [
+                77.0601693,
+                28.5822729,
+                221.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+01-E5D1",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-101",
+        "name": "Apartment 101 (3BHK Executive)",
+        "level": 1,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Rajesh Kumar",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 218.2,
+        "z_max_msl": 221.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5823,
+                218.2
+              ],
+              [
+                77.0601693,
+                28.5823,
+                218.2
+              ],
+              [
+                77.0601693,
+                28.5823812,
+                218.2
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                218.2
+              ],
+              [
+                77.0600773,
+                28.5823,
+                218.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5823,
+                221.0
+              ],
+              [
+                77.0601693,
+                28.5823,
+                221.0
+              ],
+              [
+                77.0601693,
+                28.5823812,
+                221.0
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                221.0
+              ],
+              [
+                77.0600773,
+                28.5823,
+                221.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+01-869A",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-102",
+        "name": "Apartment 102 (3BHK Executive)",
+        "level": 1,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Priya Sharma",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 218.2,
+        "z_max_msl": 221.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602307,
+                28.5823,
+                218.2
+              ],
+              [
+                77.0603227,
+                28.5823,
+                218.2
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                218.2
+              ],
+              [
+                77.0602307,
+                28.5823812,
+                218.2
+              ],
+              [
+                77.0602307,
+                28.5823,
+                218.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602307,
+                28.5823,
+                221.0
+              ],
+              [
+                77.0603227,
+                28.5823,
+                221.0
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                221.0
+              ],
+              [
+                77.0602307,
+                28.5823812,
+                221.0
+              ],
+              [
+                77.0602307,
+                28.5823,
+                221.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+01-AF18",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-103",
+        "name": "Apartment 103 (2BHK Premium)",
+        "level": 1,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Karan Kapoor",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 218.2,
+        "z_max_msl": 221.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                218.2
+              ],
+              [
+                77.0601693,
+                28.5822188,
+                218.2
+              ],
+              [
+                77.0601693,
+                28.5823,
+                218.2
+              ],
+              [
+                77.0600773,
+                28.5823,
+                218.2
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                218.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                221.0
+              ],
+              [
+                77.0601693,
+                28.5822188,
+                221.0
+              ],
+              [
+                77.0601693,
+                28.5823,
+                221.0
+              ],
+              [
+                77.0600773,
+                28.5823,
+                221.0
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                221.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+01-4DAC",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-104",
+        "name": "Apartment 104 (2BHK Premium)",
+        "level": 1,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Deepak Joshi",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 218.2,
+        "z_max_msl": 221.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602307,
+                28.5822188,
+                218.2
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                218.2
+              ],
+              [
+                77.0603227,
+                28.5823,
+                218.2
+              ],
+              [
+                77.0602307,
+                28.5823,
+                218.2
+              ],
+              [
+                77.0602307,
+                28.5822188,
+                218.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602307,
+                28.5822188,
+                221.0
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                221.0
+              ],
+              [
+                77.0603227,
+                28.5823,
+                221.0
+              ],
+              [
+                77.0602307,
+                28.5823,
+                221.0
+              ],
+              [
+                77.0602307,
+                28.5822188,
+                221.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+02-2759",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "LOBBY-200",
+        "name": "Floor 2 Elevator Lobby & Fire Corridor",
+        "level": 2,
+        "domain": "A",
+        "type": "COMMON_CIRCULATION",
+        "owner": "Aura Residency RWA",
+        "carpet_area_m2": 36.0,
+        "volume_m3": 100.8,
+        "z_min_msl": 221.2,
+        "z_max_msl": 224.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0601693,
+                28.5822729,
+                221.2
+              ],
+              [
+                77.0602307,
+                28.5822729,
+                221.2
+              ],
+              [
+                77.0602307,
+                28.5823271,
+                221.2
+              ],
+              [
+                77.0601693,
+                28.5823271,
+                221.2
+              ],
+              [
+                77.0601693,
+                28.5822729,
+                221.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0601693,
+                28.5822729,
+                224.0
+              ],
+              [
+                77.0602307,
+                28.5822729,
+                224.0
+              ],
+              [
+                77.0602307,
+                28.5823271,
+                224.0
+              ],
+              [
+                77.0601693,
+                28.5823271,
+                224.0
+              ],
+              [
+                77.0601693,
+                28.5822729,
+                224.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+02-811E",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-201",
+        "name": "Apartment 201 (3BHK Executive)",
+        "level": 2,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Amitabh Verma",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 221.2,
+        "z_max_msl": 224.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5823,
+                221.2
+              ],
+              [
+                77.0601693,
+                28.5823,
+                221.2
+              ],
+              [
+                77.0601693,
+                28.5823812,
+                221.2
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                221.2
+              ],
+              [
+                77.0600773,
+                28.5823,
+                221.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5823,
+                224.0
+              ],
+              [
+                77.0601693,
+                28.5823,
+                224.0
+              ],
+              [
+                77.0601693,
+                28.5823812,
+                224.0
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                224.0
+              ],
+              [
+                77.0600773,
+                28.5823,
+                224.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+02-244A",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-202",
+        "name": "Apartment 202 (3BHK Deluxe Encroached)",
+        "level": 2,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Sunita Rao (Cantilever Balcony)",
+        "carpet_area_m2": 95.0,
+        "volume_m3": 266.0,
+        "z_min_msl": 221.2,
+        "z_max_msl": 224.0,
+        "is_watertight": true,
+        "has_violation": true
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602307,
+                28.5823,
+                221.2
+              ],
+              [
+                77.0603227,
+                28.5823,
+                221.2
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                221.2
+              ],
+              [
+                77.0603124,
+                28.5823812,
+                221.2
+              ],
+              [
+                77.0603124,
+                28.5823993,
+                221.2
+              ],
+              [
+                77.0602409,
+                28.5823993,
+                221.2
+              ],
+              [
+                77.0602409,
+                28.5823812,
+                221.2
+              ],
+              [
+                77.0602307,
+                28.5823812,
+                221.2
+              ],
+              [
+                77.0602307,
+                28.5823,
+                221.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602307,
+                28.5823,
+                224.0
+              ],
+              [
+                77.0603227,
+                28.5823,
+                224.0
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                224.0
+              ],
+              [
+                77.0603124,
+                28.5823812,
+                224.0
+              ],
+              [
+                77.0603124,
+                28.5823993,
+                224.0
+              ],
+              [
+                77.0602409,
+                28.5823993,
+                224.0
+              ],
+              [
+                77.0602409,
+                28.5823812,
+                224.0
+              ],
+              [
+                77.0602307,
+                28.5823812,
+                224.0
+              ],
+              [
+                77.0602307,
+                28.5823,
+                224.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+02-0D80",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-203",
+        "name": "Apartment 203 (2BHK Premium)",
+        "level": 2,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Ananya Sen",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 221.2,
+        "z_max_msl": 224.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                221.2
+              ],
+              [
+                77.0601693,
+                28.5822188,
+                221.2
+              ],
+              [
+                77.0601693,
+                28.5823,
+                221.2
+              ],
+              [
+                77.0600773,
+                28.5823,
+                221.2
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                221.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                224.0
+              ],
+              [
+                77.0601693,
+                28.5822188,
+                224.0
+              ],
+              [
+                77.0601693,
+                28.5823,
+                224.0
+              ],
+              [
+                77.0600773,
+                28.5823,
+                224.0
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                224.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+02-AAF7",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-204",
+        "name": "Apartment 204 (2BHK Premium)",
+        "level": 2,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Harish Mehta",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 221.2,
+        "z_max_msl": 224.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602307,
+                28.5822188,
+                221.2
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                221.2
+              ],
+              [
+                77.0603227,
+                28.5823,
+                221.2
+              ],
+              [
+                77.0602307,
+                28.5823,
+                221.2
+              ],
+              [
+                77.0602307,
+                28.5822188,
+                221.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602307,
+                28.5822188,
+                224.0
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                224.0
+              ],
+              [
+                77.0603227,
+                28.5823,
+                224.0
+              ],
+              [
+                77.0602307,
+                28.5823,
+                224.0
+              ],
+              [
+                77.0602307,
+                28.5822188,
+                224.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+03-5F17",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "LOBBY-300",
+        "name": "Floor 3 Elevator Lobby & Fire Corridor",
+        "level": 3,
+        "domain": "A",
+        "type": "COMMON_CIRCULATION",
+        "owner": "Aura Residency RWA",
+        "carpet_area_m2": 36.0,
+        "volume_m3": 100.8,
+        "z_min_msl": 224.2,
+        "z_max_msl": 227.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0601693,
+                28.5822729,
+                224.2
+              ],
+              [
+                77.0602307,
+                28.5822729,
+                224.2
+              ],
+              [
+                77.0602307,
+                28.5823271,
+                224.2
+              ],
+              [
+                77.0601693,
+                28.5823271,
+                224.2
+              ],
+              [
+                77.0601693,
+                28.5822729,
+                224.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0601693,
+                28.5822729,
+                227.0
+              ],
+              [
+                77.0602307,
+                28.5822729,
+                227.0
+              ],
+              [
+                77.0602307,
+                28.5823271,
+                227.0
+              ],
+              [
+                77.0601693,
+                28.5823271,
+                227.0
+              ],
+              [
+                77.0601693,
+                28.5822729,
+                227.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+03-3BD9",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-301",
+        "name": "Apartment 301 (3BHK Executive)",
+        "level": 3,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Vikram Malhotra",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 224.2,
+        "z_max_msl": 227.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5823,
+                224.2
+              ],
+              [
+                77.0601693,
+                28.5823,
+                224.2
+              ],
+              [
+                77.0601693,
+                28.5823812,
+                224.2
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                224.2
+              ],
+              [
+                77.0600773,
+                28.5823,
+                224.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5823,
+                227.0
+              ],
+              [
+                77.0601693,
+                28.5823,
+                227.0
+              ],
+              [
+                77.0601693,
+                28.5823812,
+                227.0
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                227.0
+              ],
+              [
+                77.0600773,
+                28.5823,
+                227.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+03-8460",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-302",
+        "name": "Apartment 302 (3BHK Executive)",
+        "level": 3,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Suresh Raina",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 224.2,
+        "z_max_msl": 227.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602307,
+                28.5823,
+                224.2
+              ],
+              [
+                77.0603227,
+                28.5823,
+                224.2
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                224.2
+              ],
+              [
+                77.0602307,
+                28.5823812,
+                224.2
+              ],
+              [
+                77.0602307,
+                28.5823,
+                224.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602307,
+                28.5823,
+                227.0
+              ],
+              [
+                77.0603227,
+                28.5823,
+                227.0
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                227.0
+              ],
+              [
+                77.0602307,
+                28.5823812,
+                227.0
+              ],
+              [
+                77.0602307,
+                28.5823,
+                227.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+03-89BC",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-303",
+        "name": "Apartment 303 (2BHK Premium)",
+        "level": 3,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Pooja Hegde",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 224.2,
+        "z_max_msl": 227.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                224.2
+              ],
+              [
+                77.0601693,
+                28.5822188,
+                224.2
+              ],
+              [
+                77.0601693,
+                28.5823,
+                224.2
+              ],
+              [
+                77.0600773,
+                28.5823,
+                224.2
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                224.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                227.0
+              ],
+              [
+                77.0601693,
+                28.5822188,
+                227.0
+              ],
+              [
+                77.0601693,
+                28.5823,
+                227.0
+              ],
+              [
+                77.0600773,
+                28.5823,
+                227.0
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                227.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+03-983A",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-304",
+        "name": "Apartment 304 (2BHK Premium)",
+        "level": 3,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Naveen Jindal",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 224.2,
+        "z_max_msl": 227.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602307,
+                28.5822188,
+                224.2
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                224.2
+              ],
+              [
+                77.0603227,
+                28.5823,
+                224.2
+              ],
+              [
+                77.0602307,
+                28.5823,
+                224.2
+              ],
+              [
+                77.0602307,
+                28.5822188,
+                224.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602307,
+                28.5822188,
+                227.0
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                227.0
+              ],
+              [
+                77.0603227,
+                28.5823,
+                227.0
+              ],
+              [
+                77.0602307,
+                28.5823,
+                227.0
+              ],
+              [
+                77.0602307,
+                28.5822188,
+                227.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+04-757C",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "LOBBY-400",
+        "name": "Floor 4 Elevator Lobby & Fire Corridor",
+        "level": 4,
+        "domain": "A",
+        "type": "COMMON_CIRCULATION",
+        "owner": "Aura Residency RWA",
+        "carpet_area_m2": 36.0,
+        "volume_m3": 100.8,
+        "z_min_msl": 227.2,
+        "z_max_msl": 230.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0601693,
+                28.5822729,
+                227.2
+              ],
+              [
+                77.0602307,
+                28.5822729,
+                227.2
+              ],
+              [
+                77.0602307,
+                28.5823271,
+                227.2
+              ],
+              [
+                77.0601693,
+                28.5823271,
+                227.2
+              ],
+              [
+                77.0601693,
+                28.5822729,
+                227.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0601693,
+                28.5822729,
+                230.0
+              ],
+              [
+                77.0602307,
+                28.5822729,
+                230.0
+              ],
+              [
+                77.0602307,
+                28.5823271,
+                230.0
+              ],
+              [
+                77.0601693,
+                28.5823271,
+                230.0
+              ],
+              [
+                77.0601693,
+                28.5822729,
+                230.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+04-0ABB",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-401",
+        "name": "Apartment 401 (Penthouse North-A)",
+        "level": 4,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Rohan Singhania",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 227.2,
+        "z_max_msl": 230.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5823,
+                227.2
+              ],
+              [
+                77.0601693,
+                28.5823,
+                227.2
+              ],
+              [
+                77.0601693,
+                28.5823812,
+                227.2
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                227.2
+              ],
+              [
+                77.0600773,
+                28.5823,
+                227.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5823,
+                230.0
+              ],
+              [
+                77.0601693,
+                28.5823,
+                230.0
+              ],
+              [
+                77.0601693,
+                28.5823812,
+                230.0
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                230.0
+              ],
+              [
+                77.0600773,
+                28.5823,
+                230.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+04-3CCA",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-402",
+        "name": "Apartment 402 (Penthouse North-B)",
+        "level": 4,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Manish Goel",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 227.2,
+        "z_max_msl": 230.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602307,
+                28.5823,
+                227.2
+              ],
+              [
+                77.0603227,
+                28.5823,
+                227.2
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                227.2
+              ],
+              [
+                77.0602307,
+                28.5823812,
+                227.2
+              ],
+              [
+                77.0602307,
+                28.5823,
+                227.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602307,
+                28.5823,
+                230.0
+              ],
+              [
+                77.0603227,
+                28.5823,
+                230.0
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                230.0
+              ],
+              [
+                77.0602307,
+                28.5823812,
+                230.0
+              ],
+              [
+                77.0602307,
+                28.5823,
+                230.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+04-95CE",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-403",
+        "name": "Apartment 403 (Penthouse South-A)",
+        "level": 4,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Sanjay Dutt",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 227.2,
+        "z_max_msl": 230.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                227.2
+              ],
+              [
+                77.0601693,
+                28.5822188,
+                227.2
+              ],
+              [
+                77.0601693,
+                28.5823,
+                227.2
+              ],
+              [
+                77.0600773,
+                28.5823,
+                227.2
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                227.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                230.0
+              ],
+              [
+                77.0601693,
+                28.5822188,
+                230.0
+              ],
+              [
+                77.0601693,
+                28.5823,
+                230.0
+              ],
+              [
+                77.0600773,
+                28.5823,
+                230.0
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                230.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+04-5281",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "FLAT-404",
+        "name": "Apartment 404 (Penthouse South-B)",
+        "level": 4,
+        "domain": "A",
+        "type": "PRIVATE_RESIDENTIAL",
+        "owner": "Alok Nath",
+        "carpet_area_m2": 81.0,
+        "volume_m3": 226.8,
+        "z_min_msl": 227.2,
+        "z_max_msl": 230.0,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0602307,
+                28.5822188,
+                227.2
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                227.2
+              ],
+              [
+                77.0603227,
+                28.5823,
+                227.2
+              ],
+              [
+                77.0602307,
+                28.5823,
+                227.2
+              ],
+              [
+                77.0602307,
+                28.5822188,
+                227.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0602307,
+                28.5822188,
+                230.0
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                230.0
+              ],
+              [
+                77.0603227,
+                28.5823,
+                230.0
+              ],
+              [
+                77.0602307,
+                28.5823,
+                230.0
+              ],
+              [
+                77.0602307,
+                28.5822188,
+                230.0
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "3D_SPATIAL_UNIT",
+        "ulpin_3d": "IND280145987621-A+05-A049",
+        "base_ulpin": "IND280145987621",
+        "unit_id": "ROOF-501",
+        "name": "Terrace Solar Array & Overhead Water Storage",
+        "level": 5,
+        "domain": "A",
+        "type": "COMMON_UTILITY",
+        "owner": "Aura Residency RWA",
+        "carpet_area_m2": 432.0,
+        "volume_m3": 993.6,
+        "z_min_msl": 230.2,
+        "z_max_msl": 232.5,
+        "is_watertight": true,
+        "has_violation": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                230.2
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                230.2
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                230.2
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                230.2
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                230.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                77.0600773,
+                28.5822188,
+                232.5
+              ],
+              [
+                77.0603227,
+                28.5822188,
+                232.5
+              ],
+              [
+                77.0603227,
+                28.5823812,
+                232.5
+              ],
+              [
+                77.0600773,
+                28.5823812,
+                232.5
+              ],
+              [
+                77.0600773,
+                28.5822188,
+                232.5
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
