@@ -68,7 +68,7 @@ export default function MutationModal({
           <form onSubmit={handleExecuteMutation} className="space-y-4 my-4">
             {/* Unit Info Box */}
             <div className="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-1 text-xs">
-              <div className="text-slate-400 font-mono text-[11px]">3D-ULPIN: <strong className="text-sky-300">{unit.ulpin_3d}</strong></div>
+              <div className="text-slate-400 font-mono text-[11px]">3D-ULPIN: <strong className="text-[#00D084]">{unit.ulpin_3d}</strong></div>
               <div className="font-bold text-slate-200 text-sm">{unit.name}</div>
               <div className="text-slate-400 text-xs">Current Registered Owner: <strong className="text-slate-200">{unit.owner}</strong></div>
             </div>

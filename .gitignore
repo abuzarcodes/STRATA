@@ -50,3 +50,10 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+
+# Large media & extractor bundles
+*.mp4
+*.zip
+misc/frames/
+misc/*.zip
+misc/*.mp4

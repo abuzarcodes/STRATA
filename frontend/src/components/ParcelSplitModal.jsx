@@ -67,7 +67,7 @@ export default function ParcelSplitModal({
             type: unit.type,
             z_min: unit.z_min,
             z_max: unit.z_max,
-            color: '#38bdf8'
+            color: '#00d084'
           },
           childB: {
             unit_id: `${unit.unit_id}B`,
@@ -120,7 +120,7 @@ export default function ParcelSplitModal({
             <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center justify-between text-xs">
               <div>
                 <span className="text-slate-400">Parent 3D-ULPIN:</span>
-                <div className="font-mono font-bold text-sky-300 text-sm">{unit.ulpin_3d}</div>
+                <div className="font-mono font-bold text-[#00D084] text-sm">{unit.ulpin_3d}</div>
                 <div className="text-slate-300 font-semibold mt-0.5">{unit.name} ({unit.owner})</div>
               </div>
               <div className="text-right">
@@ -160,10 +160,10 @@ export default function ParcelSplitModal({
             {/* Two Child Proposed ULPIN Cards */}
             <div className="grid grid-cols-2 gap-3">
               {/* Child Unit A */}
-              <div className="p-3.5 rounded-2xl bg-sky-950/30 border border-sky-500/30 space-y-2 text-xs">
+              <div className="p-3.5 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 space-y-2 text-xs">
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-sky-400 text-xs">Child Unit 1 (A)</span>
-                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">
+                  <span className="font-bold text-[#00D084] text-xs">Child Unit 1 (A)</span>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-[#00D084]">
                     {splitRatio}%
                   </span>
                 </div>
@@ -179,11 +179,11 @@ export default function ParcelSplitModal({
                     aria-label="Assigned Owner for Child Unit A"
                     value={childAOwner}
                     onChange={(e) => setChildAOwner(e.target.value)}
-                    className="w-full px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white font-medium focus:outline-none focus:border-sky-500"
+                    className="w-full px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white font-medium focus:outline-none focus:border-[#00D084]"
                   />
                 </div>
                 <div className="text-[10px] font-mono text-slate-400 pt-1">
-                  Volume: <strong className="text-sky-300">{childAVolume} m³</strong> | Area: <strong>{childAArea} m²</strong>
+                  Volume: <strong className="text-[#00D084]">{childAVolume} m³</strong> | Area: <strong>{childAArea} m²</strong>
                 </div>
               </div>
 

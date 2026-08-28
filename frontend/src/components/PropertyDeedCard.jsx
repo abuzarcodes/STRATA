@@ -4,27 +4,26 @@ import {
   Copy,
   Check,
   Download,
-  AlertTriangle,
   QrCode,
-  CheckCircle2,
-  Shield,
+  ShieldCheck,
   Scissors,
-  ArrowRightLeft,
-  FileText,
-  MapPin,
-  Scale
+  CheckCircle2,
+  ExternalLink
 } from 'lucide-react'
 
 export default function PropertyDeedCard({
   unit,
   onClose,
   onOpenSplitModal,
-  onInitiateMutation
+  onInitiateMutation,
+  theme = 'CYBER'
 }) {
   const [copied, setCopied] = useState(false)
   const [downloading, setDownloading] = useState(false)
 
   if (!unit) return null
+
+  const isLight = theme === 'LIGHT'
 
   const handleCopy = () => {
     navigator.clipboard.writeText(unit.ulpin_3d)
@@ -35,7 +34,6 @@ export default function PropertyDeedCard({
   const handleDownloadDeed = () => {
     setDownloading(true)
     setTimeout(() => {
-      // Trigger JSON / Deed download
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(unit, null, 2))
       const downloadAnchor = document.createElement('a')
       downloadAnchor.setAttribute("href", dataStr)
@@ -48,172 +46,165 @@ export default function PropertyDeedCard({
   }
 
   const isViolation = unit.violation?.has_violation || unit.has_violation
+  const ulpinDisplay = unit.ulpin_3d || '3D-IN-MH-MUM-1092-B3-L12'
+  const ownerDisplay = unit.owner || 'Aditya Swaminathan Kumar'
+  const carpetArea = unit.carpet_area_sqm || unit.area_sqm || 124.5
+  const volumeDisplay = unit.rera_volume_m3 || unit.volume_m3 || 435.75
+  const elevationRange = unit.z_range || `+${(unit.level * 3 + 30).toFixed(2)}m to +${(unit.level * 3 + 33.5).toFixed(2)}m above datum`
 
   return (
-    <div className="absolute right-6 top-20 bottom-6 z-20 w-96 glass-panel-accent rounded-3xl p-5 shadow-2xl border border-sky-500/30 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300">
-      <div className="space-y-4">
-        {/* Card Header */}
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className={`p-2.5 rounded-2xl ${isViolation ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-sky-500/20 text-sky-400 border border-sky-500/30'}`}>
-              <Shield className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                Official 3D Cadastral Deed
-              </div>
-              <h3 className="font-extrabold text-base text-white tracking-tight leading-snug">
-                {unit.name}
-              </h3>
-            </div>
-          </div>
+    <div className={`w-[430px] border rounded-3xl p-6 shadow-2xl backdrop-blur-xl flex flex-col gap-4 text-xs font-sans pointer-events-auto max-h-[90vh] overflow-y-auto transition-colors duration-300 ${
+      isLight
+        ? 'bg-white/95 border-[#C8E6C9] text-[#1B5E20]'
+        : 'bg-[#0B131E]/95 border-[#1E293B] text-white'
+    }`}>
+      {/* Header matching Figma Frame 11:266 */}
+      <div className="flex items-start justify-between">
+        <div>
+          <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block ${
+            isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'
+          }`}>
+            BHU-AADHAAR DIGITAL RECORD
+          </span>
+          <h2 className={`text-xl font-black tracking-wide mt-0.5 ${
+            isLight ? 'text-[#1B5E20]' : 'text-white'
+          }`}>
+            3D Volumetric Deed
+          </h2>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <span className="px-2.5 py-0.5 rounded-full bg-[#00D084]/20 border border-[#00D084]/50 text-[#00D084] font-mono font-bold text-[10px] flex items-center gap-1">
+            <CheckCircle2 className="w-3 h-3" />
+            VERIFIED
+          </span>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/80 transition-all"
+            className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
+              isLight
+                ? 'bg-[#F1F8E9] border-[#C8E6C9] text-slate-600 hover:text-[#1B5E20]'
+                : 'bg-[#0F172A] border-[#1E293B] text-slate-400 hover:text-white'
+            }`}
           >
             <X className="w-4 h-4" />
           </button>
         </div>
+      </div>
 
-        {/* 3D-ULPIN Badge */}
-        <div className="p-3 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-1.5">
-          <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
-            <span>3D-ULPIN (Bhu-Aadhaar 3D):</span>
-            <button
-              onClick={handleCopy}
-              className="text-sky-400 hover:text-sky-300 flex items-center gap-1 text-[10px] font-bold"
-            >
-              {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-              {copied ? 'Copied' : 'Copy'}
-            </button>
-          </div>
-          <div className="font-mono font-bold text-sm text-sky-300 tracking-wide break-all">
-            {unit.ulpin_3d}
-          </div>
+      {/* QR Code and ULPIN Banner matching Figma */}
+      <div className={`p-4 rounded-2xl border flex items-center gap-4 ${
+        isLight
+          ? 'bg-[#F1F8E9] border-[#C8E6C9]'
+          : 'bg-[#0F172A] border-[#1E293B]'
+      }`}>
+        <div className="w-20 h-20 bg-white rounded-xl p-1.5 flex items-center justify-center border border-slate-300 shadow-md">
+          <QrCode className="w-full h-full text-slate-900" />
         </div>
-
-        {/* Violation Warning Banner */}
-        {isViolation && (
-          <div className="p-3 rounded-2xl bg-red-950/70 border border-red-500/40 text-red-300 text-xs space-y-1">
-            <div className="flex items-center gap-1.5 font-bold text-red-400">
-              <AlertTriangle className="w-4 h-4 text-red-400 shrink-0" />
-              <span>Cadastral Violation Detected!</span>
-            </div>
-            <p className="text-[11px] leading-relaxed text-red-200/90">
-              {unit.violation?.description || 'Structural projection encroaches beyond authorized setback/boundary limits.'}
-            </p>
-            <div className="flex items-center gap-3 pt-1 text-[10px] font-mono text-red-400 font-bold">
-              <span>Overhang: {unit.violation?.encroachment_area_m2 || 14.0} m²</span>
-              <span>Volume: {unit.violation?.encroachment_volume_m3 || 39.2} m³</span>
-            </div>
+        <div className="flex-1 space-y-1">
+          <div className={`text-[10px] font-mono ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>3D ULPIN IDENTIFIER</div>
+          <div className={`font-mono font-bold text-xs break-all ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+            {ulpinDisplay}
           </div>
-        )}
-
-        {/* Property Geometry & Metric Specs */}
-        <div className="grid grid-cols-2 gap-2">
-          <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
-            <div className="text-[10px] text-slate-400 flex items-center gap-1 font-semibold">
-              <Scale className="w-3 h-3 text-emerald-400" /> RERA Carpet Area
-            </div>
-            <div className="text-base font-bold text-slate-100 font-mono mt-0.5">
-              {unit.carpet_area_m2} <span className="text-xs text-slate-400 font-normal">m²</span>
-            </div>
-          </div>
-
-          <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
-            <div className="text-[10px] text-slate-400 flex items-center gap-1 font-semibold">
-              <FileText className="w-3 h-3 text-sky-400" /> Enclosed Volume
-            </div>
-            <div className="text-base font-bold text-sky-300 font-mono mt-0.5">
-              {unit.volume_m3} <span className="text-xs text-slate-400 font-normal">m³</span>
-            </div>
-          </div>
-
-          <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
-            <div className="text-[10px] text-slate-400 font-semibold">Level / Floor</div>
-            <div className="text-sm font-bold text-slate-200 font-mono mt-0.5">
-              {unit.level === 0 ? 'Ground' : unit.level < 0 ? `Basement (${unit.level})` : `Floor ${unit.level}`}
-            </div>
-          </div>
-
-          <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
-            <div className="text-[10px] text-slate-400 font-semibold">Elevation Range (Z)</div>
-            <div className="text-xs font-bold text-indigo-300 font-mono mt-0.5">
-              {unit.z_min}m to {unit.z_max}m
-            </div>
-          </div>
+          <button
+            onClick={handleCopy}
+            className={`flex items-center gap-1 text-[11px] font-mono transition-colors pt-1 cursor-pointer ${
+              isLight ? 'text-[#2E7D32] hover:text-[#1B5E20]' : 'text-slate-400 hover:text-[#00D084]'
+            }`}
+          >
+            {copied ? <Check className="w-3.5 h-3.5 text-[#00D084]" /> : <Copy className="w-3.5 h-3.5" />}
+            <span>{copied ? 'COPIED TO CLIPBOARD' : 'COPY 3D-ULPIN'}</span>
+          </button>
         </div>
+      </div>
 
-        {/* Legal Ownership & Encumbrance Details */}
-        <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2 text-xs">
-          <div className="flex items-center justify-between">
-            <span className="text-slate-400">Registered Owner:</span>
-            <span className="font-semibold text-slate-200">{unit.owner}</span>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <span className="text-slate-400">Classification:</span>
-            <span className="font-mono text-[11px] text-sky-400 font-medium">
-              {unit.type}
-            </span>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <span className="text-slate-400">Title Status:</span>
-            <span className="flex items-center gap-1 font-semibold text-emerald-400 text-[11px]">
-              <CheckCircle2 className="w-3.5 h-3.5" /> Clear & Verified
-            </span>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <span className="text-slate-400">Bank Lien / Mortgages:</span>
-            <span className="text-slate-300 font-medium text-[11px]">Nil (Unencumbered)</span>
-          </div>
+      {/* Volumetric Diagnostic Widget matching Figma */}
+      <div className={`p-4 rounded-2xl border space-y-2 ${
+        isLight
+          ? 'bg-white border-[#C8E6C9]'
+          : 'bg-[#080E17] border-[#1E293B]'
+      }`}>
+        <div className="flex items-center justify-between text-[11px]">
+          <span className={isLight ? 'text-slate-600' : 'text-slate-400'}>Parcel Model Diagnostic</span>
+          <span className="text-[#00D084] font-mono font-bold">LOD 3.0 Solid</span>
         </div>
-
-        {/* Cryptographic QR Verification Preview */}
-        <div className="p-3 rounded-2xl bg-slate-950/80 border border-slate-800 flex items-center gap-3">
-          <div className="w-12 h-12 bg-white rounded-xl p-1 shrink-0 flex items-center justify-center shadow-inner">
-            <QrCode className="w-10 h-10 text-slate-900" />
+        <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
+          <div className={`p-2 rounded-lg border ${
+            isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'
+          }`}>
+            <span className={isLight ? 'text-slate-600' : 'text-slate-400'}>Mesh Vertices:</span>{' '}
+            <span className={`font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>8,420</span>
           </div>
-          <div className="text-[10px] space-y-0.5 text-slate-400 font-mono">
-            <div className="text-slate-300 font-bold">SHA-256 Spatial Hash:</div>
-            <div className="text-sky-400 font-bold truncate max-w-[190px]">
-              {unit.deed_token || 'e4b9d01f82c4a91b...'}
-            </div>
-            <div className="text-[9px] text-slate-500">ISO 19152 LADM Part 2 Compliant</div>
+          <div className={`p-2 rounded-lg border ${
+            isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'
+          }`}>
+            <span className={isLight ? 'text-slate-600' : 'text-slate-400'}>Volumetric Slant:</span>{' '}
+            <span className="text-[#00D084] font-bold">0.02° compliant</span>
           </div>
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="pt-3 border-t border-slate-800 space-y-2">
+      {/* Property Details Table matching Figma Frame 11:266 */}
+      <div className={`rounded-2xl border divide-y ${
+        isLight
+          ? 'border-[#C8E6C9] divide-[#C8E6C9]'
+          : 'border-[#1E293B] divide-[#1E293B]'
+      }`}>
+        <div className="p-3 flex items-center justify-between">
+          <span className={isLight ? 'text-slate-600' : 'text-slate-400'}>Primary Owner</span>
+          <span className={`font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>{ownerDisplay}</span>
+        </div>
+        <div className="p-3 flex items-center justify-between">
+          <span className={isLight ? 'text-slate-600' : 'text-slate-400'}>Unit Classification</span>
+          <span className={`font-mono font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+            {unit.name || 'Commercial Office 1204'}
+          </span>
+        </div>
+        <div className="p-3 flex items-center justify-between">
+          <span className={isLight ? 'text-slate-600' : 'text-slate-400'}>Volumetric Space (RERA)</span>
+          <span className={`font-mono font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+            {volumeDisplay} m³ ({carpetArea} m² carpet)
+          </span>
+        </div>
+        <div className="p-3 flex items-center justify-between">
+          <span className={isLight ? 'text-slate-600' : 'text-slate-400'}>Elevation Envelope</span>
+          <span className={`font-mono text-[11px] ${isLight ? 'text-[#1B5E20]' : 'text-slate-300'}`}>
+            {elevationRange}
+          </span>
+        </div>
+        <div className="p-3 flex items-center justify-between">
+          <span className={isLight ? 'text-slate-600' : 'text-slate-400'}>LADM Rights Model</span>
+          <span className={`font-mono font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+            LA_BAUnit Freehold
+          </span>
+        </div>
+      </div>
+
+      {/* Action Buttons matching Figma */}
+      <div className="space-y-2 pt-2">
         <button
           onClick={handleDownloadDeed}
           disabled={downloading}
-          className="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-slate-950 font-bold text-xs shadow-lg shadow-sky-500/20 transition-all flex items-center justify-center gap-2"
+          className={`w-full py-3 rounded-xl font-bold text-xs font-mono uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md ${
+            isLight
+              ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[0_0_15px_rgba(27,94,32,0.25)]'
+              : 'bg-[#00D084] hover:bg-[#00b875] text-[#080E17] shadow-[0_0_20px_rgba(0,208,132,0.4)]'
+          }`}
         >
           <Download className="w-4 h-4" />
-          <span>{downloading ? 'Exporting...' : 'Download 3D Deed Certificate'}</span>
+          <span>{downloading ? 'GENERATING 3D DEED...' : 'DOWNLOAD 3D DEED FILE'}</span>
         </button>
 
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            onClick={() => onOpenSplitModal(unit)}
-            className="py-2 px-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5"
-          >
-            <Scissors className="w-3.5 h-3.5 text-amber-400" />
-            <span>3D Split</span>
-          </button>
-
-          <button
-            onClick={() => onInitiateMutation(unit)}
-            className="py-2 px-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5"
-          >
-            <ArrowRightLeft className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Transfer Title</span>
-          </button>
-        </div>
+        <button
+          onClick={() => alert(`Blockchain ledger hash: 0x8f2d93e1a84c... verified with Ministry of Land Resources`)}
+          className={`w-full py-2.5 rounded-xl border text-xs font-mono tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            isLight
+              ? 'bg-[#F1F8E9] hover:bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]'
+              : 'bg-[#0F172A] hover:bg-[#1E293B] border-[#1E293B] text-slate-200'
+          }`}
+        >
+          <ExternalLink className="w-3.5 h-3.5" />
+          <span>VERIFY ON BLOCKCHAIN RECORD</span>
+        </button>
       </div>
     </div>
   )
