@@ -1,0 +1,216 @@
+// STRATA — Spatial Topology, Registration and Administration of Three-dimensional Assets
+// Prisma Schema Definition
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  SURVEYOR
+  REVIEWER
+  USER
+}
+
+enum AssetType {
+  PROPERTY_UNIT
+  COMMON_AREA
+  PARKING
+  UTILITY
+  INFRASTRUCTURE
+  OTHER
+}
+
+enum ProcessingJobStatus {
+  PENDING
+  QUEUED
+  PROCESSING
+  COMPLETED
+  FAILED
+  REQUIRES_REVIEW
+}
+
+enum ViolationType {
+  OVERLAP
+  ENCROACHMENT
+  BOUNDARY_CONFLICT
+  VERTICAL_CONFLICT
+  OTHER
+}
+
+enum ViolationSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+model User {
+  id           String          @id @default(uuid())
+  email        String          @unique
+  passwordHash String
+  name         String
+  role         Role            @default(USER)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  // Relationships
+  projects       Project[]
+  processingJobs ProcessingJob[]
+  auditLogs      AuditLog[]
+
+  @@map("users")
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  ownerId     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationships
+  owner   User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  parcels Parcel[]
+
+  @@map("projects")
+}
+
+model Parcel {
+  id           String   @id @default(uuid())
+  projectId    String
+  name         String
+  parcelNumber String?
+  area         Float?
+  metadata     Json?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relationships
+  project   Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  buildings Building[]
+
+  @@map("parcels")
+}
+
+model Building {
+  id             String   @id @default(uuid())
+  parcelId       String
+  name           String
+  numberOfFloors Int      @default(1)
+  metadata       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relationships
+  parcel Parcel  @relation(fields: [parcelId], references: [id], onDelete: Cascade)
+  floors Floor[]
+
+  @@map("buildings")
+}
+
+model Floor {
+  id         String   @id @default(uuid())
+  buildingId String
+  level      Int
+  elevation  Float    @default(0.0)
+  height     Float    @default(3.0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relationships
+  building      Building       @relation(fields: [buildingId], references: [id], onDelete: Cascade)
+  spatialAssets SpatialAsset[]
+
+  @@map("floors")
+}
+
+model SpatialAsset {
+  id        String    @id @default(uuid())
+  floorId   String
+  name      String
+  type      AssetType @default(PROPERTY_UNIT)
+  metadata  Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Relationships
+  floor            Floor             @relation(fields: [floorId], references: [id], onDelete: Cascade)
+  geometryVersions GeometryVersion[]
+  violations       Violation[]
+
+  @@map("spatial_assets")
+}
+
+model GeometryVersion {
+  id             String   @id @default(uuid())
+  spatialAssetId String
+  version        Int      @default(1)
+  source         String?  // e.g. 'manual', 'ai_extrusion', 'cad_import'
+  status         String   @default("active") // 'active', 'archived', 'draft'
+  geometryData   Json?    // Structured GeoJSON / 3D polyhedral representation
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relationships
+  spatialAsset SpatialAsset @relation(fields: [spatialAssetId], references: [id], onDelete: Cascade)
+
+  @@unique([spatialAssetId, version])
+  @@map("geometry_versions")
+}
+
+model ProcessingJob {
+  id            String              @id @default(uuid())
+  type          String              // e.g. 'ai_extrusion', 'clash_detection', 'watertightness_check'
+  status        ProcessingJobStatus @default(PENDING)
+  inputData     Json?
+  outputData    Json?
+  errorMessage  String?
+  requestedById String?
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  // Relationships
+  requestedBy User? @relation(fields: [requestedById], references: [id], onDelete: SetNull)
+
+  @@map("processing_jobs")
+}
+
+model Violation {
+  id             String            @id @default(uuid())
+  spatialAssetId String
+  type           ViolationType     @default(OTHER)
+  severity       ViolationSeverity @default(MEDIUM)
+  description    String
+  resolved       Boolean           @default(false)
+  details        Json?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  // Relationships
+  spatialAsset SpatialAsset @relation(fields: [spatialAssetId], references: [id], onDelete: Cascade)
+
+  @@map("violations")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  action     String   // e.g. 'CREATE', 'UPDATE', 'DELETE', 'VERIFY', 'PROCESS'
+  entityType String   // e.g. 'SpatialAsset', 'Project', 'GeometryVersion'
+  entityId   String
+  userId     String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  // Relationships
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([entityType, entityId])
+  @@map("audit_logs")
+}
