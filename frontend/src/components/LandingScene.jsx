@@ -1,7 +1,7 @@
-import React, { useRef, useMemo, useEffect } from 'react'
+import React, { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import { Sun, Moon, ArrowRight } from 'lucide-react'
+import { Sun, Moon, ArrowRight, ShieldCheck, Layers } from 'lucide-react'
 
 // Holographic Wireframe City Tower for Figma Frame 11:8 with Light/Dark Themes
 function HologramTower({ position, size = [6, 18, 6], isLight, wireColor = '#00D084' }) {
@@ -74,28 +74,13 @@ function HolographicCityScene({ isLight }) {
 export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleTheme }) {
   const isLight = theme === 'LIGHT'
 
-  // Wheel listener for smooth scroll transition into Role Selection
-  useEffect(() => {
-    let accumulatedDelta = 0
-    const handleWheel = (e) => {
-      accumulatedDelta += e.deltaY
-      if (Math.abs(accumulatedDelta) > 60) {
-        onScrollBegin()
-        accumulatedDelta = 0
-      }
-    }
-
-    window.addEventListener('wheel', handleWheel, { passive: true })
-    return () => window.removeEventListener('wheel', handleWheel)
-  }, [onScrollBegin])
-
   return (
     <div
       className={`fixed inset-0 z-30 flex flex-col justify-between overflow-hidden select-none transition-colors duration-300 ${
         isLight ? 'bg-[#E8F5E9] text-[#1B5E20]' : 'bg-[#060B12] text-white'
       }`}
     >
-      {/* 3D Holographic City Matrix Background (Clean Grid, No Circles) */}
+      {/* 3D Holographic City Matrix Background (Clean Grid, Solid Buildings) */}
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [38, 30, 48], fov: 40 }} gl={{ antialias: true }}>
           <color attach="background" args={[isLight ? '#E8F5E9' : '#060B12']} />
@@ -160,19 +145,20 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
             }`}
             title={`Switch to ${isLight ? 'Dark' : 'Light'} Mode`}
           >
-            {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+            {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-[#00D084]" />}
           </button>
 
-          {/* Launch Platform Button matching Figma */}
+          {/* Top Launch Button */}
           <button
             onClick={onScrollBegin}
-            className={`px-5 py-2 rounded-lg font-mono text-xs font-bold tracking-wider transition-all cursor-pointer border ${
+            className={`px-5 py-2 rounded-lg font-mono text-xs font-bold tracking-wider transition-all cursor-pointer border flex items-center gap-1.5 ${
               isLight
                 ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white border-[#1B5E20] shadow-[0_0_15px_rgba(27,94,32,0.2)]'
-                : 'bg-transparent hover:bg-[#00D084]/15 border-[#00D084] text-[#00D084] shadow-[0_0_15px_rgba(0,208,132,0.2)]'
+                : 'bg-[#00D084]/15 hover:bg-[#00D084] text-[#00D084] hover:text-[#060B12] border-[#00D084] shadow-[0_0_15px_rgba(0,208,132,0.25)]'
             }`}
           >
-            LAUNCH PLATFORM
+            <span>LAUNCH PLATFORM</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
       </header>
@@ -185,8 +171,8 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
             ? 'bg-white/90 border-[#C8E6C9] text-[#1B5E20]'
             : 'bg-[#0B131E]/90 border-[#1E293B] text-slate-300'
         }`}>
-          <span className={`w-2 h-2 rounded-sm ${isLight ? 'bg-[#1B5E20]' : 'bg-slate-400'}`} />
-          MINISTRY OF LAND RESOURCES
+          <span className={`w-2 h-2 rounded-sm ${isLight ? 'bg-[#1B5E20]' : 'bg-[#00D084]'}`} />
+          MINISTRY OF LAND RESOURCES • GOVERNMENT OF INDIA
         </div>
 
         {/* Hero Titles */}
@@ -255,30 +241,32 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Scroll Prompt matching Figma Frame 11:8 (NO status bar) */}
-      <div
-        onClick={onScrollBegin}
-        className="relative z-10 pb-8 flex flex-col items-center cursor-pointer group transition-all"
-      >
-        <span className={`text-[11px] font-mono font-bold tracking-widest transition-colors mb-2 ${
-          isLight
-            ? 'text-[#1B5E20] group-hover:text-[#2E7D32]'
-            : 'text-[#00D084] group-hover:text-[#00E676]'
-        }`}>
-          EXPLORE VOLUMETRIC SYSTEM
-        </span>
-        <div className={`w-5 h-8 rounded-full border-2 flex items-start justify-center p-1 transition-colors ${
-          isLight
-            ? 'border-[#1B5E20] group-hover:border-[#2E7D32]'
-            : 'border-[#00D084] group-hover:border-[#00E676]'
-        }`}>
-          <div className={`w-1 h-2 rounded-full animate-bounce ${
-            isLight ? 'bg-[#1B5E20] group-hover:bg-[#2E7D32]' : 'bg-[#00D084] group-hover:bg-[#00E676]'
-          }`} />
+        {/* Primary Hero Launch Button */}
+        <div className="pointer-events-auto mt-10">
+          <button
+            onClick={onScrollBegin}
+            className={`px-8 py-3.5 rounded-xl font-mono text-sm font-black tracking-widest uppercase transition-all cursor-pointer flex items-center gap-3 shadow-2xl group ${
+              isLight
+                ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[0_0_25px_rgba(27,94,32,0.35)] hover:scale-105'
+                : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12] shadow-[0_0_30px_rgba(0,208,132,0.5)] hover:scale-105'
+            }`}
+          >
+            <span>LAUNCH 3D CADASTRE</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </div>
+
+      {/* Clean Footer Bar */}
+      <footer className="relative z-10 px-8 py-4 flex items-center justify-between text-[11px] font-mono text-slate-500">
+        <div>BHU-AADHAAR • LADM ISO 19152 COMPLIANT</div>
+        <div className="flex items-center gap-4">
+          <span>SECURE 3D SPATIAL LEDGER</span>
+          <span>•</span>
+          <span>EPSG:4326 WGS 84</span>
+        </div>
+      </footer>
     </div>
   )
 }
