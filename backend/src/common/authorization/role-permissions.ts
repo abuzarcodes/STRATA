@@ -20,10 +20,16 @@ export const ROLE_PERMISSIONS: Record<Role, ReadonlySet<Permission>> = {
     Permission.FLOOR_READ,
     Permission.SPATIAL_ASSET_READ,
     Permission.GEOMETRY_READ,
+    // Applications
+    Permission.APPLICATION_CREATE,
+    Permission.APPLICATION_READ,
+    Permission.APPLICATION_UPDATE,
+    Permission.APPLICATION_SUBMIT,
+    Permission.APPLICATION_CANCEL,
+    Permission.APPLICATION_COMMENT,
   ]),
 
   [Role.SURVEYOR]: new Set([
-    Permission.PROJECT_CREATE,
     Permission.PROJECT_READ,
     Permission.PROJECT_UPDATE,
     Permission.PARCEL_CREATE,

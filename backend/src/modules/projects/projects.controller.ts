@@ -60,6 +60,19 @@ export class ProjectsController {
       next(error);
     }
   }
+
+  async activate(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      if (!req.user) {
+        throw new AppError(401, ErrorCodes.UNAUTHORIZED, 'Authentication required');
+      }
+      const { id } = req.params;
+      const project = await projectsService.activate(id as string, req.user.id);
+      sendSuccess(res, project, 'Project activated successfully');
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export const projectsController = new ProjectsController();

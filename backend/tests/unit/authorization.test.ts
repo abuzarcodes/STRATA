@@ -31,10 +31,9 @@ describe('Authorization & Permissions System', () => {
       expect(ownerPermissions.has(Permission.REGISTRATION_APPROVE)).toBe(false);
     });
 
-    it('SURVEYOR should have spatial creation, modification, and processing permissions but not review/registration approval', () => {
+    it('SURVEYOR should have spatial creation, modification, and processing permissions but not direct project creation or review/registration approval', () => {
       const surveyorPermissions = ROLE_PERMISSIONS[Role.SURVEYOR];
 
-      expect(surveyorPermissions.has(Permission.PROJECT_CREATE)).toBe(true);
       expect(surveyorPermissions.has(Permission.PROJECT_READ)).toBe(true);
       expect(surveyorPermissions.has(Permission.PROJECT_UPDATE)).toBe(true);
       expect(surveyorPermissions.has(Permission.PARCEL_CREATE)).toBe(true);
@@ -45,7 +44,10 @@ describe('Authorization & Permissions System', () => {
       expect(surveyorPermissions.has(Permission.GEOMETRY_CREATE)).toBe(true);
       expect(surveyorPermissions.has(Permission.PROCESSING_CREATE)).toBe(true);
 
-      // Must NOT have review, registration or user management rights
+      // Must NOT have direct project creation, review, registration, application approval or user management rights
+      expect(surveyorPermissions.has(Permission.PROJECT_CREATE)).toBe(false);
+      expect(surveyorPermissions.has(Permission.APPLICATION_APPROVE)).toBe(false);
+      expect(surveyorPermissions.has(Permission.APPLICATION_INITIALIZE_PROJECT)).toBe(false);
       expect(surveyorPermissions.has(Permission.REVIEW_APPROVE)).toBe(false);
       expect(surveyorPermissions.has(Permission.REVIEW_REJECT)).toBe(false);
       expect(surveyorPermissions.has(Permission.REGISTRATION_APPROVE)).toBe(false);

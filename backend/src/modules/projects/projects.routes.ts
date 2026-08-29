@@ -167,4 +167,37 @@ router.delete(
   (req, res, next) => projectsController.delete(req, res, next),
 );
 
+/**
+ * @openapi
+ * /projects/{id}/activate:
+ *   post:
+ *     summary: Activate an INITIALIZED project (Admin only; requires >=1 SURVEYOR assigned)
+ *     tags: [Projects]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Project activated successfully
+ *       400:
+ *         description: Project not in INITIALIZED status or no SURVEYOR assigned
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Insufficient permission
+ *       404:
+ *         description: Project not found
+ */
+router.post(
+  '/:id/activate',
+  validate(getProjectSchema),
+  requirePermission(Permission.PROJECT_ACTIVATE),
+  (req, res, next) => projectsController.activate(req, res, next),
+);
+
 export const projectRoutes = router;

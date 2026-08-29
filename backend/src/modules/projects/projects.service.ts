@@ -113,6 +113,67 @@ export class ProjectsService {
 
     await prisma.project.delete({ where: { id } });
   }
+
+  /**
+   * Activate an INITIALIZED project.
+   * Requires at least one valid SURVEYOR assignment to exist on the project.
+   */
+  async activate(id: string, adminId: string): Promise<ProjectSummary> {
+    return prisma.$transaction(async (tx) => {
+      const project = await tx.project.findUnique({
+        where: { id },
+      });
+
+      if (!project) {
+        throw new AppError(404, ErrorCodes.RESOURCE_NOT_FOUND, 'Project not found.');
+      }
+
+      if (project.status !== 'INITIALIZED') {
+        throw new AppError(
+          400,
+          ErrorCodes.INVALID_APPLICATION_STATE,
+          `Cannot activate project with status ${project.status}. Only INITIALIZED projects can be activated.`,
+        );
+      }
+
+      // Check that at least one SURVEYOR assignment exists
+      const surveyorAssignment = await tx.projectAssignment.findFirst({
+        where: {
+          projectId: id,
+          assignmentRole: 'SURVEYOR',
+        },
+      });
+
+      if (!surveyorAssignment) {
+        throw new AppError(
+          400,
+          ErrorCodes.PROJECT_ACTIVATION_FAILED,
+          'Cannot activate project: at least one SURVEYOR must be assigned to the project first.',
+        );
+      }
+
+      const updated = await tx.project.update({
+        where: { id },
+        data: { status: 'ACTIVE' },
+      });
+
+      await tx.auditLog.create({
+        data: {
+          action: 'PROJECT_ACTIVATED',
+          entityType: 'Project',
+          entityId: id,
+          userId: adminId,
+          metadata: {
+            previousStatus: 'INITIALIZED',
+            newStatus: 'ACTIVE',
+            activatedBy: adminId,
+          },
+        },
+      });
+
+      return updated;
+    });
+  }
 }
 
 export const projectsService = new ProjectsService();
