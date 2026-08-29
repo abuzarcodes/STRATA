@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # ─── STRATA Express + TypeScript Main Backend ───────────
+  strata-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: strata_backend
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DATABASE_URL=postgresql://strata:strata@strata-db:5432/strata_db?schema=public
+      - JWT_SECRET=strata-development-secret-jwt-key-min-16-chars
+      - JWT_EXPIRES_IN=7d
+      - PYTHON_PROCESSING_SERVICE_URL=http://host.docker.internal:8000
+      - CORS_ORIGIN=http://localhost:3000
+    depends_on:
+      strata-db:
+        condition: service_healthy
+    networks:
+      - strata-network
+
+  # ─── PostgreSQL + PostGIS Spatial Database ──────────────
+  strata-db:
+    image: postgis/postgis:16-3.4
+    container_name: strata_spatial_db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: strata
+      POSTGRES_PASSWORD: strata
+      POSTGRES_DB: strata_db
+    volumes:
+      - strata_postgis_data:/var/lib/postgresql/data
+      - ./prisma/migrations/0_init/migration.sql:/docker-entrypoint-initdb.d/01_init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U strata -d strata_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - strata-network
+
+volumes:
+  strata_postgis_data:
+    driver: local
+
+networks:
+  strata-network:
+    driver: bridge
