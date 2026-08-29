@@ -1,6 +1,7 @@
-# 🤝 Contributing to AuraCadastre 3D
+# 🤝 Contributing to STRATA
+### Spatial Topology & Registration Administration for Three-dimensional Assets
 
-Thank you for contributing to the **AuraCadastre 3D** project for **SIH 2026 (Problem Statement PS-011)**!
+Thank you for contributing to **STRATA (Bhu-Aadhaar 3D)** for **SIH 2026 (Problem Statement PS-011)**!
 
 To ensure that all team members can work together efficiently without stepping on each other's toes or causing Git merge conflicts, please follow these guidelines.
 
@@ -9,9 +10,9 @@ To ensure that all team members can work together efficiently without stepping o
 ## 🛠️ Work Division Guidelines
 
 1. **Keep Your Work Within Your Assigned Module:**
-   * **Frontend Developers:** Work primarily within `frontend/src/` (components, styles, Three.js shaders).
-   * **Geometry / Algorithm Engineers:** Work inside `backend/` (coordinates, extrusion math, hash formulas, tests).
-   * **API / Cloud Developers:** Work inside `api/` (FastAPI endpoints, middleware, database models).
+   * **Frontend Developers:** Work primarily within `frontend/src/` (components, styles, Three.js shaders, WebGIS views).
+   * **Backend / API Developers:** Work inside `backend/src/` (Express routes, controllers, Prisma schema, permissions, PostGIS queries).
+   * **Geometry / Algorithm Engineers:** Work inside `backend/` (Python spatial algorithms, coordinates, extrusion math, hash formulas, tests).
    * **Pitch & Documentation Leads:** Work inside `docs/` and presentation materials.
 
 2. **Shared Data Contract:**
@@ -29,16 +30,18 @@ git pull origin main
 git checkout -b feature/<module-name>-<short-description>
 # Examples:
 # git checkout -b feature/frontend-threejs-shaders
-# git checkout -b feature/backend-cgal-clash-detector
-# git checkout -b feature/api-supabase-auth
+# git checkout -b feature/backend-role-authorization
+# git checkout -b feature/spatial-clash-detector
 ```
 
 ### Step 2: Test Locally Before Committing
 ```bash
 # In backend:
-pytest backend/tests/ -v
+cd backend
+npm test
 
 # In frontend:
+cd ../frontend
 npm run build
 ```
 
