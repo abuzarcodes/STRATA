@@ -1,5 +1,54 @@
-import React, { useState } from 'react'
-import { Search, ChevronDown, CheckCircle, Sliders, Layers, MapPin, Building, Crosshair } from 'lucide-react'
+import React, { useState, useMemo } from 'react'
+import { Search, ChevronDown, CheckCircle, Sliders, Layers, MapPin, Building, Crosshair, Sparkles } from 'lucide-react'
+
+const DELHI_HIERARCHY = {
+  'South West Delhi': {
+    wards: {
+      'Ward 04 - Dwarka Sector 10': [
+        { name: 'Aura Residency CGHS (Dwarka Sec-10)', ulpin: 'IND280145987621', pincode: '110075' },
+        { name: 'Pragjyotishpur CGHS (Dwarka Sec-10)', ulpin: 'IND280145987622', pincode: '110075' },
+        { name: 'Navketan Apartments (Dwarka Sec-10)', ulpin: 'IND280145987623', pincode: '110075' }
+      ],
+      'Ward 05 - Dwarka Sector 11 & 12': [
+        { name: 'DDA SFS Pocket 4 (Dwarka Sec-11)', ulpin: 'IND280145988104', pincode: '110075' },
+        { name: 'KM Apartment CGHS (Dwarka Sec-12)', ulpin: 'IND280145988210', pincode: '110078' }
+      ],
+      'Ward 08 - Janakpuri & Uttam Nagar': [
+        { name: 'DDA C-Block Multi-Storey (Janakpuri)', ulpin: 'IND280145989301', pincode: '110058' }
+      ]
+    }
+  },
+  'New Delhi': {
+    wards: {
+      'Ward 01 - Connaught Place & Barakhamba': [
+        { name: 'Barakhamba Commercial Tower', ulpin: 'IND280145990112', pincode: '110001' },
+        { name: 'Kasturba Gandhi Marg Complex', ulpin: 'IND280145990230', pincode: '110001' }
+      ],
+      'Ward 02 - Lodhi Colony & Jor Bagh': [
+        { name: 'Jor Bagh Multi-Level Enclave', ulpin: 'IND280145991405', pincode: '110003' }
+      ]
+    }
+  },
+  'South Delhi': {
+    wards: {
+      'Ward 12 - Vasant Kunj & Mehrauli': [
+        { name: 'DDA Sector D Pocket 6 (Vasant Kunj)', ulpin: 'IND280145992819', pincode: '110070' },
+        { name: 'Heritage City View Apartments', ulpin: 'IND280145992950', pincode: '110070' }
+      ],
+      'Ward 14 - Saket & Malviya Nagar': [
+        { name: 'Saket Institutional District Towers', ulpin: 'IND280145993101', pincode: '110017' }
+      ]
+    }
+  },
+  'North West Delhi': {
+    wards: {
+      'Ward 18 - Rohini Sector 9 & 13': [
+        { name: 'Varun CGHS (Rohini Sec-9)', ulpin: 'IND280145994502', pincode: '110085' },
+        { name: 'DDA Netaji Subhash Complex (Rohini)', ulpin: 'IND280145994611', pincode: '110085' }
+      ]
+    }
+  }
+}
 
 const AVAILABLE_FLOORS = [
   { id: 'ALL', label: 'All Levels', short: 'ALL' },
@@ -19,14 +68,50 @@ export default function PublicLocationSearch({
   onRetrieveModel,
   theme = 'CYBER'
 }) {
-  const [stateVal, setStateVal] = useState('Delhi NCT (07)')
   const [district, setDistrict] = useState('South West Delhi')
-  const [taluka, setTaluka] = useState('Kapashera / Dwarka')
-  const [ward, setWard] = useState('Sector 10 - Plot 12')
-  const [surveyNo, setSurveyNo] = useState('IND280145987621')
-  const [pincode, setPincode] = useState('110075')
+  const [selectedWard, setSelectedWard] = useState('Ward 04 - Dwarka Sector 10')
+  const [selectedSociety, setSelectedSociety] = useState('Aura Residency CGHS (Dwarka Sec-10)')
+  const [baseUlpin, setBaseUlpin] = useState('IND280145987621')
 
   const isLight = theme === 'LIGHT'
+
+  // Available wards under the selected district
+  const availableWards = useMemo(() => {
+    return Object.keys(DELHI_HIERARCHY[district]?.wards || {})
+  }, [district])
+
+  // Available societies under the selected ward
+  const availableSocieties = useMemo(() => {
+    return DELHI_HIERARCHY[district]?.wards[selectedWard] || []
+  }, [district, selectedWard])
+
+  const handleDistrictChange = (newDistrict) => {
+    setDistrict(newDistrict)
+    const firstWard = Object.keys(DELHI_HIERARCHY[newDistrict]?.wards || {})[0] || ''
+    setSelectedWard(firstWard)
+    const firstSociety = DELHI_HIERARCHY[newDistrict]?.wards[firstWard]?.[0]
+    if (firstSociety) {
+      setSelectedSociety(firstSociety.name)
+      setBaseUlpin(firstSociety.ulpin)
+    }
+  }
+
+  const handleWardChange = (newWard) => {
+    setSelectedWard(newWard)
+    const firstSociety = DELHI_HIERARCHY[district]?.wards[newWard]?.[0]
+    if (firstSociety) {
+      setSelectedSociety(firstSociety.name)
+      setBaseUlpin(firstSociety.ulpin)
+    }
+  }
+
+  const handleSocietyChange = (societyName) => {
+    setSelectedSociety(societyName)
+    const found = availableSocieties.find((s) => s.name === societyName)
+    if (found) {
+      setBaseUlpin(found.ulpin)
+    }
+  }
 
   const handleRetrieve = (e) => {
     e?.preventDefault()
@@ -50,21 +135,26 @@ export default function PublicLocationSearch({
   }
 
   return (
-    <div className={`w-80 border rounded-2xl p-5 shadow-2xl backdrop-blur-xl flex flex-col gap-4 text-xs font-sans pointer-events-auto transition-colors duration-300 ${
-      isLight
-        ? 'bg-white/95 border-[#C8E6C9] text-slate-800'
-        : 'bg-[#0B131E]/95 border-[#1E293B] text-white'
-    }`}>
+    <div
+      className={`w-84 border rounded-3xl p-5 shadow-2xl backdrop-blur-2xl flex flex-col gap-4 text-xs font-sans pointer-events-auto transition-colors duration-300 ${
+        isLight
+          ? 'bg-white/95 border-[#C8E6C9] text-slate-800 shadow-[0_15px_45px_rgba(27,94,32,0.12)]'
+          : 'bg-[#0B131E]/95 border-[#1E293B] text-white shadow-[0_15px_50px_rgba(0,0,0,0.8)]'
+      }`}
+    >
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className={`text-base font-black tracking-wide ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
-            Cadastral Query
-          </h2>
+          <div className="flex items-center gap-1.5">
+            <span className={`w-2 h-2 rounded-full ${isLight ? 'bg-[#1B5E20]' : 'bg-[#00D084] animate-pulse'}`} />
+            <h2 className={`text-base font-black tracking-wide ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+              Cadastral Query
+            </h2>
+          </div>
           <p className={`text-[10px] font-mono font-bold uppercase tracking-wider mt-0.5 ${
             isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'
           }`}>
-            3D BHU-AADHAAR SPATIAL DRILLDOWN
+            Delhi NCT 3D Spatial Drilldown
           </p>
         </div>
         <div className={`p-2 rounded-xl border ${isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#0F172A] border-[#1E293B] text-[#00D084]'}`}>
@@ -73,90 +163,115 @@ export default function PublicLocationSearch({
       </div>
 
       <form onSubmit={handleRetrieve} className="space-y-3">
-        {/* State */}
+        {/* State (Fixed to NCT of Delhi) */}
         <div>
-          <label className={`block text-[11px] font-medium mb-1 ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
-            State / UT
-          </label>
-          <div className="relative">
-            <select
-              value={stateVal}
-              onChange={(e) => setStateVal(e.target.value)}
-              className={`w-full px-3 py-2 rounded-lg border appearance-none text-xs focus:outline-none font-medium ${
-                isLight
-                  ? 'bg-[#F1F8E9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
-                  : 'bg-[#0F172A] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
-              }`}
-            >
-              <option value="Delhi NCT (07)">07 - Delhi NCT</option>
-              <option value="Maharashtra (27)">27 - Maharashtra</option>
-              <option value="Karnataka (29)">29 - Karnataka</option>
-              <option value="Gujarat (24)">24 - Gujarat</option>
-            </select>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <div className="flex items-center justify-between mb-1">
+            <label className={`text-[11px] font-mono font-bold uppercase ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+              State / Union Territory
+            </label>
+            <span className="text-[10px] font-mono text-[#00D084] font-bold">STATE CODE 07</span>
+          </div>
+          <div
+            className={`w-full px-3 py-2 rounded-xl border font-mono text-xs font-bold flex items-center justify-between ${
+              isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#080E17] border-[#1E293B] text-slate-200'
+            }`}
+          >
+            <span>07 - NCT of Delhi</span>
+            <CheckCircle className="w-3.5 h-3.5 text-[#00D084]" />
           </div>
         </div>
 
-        {/* District */}
+        {/* Revenue District Selector */}
         <div>
-          <label className={`block text-[11px] font-medium mb-1 ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
-            District
+          <label className={`block text-[11px] font-mono font-bold uppercase mb-1 ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+            Revenue District / Zone
           </label>
           <div className="relative">
             <select
               value={district}
-              onChange={(e) => setDistrict(e.target.value)}
-              className={`w-full px-3 py-2 rounded-lg border appearance-none text-xs focus:outline-none font-medium ${
+              onChange={(e) => handleDistrictChange(e.target.value)}
+              className={`w-full px-3 py-2.5 rounded-xl border appearance-none text-xs focus:outline-none font-medium transition-all ${
                 isLight
-                  ? 'bg-[#F1F8E9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
-                  : 'bg-[#0F172A] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
+                  ? 'bg-[#F9FBF9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
+                  : 'bg-[#080E17] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
               }`}
             >
-              <option value="South West Delhi">South West Delhi</option>
-              <option value="New Delhi">New Delhi</option>
-              <option value="Mumbai City">Mumbai City</option>
-              <option value="Bengaluru Urban">Bengaluru Urban</option>
+              {Object.keys(DELHI_HIERARCHY).map((dist) => (
+                <option key={dist} value={dist}>
+                  {dist}
+                </option>
+              ))}
             </select>
             <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
 
-        {/* Ward / Society */}
+        {/* Municipal Ward Selector (Cascaded Narrow-Down) */}
         <div>
-          <label className={`block text-[11px] font-medium mb-1 ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
-            Society / Locality
+          <label className={`block text-[11px] font-mono font-bold uppercase mb-1 ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+            Municipal Ward / Sector
           </label>
           <div className="relative">
             <select
-              value={ward}
-              onChange={(e) => setWard(e.target.value)}
-              className={`w-full px-3 py-2 rounded-lg border appearance-none text-xs focus:outline-none font-medium ${
+              value={selectedWard}
+              onChange={(e) => handleWardChange(e.target.value)}
+              className={`w-full px-3 py-2.5 rounded-xl border appearance-none text-xs focus:outline-none font-medium transition-all ${
                 isLight
-                  ? 'bg-[#F1F8E9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
-                  : 'bg-[#0F172A] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
+                  ? 'bg-[#F9FBF9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
+                  : 'bg-[#080E17] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
               }`}
             >
-              <option value="Sector 10 - Plot 12">Aura Residency CGHS (Dwarka Sec-10)</option>
-              <option value="Sector 11 - Plot 4">DDA Pocket 4 (Dwarka Sec-11)</option>
-              <option value="BKC - Bandra">BKC G-Block Complex</option>
+              {availableWards.map((w) => (
+                <option key={w} value={w}>
+                  {w}
+                </option>
+              ))}
             </select>
             <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
 
-        {/* Base 2D-ULPIN */}
+        {/* Housing Society / Scheme (Cascaded Narrow-Down) */}
         <div>
-          <label className={`block text-[11px] font-medium mb-1 ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
-            Base ULPIN (Surface Parcel)
+          <label className={`block text-[11px] font-mono font-bold uppercase mb-1 ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+            Housing Society / Development Scheme
           </label>
+          <div className="relative">
+            <select
+              value={selectedSociety}
+              onChange={(e) => handleSocietyChange(e.target.value)}
+              className={`w-full px-3 py-2.5 rounded-xl border appearance-none text-xs focus:outline-none font-medium transition-all ${
+                isLight
+                  ? 'bg-[#F9FBF9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
+                  : 'bg-[#080E17] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
+              }`}
+            >
+              {availableSocieties.map((s) => (
+                <option key={s.name} value={s.name}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
+        </div>
+
+        {/* Base 2D-ULPIN (Auto-derived) */}
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <label className={`text-[11px] font-mono font-bold uppercase ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+              Base Surface ULPIN
+            </label>
+            <span className="text-[10px] font-mono text-slate-500">2D Parcel ID</span>
+          </div>
           <input
             type="text"
-            value={surveyNo}
-            onChange={(e) => setSurveyNo(e.target.value)}
-            className={`w-full px-3 py-2 rounded-lg border font-mono text-xs focus:outline-none ${
+            value={baseUlpin}
+            onChange={(e) => setBaseUlpin(e.target.value)}
+            className={`w-full px-3 py-2 rounded-xl border font-mono text-xs font-bold focus:outline-none ${
               isLight
-                ? 'bg-[#F1F8E9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
-                : 'bg-[#0F172A] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
+                ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
+                : 'bg-[#080E17] border-[#1E293B] text-[#00D084] focus:border-[#00D084]'
             }`}
           />
         </div>
@@ -164,13 +279,13 @@ export default function PublicLocationSearch({
         {/* Retrieve 3D Model Action Button */}
         <button
           type="submit"
-          className={`w-full py-2.5 mt-1 rounded-xl font-bold text-xs tracking-wider uppercase transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md ${
+          className={`w-full py-3 mt-1 rounded-2xl font-mono text-xs font-black tracking-wider uppercase transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg ${
             isLight
-              ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[0_0_15px_rgba(27,94,32,0.25)]'
+              ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[#1B5E20]/25'
               : 'bg-[#00D084] hover:bg-[#00b875] text-[#080E17] shadow-[0_0_20px_rgba(0,208,132,0.4)]'
           }`}
         >
-          <Building className="w-3.5 h-3.5" />
+          <Building className="w-4 h-4" />
           <span>LOAD 3D DIGITAL TWIN</span>
         </button>
       </form>
@@ -178,7 +293,7 @@ export default function PublicLocationSearch({
       {/* Vertical Floor Slicer & Isolation Chips */}
       <div className={`pt-3 border-t space-y-2.5 ${isLight ? 'border-[#C8E6C9]' : 'border-[#1E293B]'}`}>
         <div className="flex items-center justify-between text-xs">
-          <span className={`font-semibold flex items-center gap-1.5 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>
+          <span className={`font-bold font-mono flex items-center gap-1.5 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>
             <Sliders className="w-3.5 h-3.5 text-[#00D084]" />
             <span>Vertical Floor Slicer</span>
           </span>
@@ -198,14 +313,14 @@ export default function PublicLocationSearch({
                 key={fl.short}
                 type="button"
                 onClick={() => handleFloorClick(fl.id)}
-                className={`py-1.5 rounded-lg text-[10px] font-mono font-bold transition-all cursor-pointer border ${
+                className={`py-1.5 rounded-xl text-[10px] font-mono font-bold transition-all cursor-pointer border ${
                   isSelected
                     ? isLight
                       ? 'bg-[#1B5E20] text-white border-[#1B5E20] shadow-sm'
                       : 'bg-[#00D084] text-[#080E17] border-[#00D084] shadow-[0_0_10px_rgba(0,208,132,0.3)]'
                     : isLight
-                    ? 'bg-[#F1F8E9] border-[#C8E6C9] text-slate-700 hover:bg-[#E8F5E9]'
-                    : 'bg-[#0F172A] border-[#1E293B] text-slate-300 hover:bg-[#1E293B]'
+                    ? 'bg-[#F9FBF9] border-[#C8E6C9] text-slate-700 hover:bg-[#E8F5E9]'
+                    : 'bg-[#080E17] border-[#1E293B] text-slate-300 hover:bg-[#1E293B]'
                 }`}
                 title={fl.label}
               >
