@@ -195,7 +195,7 @@ export default function PropertyDeedCard({
         </button>
 
         <button
-          onClick={() => alert(`Blockchain ledger hash: 0x8f2d93e1a84c... verified with Ministry of Land Resources`)}
+          onClick={() => alert("Feature not yet implemented")}
           className={`w-full py-2.5 rounded-xl border text-xs font-mono tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
             isLight
               ? 'bg-[#F1F8E9] hover:bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]'

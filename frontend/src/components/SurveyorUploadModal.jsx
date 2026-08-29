@@ -384,7 +384,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess }) {
             <button
               onClick={() => {
                 setIsCalibrating(!isCalibrating)
-                alert(isCalibrating ? 'Nodes locked.' : 'Calibrating 3D nodes against WGS 84 datum...')
+                alert("Feature not yet implemented")
               }}
               className={`w-full py-2.5 rounded-xl border text-xs font-mono font-bold tracking-wider transition-all cursor-pointer ${
                 isCalibrating
@@ -396,7 +396,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess }) {
             </button>
             <button
               onClick={() => {
-                alert('BIM Parcel geometry submitted for automated revenue audit.');
+                alert("Feature not yet implemented");
                 if (onIngestSuccess) onIngestSuccess();
               }}
               className="w-full py-2.5 rounded-xl bg-[#00D084] hover:bg-[#00b875] text-[#080E17] font-bold text-xs font-mono tracking-wider transition-all shadow-[0_0_15px_rgba(0,208,132,0.3)] cursor-pointer"
