@@ -1,291 +1,250 @@
 import React, { useState } from 'react'
 import {
-  X, Copy, Check, Download, QrCode, ShieldCheck,
-  Scissors, ArrowRightLeft, CheckCircle2, ExternalLink,
-  Box, Sparkles, Layers, AlertCircle, Lock
+  Building2, User, Key, ShieldCheck, Download,
+  Share2, Split, ArrowRightLeft, X, Check, Copy, AlertTriangle,
+  QrCode, ExternalLink, Box
 } from 'lucide-react'
 import confetti from 'canvas-confetti'
 
 export default function PropertyDeedCard({
   unit,
   onClose,
+  theme = 'CYBER',
+  activeRole = 'CITIZEN',
   onOpenSplitModal,
   onInitiateMutation,
-  activeRole = 'CITIZEN',
-  onRestrictedAction,
-  theme = 'CYBER'
+  onRestrictedAction
 }) {
   const [copied, setCopied] = useState(false)
-  const [downloading, setDownloading] = useState(false)
+  const [isDownloadingDeed, setIsDownloadingDeed] = useState(false)
+  const isLight = theme === 'LIGHT'
 
   if (!unit) return null
 
-  const isLight = theme === 'LIGHT'
-
-  const handleCopy = () => {
-    if (unit?.ulpin_3d) {
-      navigator.clipboard.writeText(unit.ulpin_3d)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    }
+  const handleCopyUlpin = () => {
+    navigator.clipboard.writeText(unit.ulpin_3d || '')
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
-  const handleDownloadDeed = () => {
-    setDownloading(true)
+  const handleDownloadDeedCertificate = () => {
+    setIsDownloadingDeed(true)
     setTimeout(() => {
       const deedPayload = {
-        standard: "ISO 19152:2024 LADM Part 2",
-        system: "STRATA Bhu-Aadhaar 3D Cadastral Digital Twin",
-        certificate_no: `STRATA-${unit.unit_id}-${Date.now().toString().slice(-6)}`,
-        issuing_authority: "Ministry of Rural Development & Land Resources (DILRMP)",
-        unit_details: {
-          unit_id: unit.unit_id,
+        title_deed_type: "3D_VOLUMETRIC_PROPERTY_DEED",
+        standard: "ISO 19152 LADM Part 2 compliant",
+        national_cadastre_system: "STRATA Bhu-Aadhaar 3D",
+        metadata: {
           ulpin_3d: unit.ulpin_3d,
-          name: unit.name,
-          registered_owner: unit.owner,
+          spatial_unit_id: unit.unit_id,
+          unit_name: unit.name,
           floor_level: unit.level,
-          domain_flag: unit.domain || "A",
-          carpet_area_m2: unit.carpet_area_m2 || 81.0,
-          volume_m3: unit.volume_m3 || 226.8,
-          watertight_certification: unit.is_watertight ?? true,
-          euler_characteristic: "χ = V - E + F = 2",
-          centroid_wgs84: {
-            latitude: 28.5823,
-            longitude: 77.0602,
-            elevation_datum_msl: `+${(unit.level * 3.5 + 30).toFixed(1)}m`
-          }
+          owner_name: unit.owner,
+          volumetric_m3: unit.volume_m3,
+          carpet_area_m2: unit.carpet_area_m2,
+          built_up_area_m2: unit.built_up_area_m2,
+          property_type: unit.type,
+          tax_assessment_val_inr: unit.tax_assessed_val_inr,
+          watertight_manifold: unit.is_watertight ? "VERIFIED (Euler χ=2)" : "NON_MANIFOLD"
         },
-        rights_restrictions_responsibilities: [
-          { type: "RIGHT", description: "Exclusive Freehold Volumetric Ownership of Defined Polyhedral Space" },
-          { type: "RESTRICTION", description: "Cantilever Alteration Beyond Approved Setback Prohibited" },
-          { type: "RESPONSIBILITY", description: "Annual Volumetric Property Tax & Common Area Maintenance" }
-        ],
-        cryptographic_hash: "SHA256:7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069"
+        certification: {
+          issuing_authority: "Ministry of Land Resources & Department of Revenue, Government of NCT of Delhi",
+          cryptographic_seal: "SHA256: 8f94d12c0192ea0183b0f5899a19c62c3e4495c",
+          issued_at: new Date().toISOString()
+        }
       }
 
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(deedPayload, null, 2))
       const downloadAnchor = document.createElement('a')
       downloadAnchor.setAttribute("href", dataStr)
-      downloadAnchor.setAttribute("download", `STRATA_3D_DEED_${unit.ulpin_3d}.json`)
+      downloadAnchor.setAttribute("download", `3D_DEED_${unit.ulpin_3d || unit.unit_id}.json`)
       document.body.appendChild(downloadAnchor)
       downloadAnchor.click()
       downloadAnchor.remove()
-      setDownloading(false)
-      confetti({ particleCount: 50, spread: 50, origin: { y: 0.7 } })
-    }, 600)
+      setIsDownloadingDeed(false)
+      confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } })
+    }, 500)
   }
 
-  const handleSplitClick = () => {
+  const handleSubdivideClick = () => {
     if (activeRole === 'SURVEYOR' || activeRole === 'GOVT') {
       if (onOpenSplitModal) onOpenSplitModal(unit)
     } else {
       if (onRestrictedAction) {
-        onRestrictedAction('3D Parcel Subdivision', 'Licensed Surveyor or Revenue Administrator role required to execute legal 3D parcel splits.')
+        onRestrictedAction('3D Parcel Subdivision', 'Only Licensed Surveyors and Revenue Officers are authorized to execute volumetric parcel subdivisions.')
       }
     }
   }
 
-  const handleMutationClick = () => {
+  const handleMutateClick = () => {
     if (activeRole === 'OWNER' || activeRole === 'GOVT') {
       if (onInitiateMutation) onInitiateMutation(unit)
     } else {
       if (onRestrictedAction) {
-        onRestrictedAction('Title Mutation Transfer', 'Property Owner or Revenue Administrator authentication required to initiate ownership transfer.')
+        onRestrictedAction('Title Mutation Transfer', 'Only verified Property Owners and Revenue Officers can initiate deed ownership mutation transfers.')
       }
     }
   }
 
-  const isViolation = unit.violation?.has_violation || unit.has_violation
-  const ulpinDisplay = unit.ulpin_3d || 'IND280145987621-A+01-4DAC'
-  const ownerDisplay = unit.owner || 'Deepak Joshi'
-  const carpetArea = unit.carpet_area_m2 || unit.area_m2 || 81.0
-  const volumeDisplay = unit.volume_m3 || 226.8
-  const elevationRange = unit.z_range || `+${(unit.level * 3.5 + 30).toFixed(1)}m to +${(unit.level * 3.5 + 33.5).toFixed(1)}m MSL`
-
   return (
     <div
-      className={`w-[410px] rounded-3xl p-6 shadow-2xl backdrop-blur-2xl flex flex-col gap-4 text-xs font-sans pointer-events-auto max-h-[88vh] overflow-y-auto transition-all duration-300 border ${
+      className={`w-84 sm:w-96 rounded-3xl border shadow-2xl p-5 space-y-4 backdrop-blur-2xl transition-all duration-300 ${
         isLight
-          ? 'bg-white/95 border-[#C8E6C9] text-slate-800'
-          : 'bg-[#060B12]/95 border-[#1E293B] text-white'
+          ? 'bg-white/95 border-[#C8E6C9] text-slate-800 shadow-[0_15px_45px_rgba(27,94,32,0.15)]'
+          : 'bg-[#0B131E]/95 border-[#1E293B] text-white shadow-[0_15px_50px_rgba(0,0,0,0.85)]'
       }`}
     >
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <span
-            className={`text-[10px] font-mono font-bold uppercase tracking-widest block ${
-              isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'
-            }`}
-          >
-            NATIONAL BHU-AADHAAR RECORD
-          </span>
-          <h2 className={`text-xl font-black tracking-tight mt-0.5 ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
-            3D Volumetric Title Deed
-          </h2>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span
-            className={`px-2.5 py-0.5 rounded-full font-mono font-bold text-[10px] flex items-center gap-1 border ${
-              isViolation
-                ? 'bg-rose-500/20 text-rose-400 border-rose-500/40'
-                : 'bg-[#00D084]/20 text-[#00D084] border-[#00D084]/50'
-            }`}
-          >
-            {isViolation ? <AlertCircle className="w-3 h-3" /> : <CheckCircle2 className="w-3 h-3" />}
-            {isViolation ? 'AUDIT FLAGGED' : 'VERIFIED SOLID'}
-          </span>
-          <button
-            onClick={onClose}
-            className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
-              isLight
-                ? 'bg-[#F1F8E9] border-[#C8E6C9] text-slate-600 hover:text-[#1B5E20]'
-                : 'bg-[#0F172A] border-[#1E293B] text-slate-400 hover:text-white'
-            }`}
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* QR Code & 3D-ULPIN Banner */}
-      <div
-        className={`p-4 rounded-2xl border flex items-center gap-4 ${
-          isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
-        }`}
-      >
-        <div className="w-18 h-18 bg-white rounded-xl p-1.5 flex items-center justify-center border border-slate-300 shadow-md shrink-0">
-          <QrCode className="w-full h-full text-slate-900" />
-        </div>
-        <div className="flex-1 space-y-1 overflow-hidden">
-          <div className="text-[10px] font-mono text-slate-500 uppercase">3D-ULPIN Identifier</div>
-          <div className={`font-mono font-bold text-xs truncate ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
-            {ulpinDisplay}
+          <div className="flex items-center gap-2">
+            <span
+              className={`px-2.5 py-0.5 rounded-full font-mono text-[10px] font-extrabold tracking-wider ${
+                isLight ? 'bg-[#E8F5E9] text-[#1B5E20]' : 'bg-[#00D084]/20 text-[#00D084]'
+              }`}
+            >
+              LEVEL {unit.level}
+            </span>
+            <span className="text-xs font-mono text-slate-500 uppercase">
+              {unit.type || 'RESIDENTIAL'}
+            </span>
           </div>
-          <button
-            onClick={handleCopy}
-            className={`flex items-center gap-1 text-[11px] font-mono font-bold transition-colors pt-1 cursor-pointer ${
-              isLight ? 'text-[#2E7D32] hover:text-[#1B5E20]' : 'text-slate-400 hover:text-[#00D084]'
-            }`}
-          >
-            {copied ? <Check className="w-3.5 h-3.5 text-[#00D084]" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copied ? 'COPIED 3D-ULPIN' : 'COPY 3D-ULPIN'}</span>
-          </button>
+          <h3 className={`text-xl font-black mt-1 ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+            {unit.name}
+          </h3>
         </div>
-      </div>
 
-      {/* Volumetric Diagnostics Box */}
-      <div
-        className={`p-4 rounded-2xl border space-y-2.5 ${
-          isLight ? 'bg-white border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
-        }`}
-      >
-        <div className="flex items-center justify-between text-[11px]">
-          <span className="font-mono text-slate-500">Spatial Topology Certification</span>
-          <span className="text-[#00D084] font-mono font-bold flex items-center gap-1">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            LoD 3.0 Watertight
-          </span>
-        </div>
-        <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
-          <div
-            className={`p-2.5 rounded-xl border ${
-              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'
-            }`}
-          >
-            <span className="text-slate-500">Euler Characteristic:</span><br />
-            <span className="text-[#00D084] font-bold">χ = V - E + F = 2</span>
-          </div>
-          <div
-            className={`p-2.5 rounded-xl border ${
-              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'
-            }`}
-          >
-            <span className="text-slate-500">Volumetric Space:</span><br />
-            <span className={`font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>{volumeDisplay} m³</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Property Details Table */}
-      <div
-        className={`rounded-2xl border divide-y text-xs font-sans ${
-          isLight ? 'border-[#C8E6C9] divide-[#C8E6C9]' : 'border-[#1E293B] divide-[#1E293B]'
-        }`}
-      >
-        <div className="p-3 flex items-center justify-between">
-          <span className="text-slate-500">Registered Owner</span>
-          <span className={`font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>{ownerDisplay}</span>
-        </div>
-        <div className="p-3 flex items-center justify-between">
-          <span className="text-slate-500">Unit Type</span>
-          <span className={`font-mono font-semibold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
-            {unit.name || 'Apartment Unit'}
-          </span>
-        </div>
-        <div className="p-3 flex items-center justify-between">
-          <span className="text-slate-500">Carpet Area</span>
-          <span className={`font-mono font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
-            {carpetArea} m² ({volumeDisplay} m³)
-          </span>
-        </div>
-        <div className="p-3 flex items-center justify-between">
-          <span className="text-slate-500">Elevation Datum</span>
-          <span className="font-mono text-[11px] text-slate-400">{elevationRange}</span>
-        </div>
-        <div className="p-3 flex items-center justify-between">
-          <span className="text-slate-500">Cadastre Rights Standard</span>
-          <span className="font-mono font-bold text-[#00D084]">ISO 19152 LA_BAUnit</span>
-        </div>
-      </div>
-
-      {/* Action Workflow Buttons */}
-      <div className="space-y-2 pt-2">
         <button
-          onClick={handleDownloadDeed}
-          disabled={downloading}
-          className={`w-full py-3 rounded-xl font-bold text-xs font-mono uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md ${
+          onClick={onClose}
+          className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
             isLight
-              ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[#1B5E20]/20'
-              : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12] shadow-[0_0_20px_rgba(0,208,132,0.35)]'
+              ? 'hover:bg-slate-100 text-slate-500 border-slate-200'
+              : 'hover:bg-slate-800 text-slate-400 border-slate-700'
           }`}
         >
-          <Download className="w-4 h-4" />
-          <span>{downloading ? 'GENERATING CERTIFIED DEED...' : 'DOWNLOAD 3D DEED CERTIFICATE'}</span>
+          <X className="w-4 h-4" />
+        </button>
+      </div>
+
+      {/* 3D-ULPIN Identifier Capsule */}
+      <div
+        className={`p-3 rounded-2xl border flex items-center justify-between font-mono ${
+          isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#080E17] border-[#1E293B]'
+        }`}
+      >
+        <div>
+          <div className="text-[10px] text-slate-500 uppercase">3D-ULPIN (Bhu-Aadhaar 3D)</div>
+          <div className={`text-xs font-bold truncate max-w-[210px] ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+            {unit.ulpin_3d || 'IND280145987621-A+01-4DAC'}
+          </div>
+        </div>
+        <button
+          onClick={handleCopyUlpin}
+          className={`p-1.5 rounded-lg border text-xs transition-all cursor-pointer ${
+            copied
+              ? 'bg-[#00D084]/20 border-[#00D084] text-[#00D084]'
+              : isLight
+              ? 'hover:bg-[#E8F5E9] text-slate-600 border-[#C8E6C9]'
+              : 'hover:bg-slate-800 text-slate-400 border-slate-700'
+          }`}
+          title="Copy 3D-ULPIN"
+        >
+          {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+        </button>
+      </div>
+
+      {/* Volumetric Cadastre Metrics */}
+      <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+        <div
+          className={`p-2.5 rounded-xl border ${
+            isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#080E17] border-[#1E293B]'
+          }`}
+        >
+          <div className="text-[10px] text-slate-500">Volumetric Space</div>
+          <div className={`text-sm font-black mt-0.5 ${isLight ? 'text-slate-800' : 'text-white'}`}>
+            {unit.volume_m3 || '226.8'} m³
+          </div>
+        </div>
+
+        <div
+          className={`p-2.5 rounded-xl border ${
+            isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#080E17] border-[#1E293B]'
+          }`}
+        >
+          <div className="text-[10px] text-slate-500">Carpet Area (RERA)</div>
+          <div className={`text-sm font-black mt-0.5 ${isLight ? 'text-slate-800' : 'text-white'}`}>
+            {unit.carpet_area_m2 || '81.0'} m²
+          </div>
+        </div>
+      </div>
+
+      {/* Legal & Ownership Metadata */}
+      <div
+        className={`p-3 rounded-2xl border space-y-2 text-xs font-mono ${
+          isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#080E17] border-[#1E293B]'
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          <span className="text-slate-500 flex items-center gap-1.5">
+            <User className="w-3.5 h-3.5" />
+            <span>Registered Owner</span>
+          </span>
+          <span className="font-bold text-right">{unit.owner || 'Deepak Joshi'}</span>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="text-slate-500 flex items-center gap-1.5">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#00D084]" />
+            <span>Topology Manifold</span>
+          </span>
+          <span className="font-bold text-[#00D084]">Watertight (Euler χ=2)</span>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="text-slate-500">Tax Valuation</span>
+          <span className="font-bold">₹{(unit.tax_assessed_val_inr || 8450000).toLocaleString('en-IN')}</span>
+        </div>
+      </div>
+
+      {/* Primary Action: Download 3D Deed */}
+      <button
+        onClick={handleDownloadDeedCertificate}
+        disabled={isDownloadingDeed}
+        className={`w-full py-2.5 rounded-2xl font-mono text-xs font-black tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg cursor-pointer ${
+          isLight
+            ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[#1B5E20]/20'
+            : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12] shadow-[0_0_20px_rgba(0,208,132,0.3)]'
+        }`}
+      >
+        <Download className="w-4 h-4" />
+        <span>{isDownloadingDeed ? 'GENERATING 3D DEED...' : 'DOWNLOAD 3D DEED CERTIFICATE'}</span>
+      </button>
+
+      {/* Cadastral Operations: Subdivide & Title Mutation with Role Permissions */}
+      <div className="grid grid-cols-2 gap-2 pt-1">
+        <button
+          onClick={handleSubdivideClick}
+          className={`py-2 px-3 rounded-xl border font-mono text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+            isLight
+              ? 'bg-white border-[#C8E6C9] text-slate-700 hover:bg-[#E8F5E9] hover:text-[#1B5E20]'
+              : 'bg-[#0F172A] border-[#1E293B] text-slate-300 hover:text-white hover:border-[#00D084]'
+          }`}
+        >
+          <Split className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+          <span>Subdivide (3D)</span>
         </button>
 
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            onClick={handleSplitClick}
-            className={`py-2.5 rounded-xl border text-xs font-mono font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-              activeRole === 'SURVEYOR' || activeRole === 'GOVT'
-                ? isLight
-                  ? 'bg-white border-[#C8E6C9] text-amber-700 hover:bg-amber-50'
-                  : 'bg-[#0B131E] border-amber-500/40 text-amber-400 hover:bg-amber-500/10'
-                : 'opacity-70 border-slate-300 dark:border-slate-800 text-slate-400 hover:opacity-100'
-            }`}
-          >
-            {activeRole !== 'SURVEYOR' && activeRole !== 'GOVT' && <Lock className="w-3 h-3 text-slate-400" />}
-            <Scissors className="w-3.5 h-3.5" />
-            <span>SUBDIVIDE (SPLIT)</span>
-          </button>
-
-          <button
-            onClick={handleMutationClick}
-            className={`py-2.5 rounded-xl border text-xs font-mono font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-              activeRole === 'OWNER' || activeRole === 'GOVT'
-                ? isLight
-                  ? 'bg-white border-[#C8E6C9] text-[#1B5E20] hover:bg-[#E8F5E9]'
-                  : 'bg-[#0B131E] border-[#00D084]/40 text-[#00D084] hover:bg-[#00D084]/10'
-                : 'opacity-70 border-slate-300 dark:border-slate-800 text-slate-400 hover:opacity-100'
-            }`}
-          >
-            {activeRole !== 'OWNER' && activeRole !== 'GOVT' && <Lock className="w-3 h-3 text-slate-400" />}
-            <ArrowRightLeft className="w-3.5 h-3.5" />
-            <span>MUTATE TITLE</span>
-          </button>
-        </div>
+        <button
+          onClick={handleMutateClick}
+          className={`py-2 px-3 rounded-xl border font-mono text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+            isLight
+              ? 'bg-white border-[#C8E6C9] text-slate-700 hover:bg-[#E8F5E9] hover:text-[#1B5E20]'
+              : 'bg-[#0F172A] border-[#1E293B] text-slate-300 hover:text-white hover:border-[#00D084]'
+          }`}
+        >
+          <ArrowRightLeft className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+          <span>Mutate Title</span>
+        </button>
       </div>
     </div>
   )

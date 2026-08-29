@@ -24,7 +24,11 @@ export class ProjectsService {
     userId?: string,
   ): Promise<{ projects: ProjectSummary[]; total: number }> {
     const { skip, take } = paginationToSkipTake(pagination);
-    const where = userId ? { ownerId: userId } : {};
+    const where = userId
+      ? {
+          OR: [{ ownerId: userId }, { assignments: { some: { userId } } }],
+        }
+      : {};
 
     const [total, projects] = await Promise.all([
       prisma.project.count({ where }),
@@ -43,6 +47,18 @@ export class ProjectsService {
     const project = await prisma.project.findUnique({
       where: { id },
       include: {
+        assignments: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+              },
+            },
+          },
+        },
         parcels: {
           include: {
             buildings: {
@@ -70,24 +86,11 @@ export class ProjectsService {
     return project;
   }
 
-  async update(
-    id: string,
-    input: UpdateProjectInput,
-    userId: string,
-    isAdmin = false,
-  ): Promise<ProjectSummary> {
+  async update(id: string, input: UpdateProjectInput): Promise<ProjectSummary> {
     const project = await prisma.project.findUnique({ where: { id } });
 
     if (!project) {
       throw new AppError(404, ErrorCodes.RESOURCE_NOT_FOUND, 'Project not found.');
-    }
-
-    if (!isAdmin && project.ownerId !== userId) {
-      throw new AppError(
-        403,
-        ErrorCodes.FORBIDDEN,
-        'You do not have permission to modify this project.',
-      );
     }
 
     const updated = await prisma.project.update({
@@ -101,22 +104,75 @@ export class ProjectsService {
     return updated;
   }
 
-  async delete(id: string, userId: string, isAdmin = false): Promise<void> {
+  async delete(id: string): Promise<void> {
     const project = await prisma.project.findUnique({ where: { id } });
 
     if (!project) {
       throw new AppError(404, ErrorCodes.RESOURCE_NOT_FOUND, 'Project not found.');
     }
 
-    if (!isAdmin && project.ownerId !== userId) {
-      throw new AppError(
-        403,
-        ErrorCodes.FORBIDDEN,
-        'You do not have permission to delete this project.',
-      );
-    }
-
     await prisma.project.delete({ where: { id } });
+  }
+
+  /**
+   * Activate an INITIALIZED project.
+   * Requires at least one valid SURVEYOR assignment to exist on the project.
+   */
+  async activate(id: string, adminId: string): Promise<ProjectSummary> {
+    return prisma.$transaction(async (tx) => {
+      const project = await tx.project.findUnique({
+        where: { id },
+      });
+
+      if (!project) {
+        throw new AppError(404, ErrorCodes.RESOURCE_NOT_FOUND, 'Project not found.');
+      }
+
+      if (project.status !== 'INITIALIZED') {
+        throw new AppError(
+          400,
+          ErrorCodes.INVALID_APPLICATION_STATE,
+          `Cannot activate project with status ${project.status}. Only INITIALIZED projects can be activated.`,
+        );
+      }
+
+      // Check that at least one SURVEYOR assignment exists
+      const surveyorAssignment = await tx.projectAssignment.findFirst({
+        where: {
+          projectId: id,
+          assignmentRole: 'SURVEYOR',
+        },
+      });
+
+      if (!surveyorAssignment) {
+        throw new AppError(
+          400,
+          ErrorCodes.PROJECT_ACTIVATION_FAILED,
+          'Cannot activate project: at least one SURVEYOR must be assigned to the project first.',
+        );
+      }
+
+      const updated = await tx.project.update({
+        where: { id },
+        data: { status: 'ACTIVE' },
+      });
+
+      await tx.auditLog.create({
+        data: {
+          action: 'PROJECT_ACTIVATED',
+          entityType: 'Project',
+          entityId: id,
+          userId: adminId,
+          metadata: {
+            previousStatus: 'INITIALIZED',
+            newStatus: 'ACTIVE',
+            activatedBy: adminId,
+          },
+        },
+      });
+
+      return updated;
+    });
   }
 }
 

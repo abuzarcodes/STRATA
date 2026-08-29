@@ -1,69 +1,63 @@
 import React, { useState } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import * as THREE from 'three'
 import {
-  Home, FileText, Clock, AlertCircle, Settings,
-  ShieldCheck, Download, Share2, X, ExternalLink,
-  Layers, Building, CheckCircle2, Radio, Lock, Box, Sparkles
+  FileText, Download, Share2, Shield, Building,
+  Key, Lock, CheckCircle2, AlertCircle, RefreshCw, X, HardHat,
+  ExternalLink, Sparkles
 } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import StrataLogo from './StrataLogo'
-
-// Mini 3D Floor Plan Preview for Apartment Card
-function MiniFloorPlan({ isLight }) {
-  return (
-    <group position={[0, -0.5, 0]}>
-      <lineSegments>
-        <edgesGeometry args={[new THREE.BoxGeometry(7, 2.5, 5)]} />
-        <lineBasicMaterial color={isLight ? '#1B5E20' : '#00D084'} linewidth={2} />
-      </lineSegments>
-      <mesh position={[-1, 0, 0]}>
-        <boxGeometry args={[0.1, 2.4, 4.8]} />
-        <meshStandardMaterial color={isLight ? '#CBD5E1' : '#475569'} transparent opacity={0.5} />
-      </mesh>
-      <mesh position={[1.5, 0, 0]}>
-        <boxGeometry args={[2.8, 2.4, 0.1]} />
-        <meshStandardMaterial color={isLight ? '#CBD5E1' : '#475569'} transparent opacity={0.5} />
-      </mesh>
-      <mesh position={[0, -1.25, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[7, 5]} />
-        <meshStandardMaterial color={isLight ? '#E2E8F0' : '#334155'} transparent opacity={0.4} side={THREE.DoubleSide} />
-      </mesh>
-    </group>
-  )
-}
 
 export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 'CYBER' }) {
   const [downloadingEC, setDownloadingEC] = useState(false)
   const isLight = theme === 'LIGHT'
 
+  // Citizen's registered 3D properties in society
   const myProperties = [
     {
-      id: 'PROP-01',
+      id: 'prop_01',
       unitId: 'FLAT-104',
       ulpin: 'IND280145987621-A+01-4DAC',
-      name: 'Apartment 104 (2BHK Premium)',
-      location: 'Aura Residency, Dwarka Sector 10, New Delhi',
+      name: 'Flat 104 (Level 1)',
+      location: 'Aura Residency Complex, Sector 10, Dwarka, New Delhi',
+      area: '1050 sq.ft (97.5 m²)',
       carpetArea: '81.0 m²',
       volume: '226.8 m³',
       level: 1,
-      taxStatus: 'PAID (FY 2026-27)',
-      status: 'FREEHOLD VERIFIED',
-      mortgage: 'NONE (Unencumbered)'
+      share: '100% Freehold',
+      status: 'VERIFIED & REGISTERED',
+      registrationDate: '12-OCT-2023',
+      deedNo: 'DEL-DWK-2023-88901',
+      mortgage: 'NONE (Clear Title)',
+      taxStatus: 'PAID (FY 2025-26)'
     },
     {
-      id: 'PROP-02',
+      id: 'prop_02',
       unitId: 'FLAT-302',
-      ulpin: 'IND280145987621-A+03-8E2B',
-      name: 'Apartment 302 (3BHK Executive)',
-      location: 'Aura Residency, Dwarka Sector 10, New Delhi',
-      carpetArea: '108.0 m²',
-      volume: '302.4 m³',
+      ulpin: 'IND280145987621-A+03-9FB2',
+      name: 'Flat 302 (Level 3)',
+      location: 'Aura Residency Complex, Sector 10, Dwarka, New Delhi',
+      area: '1450 sq.ft (134.7 m²)',
+      carpetArea: '112.5 m²',
+      volume: '315.0 m³',
       level: 3,
-      taxStatus: 'PAID (FY 2026-27)',
-      status: 'AUDIT REVIEW',
-      mortgage: 'SBI Home Loan #884920'
+      share: '100% Freehold',
+      status: 'VERIFIED & REGISTERED',
+      registrationDate: '04-JAN-2025',
+      deedNo: 'DEL-DWK-2025-10492',
+      mortgage: 'SBI Home Loan (Active Lien: ₹42.5 L)',
+      taxStatus: 'PAID (FY 2025-26)'
+    }
+  ]
+
+  const mutationApplications = [
+    {
+      appId: 'MUT-2026-0891',
+      property: 'Flat 104 (Level 1)',
+      type: 'TITLE_MUTATION_TRANSFER',
+      toParty: 'Priya Sharma (Daughter)',
+      submittedOn: '18-FEB-2026',
+      status: 'PENDING_REVENUE_APPROVAL',
+      step: 'Revenue Officer Field Verification (Step 2 of 3)'
     }
   ]
 
@@ -71,12 +65,12 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
     setDownloadingEC(true)
     setTimeout(() => {
       const ecCertificate = {
-        title: "CERTIFICATE OF ENCUMBRANCE ON 3D PROPERTY (FORM NO. 15)",
-        certificate_no: `EC-DILRMP-2026-${Date.now().toString().slice(-6)}`,
-        government_authority: "Department of Land Resources, Ministry of Rural Development",
-        applicant_name: "Deepak Joshi",
+        document_type: "DIGILOCKER_CERTIFIED_ENCUMBRANCE_CERTIFICATE",
+        issuer: "Department of Revenue & Land Records, Government of NCT of Delhi",
+        bhu_aadhaar_authority: "STRATA 3D Cadastre Division",
+        holder: "Deepak Joshi",
         digilocker_id: "DL-8849-2026-IN",
-        search_period: "01-Jan-2015 to 29-Aug-2026",
+        timestamp: new Date().toISOString(),
         certified_properties: myProperties.map(p => ({
           ulpin_3d: p.ulpin,
           unit: p.name,
@@ -140,8 +134,8 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
               isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#080E17] border-[#1E293B] text-slate-300'
             }`}
           >
-            <Lock className="w-3.5 h-3.5 text-[#00D084]" />
-            <span className="font-bold text-[11px]">AADHAAR eKYC VERIFIED</span>
+            <Lock className="w-3.5 h-3.5 text-sky-500" />
+            <span className="font-bold text-[11px]">DEEPAK_JOSHI_VAULT</span>
           </div>
 
           <button
@@ -157,124 +151,154 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <main className="flex-1 p-8 overflow-y-auto max-w-6xl mx-auto w-full space-y-8">
-        {/* User Identity Banner */}
-        <div
-          className={`p-6 rounded-3xl border shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
-            isLight
-              ? 'bg-gradient-to-r from-white to-[#E8F5E9] border-[#C8E6C9]'
-              : 'bg-gradient-to-r from-[#0B131E] to-[#0F172A] border-[#1E293B]'
-          }`}
-        >
-          <div className="flex items-center gap-4">
+      {/* Main Studio Body */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Main Content Area */}
+        <main className="flex-1 p-8 overflow-y-auto space-y-8">
+          <div className="max-w-5xl mx-auto space-y-8">
+            {/* Vault Identity Summary Banner */}
             <div
-              className={`w-14 h-14 rounded-2xl flex items-center justify-center border font-black text-lg ${
-                isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#0F172A] border-[#1E293B] text-[#00D084]'
+              className={`p-6 rounded-3xl border shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
+                isLight ? 'bg-white border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
               }`}
             >
-              DJ
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h2 className={`text-xl font-black ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
-                  Deepak Joshi
-                </h2>
-                <span className="px-2.5 py-0.5 rounded-full bg-[#00D084]/20 text-[#00D084] font-mono text-[10px] font-bold border border-[#00D084]/40">
-                  DigiLocker ID: DL-8849-2026-IN
-                </span>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h2 className={`text-lg font-black ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+                    Deepak Joshi • Registered Citizen
+                  </h2>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#00D084]/15 text-[#00D084] border border-[#00D084]/40">
+                    AADHAAR VERIFIED
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 font-mono">
+                  DigiLocker ID: DL-8849-2026-IN • 2 Properties Registered
+                </p>
               </div>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Total Registered Spatial Assets: <strong>2 Units</strong> • Total Volumetric Space: <strong>529.2 m³</strong>
-              </p>
+
+              <button
+                onClick={handleDownloadEC}
+                disabled={downloadingEC}
+                className={`px-4 py-2.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-2 transition-all shadow-sm cursor-pointer ${
+                  isLight
+                    ? 'bg-white border-[#C8E6C9] text-[#1B5E20] hover:bg-[#E8F5E9]'
+                    : 'bg-[#0F172A] border-[#1E293B] text-slate-200 hover:border-[#00D084]'
+                }`}
+              >
+                <Download className="w-3.5 h-3.5 text-[#00D084]" />
+                <span>{downloadingEC ? 'PREPARING SIGNED EC...' : 'DOWNLOAD ENCUMBRANCE CERTIFICATE'}</span>
+              </button>
             </div>
-          </div>
 
-          <button
-            onClick={handleDownloadEC}
-            disabled={downloadingEC}
-            className={`px-4 py-2.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-2 transition-all shadow-sm cursor-pointer ${
-              isLight
-                ? 'bg-white border-[#C8E6C9] text-[#1B5E20] hover:bg-[#E8F5E9]'
-                : 'bg-[#0F172A] border-[#1E293B] text-slate-200 hover:border-[#00D084]'
-            }`}
-          >
-            <Download className="w-3.5 h-3.5 text-[#00D084]" />
-            <span>{downloadingEC ? 'PREPARING SIGNED EC...' : 'DOWNLOAD ENCUMBRANCE CERTIFICATE'}</span>
-          </button>
-        </div>
+            {/* Properties Grid */}
+            <div className="space-y-4">
+              <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+                Registered 3D Cadastral Properties
+              </h3>
 
-        {/* Properties Grid */}
-        <div className="space-y-4">
-          <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
-            Registered 3D Cadastral Properties
-          </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {myProperties.map((prop) => (
+                  <div
+                    key={prop.id}
+                    className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between space-y-4 transition-all hover:scale-[1.01] ${
+                      isLight ? 'bg-white border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-[#00D084]/15 text-[#00D084] border border-[#00D084]/30">
+                          {prop.status}
+                        </span>
+                        <span className="text-xs font-mono text-slate-500">Floor Level {prop.level}</span>
+                      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {myProperties.map((prop) => (
+                      <h4 className={`text-lg font-black ${isLight ? 'text-slate-800' : 'text-white'}`}>
+                        {prop.name}
+                      </h4>
+                      <p className="text-xs text-slate-500 mt-1">{prop.location}</p>
+
+                      <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
+                        <div>
+                          <div className="text-[10px] text-slate-500">3D-ULPIN</div>
+                          <div className={`font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+                            {prop.ulpin}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-[10px] text-slate-500">Volumetric Volume</div>
+                          <div className="font-bold text-slate-700 dark:text-slate-300">{prop.volume}</div>
+                        </div>
+                        <div>
+                          <div className="text-[10px] text-slate-500">Carpet Area</div>
+                          <div className="font-bold text-slate-700 dark:text-slate-300">{prop.carpetArea}</div>
+                        </div>
+                        <div>
+                          <div className="text-[10px] text-slate-500">Encumbrance / Lien</div>
+                          <div className="font-bold text-slate-700 dark:text-slate-300">{prop.mortgage}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                      <span className="text-xs font-mono text-slate-500">Deed #{prop.deedNo}</span>
+                      <button
+                        onClick={() => {
+                          onFocusUnit(prop.unitId)
+                          onClose()
+                        }}
+                        className={`px-3 py-1.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                          isLight
+                            ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20] hover:bg-[#C8E6C9]'
+                            : 'bg-[#00D084]/20 border-[#00D084] text-[#00D084] hover:bg-[#00D084] hover:text-[#060B12]'
+                        }`}
+                      >
+                        <Building className="w-3.5 h-3.5" />
+                        <span>VIEW IN 3D DIGITAL TWIN</span>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mutation Applications Ledger */}
+            <div className="space-y-4">
+              <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+                Live Title Mutation Tracking
+              </h3>
+
               <div
-                key={prop.id}
-                className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between space-y-4 transition-all hover:scale-[1.01] ${
+                className={`p-6 rounded-3xl border shadow-xl space-y-4 ${
                   isLight ? 'bg-white border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
                 }`}
               >
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-[#00D084]/15 text-[#00D084] border border-[#00D084]/30">
-                      {prop.status}
-                    </span>
-                    <span className="text-xs font-mono text-slate-500">Floor Level {prop.level}</span>
+                {mutationApplications.map((mut) => (
+                  <div key={mut.appId} className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono font-bold text-sm text-[#00D084]">{mut.appId}</span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/20 text-amber-500 border border-amber-500/30">
+                          {mut.status}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-500 mt-1">
+                        Transfer of <strong>{mut.property}</strong> to <strong>{mut.toParty}</strong>
+                      </p>
+                      <div className="text-[11px] font-mono text-slate-400 mt-1">
+                        Stage: <span className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>{mut.step}</span>
+                      </div>
+                    </div>
+
+                    <div className="text-xs font-mono text-slate-500 text-right">
+                      Submitted on: {mut.submittedOn}
+                    </div>
                   </div>
-
-                  <h4 className={`text-lg font-bold ${isLight ? 'text-slate-800' : 'text-white'}`}>
-                    {prop.name}
-                  </h4>
-                  <p className="text-xs text-slate-500 font-mono mt-0.5">{prop.ulpin}</p>
-                </div>
-
-                {/* 3D Mini Floor Plan Canvas */}
-                <div className="w-full h-44 rounded-2xl bg-black/40 border border-slate-700/50 relative overflow-hidden">
-                  <Canvas camera={{ position: [9, 7, 9], fov: 38 }}>
-                    <ambientLight intensity={0.6} />
-                    <directionalLight position={[10, 15, 10]} intensity={1.2} color="#00D084" />
-                    <MiniFloorPlan isLight={isLight} />
-                    <OrbitControls enableDamping autoRotate autoRotateSpeed={1.0} />
-                  </Canvas>
-                </div>
-
-                {/* Property Specs */}
-                <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-                  <div className={`p-2.5 rounded-xl border ${isLight ? 'bg-[#F9FBF9] border-slate-200' : 'bg-[#0F172A] border-[#1E293B]'}`}>
-                    <span className="text-slate-500 text-[10px]">Carpet Area:</span><br />
-                    <strong className={isLight ? 'text-[#1B5E20]' : 'text-white'}>{prop.carpetArea}</strong>
-                  </div>
-                  <div className={`p-2.5 rounded-xl border ${isLight ? 'bg-[#F9FBF9] border-slate-200' : 'bg-[#0F172A] border-[#1E293B]'}`}>
-                    <span className="text-slate-500 text-[10px]">Volumetric Space:</span><br />
-                    <strong className="text-[#00D084]">{prop.volume}</strong>
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
-                  <button
-                    onClick={() => {
-                      if (onFocusUnit) onFocusUnit(prop.unitId)
-                      onClose()
-                    }}
-                    className={`flex-1 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                      isLight
-                        ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white'
-                        : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12]'
-                    }`}
-                  >
-                    <span>VIEW IN 3D DIGITAL TWIN</span>
-                  </button>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   )
 }

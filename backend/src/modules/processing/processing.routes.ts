@@ -138,17 +138,30 @@ export class ProcessingController {
 
 export const processingController = new ProcessingController();
 
+import { requirePermission } from '../../middleware/require-permission.middleware';
+import { Permission } from '../../common/authorization';
+
 // ── Routes ──
 const router = Router();
 router.use(authMiddleware);
 
-router.post('/jobs', validate(createJobSchema), (req, res, next) =>
-  processingController.create(req, res, next),
+router.post(
+  '/jobs',
+  validate(createJobSchema),
+  requirePermission(Permission.PROCESSING_CREATE),
+  (req, res, next) => processingController.create(req, res, next),
 );
-router.get('/jobs', (req, res, next) => processingController.findAll(req, res, next));
-router.get('/jobs/:id', (req, res, next) => processingController.findById(req, res, next));
-router.patch('/jobs/:id/status', validate(updateJobStatusSchema), (req, res, next) =>
-  processingController.updateStatus(req, res, next),
+router.get('/jobs', requirePermission(Permission.PROCESSING_READ), (req, res, next) =>
+  processingController.findAll(req, res, next),
+);
+router.get('/jobs/:id', requirePermission(Permission.PROCESSING_READ), (req, res, next) =>
+  processingController.findById(req, res, next),
+);
+router.patch(
+  '/jobs/:id/status',
+  validate(updateJobStatusSchema),
+  requirePermission(Permission.PROCESSING_CREATE),
+  (req, res, next) => processingController.updateStatus(req, res, next),
 );
 
 export const processingRoutes = router;

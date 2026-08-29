@@ -103,17 +103,23 @@ export class GeometriesController {
 
 export const geometriesController = new GeometriesController();
 
+import { requirePermission } from '../../middleware/require-permission.middleware';
+import { Permission } from '../../common/authorization';
+
 // ── Routes ──
 const router = Router();
 router.use(authMiddleware);
 
-router.post('/versions', validate(createGeometryVersionSchema), (req, res, next) =>
-  geometriesController.createVersion(req, res, next),
+router.post(
+  '/versions',
+  validate(createGeometryVersionSchema),
+  requirePermission(Permission.GEOMETRY_CREATE),
+  (req, res, next) => geometriesController.createVersion(req, res, next),
 );
-router.get('/asset/:assetId', (req, res, next) =>
+router.get('/asset/:assetId', requirePermission(Permission.GEOMETRY_READ), (req, res, next) =>
   geometriesController.getVersionsByAsset(req, res, next),
 );
-router.get('/versions/:id', (req, res, next) =>
+router.get('/versions/:id', requirePermission(Permission.GEOMETRY_READ), (req, res, next) =>
   geometriesController.getVersionById(req, res, next),
 );
 

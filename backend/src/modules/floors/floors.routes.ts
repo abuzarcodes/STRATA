@@ -109,14 +109,24 @@ export class FloorsController {
 
 export const floorsController = new FloorsController();
 
+import { requirePermission } from '../../middleware/require-permission.middleware';
+import { Permission } from '../../common/authorization';
+
 // ── Routes ──
 const router = Router();
 router.use(authMiddleware);
 
-router.post('/', validate(createFloorSchema), (req, res, next) =>
-  floorsController.create(req, res, next),
+router.post(
+  '/',
+  validate(createFloorSchema),
+  requirePermission(Permission.FLOOR_CREATE),
+  (req, res, next) => floorsController.create(req, res, next),
 );
-router.get('/', (req, res, next) => floorsController.findAll(req, res, next));
-router.get('/:id', (req, res, next) => floorsController.findById(req, res, next));
+router.get('/', requirePermission(Permission.FLOOR_READ), (req, res, next) =>
+  floorsController.findAll(req, res, next),
+);
+router.get('/:id', requirePermission(Permission.FLOOR_READ), (req, res, next) =>
+  floorsController.findById(req, res, next),
+);
 
 export const floorRoutes = router;

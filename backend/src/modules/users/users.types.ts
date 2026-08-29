@@ -5,6 +5,7 @@ export interface UserSummary {
   email: string;
   name: string;
   role: Role;
+  isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

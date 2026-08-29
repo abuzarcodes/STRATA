@@ -123,16 +123,27 @@ export class ParcelsController {
 
 export const parcelsController = new ParcelsController();
 
+import { requirePermission } from '../../middleware/require-permission.middleware';
+import { Permission } from '../../common/authorization';
+
 // ── Routes ──
 const router = Router();
 router.use(authMiddleware);
 
-router.post('/', validate(createParcelSchema), (req, res, next) =>
-  parcelsController.create(req, res, next),
+router.post(
+  '/',
+  validate(createParcelSchema),
+  requirePermission(Permission.PARCEL_CREATE),
+  (req, res, next) => parcelsController.create(req, res, next),
 );
-router.get('/', (req, res, next) => parcelsController.findAll(req, res, next));
-router.get('/:id', validate(getParcelSchema), (req, res, next) =>
-  parcelsController.findById(req, res, next),
+router.get('/', requirePermission(Permission.PARCEL_READ), (req, res, next) =>
+  parcelsController.findAll(req, res, next),
+);
+router.get(
+  '/:id',
+  validate(getParcelSchema),
+  requirePermission(Permission.PARCEL_READ),
+  (req, res, next) => parcelsController.findById(req, res, next),
 );
 
 export const parcelRoutes = router;

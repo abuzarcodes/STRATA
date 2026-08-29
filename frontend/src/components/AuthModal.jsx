@@ -98,100 +98,128 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
       }`}
     >
       <div
-        className={`w-full max-w-lg rounded-3xl p-8 shadow-2xl flex flex-col items-center relative animate-in fade-in zoom-in-95 duration-200 border transition-all ${
+        className={`w-full max-w-md rounded-3xl border shadow-2xl p-8 relative overflow-hidden backdrop-blur-2xl transition-all duration-300 ${
           isLight
-            ? 'bg-white border-[#C8E6C9] text-slate-800'
-            : 'bg-[#0B131E] border-[#1E293B] text-white'
+            ? 'bg-white/95 border-[#C8E6C9] text-slate-800 shadow-[0_20px_50px_rgba(27,94,32,0.15)]'
+            : 'bg-[#0B131E]/95 border-[#1E293B] text-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.8)]'
         }`}
       >
-        {/* Back Button */}
-        <button
-          onClick={onBack}
-          className={`absolute top-6 left-6 text-xs flex items-center gap-1.5 font-mono font-bold transition-colors cursor-pointer ${
-            isLight ? 'text-slate-500 hover:text-[#1B5E20]' : 'text-slate-400 hover:text-white'
-          }`}
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>CHANGE ROLE</span>
-        </button>
+        {/* Top Glow Bar matching Role Theme */}
+        <div
+          className="absolute top-0 left-0 right-0 h-1.5"
+          style={{ backgroundColor: config.accentColor }}
+        />
 
-        {/* Top Role Badge */}
-        <div className="flex flex-col items-center mt-2 mb-4">
-          <div
-            className={`w-14 h-14 rounded-2xl border flex items-center justify-center shadow-lg mb-3 ${
+        {/* Header with Role Title and Back Button */}
+        <div className="flex items-center justify-between mb-6">
+          <button
+            onClick={onBack}
+            className={`p-2 rounded-xl border flex items-center gap-1.5 text-xs font-mono font-bold transition-all cursor-pointer ${
               isLight
-                ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]'
-                : 'bg-[#0F172A] border-[#1E293B] text-[#00D084]'
+                ? 'bg-white border-[#C8E6C9] text-slate-600 hover:text-[#1B5E20] hover:bg-[#E8F5E9]'
+                : 'bg-[#0F172A] border-[#1E293B] text-slate-400 hover:text-white hover:border-[#00D084]'
             }`}
           >
-            <RoleIcon className="w-7 h-7" style={{ color: config.accentColor }} />
-          </div>
+            <ArrowLeft className="w-4 h-4" />
+            <span>Switch Role</span>
+          </button>
 
           <span
-            className={`text-[10px] font-mono font-bold px-3 py-0.5 rounded-full border mb-1 ${
-              isLight ? 'bg-[#F1F8E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#0F172A] border-[#1E293B] text-[#00D084]'
-            }`}
+            className="text-[10px] font-mono font-black tracking-wider px-3 py-1 rounded-full border shadow-sm"
+            style={{
+              borderColor: `${config.accentColor}50`,
+              color: config.accentColor,
+              backgroundColor: `${config.accentColor}15`
+            }}
           >
             {config.badge}
           </span>
-
-          <h2 className={`text-2xl font-black text-center ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
-            {config.title}
-          </h2>
-          <p className="text-xs text-slate-500 text-center max-w-sm mt-1">
-            {config.hint}
-          </p>
         </div>
 
-        {/* Demo Auto-fill Pill Button */}
-        <div className="w-full flex items-center justify-between px-1 mb-4">
-          <span className="text-[11px] font-mono text-slate-400">Preset Credentials:</span>
+        {/* Role Icon & Title */}
+        <div className="flex items-center gap-3.5 mb-4">
+          <div
+            className="w-12 h-12 rounded-2xl flex items-center justify-center border shadow-inner"
+            style={{
+              backgroundColor: `${config.accentColor}20`,
+              borderColor: `${config.accentColor}40`
+            }}
+          >
+            <RoleIcon className="w-6 h-6" style={{ color: config.accentColor }} />
+          </div>
+          <div>
+            <h2 className={`text-lg font-black tracking-tight ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+              {config.title}
+            </h2>
+            <p className="text-xs text-slate-500 font-mono">
+              National Cadastral Authentication Gateway
+            </p>
+          </div>
+        </div>
+
+        {/* Helper Hint */}
+        <div
+          className={`p-3 rounded-2xl border text-xs leading-relaxed mb-6 ${
+            isLight
+              ? 'bg-[#F9FBF9] border-[#C8E6C9] text-slate-600'
+              : 'bg-[#080E17] border-[#1E293B] text-slate-300'
+          }`}
+        >
+          {config.hint}
+        </div>
+
+        {/* Quick Demo Pre-Fill Button */}
+        <div className="flex justify-between items-center mb-3">
+          <span className="text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider">
+            Sign In Details
+          </span>
           <button
-            type="button"
             onClick={handleFillDemo}
-            className={`px-2.5 py-1 rounded-lg border text-[11px] font-mono font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
-              isLight
-                ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20] hover:bg-[#C8E6C9]'
-                : 'bg-[#00D084]/15 border-[#00D084]/30 text-[#00D084] hover:bg-[#00D084]/25'
+            type="button"
+            className={`text-[11px] font-mono font-bold flex items-center gap-1 transition-colors cursor-pointer ${
+              isLight ? 'text-[#1B5E20] hover:text-[#2E7D32]' : 'text-[#00D084] hover:underline'
             }`}
           >
-            <KeyRound className="w-3 h-3" />
+            <Sparkles className="w-3 h-3" />
             <span>Auto-fill Demo Details</span>
           </button>
         </div>
 
-        {/* Form Fields */}
-        <div className="w-full space-y-3.5">
+        {/* Auth Form */}
+        <div className="space-y-4">
           <div>
-            <label className={`block text-xs font-semibold mb-1.5 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>
+            <label className={`block text-xs font-mono font-semibold mb-1.5 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>
               {config.idLabel}
             </label>
-            <input
-              type="text"
-              value={identifier}
-              onChange={(e) => setIdentifier(e.target.value)}
-              placeholder={config.idPlaceholder}
-              className={`w-full px-4 py-2.5 rounded-xl border text-xs font-mono transition-all focus:outline-none ${
-                isLight
-                  ? 'bg-[#F9FBF9] border-[#C8E6C9] text-slate-800 placeholder-slate-400 focus:border-[#1B5E20] focus:ring-1 focus:ring-[#1B5E20]'
-                  : 'bg-[#0F172A] border-[#1E293B] text-white placeholder-slate-500 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084]'
-              }`}
-            />
+            <div className="relative">
+              <input
+                type="text"
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
+                placeholder={config.idPlaceholder}
+                className={`w-full px-4 py-2.5 rounded-xl border text-xs font-mono transition-all focus:outline-none ${
+                  isLight
+                    ? 'bg-white border-[#C8E6C9] text-slate-800 focus:border-[#1B5E20] focus:ring-1 focus:ring-[#1B5E20]'
+                    : 'bg-[#080E17] border-[#1E293B] text-white focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084]'
+                }`}
+              />
+            </div>
           </div>
 
           <div>
-            <label className={`block text-xs font-semibold mb-1.5 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>
-              Security Password / Passkey
+            <label className={`block text-xs font-mono font-semibold mb-1.5 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>
+              Access PIN / Password
             </label>
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`w-full px-4 py-2.5 rounded-xl border text-xs font-mono transition-all focus:outline-none pr-10 ${
+                placeholder="Enter password..."
+                className={`w-full px-4 py-2.5 rounded-xl border text-xs font-mono transition-all focus:outline-none ${
                   isLight
-                    ? 'bg-[#F9FBF9] border-[#C8E6C9] text-slate-800 placeholder-slate-400 focus:border-[#1B5E20] focus:ring-1 focus:ring-[#1B5E20]'
-                    : 'bg-[#0F172A] border-[#1E293B] text-white placeholder-slate-500 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084]'
+                    ? 'bg-white border-[#C8E6C9] text-slate-800 focus:border-[#1B5E20] focus:ring-1 focus:ring-[#1B5E20]'
+                    : 'bg-[#080E17] border-[#1E293B] text-white focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084]'
                 }`}
               />
               <button
@@ -215,7 +243,7 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
               />
               <span>Cryptographic 2FA e-KYC Verification</span>
             </label>
-            <span className="text-[10px] font-mono text-[#00D084]">ACTIVE</span>
+            <span className={`text-[10px] font-mono font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>ACTIVE</span>
           </div>
 
           {/* Primary Action Button */}
