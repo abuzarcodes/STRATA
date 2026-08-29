@@ -317,14 +317,14 @@ export default function CitizenLocker({ onClose, onFocusUnit }) {
                       DIGILOCKER
                     </span>
                     <button
-                      onClick={() => alert(`Downloading verified copy of ${deed.title}`)}
+                      onClick={() => alert("Feature not yet implemented")}
                       className="p-2 rounded-lg bg-[#080E17] border border-[#1E293B] hover:border-[#00D084] text-slate-300 hover:text-[#00D084] transition-colors"
                       title="Download PDF"
                     >
                       <Download className="w-4 h-4" />
                     </button>
                     <button
-                      onClick={() => alert(`Shareable link generated with cryptographic hash.`)}
+                      onClick={() => alert("Feature not yet implemented")}
                       className="p-2 rounded-lg bg-[#080E17] border border-[#1E293B] hover:border-[#00D084] text-slate-300 hover:text-[#00D084] transition-colors"
                       title="Share Deed"
                     >

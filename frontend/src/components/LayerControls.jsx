@@ -108,7 +108,7 @@ export default function LayerControls({
         >
           <Compass className="w-4 h-4" />
         </button>
-        <button
+        <button onClick={() => alert("Feature not yet implemented")}
           className={`p-2 rounded-lg transition-all cursor-pointer ${
             isLight
               ? 'bg-[#F1F8E9] hover:bg-[#E8F5E9] text-slate-600 hover:text-[#1B5E20]'
@@ -118,7 +118,7 @@ export default function LayerControls({
         >
           <Ruler className="w-4 h-4" />
         </button>
-        <button
+        <button onClick={() => alert("Feature not yet implemented")}
           className={`p-2 rounded-lg transition-all cursor-pointer ${
             isLight
               ? 'bg-[#F1F8E9] hover:bg-[#E8F5E9] text-slate-600 hover:text-[#1B5E20]'
@@ -128,7 +128,7 @@ export default function LayerControls({
         >
           <Scan className="w-4 h-4" />
         </button>
-        <button
+        <button onClick={() => alert("Feature not yet implemented")}
           className={`p-2 rounded-lg transition-all cursor-pointer ${
             isLight
               ? 'bg-[#F1F8E9] hover:bg-[#E8F5E9] text-slate-600 hover:text-[#1B5E20]'

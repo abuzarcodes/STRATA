@@ -89,7 +89,7 @@ export default function AuthModal({ activeRole, onBack, onSuccess }) {
               />
               <span>Aadhaar 2FA OTP</span>
             </label>
-            <button
+            <button onClick={() => alert("Feature not yet implemented")}
               type="button"
               className="text-xs text-slate-400 hover:text-[#00D084] transition-colors"
             >
