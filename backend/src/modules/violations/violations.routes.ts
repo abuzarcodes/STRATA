@@ -137,15 +137,27 @@ export class ViolationsController {
 
 export const violationsController = new ViolationsController();
 
+import { requirePermission } from '../../middleware/require-permission.middleware';
+import { Permission } from '../../common/authorization';
+
 // ── Routes ──
 const router = Router();
 router.use(authMiddleware);
 
-router.post('/', validate(createViolationSchema), (req, res, next) =>
-  violationsController.create(req, res, next),
+router.post(
+  '/',
+  validate(createViolationSchema),
+  requirePermission(Permission.SPATIAL_ASSET_CREATE),
+  (req, res, next) => violationsController.create(req, res, next),
 );
-router.get('/', (req, res, next) => violationsController.findAll(req, res, next));
-router.get('/:id', (req, res, next) => violationsController.findById(req, res, next));
-router.patch('/:id/resolve', (req, res, next) => violationsController.resolve(req, res, next));
+router.get('/', requirePermission(Permission.SPATIAL_ASSET_READ), (req, res, next) =>
+  violationsController.findAll(req, res, next),
+);
+router.get('/:id', requirePermission(Permission.SPATIAL_ASSET_READ), (req, res, next) =>
+  violationsController.findById(req, res, next),
+);
+router.patch('/:id/resolve', requirePermission(Permission.REVIEW_APPROVE), (req, res, next) =>
+  violationsController.resolve(req, res, next),
+);
 
 export const violationRoutes = router;

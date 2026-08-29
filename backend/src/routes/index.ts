@@ -10,6 +10,7 @@ import { spatialAssetRoutes } from '../modules/spatial-assets/spatial-assets.rou
 import { geometryRoutes } from '../modules/geometries/geometries.routes';
 import { processingRoutes } from '../modules/processing/processing.routes';
 import { violationRoutes } from '../modules/violations/violations.routes';
+import { applicationRoutes } from '../modules/applications/applications.routes';
 
 const router = Router();
 
@@ -17,6 +18,7 @@ const router = Router();
 router.use('/health', healthRoutes);
 router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
+router.use('/applications', applicationRoutes);
 router.use('/projects', projectRoutes);
 router.use('/parcels', parcelRoutes);
 router.use('/buildings', buildingRoutes);
