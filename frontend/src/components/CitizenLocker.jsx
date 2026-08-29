@@ -3,368 +3,278 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import {
-  Home,
-  FileText,
-  Clock,
-  AlertCircle,
-  Settings,
-  ShieldCheck,
-  Download,
-  Share2,
-  X,
-  ExternalLink,
-  Layers,
-  Building,
-  CheckCircle2,
-  Radio
+  Home, FileText, Clock, AlertCircle, Settings,
+  ShieldCheck, Download, Share2, X, ExternalLink,
+  Layers, Building, CheckCircle2, Radio, Lock, Box, Sparkles
 } from 'lucide-react'
+import confetti from 'canvas-confetti'
+import StrataLogo from './StrataLogo'
 
 // Mini 3D Floor Plan Preview for Apartment Card
-function MiniFloorPlan() {
+function MiniFloorPlan({ isLight }) {
   return (
     <group position={[0, -0.5, 0]}>
-      {/* Outer Wall Boundary */}
       <lineSegments>
         <edgesGeometry args={[new THREE.BoxGeometry(7, 2.5, 5)]} />
-        <lineBasicMaterial color="#00D084" linewidth={2} />
+        <lineBasicMaterial color={isLight ? '#1B5E20' : '#00D084'} linewidth={2} />
       </lineSegments>
-      {/* Interior Room Partitions */}
       <mesh position={[-1, 0, 0]}>
         <boxGeometry args={[0.1, 2.4, 4.8]} />
-        <meshStandardMaterial color="#475569" transparent opacity={0.5} />
+        <meshStandardMaterial color={isLight ? '#CBD5E1' : '#475569'} transparent opacity={0.5} />
       </mesh>
       <mesh position={[1.5, 0, 0]}>
         <boxGeometry args={[2.8, 2.4, 0.1]} />
-        <meshStandardMaterial color="#475569" transparent opacity={0.5} />
+        <meshStandardMaterial color={isLight ? '#CBD5E1' : '#475569'} transparent opacity={0.5} />
       </mesh>
-      {/* Floor Plate with grey base */}
       <mesh position={[0, -1.25, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[7, 5]} />
-        <meshStandardMaterial color="#334155" transparent opacity={0.4} side={THREE.DoubleSide} />
+        <meshStandardMaterial color={isLight ? '#E2E8F0' : '#334155'} transparent opacity={0.4} side={THREE.DoubleSide} />
       </mesh>
     </group>
   )
 }
 
-// Mini 3D Commercial Suite Tower
-function MiniCommercialTower() {
-  return (
-    <group position={[0, -1, 0]}>
-      <mesh position={[0, 2, 0]}>
-        <boxGeometry args={[4, 5, 4]} />
-        <meshStandardMaterial color="#334155" transparent opacity={0.7} />
-      </mesh>
-      <lineSegments position={[0, 2, 0]}>
-        <edgesGeometry args={[new THREE.BoxGeometry(4, 5, 4)]} />
-        <lineBasicMaterial color="#F59E0B" linewidth={2} />
-      </lineSegments>
-      {/* Floor Slabs */}
-      {[-0.5, 0.7, 1.9, 3.1, 4.3].map((y, idx) => (
-        <mesh key={idx} position={[0, y, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[4, 4]} />
-          <meshBasicMaterial color="#F59E0B" wireframe transparent opacity={0.4} />
-        </mesh>
-      ))}
-    </group>
-  )
-}
+export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 'CYBER' }) {
+  const [downloadingEC, setDownloadingEC] = useState(false)
+  const isLight = theme === 'LIGHT'
 
-export default function CitizenLocker({ onClose, onFocusUnit }) {
-  const [activeNav, setActiveNav] = useState('PROPERTIES')
-
-  const deeds = [
+  const myProperties = [
     {
-      id: 'd1',
-      title: 'Sale Deed - BKC Heights Floor 12',
-      date: '14 Jan 2025',
-      size: '4.2 MB',
-      verified: true
+      id: 'PROP-01',
+      unitId: 'FLAT-104',
+      ulpin: 'IND280145987621-A+01-4DAC',
+      name: 'Apartment 104 (2BHK Premium)',
+      location: 'Aura Residency, Dwarka Sector 10, New Delhi',
+      carpetArea: '81.0 m²',
+      volume: '226.8 m³',
+      level: 1,
+      taxStatus: 'PAID (FY 2026-27)',
+      status: 'FREEHOLD VERIFIED',
+      mortgage: 'NONE (Unencumbered)'
     },
     {
-      id: 'd2',
-      title: 'Encumbrance Certificate (EC)',
-      date: '28 Jan 2025',
-      size: '1.8 MB',
-      verified: true
-    },
-    {
-      id: 'd3',
-      title: 'Property Tax Receipt FY 2024-25',
-      date: '02 Feb 2025',
-      size: '840 KB',
-      verified: true
+      id: 'PROP-02',
+      unitId: 'FLAT-302',
+      ulpin: 'IND280145987621-A+03-8E2B',
+      name: 'Apartment 302 (3BHK Executive)',
+      location: 'Aura Residency, Dwarka Sector 10, New Delhi',
+      carpetArea: '108.0 m²',
+      volume: '302.4 m³',
+      level: 3,
+      taxStatus: 'PAID (FY 2026-27)',
+      status: 'AUDIT REVIEW',
+      mortgage: 'SBI Home Loan #884920'
     }
   ]
 
-  const mutations = [
-    {
-      date: '14 Jan 2025',
-      title: 'Sale Transfer',
-      desc: 'A. S. Kumar → Priya Nair',
-      status: 'Completed',
-      statusColor: 'text-[#00D084] bg-[#00D084]/15 border-[#00D084]/40'
-    },
-    {
-      date: '08 Feb 2025',
-      title: 'Partition Deed',
-      desc: 'BKC Family Trust Split',
-      status: 'Pending Approval',
-      statusColor: 'text-amber-400 bg-amber-400/15 border-amber-400/40'
-    },
-    {
-      date: '22 Feb 2025',
-      title: 'Mortgage NOC',
-      desc: 'SBI Bank Clearance',
-      status: 'Under Review',
-      statusColor: 'text-sky-400 bg-sky-400/15 border-sky-400/40'
-    }
-  ]
+  const handleDownloadEC = () => {
+    setDownloadingEC(true)
+    setTimeout(() => {
+      const ecCertificate = {
+        title: "CERTIFICATE OF ENCUMBRANCE ON 3D PROPERTY (FORM NO. 15)",
+        certificate_no: `EC-DILRMP-2026-${Date.now().toString().slice(-6)}`,
+        government_authority: "Department of Land Resources, Ministry of Rural Development",
+        applicant_name: "Deepak Joshi",
+        digilocker_id: "DL-8849-2026-IN",
+        search_period: "01-Jan-2015 to 29-Aug-2026",
+        certified_properties: myProperties.map(p => ({
+          ulpin_3d: p.ulpin,
+          unit: p.name,
+          location: p.location,
+          floor_level: p.level,
+          volumetric_space: p.volume,
+          carpet_area: p.carpetArea,
+          encumbrance_status: p.mortgage
+        })),
+        digital_signature: {
+          signed_by: "Sub-Registrar Kapashera, Delhi NCT",
+          algorithm: "SHA256withRSA",
+          timestamp: new Date().toISOString()
+        }
+      }
+
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(ecCertificate, null, 2))
+      const downloadAnchor = document.createElement('a')
+      downloadAnchor.setAttribute("href", dataStr)
+      downloadAnchor.setAttribute("download", `ENCUMBRANCE_CERTIFICATE_DEEPAK_JOSHI.json`)
+      document.body.appendChild(downloadAnchor)
+      downloadAnchor.click()
+      downloadAnchor.remove()
+      setDownloadingEC(false)
+      confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } })
+      if (onNotify) {
+        onNotify('Encumbrance Certificate Downloaded', 'Official DigiLocker signed EC Form 15 saved successfully.', 'SUCCESS')
+      }
+    }, 600)
+  }
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#080E17]/95 backdrop-blur-2xl flex flex-col text-slate-100 font-sans overflow-hidden">
-      {/* Top Header matching Figma Frame 13:396 */}
-      <header className="px-8 py-4 bg-[#0B131E] border-b border-[#1E293B] flex items-center justify-between">
+    <div
+      className={`fixed inset-0 z-50 flex flex-col font-sans overflow-hidden backdrop-blur-2xl transition-colors duration-500 ${
+        isLight ? 'bg-[#F4FAF5]/95 text-slate-800' : 'bg-[#060B12]/95 text-slate-100'
+      }`}
+    >
+      {/* Top Header */}
+      <header
+        className={`px-8 py-4 border-b flex items-center justify-between backdrop-blur-xl ${
+          isLight ? 'bg-white/90 border-[#C8E6C9]' : 'bg-[#0B131E]/90 border-[#1E293B]'
+        }`}
+      >
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#00D084]/20 border border-[#00D084]/60 flex items-center justify-center">
-              <span className="font-mono font-black text-sm text-[#00D084]">S</span>
-            </div>
+            <StrataLogo size={34} isLight={isLight} />
             <div>
-              <div className="font-extrabold text-sm tracking-wider text-white">STRATA</div>
-              <div className="text-[10px] text-[#00D084] font-mono">Bhu-Aadhaar 3D</div>
+              <div className={`font-black text-sm tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+                STRATA
+              </div>
+              <div className={`text-[10px] font-mono font-bold uppercase ${isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}`}>
+                Citizen Property Vault (DigiLocker Linked)
+              </div>
             </div>
           </div>
-
-          <nav className="hidden md:flex items-center gap-6 text-xs text-slate-400 font-medium">
-            <span className="hover:text-white cursor-pointer">About</span>
-            <span className="hover:text-white cursor-pointer">Documentation</span>
-            <span className="hover:text-white cursor-pointer">API</span>
-            <span className="text-[#00D084] font-semibold cursor-pointer">Public Search</span>
-          </nav>
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-[#0F172A] border border-[#1E293B] text-xs font-mono">
-            <span className="text-[#00D084] font-bold text-[11px]">PROPERTY_OWNER</span>
-            <span className="text-slate-600">|</span>
-            <span className="text-slate-400 text-[10px]">SYS_V2.05</span>
+          <div
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border font-mono text-xs ${
+              isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#080E17] border-[#1E293B] text-slate-300'
+            }`}
+          >
+            <Lock className="w-3.5 h-3.5 text-[#00D084]" />
+            <span className="font-bold text-[11px]">AADHAAR eKYC VERIFIED</span>
           </div>
+
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#1E293B] transition-colors"
+            className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
+              isLight
+                ? 'bg-white border-[#C8E6C9] text-slate-600 hover:text-[#1B5E20]'
+                : 'bg-[#0F172A] border-[#1E293B] text-slate-400 hover:text-white'
+            }`}
           >
             <X className="w-5 h-5" />
           </button>
         </div>
       </header>
 
-      {/* 3-Column Dashboard Body matching Figma */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Left Sidebar */}
-        <aside className="w-60 bg-[#0B131E] border-r border-[#1E293B] p-4 flex flex-col justify-between flex-shrink-0">
-          <div className="space-y-1.5">
-            <button
-              onClick={() => setActiveNav('DASHBOARD')}
-              className="w-full px-3 py-2.5 rounded-xl text-left text-xs font-medium text-slate-400 hover:text-white hover:bg-[#1E293B] flex items-center gap-3 transition-colors"
+      {/* Main Content Area */}
+      <main className="flex-1 p-8 overflow-y-auto max-w-6xl mx-auto w-full space-y-8">
+        {/* User Identity Banner */}
+        <div
+          className={`p-6 rounded-3xl border shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
+            isLight
+              ? 'bg-gradient-to-r from-white to-[#E8F5E9] border-[#C8E6C9]'
+              : 'bg-gradient-to-r from-[#0B131E] to-[#0F172A] border-[#1E293B]'
+          }`}
+        >
+          <div className="flex items-center gap-4">
+            <div
+              className={`w-14 h-14 rounded-2xl flex items-center justify-center border font-black text-lg ${
+                isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#0F172A] border-[#1E293B] text-[#00D084]'
+              }`}
             >
-              <Building className="w-4 h-4" />
-              <span>Dashboard</span>
-            </button>
-            <button
-              onClick={() => setActiveNav('PROPERTIES')}
-              className="w-full px-3 py-2.5 rounded-xl text-left text-xs font-bold text-[#00D084] bg-[#00D084]/15 border border-[#00D084] flex items-center gap-3 transition-colors shadow-[0_0_15px_rgba(0,208,132,0.15)]"
-            >
-              <Home className="w-4 h-4 text-[#00D084]" />
-              <span>My Properties</span>
-            </button>
-            <button
-              onClick={() => setActiveNav('LOCKER')}
-              className="w-full px-3 py-2.5 rounded-xl text-left text-xs font-medium text-slate-400 hover:text-white hover:bg-[#1E293B] flex items-center gap-3 transition-colors"
-            >
-              <FileText className="w-4 h-4" />
-              <span>Digital Deed Locker</span>
-            </button>
-            <button
-              onClick={() => setActiveNav('MUTATIONS')}
-              className="w-full px-3 py-2.5 rounded-xl text-left text-xs font-medium text-slate-400 hover:text-white hover:bg-[#1E293B] flex items-center gap-3 transition-colors"
-            >
-              <Clock className="w-4 h-4" />
-              <span>Mutation Tracker</span>
-            </button>
-            <button
-              onClick={() => setActiveNav('DISPUTES')}
-              className="w-full px-3 py-2.5 rounded-xl text-left text-xs font-medium text-slate-400 hover:text-white hover:bg-[#1E293B] flex items-center gap-3 transition-colors"
-            >
-              <AlertCircle className="w-4 h-4" />
-              <span>Disputes</span>
-            </button>
-            <button
-              onClick={() => setActiveNav('SETTINGS')}
-              className="w-full px-3 py-2.5 rounded-xl text-left text-xs font-medium text-slate-400 hover:text-white hover:bg-[#1E293B] flex items-center gap-3 transition-colors"
-            >
-              <Settings className="w-4 h-4" />
-              <span>Settings</span>
-            </button>
-          </div>
-
-          <div className="pt-4 border-t border-[#1E293B] text-[10px] font-mono text-slate-500 space-y-1">
-            <div className="text-slate-400 font-bold uppercase tracking-wider">CRYPTOGRAPHIC NODE</div>
-            <div className="flex items-center gap-1.5 text-[#00D084]">
-              <span className="w-2 h-2 rounded-full bg-[#00D084] animate-pulse" />
-              <span>NIC-MUM-NODE-881</span>
+              DJ
             </div>
-          </div>
-        </aside>
-
-        {/* Center Main Content */}
-        <main className="flex-1 p-8 overflow-y-auto space-y-8">
-          {/* Section 1: My Properties */}
-          <div>
-            <h2 className="text-xl font-bold text-white mb-4">My Properties</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Property 1 with Interactive 3D Canvas */}
-              <div
-                onClick={() => { onFocusUnit && onFocusUnit('unit_302'); onClose(); }}
-                className="bg-[#0F172A] border border-[#1E293B] hover:border-[#00D084]/60 rounded-2xl p-5 cursor-pointer group transition-all shadow-xl hover:shadow-[0_0_20px_rgba(0,208,132,0.15)]"
-              >
-                <div className="w-full h-40 rounded-xl bg-[#080E17] border border-[#1E293B] mb-4 relative overflow-hidden group-hover:border-[#00D084]/40 transition-colors">
-                  <Canvas camera={{ position: [9, 7, 9], fov: 40 }}>
-                    <ambientLight intensity={0.5} />
-                    <directionalLight position={[5, 10, 5]} intensity={1.2} color="#00D084" />
-                    <MiniFloorPlan />
-                    <OrbitControls enableDamping autoRotate autoRotateSpeed={1.0} enableZoom={false} />
-                  </Canvas>
-                  <span className="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#0B131E]/80 border border-[#1E293B] text-[9px] font-mono text-[#00D084]">
-                    3D Twin Ready
-                  </span>
-                </div>
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-white text-sm group-hover:text-[#00D084] transition-colors">
-                    Apartment 12A, BKC Heights
-                  </h3>
-                  <span className="px-2 py-0.5 rounded-full bg-[#00D084]/15 border border-[#00D084]/40 text-[#00D084] font-mono text-[10px] font-bold">
-                    Active
-                  </span>
-                </div>
-                <div className="text-[11px] font-mono text-[#00D084] mb-1">
-                  3D-IN-MH-MUM-1092-B3-L12
-                </div>
-                <div className="text-xs text-slate-400">
-                  Carpet Area: <strong className="text-white font-mono">124.50 Sq. Meters</strong>
-                </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className={`text-xl font-black ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+                  Deepak Joshi
+                </h2>
+                <span className="px-2.5 py-0.5 rounded-full bg-[#00D084]/20 text-[#00D084] font-mono text-[10px] font-bold border border-[#00D084]/40">
+                  DigiLocker ID: DL-8849-2026-IN
+                </span>
               </div>
-
-              {/* Property 2 with Interactive 3D Canvas */}
-              <div className="bg-[#0F172A] border border-[#1E293B] hover:border-amber-400/60 rounded-2xl p-5 cursor-pointer group transition-all shadow-xl">
-                <div className="w-full h-40 rounded-xl bg-[#080E17] border border-[#1E293B] mb-4 relative overflow-hidden group-hover:border-amber-400/40 transition-colors">
-                  <Canvas camera={{ position: [8, 6, 8], fov: 40 }}>
-                    <ambientLight intensity={0.5} />
-                    <directionalLight position={[5, 10, 5]} intensity={1.2} color="#F59E0B" />
-                    <MiniCommercialTower />
-                    <OrbitControls enableDamping autoRotate autoRotateSpeed={1.0} enableZoom={false} />
-                  </Canvas>
-                  <span className="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#0B131E]/80 border border-[#1E293B] text-[9px] font-mono text-amber-400">
-                    Partition Queued
-                  </span>
-                </div>
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-white text-sm group-hover:text-amber-400 transition-colors">
-                    Commercial Suite 4B
-                  </h3>
-                  <span className="px-2 py-0.5 rounded-full bg-amber-400/15 border border-amber-400/40 text-amber-400 font-mono text-[10px] font-bold">
-                    Pending Mutation
-                  </span>
-                </div>
-                <div className="text-[11px] font-mono text-[#00D084] mb-1">
-                  3D-IN-MH-MUM-1095-B2-L04
-                </div>
-                <div className="text-xs text-slate-400">
-                  Carpet Area: <strong className="text-white font-mono">210.00 Sq. Meters</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Section 2: Digital Deed Locker */}
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-white">Digital Deed Locker</h2>
-              <span className="text-xs font-mono text-[#00D084] flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4" />
-                DigiLocker Integration: Active
-              </span>
-            </div>
-
-            <div className="space-y-3">
-              {deeds.map((deed) => (
-                <div
-                  key={deed.id}
-                  className="bg-[#0F172A] border border-[#1E293B] hover:border-[#00D084]/40 rounded-xl p-4 flex items-center justify-between transition-all"
-                >
-                  <div className="flex items-center gap-3.5">
-                    <div className="p-2.5 rounded-lg bg-[#080E17] text-[#00D084] border border-[#1E293B]">
-                      <FileText className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-white">{deed.title}</h4>
-                      <p className="text-xs text-slate-400 font-mono">Added: {deed.date} · {deed.size}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#00D084]/15 border border-[#00D084]/40 text-[#00D084] text-[10px] font-mono font-bold">
-                      <CheckCircle2 className="w-3 h-3" />
-                      DIGILOCKER
-                    </span>
-                    <button
-                      onClick={() => alert(`Downloading verified copy of ${deed.title}`)}
-                      className="p-2 rounded-lg bg-[#080E17] border border-[#1E293B] hover:border-[#00D084] text-slate-300 hover:text-[#00D084] transition-colors"
-                      title="Download PDF"
-                    >
-                      <Download className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => alert(`Shareable link generated with cryptographic hash.`)}
-                      className="p-2 rounded-lg bg-[#080E17] border border-[#1E293B] hover:border-[#00D084] text-slate-300 hover:text-[#00D084] transition-colors"
-                      title="Share Deed"
-                    >
-                      <Share2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </main>
-
-        {/* Right Sidebar: Mutation Tracker */}
-        <aside className="w-80 bg-[#0B131E] border-l border-[#1E293B] p-6 flex flex-col justify-between flex-shrink-0 overflow-y-auto">
-          <div>
-            <div className="mb-6">
-              <h3 className="text-base font-bold text-white">Mutation Tracker</h3>
-              <p className="text-[10px] font-mono text-[#00D084] uppercase tracking-wider mt-0.5">
-                REAL-TIME LEDGER QUEUE
+              <p className="text-xs text-slate-500 mt-0.5">
+                Total Registered Spatial Assets: <strong>2 Units</strong> • Total Volumetric Space: <strong>529.2 m³</strong>
               </p>
             </div>
+          </div>
 
-            <div className="space-y-6 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#1E293B]">
-              {mutations.map((mut, idx) => (
-                <div key={idx} className="relative pl-8 space-y-1">
-                  <div className="absolute left-1.5 top-1.5 w-3.5 h-3.5 rounded-full bg-[#080E17] border-2 border-[#00D084] -translate-x-1/2" />
-                  <div className="text-[11px] font-mono text-slate-400">{mut.date}</div>
-                  <div className="font-bold text-white text-xs">{mut.title}</div>
-                  <div className="text-xs text-slate-400">{mut.desc}</div>
-                  <div className="pt-1">
-                    <span className={`inline-block px-2 py-0.5 rounded-full border text-[10px] font-mono font-bold ${mut.statusColor}`}>
-                      {mut.status}
+          <button
+            onClick={handleDownloadEC}
+            disabled={downloadingEC}
+            className={`px-4 py-2.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-2 transition-all shadow-sm cursor-pointer ${
+              isLight
+                ? 'bg-white border-[#C8E6C9] text-[#1B5E20] hover:bg-[#E8F5E9]'
+                : 'bg-[#0F172A] border-[#1E293B] text-slate-200 hover:border-[#00D084]'
+            }`}
+          >
+            <Download className="w-3.5 h-3.5 text-[#00D084]" />
+            <span>{downloadingEC ? 'PREPARING SIGNED EC...' : 'DOWNLOAD ENCUMBRANCE CERTIFICATE'}</span>
+          </button>
+        </div>
+
+        {/* Properties Grid */}
+        <div className="space-y-4">
+          <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+            Registered 3D Cadastral Properties
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {myProperties.map((prop) => (
+              <div
+                key={prop.id}
+                className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between space-y-4 transition-all hover:scale-[1.01] ${
+                  isLight ? 'bg-white border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-[#00D084]/15 text-[#00D084] border border-[#00D084]/30">
+                      {prop.status}
                     </span>
+                    <span className="text-xs font-mono text-slate-500">Floor Level {prop.level}</span>
+                  </div>
+
+                  <h4 className={`text-lg font-bold ${isLight ? 'text-slate-800' : 'text-white'}`}>
+                    {prop.name}
+                  </h4>
+                  <p className="text-xs text-slate-500 font-mono mt-0.5">{prop.ulpin}</p>
+                </div>
+
+                {/* 3D Mini Floor Plan Canvas */}
+                <div className="w-full h-44 rounded-2xl bg-black/40 border border-slate-700/50 relative overflow-hidden">
+                  <Canvas camera={{ position: [9, 7, 9], fov: 38 }}>
+                    <ambientLight intensity={0.6} />
+                    <directionalLight position={[10, 15, 10]} intensity={1.2} color="#00D084" />
+                    <MiniFloorPlan isLight={isLight} />
+                    <OrbitControls enableDamping autoRotate autoRotateSpeed={1.0} />
+                  </Canvas>
+                </div>
+
+                {/* Property Specs */}
+                <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                  <div className={`p-2.5 rounded-xl border ${isLight ? 'bg-[#F9FBF9] border-slate-200' : 'bg-[#0F172A] border-[#1E293B]'}`}>
+                    <span className="text-slate-500 text-[10px]">Carpet Area:</span><br />
+                    <strong className={isLight ? 'text-[#1B5E20]' : 'text-white'}>{prop.carpetArea}</strong>
+                  </div>
+                  <div className={`p-2.5 rounded-xl border ${isLight ? 'bg-[#F9FBF9] border-slate-200' : 'bg-[#0F172A] border-[#1E293B]'}`}>
+                    <span className="text-slate-500 text-[10px]">Volumetric Space:</span><br />
+                    <strong className="text-[#00D084]">{prop.volume}</strong>
                   </div>
                 </div>
-              ))}
-            </div>
+
+                {/* Actions */}
+                <div className="flex items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+                  <button
+                    onClick={() => {
+                      if (onFocusUnit) onFocusUnit(prop.unitId)
+                      onClose()
+                    }}
+                    className={`flex-1 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                      isLight
+                        ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white'
+                        : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12]'
+                    }`}
+                  >
+                    <span>VIEW IN 3D DIGITAL TWIN</span>
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-        </aside>
-      </div>
+        </div>
+      </main>
     </div>
   )
 }

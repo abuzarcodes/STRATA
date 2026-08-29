@@ -10,6 +10,11 @@ import SurveyorUploadModal from './components/SurveyorUploadModal'
 import ParcelSplitModal from './components/ParcelSplitModal'
 import MutationModal from './components/MutationModal'
 import AIReviewModal from './components/AIReviewModal'
+import AboutModal from './components/AboutModal'
+import DocumentationModal from './components/DocumentationModal'
+import APIModal from './components/APIModal'
+import AboutPage from './components/AboutPage'
+import DocumentationPage from './components/DocumentationPage'
 
 // Pre-app components
 import LandingScene from './components/LandingScene'
@@ -20,7 +25,7 @@ import PublicLocationSearch from './components/PublicLocationSearch'
 export default function App() {
   // ── Top-level app phase ────────────────────────────────────────────────
   const [appPhase, setAppPhase] = useState('LANDING')
-  // 'LANDING' | 'ROLE_SELECT' | 'AUTH' | 'LOCATE' | 'APP'
+  // 'LANDING' | 'ROLE_SELECT' | 'AUTH' | 'APP' | 'ABOUT' | 'DOCUMENTATION'
 
   const [societyData, setSocietyData] = useState(initialSocietyData)
   const [activeRole, setActiveRole] = useState('CITIZEN')
@@ -31,6 +36,8 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const [explodedOffset, setExplodedOffset] = useState(0)
   const [showLeftSearch, setShowLeftSearch] = useState(true)
+  const [showBounds, setShowBounds] = useState(true)
+  const [measureMode, setMeasureMode] = useState(false)
   
   // Theme state
   const [theme, setTheme] = useState('LIGHT')
@@ -48,6 +55,9 @@ export default function App() {
   const [showLocker, setShowLocker] = useState(false)
   const [showUploadModal, setShowUploadModal] = useState(false)
   const [showAIReviewModal, setShowAIReviewModal] = useState(false)
+  const [showAboutModal, setShowAboutModal] = useState(false)
+  const [showDocModal, setShowDocModal] = useState(false)
+  const [showAPIModal, setShowAPIModal] = useState(false)
 
   // flyToTarget state
   const [flyTarget, setFlyTarget] = useState(null)
@@ -60,8 +70,25 @@ export default function App() {
     setToast({ title, message, type })
     setTimeout(() => {
       setToast(null)
-    }, 4000)
+    }, 4500)
   }
+
+  // ── Global Navbar Navigation Handler ──────────────────────────────────
+  const handleNavClick = useCallback((dest) => {
+    if (dest === 'about') {
+      setAppPhase('ABOUT')
+    } else if (dest === 'documentation') {
+      setAppPhase('DOCUMENTATION')
+    } else if (dest === 'api') {
+      setShowAPIModal(true)
+    } else if (dest === 'landing') {
+      setAppPhase('LANDING')
+    } else if (dest === 'public_search') {
+      setActiveRole('CITIZEN')
+      setAppPhase('APP')
+      setShowLeftSearch(true)
+    }
+  }, [])
 
   // ── Phase transitions ──────────────────────────────────────────────────
   const handleScrollBegin = useCallback(() => {
@@ -73,21 +100,22 @@ export default function App() {
     setAppPhase('AUTH')
   }, [])
 
-  const handleAuthSuccess = useCallback(() => {
-    if (activeRole === 'GOVT') {
-      setAppPhase('APP')
+  const handleAuthSuccess = useCallback(({ role }) => {
+    const targetRole = role || activeRole
+    setActiveRole(targetRole)
+    setAppPhase('APP')
+
+    if (targetRole === 'GOVT') {
       setShowAdminDashboard(true)
-      showNotification('Revenue Officer Portal', 'Accessed Government Cadastre Compliance Dashboard', 'INFO')
-    } else if (activeRole === 'SURVEYOR') {
-      setAppPhase('APP')
+      showNotification('Revenue Officer Portal', 'Signed in as DILRMP Revenue Administrator (Dwarka Ward 4).', 'SUCCESS')
+    } else if (targetRole === 'SURVEYOR') {
       setShowUploadModal(true)
-      showNotification('Surveyor Ingestion Tool', 'Ready for BIM / CAD / LiDAR Ingestion', 'INFO')
-    } else if (activeRole === 'OWNER') {
-      setAppPhase('APP')
+      showNotification('Surveyor Ingestion Tool', 'Signed in as Licensed Cadastral Surveyor. Ready for BIM/CAD/LiDAR ingestion.', 'SUCCESS')
+    } else if (targetRole === 'OWNER') {
       setShowLocker(true)
-      showNotification('Citizen Vault', 'Authenticated Property Locker Opened', 'SUCCESS')
+      showNotification('Citizen Vault', 'Authenticated Property Owner Vault Opened (Deepak Joshi).', 'SUCCESS')
     } else {
-      setAppPhase('APP')
+      showNotification('Public Portal', 'Welcome to STRATA National 3D Cadastral Digital Twin.', 'INFO')
     }
   }, [activeRole])
 
@@ -95,6 +123,7 @@ export default function App() {
   const handleFlyToTarget = useCallback((target) => {
     setFlyTarget(target)
     setFlightProgress(null)
+    showNotification('Camera Fly-To', 'Navigating 3D spatial viewport to target parcel coordinates.', 'INFO')
   }, [])
 
   const handleFlightProgress = useCallback((phase) => {
@@ -136,7 +165,7 @@ export default function App() {
       setActiveFloor(unit.level)
     }
     if (unit) {
-      showNotification('Unit Inspected', `${unit.name} (${unit.ulpin_3d})`, 'INFO')
+      showNotification('Unit Inspected', `${unit.name} • 3D-ULPIN: ${unit.ulpin_3d}`, 'INFO')
     }
   }
 
@@ -205,7 +234,7 @@ export default function App() {
 
   // Handle AI Review Acceptance
   const handleAcceptAIResult = (unitCode) => {
-    showNotification('AI Cadastre Minted', `${unitCode} validated and added to 3D Registry`, 'SUCCESS')
+    showNotification('AI Cadastre Minted', `${unitCode} validated and added to Authoritative 3D Registry`, 'SUCCESS')
   }
 
   const violationsCount = societyData?.audit_summary?.violation_count || 0
@@ -214,7 +243,9 @@ export default function App() {
   return (
     <div
       data-theme={theme}
-      className={`w-screen h-screen relative overflow-hidden font-sans select-none transition-colors duration-500 ${
+      className={`w-screen h-screen relative font-sans transition-colors duration-500 ${
+        appPhase === 'ABOUT' || appPhase === 'DOCUMENTATION' ? 'overflow-y-auto' : 'overflow-hidden select-none'
+      } ${
         isLight ? 'bg-[#E8F5E9] text-[#1B5E20]' : 'bg-[#060B12] text-white'
       }`}
     >
@@ -223,6 +254,25 @@ export default function App() {
       {appPhase === 'LANDING' && (
         <LandingScene
           onScrollBegin={handleScrollBegin}
+          theme={theme}
+          onToggleTheme={handleToggleTheme}
+          onNavClick={handleNavClick}
+        />
+      )}
+
+      {appPhase === 'ABOUT' && (
+        <AboutPage
+          onBack={() => setAppPhase('LANDING')}
+          onLaunchPlatform={() => setAppPhase('APP')}
+          theme={theme}
+          onToggleTheme={handleToggleTheme}
+        />
+      )}
+
+      {appPhase === 'DOCUMENTATION' && (
+        <DocumentationPage
+          onBack={() => setAppPhase('LANDING')}
+          onLaunchPlatform={() => setAppPhase('APP')}
           theme={theme}
           onToggleTheme={handleToggleTheme}
         />
@@ -234,6 +284,7 @@ export default function App() {
           onBack={() => setAppPhase('LANDING')}
           theme={theme}
           onToggleTheme={handleToggleTheme}
+          onNavClick={handleNavClick}
         />
       )}
 
@@ -242,6 +293,7 @@ export default function App() {
           activeRole={activeRole}
           onBack={() => setAppPhase('ROLE_SELECT')}
           onSuccess={handleAuthSuccess}
+          theme={theme}
         />
       )}
 
@@ -253,44 +305,44 @@ export default function App() {
             societyData={societyData}
             activeRole={activeRole}
             onSelectRole={handleRoleChange}
+            onOpenRoleSelect={() => setAppPhase('ROLE_SELECT')}
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
             onSelectUnitFromSearch={handleSelectUnit}
             onOpenUploadModal={() => setShowUploadModal(true)}
             onOpenLocker={() => setShowLocker(true)}
             onOpenAIReviewModal={() => setShowAIReviewModal(true)}
+            onOpenGovtDashboard={() => setShowAdminDashboard(true)}
             theme={theme}
             onToggleTheme={handleToggleTheme}
-            onNavClick={(dest) => {
-              if (dest === 'about') setAppPhase('LANDING')
-            }}
+            onNavClick={handleNavClick}
           />
 
-          {/* Sub-Header Top Telemetry Bar matching Figma Frame 11:171 */}
+          {/* Sub-Header Top Telemetry Bar */}
           <div className={`absolute top-16 left-0 right-0 z-20 px-8 py-2 border-b flex items-center justify-between text-[11px] font-mono backdrop-blur-md transition-colors duration-300 ${
             isLight
               ? 'bg-white/90 border-[#C8E6C9] text-slate-700'
               : 'bg-[#0B131E]/80 border-[#1E293B]/60 text-slate-400'
           }`}>
             <div className="flex items-center gap-2">
-              <span className={`font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>MH-MUM-WARD-04</span>
+              <span className={`font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>DL-DWR-SEC10-07</span>
               <span className="text-slate-400">/</span>
-              <span className={`font-bold ${isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}`}>PARCEL-1092-B3</span>
+              <span className={`font-bold ${isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}`}>PARCEL-IND280145987621</span>
             </div>
             <div className="flex items-center gap-6">
               <div>
-                LAT: <strong className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>18.9226° N</strong>
+                LAT: <strong className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>28.5823° N</strong>
               </div>
               <div>
-                LONG: <strong className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>72.8339° E</strong>
+                LONG: <strong className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>77.0602° E</strong>
               </div>
               <div>
-                DATUM_ELEV: <strong className={isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}>+34.20m MSL</strong>
+                DATUM_ELEV: <strong className={isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}>+215.0m MSL</strong>
               </div>
             </div>
           </div>
 
-          {/* 3D Viewport with HUD Cybernetic Frame matching Figma Frame 11:171 */}
+          {/* 3D Viewport with HUD Cybernetic Frame */}
           <div className="absolute inset-0 z-0">
             <Viewer3D
               societyData={societyData}
@@ -303,18 +355,20 @@ export default function App() {
               theme={theme}
               flyTarget={flyTarget}
               onFlightProgress={handleFlightProgress}
+              showBounds={showBounds}
+              measureMode={measureMode}
             />
 
             {/* HUD Viewport Framing & Corner Crosshairs */}
             <div className="absolute inset-0 pointer-events-none z-10 p-6 flex flex-col justify-between">
               {/* Top Row Markers */}
-              <div className="flex justify-between items-start">
+              <div className="flex justify-between items-start mt-20">
                 <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#1B5E20]/70' : 'text-[#00D084]/60'}`}>
                   <span className={`w-3 h-3 border-t-2 border-l-2 ${isLight ? 'border-[#1B5E20]' : 'border-[#00D084]'}`} />
-                  <span>GRID_01 / EPSG:4326</span>
+                  <span>GRID_01 / EPSG:4326 WGS84</span>
                 </div>
                 <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#1B5E20]/70' : 'text-[#00D084]/60'}`}>
-                  <span>3D_ORTHO_ALIGN_ACTIVE</span>
+                  <span>3D_CADASTRE_SYNC_ONLINE</span>
                   <span className={`w-3 h-3 border-t-2 border-r-2 ${isLight ? 'border-[#1B5E20]' : 'border-[#00D084]'}`} />
                 </div>
               </div>
@@ -323,17 +377,17 @@ export default function App() {
               <div className="flex justify-between items-end">
                 <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#1B5E20]/70' : 'text-[#00D084]/60'}`}>
                   <span className={`w-3 h-3 border-b-2 border-l-2 ${isLight ? 'border-[#1B5E20]' : 'border-[#00D084]'}`} />
-                  <span>CADASTRE_SCAN: LIVE</span>
+                  <span>ISO 19152:2024 LADM PART 2</span>
                 </div>
                 <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#1B5E20]/70' : 'text-[#00D084]/60'}`}>
-                  <span>VOLUMETRIC_TOLERANCE: 0.02°</span>
+                  <span>VOLUMETRIC_TOLERANCE: 0.02m</span>
                   <span className={`w-3 h-3 border-b-2 border-r-2 ${isLight ? 'border-[#1B5E20]' : 'border-[#00D084]'}`} />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Left Panel: Public Location Search & Floor Slicer matching Figma Frame 11:171 */}
+          {/* Left Panel: Public Location Search & Floor Slicer */}
           <div className="absolute top-28 left-6 z-20 transition-all duration-300">
             {showLeftSearch && (
               <PublicLocationSearch
@@ -343,30 +397,52 @@ export default function App() {
                 onFlyToTarget={handleFlyToTarget}
                 theme={theme}
                 onRetrieveModel={() => {
-                  showNotification('Query Dispatched', 'Loaded Dwarka / Mumbai Cadastral Ward Mesh', 'INFO')
+                  showNotification('Query Dispatched', 'Loaded Dwarka Sector 10 Cadastral Society Mesh.', 'SUCCESS')
                 }}
               />
             )}
           </div>
 
-          {/* Right Panel: View Mode Selector matching Figma Frame 11:171 */}
+          {/* Right Panel: View Mode Selector */}
           <div className="absolute top-28 right-6 z-20 transition-all duration-300">
             {!selectedUnit && (
               <LayerControls
                 viewMode={viewMode}
                 onSelectViewMode={setViewMode}
                 violationsCount={violationsCount}
-                onResetCamera={() => setCameraPreset('OVERVIEW')}
+                onResetCamera={() => {
+                  setCameraPreset('OVERVIEW')
+                  showNotification('Camera Reset', 'Returned camera to overview perspective.', 'INFO')
+                }}
+                onToggleBounds={() => {
+                  setShowBounds(!showBounds)
+                  showNotification('Parcel Bounds', `Cadastral property boundary ${!showBounds ? 'enabled' : 'hidden'}.`, 'INFO')
+                }}
+                onToggleMeasure={() => {
+                  setMeasureMode(!measureMode)
+                  showNotification('3D Coordinate Grid', `Spatial coordinate measuring grid ${!measureMode ? 'enabled' : 'hidden'}.`, 'INFO')
+                }}
+                onFocusCenter={() => {
+                  handleFlyToTarget({
+                    targetPosition: [0, 6, 0],
+                    targetUnitId: null
+                  })
+                }}
+                showBounds={showBounds}
+                measureMode={measureMode}
+                explodedOffset={explodedOffset}
+                onExplodedChange={setExplodedOffset}
                 theme={theme}
               />
             )}
 
-            {/* Right Panel: Property Deed Card matching Figma Frame 11:266 */}
+            {/* Right Panel: Property Deed Card */}
             {selectedUnit && (
               <PropertyDeedCard
                 unit={selectedUnit}
                 onClose={() => setSelectedUnit(null)}
                 theme={theme}
+                activeRole={activeRole}
                 onOpenSplitModal={(u) => {
                   setSplitTargetUnit(u)
                   setShowSplitModal(true)
@@ -375,11 +451,14 @@ export default function App() {
                   setMutationTargetUnit(u)
                   setShowMutationModal(true)
                 }}
+                onRestrictedAction={(action, reason) => {
+                  showNotification(`Role Restricted: ${action}`, reason, 'WARNING')
+                }}
               />
             )}
           </div>
 
-          {/* Modals & Dashboards matching Figma */}
+          {/* Modals & Dashboards */}
           {showAdminDashboard && (
             <GovtAdminDashboard
               societyData={societyData}
@@ -389,10 +468,12 @@ export default function App() {
                 handleSelectUnit(u)
                 setCameraPreset('ENCROACHMENT')
                 setViewMode('ENCROACHMENT')
+                setShowAdminDashboard(false)
               }}
               onOpenSplitModal={(u) => {
                 setSplitTargetUnit(u)
                 setShowSplitModal(true)
+                setShowAdminDashboard(false)
               }}
             />
           )}
@@ -405,6 +486,7 @@ export default function App() {
                 const target = societyData?.units?.find((u) => u.unit_id === unitId) || societyData?.units?.[0]
                 if (target) handleSelectUnit(target)
               }}
+              onNotify={showNotification}
             />
           )}
 
@@ -412,8 +494,8 @@ export default function App() {
             <SurveyorUploadModal
               theme={theme}
               onClose={() => setShowUploadModal(false)}
-              onIngestSuccess={() => {
-                showNotification('Mesh Ingestion', 'New CAD geometry ingested and extruded into 3D twin.', 'SUCCESS')
+              onIngestSuccess={(meshInfo) => {
+                showNotification('CAD/BIM Ingestion Complete', `Ingested ${meshInfo.name} (${meshInfo.ulpin_3d}) into 3D cadastre.`, 'SUCCESS')
               }}
             />
           )}
@@ -422,6 +504,7 @@ export default function App() {
             isOpen={showAIReviewModal}
             onClose={() => setShowAIReviewModal(false)}
             onAcceptAIResult={handleAcceptAIResult}
+            theme={theme}
           />
 
           {showSplitModal && splitTargetUnit && (
@@ -432,6 +515,7 @@ export default function App() {
                 setSplitTargetUnit(null)
               }}
               onApplySplit={handleApplySplit}
+              theme={theme}
             />
           )}
 
@@ -443,20 +527,61 @@ export default function App() {
                 setMutationTargetUnit(null)
               }}
               onApplyMutation={handleApplyMutation}
+              theme={theme}
             />
           )}
 
+          {/* Notification Toast */}
           {toast && (
-            <div className="absolute top-24 left-1/2 -translate-x-1/2 z-40 px-4 py-2 rounded-xl bg-[#0F172A] border border-[#00D084]/60 text-xs font-mono shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300">
-              <span className={`w-2 h-2 rounded-full ${toast.type === 'SUCCESS' ? 'bg-[#00D084]' : 'bg-emerald-400'} animate-ping`} />
+            <div className={`absolute top-24 left-1/2 -translate-x-1/2 z-40 px-4 py-2.5 rounded-2xl border text-xs font-mono shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300 backdrop-blur-xl ${
+              isLight
+                ? toast.type === 'WARNING'
+                  ? 'bg-amber-50 border-amber-300 text-amber-900 shadow-amber-500/10'
+                  : 'bg-white/95 border-[#C8E6C9] text-slate-800 shadow-[#1B5E20]/15'
+                : toast.type === 'WARNING'
+                ? 'bg-[#1C1205] border-amber-500/60 text-amber-300'
+                : 'bg-[#0B131E]/95 border-[#00D084]/60 text-slate-200'
+            }`}>
+              <span className={`w-2.5 h-2.5 rounded-full ${
+                toast.type === 'SUCCESS' ? 'bg-[#00D084]' : toast.type === 'WARNING' ? 'bg-amber-500' : 'bg-emerald-400'
+              } animate-ping`} />
               <div>
-                <span className="font-bold text-[#00D084] mr-2">{toast.title}:</span>
-                <span className="text-slate-200">{toast.message}</span>
+                <span className={`font-bold mr-2 ${
+                  toast.type === 'WARNING'
+                    ? 'text-amber-500'
+                    : isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'
+                }`}>
+                  {toast.title}:
+                </span>
+                <span className={isLight ? 'text-slate-600' : 'text-slate-300'}>{toast.message}</span>
               </div>
             </div>
           )}
         </>
       )}
+
+      {/* Global Modals Accessible From Any Phase */}
+      <AboutModal
+        isOpen={showAboutModal}
+        onClose={() => setShowAboutModal(false)}
+        onLaunchPlatform={() => {
+          setShowAboutModal(false)
+          setAppPhase('APP')
+        }}
+        theme={theme}
+      />
+
+      <DocumentationModal
+        isOpen={showDocModal}
+        onClose={() => setShowDocModal(false)}
+        theme={theme}
+      />
+
+      <APIModal
+        isOpen={showAPIModal}
+        onClose={() => setShowAPIModal(false)}
+        theme={theme}
+      />
     </div>
   )
 }

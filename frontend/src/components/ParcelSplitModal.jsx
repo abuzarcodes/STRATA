@@ -14,7 +14,8 @@ import confetti from 'canvas-confetti'
 export default function ParcelSplitModal({
   unit,
   onClose,
-  onApplySplit
+  onApplySplit,
+  theme = 'CYBER'
 }) {
   const [splitRatio, setSplitRatio] = useState(50)
   const [childAOwner, setChildAOwner] = useState(unit?.owner || 'Owner A')
@@ -22,10 +23,16 @@ export default function ParcelSplitModal({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [splitSuccess, setSplitSuccess] = useState(false)
 
+  const isLight = theme === 'LIGHT'
+
   if (!unit) return null
 
-  const parentVolume = unit.volume_m3
-  const parentCarpetArea = unit.carpet_area_m2
+  const parentVolume = unit.volume_m3 || 226.8
+  const parentCarpetArea = unit.carpet_area_m2 || 81.0
+
+  function roundVal(v) {
+    return Math.round(v * 10) / 10
+  }
 
   const childAVolume = roundVal((parentVolume * splitRatio) / 100)
   const childBVolume = roundVal(parentVolume - childAVolume)
@@ -35,10 +42,6 @@ export default function ParcelSplitModal({
 
   const childA_ULPIN = `${unit.ulpin_3d}-S01`
   const childB_ULPIN = `${unit.ulpin_3d}-S02`
-
-  function roundVal(v) {
-    return Math.round(v * 10) / 10
-  }
 
   const handleExecuteSplit = () => {
     setIsSubmitting(true)
@@ -58,24 +61,26 @@ export default function ParcelSplitModal({
           childA: {
             unit_id: `${unit.unit_id}A`,
             ulpin_3d: childA_ULPIN,
-            name: `${unit.name} (Unit A)`,
+            name: `${unit.name} (Sub-Unit 1)`,
             owner: childAOwner,
-            carpet_area_m2: childAArea,
             volume_m3: childAVolume,
+            carpet_area_m2: childAArea,
+            is_watertight: true,
             level: unit.level,
             domain: unit.domain,
             type: unit.type,
             z_min: unit.z_min,
             z_max: unit.z_max,
-            color: '#00d084'
+            color: '#3b82f6'
           },
           childB: {
             unit_id: `${unit.unit_id}B`,
             ulpin_3d: childB_ULPIN,
-            name: `${unit.name} (Unit B)`,
+            name: `${unit.name} (Sub-Unit 2)`,
             owner: childBOwner,
-            carpet_area_m2: childBArea,
             volume_m3: childBVolume,
+            carpet_area_m2: childBArea,
+            is_watertight: true,
             level: unit.level,
             domain: unit.domain,
             type: unit.type,
@@ -89,26 +94,38 @@ export default function ParcelSplitModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in duration-200">
-      <div className="w-full max-w-2xl glass-panel-accent rounded-3xl p-6 shadow-2xl border border-amber-500/30 flex flex-col justify-between">
+    <div className={`fixed inset-0 z-50 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in duration-200 ${
+      isLight ? 'bg-[#E8F5E9]/80' : 'bg-slate-950/80'
+    }`}>
+      <div className={`w-full max-w-2xl rounded-3xl p-6 shadow-2xl border flex flex-col justify-between transition-all ${
+        isLight
+          ? 'bg-white border-[#C8E6C9] text-slate-800'
+          : 'bg-[#0B131E] border-amber-500/30 text-white'
+      }`}>
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div className={`flex items-center justify-between pb-4 border-b ${
+          isLight ? 'border-[#C8E6C9]' : 'border-slate-800'
+        }`}>
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
+            <div className={`p-3 rounded-2xl border ${
+              isLight ? 'bg-amber-50 text-amber-600 border-amber-200' : 'bg-amber-500/20 text-amber-400 border-amber-500/30'
+            }`}>
               <Scissors className="w-6 h-6" />
             </div>
             <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                Cadastral Edge Case Engine
+              <div className="text-xs font-bold uppercase tracking-wider text-amber-500">
+                Cadastral Spatial Engine
               </div>
-              <h2 className="text-xl font-extrabold text-white">
+              <h2 className={`text-xl font-extrabold ${isLight ? 'text-slate-800' : 'text-white'}`}>
                 Volumetric 3D Parcel Subdivision (Split)
               </h2>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all"
+            className={`p-2 rounded-xl transition-all cursor-pointer ${
+              isLight ? 'text-slate-400 hover:text-slate-700 hover:bg-slate-100' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            }`}
           >
             <X className="w-5 h-5" />
           </button>
@@ -117,148 +134,120 @@ export default function ParcelSplitModal({
         {!splitSuccess ? (
           <div className="space-y-4 my-4">
             {/* Parent Unit Specs */}
-            <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center justify-between text-xs">
+            <div className={`p-4 rounded-2xl border flex items-center justify-between text-xs ${
+              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-slate-900/90 border-slate-800'
+            }`}>
               <div>
-                <span className="text-slate-400">Parent 3D-ULPIN:</span>
-                <div className="font-mono font-bold text-[#00D084] text-sm">{unit.ulpin_3d}</div>
-                <div className="text-slate-300 font-semibold mt-0.5">{unit.name} ({unit.owner})</div>
+                <span className="text-slate-400 font-mono text-[11px]">Parent 3D-ULPIN:</span>
+                <div className={`font-mono font-bold text-sm ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>{unit.ulpin_3d}</div>
+                <div className="font-semibold text-slate-500">{unit.name} ({parentVolume} m³ / {parentCarpetArea} m²)</div>
               </div>
-              <div className="text-right">
-                <span className="text-slate-400">Original Volume:</span>
-                <div className="font-mono font-bold text-emerald-400 text-sm">{parentVolume} m³</div>
-                <div className="text-slate-400 font-mono text-[11px]">{parentCarpetArea} m² Carpet Area</div>
-              </div>
+              <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 font-mono text-[10px] font-bold border border-amber-500/40">
+                SUBDIVISION PENDING
+              </span>
             </div>
 
-            {/* Split Ratio Slider */}
-            <div className="space-y-2 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+            {/* Split Slider */}
+            <div className={`p-4 rounded-2xl border space-y-3 ${
+              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-slate-900/90 border-slate-800'
+            }`}>
               <div className="flex items-center justify-between text-xs font-semibold">
-                <label htmlFor="split-ratio-slider" className="text-slate-300 cursor-pointer">
-                  Subdivision Ratio:
-                </label>
-                <span className="font-mono text-amber-400">{splitRatio}% / {100 - splitRatio}%</span>
+                <span className={isLight ? 'text-slate-700' : 'text-slate-300'}>
+                  Subdivision Volume Ratio (X-Axis Geometric Plane):
+                </span>
+                <span className="font-mono text-amber-400 font-bold text-sm">
+                  {splitRatio}% / {100 - splitRatio}%
+                </span>
               </div>
               <input
-                id="split-ratio-slider"
-                name="splitRatio"
                 type="range"
                 min="20"
                 max="80"
                 step="5"
-                aria-label="3D Subdivision Volume Ratio"
                 value={splitRatio}
-                onChange={(e) => setSplitRatio(Number(e.target.value))}
-                className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400"
+                onChange={(e) => setSplitRatio(parseInt(e.target.value))}
+                className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-amber-500"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-500">
-                <span>Unit A: {childAVolume} m³</span>
-                <span>Conservation Law: V(A) + V(B) = {parentVolume} m³</span>
-                <span>Unit B: {childBVolume} m³</span>
+              <div className="flex items-center justify-between text-[10px] font-mono text-slate-500">
+                <span>Sub-Unit A: {childAVolume} m³ ({childAArea} m²)</span>
+                <span>Sub-Unit B: {childBVolume} m³ ({childBArea} m²)</span>
               </div>
             </div>
 
-            {/* Two Child Proposed ULPIN Cards */}
-            <div className="grid grid-cols-2 gap-3">
-              {/* Child Unit A */}
-              <div className="p-3.5 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 space-y-2 text-xs">
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-[#00D084] text-xs">Child Unit 1 (A)</span>
-                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-[#00D084]">
-                    {splitRatio}%
-                  </span>
-                </div>
-                <div className="font-mono font-bold text-slate-200 text-[11px] truncate">
-                  {childA_ULPIN}
-                </div>
+            {/* Sub-Unit Details Cards */}
+            <div className="grid grid-cols-2 gap-3 text-xs">
+              {/* Child A */}
+              <div className={`p-3.5 rounded-2xl border space-y-2 ${
+                isLight ? 'bg-sky-50/50 border-sky-200' : 'bg-sky-950/20 border-sky-500/30'
+              }`}>
+                <span className="font-mono text-[10px] font-bold text-sky-400 uppercase">Child Parcel A (Retained)</span>
+                <div className="font-mono font-bold text-xs text-sky-300 truncate">{childA_ULPIN}</div>
                 <div className="space-y-1">
-                  <label htmlFor="child-a-owner-input" className="text-[10px] text-slate-400">Assigned Owner:</label>
+                  <label className="text-[10px] text-slate-500">Assign Owner:</label>
                   <input
-                    id="child-a-owner-input"
-                    name="childAOwner"
                     type="text"
-                    aria-label="Assigned Owner for Child Unit A"
                     value={childAOwner}
                     onChange={(e) => setChildAOwner(e.target.value)}
-                    className="w-full px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white font-medium focus:outline-none focus:border-[#00D084]"
+                    className={`w-full px-2.5 py-1.5 rounded-lg border text-xs font-semibold focus:outline-none ${
+                      isLight ? 'bg-white border-sky-300 text-slate-800' : 'bg-slate-900 border-sky-500/40 text-white'
+                    }`}
                   />
-                </div>
-                <div className="text-[10px] font-mono text-slate-400 pt-1">
-                  Volume: <strong className="text-[#00D084]">{childAVolume} m³</strong> | Area: <strong>{childAArea} m²</strong>
                 </div>
               </div>
 
-              {/* Child Unit B */}
-              <div className="p-3.5 rounded-2xl bg-purple-950/30 border border-purple-500/30 space-y-2 text-xs">
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-purple-400 text-xs">Child Unit 2 (B)</span>
-                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">
-                    {100 - splitRatio}%
-                  </span>
-                </div>
-                <div className="font-mono font-bold text-slate-200 text-[11px] truncate">
-                  {childB_ULPIN}
-                </div>
+              {/* Child B */}
+              <div className={`p-3.5 rounded-2xl border space-y-2 ${
+                isLight ? 'bg-purple-50/50 border-purple-200' : 'bg-purple-950/20 border-purple-500/30'
+              }`}>
+                <span className="font-mono text-[10px] font-bold text-purple-400 uppercase">Child Parcel B (New Title)</span>
+                <div className="font-mono font-bold text-xs text-purple-300 truncate">{childB_ULPIN}</div>
                 <div className="space-y-1">
-                  <label htmlFor="child-b-owner-input" className="text-[10px] text-slate-400">Assigned Owner:</label>
+                  <label className="text-[10px] text-slate-500">Assign Owner:</label>
                   <input
-                    id="child-b-owner-input"
-                    name="childBOwner"
                     type="text"
-                    aria-label="Assigned Owner for Child Unit B"
                     value={childBOwner}
                     onChange={(e) => setChildBOwner(e.target.value)}
-                    className="w-full px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white font-medium focus:outline-none focus:border-purple-500"
+                    className={`w-full px-2.5 py-1.5 rounded-lg border text-xs font-semibold focus:outline-none ${
+                      isLight ? 'bg-white border-purple-300 text-slate-800' : 'bg-slate-900 border-purple-500/40 text-white'
+                    }`}
                   />
-                </div>
-                <div className="text-[10px] font-mono text-slate-400 pt-1">
-                  Volume: <strong className="text-purple-300">{childBVolume} m³</strong> | Area: <strong>{childBArea} m²</strong>
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
-          /* Success Screen */
-          <div className="py-8 text-center space-y-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 mx-auto flex items-center justify-center">
-              <CheckCircle2 className="w-8 h-8" />
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-white">
-                3D Cadastral Subdivision Sanctioned & Minted!
-              </h3>
-              <p className="text-xs text-slate-400 max-w-md mx-auto mt-1">
-                Parent parcel <strong>{unit.ulpin_3d}</strong> has been archived. Two new child 3D-ULPINs have been cryptographically signed and registered in Bhu-Aadhaar 3D.
-              </p>
-            </div>
-            <div className="flex justify-center gap-3 pt-2">
+
+            {/* Execute Button */}
+            <div className="pt-2">
               <button
-                onClick={onClose}
-                className="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20"
+                onClick={handleExecuteSplit}
+                disabled={isSubmitting}
+                className="w-full py-3 rounded-xl font-mono text-xs font-black uppercase tracking-wider bg-amber-500 hover:bg-amber-400 text-[#060B12] shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                Return to 3D Map
+                <Scissors className="w-4 h-4" />
+                <span>{isSubmitting ? 'MINTING CHILD 3D-ULPINS...' : 'CONFIRM 3D PARCEL SUBDIVISION'}</span>
               </button>
             </div>
           </div>
-        )}
-
-        {/* Footer Actions */}
-        {!splitSuccess && (
-          <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
-            <button
-              onClick={onClose}
-              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-all"
-            >
-              Cancel
-            </button>
-
-            <button
-              onClick={handleExecuteSplit}
-              disabled={isSubmitting}
-              className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/20 transition-all flex items-center gap-2"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>{isSubmitting ? 'Computing 3D Mesh Partition...' : 'Execute 3D Subdivision'}</span>
-            </button>
+        ) : (
+          <div className="my-8 text-center space-y-4 animate-in zoom-in-95 duration-200">
+            <div className="w-16 h-16 rounded-full bg-[#00D084]/20 border border-[#00D084] text-[#00D084] flex items-center justify-center mx-auto shadow-lg">
+              <CheckCircle2 className="w-8 h-8" />
+            </div>
+            <h3 className={`text-lg font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+              3D Parcel Subdivided Successfully
+            </h3>
+            <p className="text-xs text-slate-500 max-w-md mx-auto">
+              Parent unit <strong>{unit.name}</strong> has been subdivided into two valid, watertight 3D parcels with distinct cryptographic 3D-ULPIN tokens.
+            </p>
+            <div className="pt-4">
+              <button
+                onClick={onClose}
+                className={`px-6 py-2.5 rounded-xl font-mono text-xs font-bold ${
+                  isLight ? 'bg-[#1B5E20] text-white' : 'bg-[#00D084] text-[#060B12]'
+                }`}
+              >
+                INSPECT NEW PARCELS IN 3D
+              </button>
+            </div>
           </div>
         )}
       </div>

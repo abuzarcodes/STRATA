@@ -544,7 +544,9 @@ export default function Viewer3D({
   explodedOffset = 0,
   theme = 'LIGHT',
   flyTarget,
-  onFlightProgress
+  onFlightProgress,
+  showBounds = true,
+  measureMode = false
 }) {
   const [hoveredUnit, setHoveredUnit] = useState(null)
   const isLight = theme === 'LIGHT'
@@ -559,7 +561,7 @@ export default function Viewer3D({
   }, [auditSummary])
 
   return (
-    <div className="absolute inset-0 z-0 bg-[#080E17] overflow-hidden">
+    <div className={`absolute inset-0 z-0 overflow-hidden transition-colors duration-500 ${isLight ? 'bg-[#E8F5E9]' : 'bg-[#080E17]'}`}>
       <Canvas
         camera={{ position: [28, 22, 34], fov: 38 }}
         gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
@@ -569,34 +571,37 @@ export default function Viewer3D({
         <fog attach="fog" args={[isLight ? '#C8E6C9' : '#080E17', 40, 140]} />
 
         {/* Ambient & Directional Lighting */}
-        <ambientLight intensity={isLight ? 0.9 : 0.35} />
+        <ambientLight intensity={isLight ? 0.95 : 0.4} />
         <directionalLight
           position={[30, 45, 25]}
-          intensity={isLight ? 1.5 : 1.2}
+          intensity={isLight ? 1.6 : 1.3}
           color={isLight ? '#FFFFFF' : '#00D084'}
           castShadow
         />
-        <directionalLight position={[-20, 15, -20]} intensity={0.3} color="#10B981" />
-        <pointLight position={[0, 8, 0]} intensity={0.5} color="#00D084" distance={50} decay={2} />
+        <directionalLight position={[-20, 15, -20]} intensity={isLight ? 0.4 : 0.3} color={isLight ? '#A7F3D0' : '#10B981'} />
+        <pointLight position={[0, 8, 0]} intensity={isLight ? 0.3 : 0.5} color="#00D084" distance={50} decay={2} />
 
         {/* Ground Grid with Cadastral Coordinates */}
         <gridHelper
-          args={[160, 80, isLight ? '#2E7D32' : '#00D084', isLight ? '#C8E6C9' : '#1E293B']}
+          args={[160, 80, isLight ? '#1B5E20' : '#00D084', isLight ? '#C8E6C9' : '#1E293B']}
           position={[0, -0.05, 0]}
         />
 
         {/* Ground Cadastral Property Boundary Ring */}
-        <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[15, 15.3, 4]} />
-          <meshBasicMaterial color="#00D084" transparent opacity={0.85} />
-        </mesh>
+        {showBounds && (
+          <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <ringGeometry args={[15, 15.3, 4]} />
+            <meshBasicMaterial color={isLight ? '#1B5E20' : '#00D084'} transparent opacity={0.85} />
+          </mesh>
+        )}
 
-        {/* Volumetric Laser Scanline Sweep */}
-        <ScanPlane bounds={[16, 12]} />
-
-        {/* Access Road Networks with Particle Flows */}
-        <RoadDataStream roadType="NORTH" />
-        <RoadDataStream roadType="EAST" />
+        {/* Optional 3D Measurement Visual Grid Guide */}
+        {measureMode && (
+          <gridHelper
+            args={[30, 30, '#F59E0B', '#F59E0B']}
+            position={[0, 0.04, 0]}
+          />
+        )}
 
         {/* Street Lights along Boundary */}
         <StreetLight position={[-14, 0, -10]} rotation={[0, Math.PI / 2, 0]} />
@@ -629,7 +634,7 @@ export default function Viewer3D({
           ))}
 
           {/* Procedural Rooftop Elements */}
-          <RooftopDetails position={[0, 15 + (activeFloor === 'ALL' ? 0 : 0), 0]} />
+          <RooftopDetails position={[0, 15, 0]} />
         </group>
 
         {/* Adaptive Dynamic Camera Orbit Controls */}

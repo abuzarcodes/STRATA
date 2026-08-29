@@ -38,7 +38,7 @@ export function createApp(): Express {
   }
 
   // ── 4. API Documentation (Swagger / OpenAPI) ──
-  app.use(SWAGGER_PATH, swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use(['/api/docs', '/api-docs'], swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   // ── 5. Domain API Routes ──
   app.use(API_PREFIX, apiRoutes);
