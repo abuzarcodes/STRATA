@@ -115,16 +115,27 @@ export class BuildingsController {
 
 export const buildingsController = new BuildingsController();
 
+import { requirePermission } from '../../middleware/require-permission.middleware';
+import { Permission } from '../../common/authorization';
+
 // ── Routes ──
 const router = Router();
 router.use(authMiddleware);
 
-router.post('/', validate(createBuildingSchema), (req, res, next) =>
-  buildingsController.create(req, res, next),
+router.post(
+  '/',
+  validate(createBuildingSchema),
+  requirePermission(Permission.BUILDING_CREATE),
+  (req, res, next) => buildingsController.create(req, res, next),
 );
-router.get('/', (req, res, next) => buildingsController.findAll(req, res, next));
-router.get('/:id', validate(getBuildingSchema), (req, res, next) =>
-  buildingsController.findById(req, res, next),
+router.get('/', requirePermission(Permission.BUILDING_READ), (req, res, next) =>
+  buildingsController.findAll(req, res, next),
+);
+router.get(
+  '/:id',
+  validate(getBuildingSchema),
+  requirePermission(Permission.BUILDING_READ),
+  (req, res, next) => buildingsController.findById(req, res, next),
 );
 
 export const buildingRoutes = router;

@@ -12,9 +12,10 @@ generator client {
 
 enum Role {
   ADMIN
+  PROPERTY_OWNER
   SURVEYOR
   REVIEWER
-  USER
+  REGISTRATION_OFFICER
 }
 
 enum AssetType {
@@ -51,18 +52,21 @@ enum ViolationSeverity {
 }
 
 model User {
-  id           String          @id @default(uuid())
-  email        String          @unique
+  id           String   @id @default(uuid())
+  email        String   @unique
   passwordHash String
   name         String
-  role         Role            @default(USER)
-  createdAt    DateTime        @default(now())
-  updatedAt    DateTime        @updatedAt
+  role         Role     @default(PROPERTY_OWNER)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   // Relationships
-  projects       Project[]
-  processingJobs ProcessingJob[]
-  auditLogs      AuditLog[]
+  projects        Project[]
+  processingJobs  ProcessingJob[]
+  auditLogs       AuditLog[]
+  assignments     ProjectAssignment[] @relation("userAssignments")
+  assignmentsMade ProjectAssignment[] @relation("assignmentsMade")
 
   @@map("users")
 }
@@ -76,10 +80,29 @@ model Project {
   updatedAt   DateTime @updatedAt
 
   // Relationships
-  owner   User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  parcels Parcel[]
+  owner       User                @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  parcels     Parcel[]
+  assignments ProjectAssignment[]
 
   @@map("projects")
+}
+
+model ProjectAssignment {
+  id             String   @id @default(uuid())
+  projectId      String
+  userId         String
+  assignmentRole String   // The role this user plays on this project (e.g. SURVEYOR, REVIEWER)
+  assignedById   String?
+  assignedAt     DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relationships
+  project    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user       User    @relation("userAssignments", fields: [userId], references: [id], onDelete: Cascade)
+  assignedBy User?   @relation("assignmentsMade", fields: [assignedById], references: [id], onDelete: SetNull)
+
+  @@unique([userId, projectId])
+  @@map("project_assignments")
 }
 
 model Parcel {

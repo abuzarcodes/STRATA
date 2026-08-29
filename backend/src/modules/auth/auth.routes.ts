@@ -28,9 +28,6 @@ const router = Router();
  *                 minLength: 8
  *               name:
  *                 type: string
- *               role:
- *                 type: string
- *                 enum: [ADMIN, SURVEYOR, REVIEWER, USER]
  *     responses:
  *       201:
  *         description: User registered successfully

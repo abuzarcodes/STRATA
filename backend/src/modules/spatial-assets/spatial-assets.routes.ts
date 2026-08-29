@@ -130,14 +130,24 @@ export class SpatialAssetsController {
 
 export const spatialAssetsController = new SpatialAssetsController();
 
+import { requirePermission } from '../../middleware/require-permission.middleware';
+import { Permission } from '../../common/authorization';
+
 // ── Routes ──
 const router = Router();
 router.use(authMiddleware);
 
-router.post('/', validate(createSpatialAssetSchema), (req, res, next) =>
-  spatialAssetsController.create(req, res, next),
+router.post(
+  '/',
+  validate(createSpatialAssetSchema),
+  requirePermission(Permission.SPATIAL_ASSET_CREATE),
+  (req, res, next) => spatialAssetsController.create(req, res, next),
 );
-router.get('/', (req, res, next) => spatialAssetsController.findAll(req, res, next));
-router.get('/:id', (req, res, next) => spatialAssetsController.findById(req, res, next));
+router.get('/', requirePermission(Permission.SPATIAL_ASSET_READ), (req, res, next) =>
+  spatialAssetsController.findAll(req, res, next),
+);
+router.get('/:id', requirePermission(Permission.SPATIAL_ASSET_READ), (req, res, next) =>
+  spatialAssetsController.findById(req, res, next),
+);
 
 export const spatialAssetRoutes = router;

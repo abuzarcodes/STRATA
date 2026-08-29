@@ -31,7 +31,7 @@ export class AuthService {
         email: input.email.toLowerCase(),
         passwordHash,
         name: input.name,
-        role: input.role || Role.USER,
+        role: Role.PROPERTY_OWNER,
       },
     });
 
@@ -56,6 +56,14 @@ export class AuthService {
 
     if (!user) {
       throw new AppError(401, ErrorCodes.INVALID_CREDENTIALS, 'Invalid email or password.');
+    }
+
+    if (!user.isActive) {
+      throw new AppError(
+        403,
+        ErrorCodes.FORBIDDEN,
+        'User account is deactivated. Please contact an administrator.',
+      );
     }
 
     const isMatch = await bcrypt.compare(input.password, user.passwordHash);

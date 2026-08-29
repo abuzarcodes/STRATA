@@ -1,7 +1,11 @@
 import { Router } from 'express';
 import { projectsController } from './projects.controller';
+import { assignmentRoutes } from '../assignments/assignments.routes';
 import { authMiddleware } from '../../middleware/auth.middleware';
+import { requirePermission } from '../../middleware/require-permission.middleware';
+import { requireProjectAccess } from '../../middleware/require-project-access.middleware';
 import { validate } from '../../middleware/validate.middleware';
+import { Permission } from '../../common/authorization';
 import { createProjectSchema, updateProjectSchema, getProjectSchema } from './projects.validation';
 
 const router = Router();
@@ -9,11 +13,14 @@ const router = Router();
 // All project routes require authentication
 router.use(authMiddleware);
 
+// Mount nested assignment sub-routes: /projects/:projectId/assignments
+router.use('/:projectId/assignments', assignmentRoutes);
+
 /**
  * @openapi
  * /projects:
  *   post:
- *     summary: Create a new project
+ *     summary: Create a new project (Surveyor & Admin)
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []
@@ -32,30 +39,43 @@ router.use(authMiddleware);
  *     responses:
  *       201:
  *         description: Project created
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Insufficient permission
  */
-router.post('/', validate(createProjectSchema), (req, res, next) =>
-  projectsController.create(req, res, next),
+router.post(
+  '/',
+  validate(createProjectSchema),
+  requirePermission(Permission.PROJECT_CREATE),
+  (req, res, next) => projectsController.create(req, res, next),
 );
 
 /**
  * @openapi
  * /projects:
  *   get:
- *     summary: List user projects (or all projects if Admin)
+ *     summary: List accessible projects (owned/assigned for users, all for Admin)
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Paginated projects list
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Insufficient permission
  */
-router.get('/', (req, res, next) => projectsController.findAll(req, res, next));
+router.get('/', requirePermission(Permission.PROJECT_READ), (req, res, next) =>
+  projectsController.findAll(req, res, next),
+);
 
 /**
  * @openapi
  * /projects/{id}:
  *   get:
- *     summary: Get project by ID with full spatial hierarchy
+ *     summary: Get project by ID with full spatial hierarchy and assignments
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []
@@ -68,9 +88,19 @@ router.get('/', (req, res, next) => projectsController.findAll(req, res, next));
  *     responses:
  *       200:
  *         description: Project hierarchy details
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Project access denied or insufficient permission
+ *       404:
+ *         description: Project not found
  */
-router.get('/:id', validate(getProjectSchema), (req, res, next) =>
-  projectsController.findById(req, res, next),
+router.get(
+  '/:id',
+  validate(getProjectSchema),
+  requirePermission(Permission.PROJECT_READ),
+  requireProjectAccess(),
+  (req, res, next) => projectsController.findById(req, res, next),
 );
 
 /**
@@ -90,16 +120,26 @@ router.get('/:id', validate(getProjectSchema), (req, res, next) =>
  *     responses:
  *       200:
  *         description: Project updated
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Project access denied or insufficient permission
+ *       404:
+ *         description: Project not found
  */
-router.patch('/:id', validate(updateProjectSchema), (req, res, next) =>
-  projectsController.update(req, res, next),
+router.patch(
+  '/:id',
+  validate(updateProjectSchema),
+  requirePermission(Permission.PROJECT_UPDATE),
+  requireProjectAccess(),
+  (req, res, next) => projectsController.update(req, res, next),
 );
 
 /**
  * @openapi
  * /projects/{id}:
  *   delete:
- *     summary: Delete project
+ *     summary: Delete project (Admin only)
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []
@@ -112,9 +152,19 @@ router.patch('/:id', validate(updateProjectSchema), (req, res, next) =>
  *     responses:
  *       200:
  *         description: Project deleted
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Insufficient permission
+ *       404:
+ *         description: Project not found
  */
-router.delete('/:id', validate(getProjectSchema), (req, res, next) =>
-  projectsController.delete(req, res, next),
+router.delete(
+  '/:id',
+  validate(getProjectSchema),
+  requirePermission(Permission.PROJECT_DELETE),
+  requireProjectAccess(),
+  (req, res, next) => projectsController.delete(req, res, next),
 );
 
 export const projectRoutes = router;

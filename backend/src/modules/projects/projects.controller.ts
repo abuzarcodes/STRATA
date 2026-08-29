@@ -43,12 +43,8 @@ export class ProjectsController {
 
   async update(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      if (!req.user) {
-        throw new AppError(401, ErrorCodes.UNAUTHORIZED, 'Authentication required');
-      }
       const { id } = req.params;
-      const isAdmin = req.user.role === Role.ADMIN;
-      const project = await projectsService.update(id as string, req.body, req.user.id, isAdmin);
+      const project = await projectsService.update(id as string, req.body);
       sendSuccess(res, project, 'Project updated successfully');
     } catch (error) {
       next(error);
@@ -57,12 +53,8 @@ export class ProjectsController {
 
   async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      if (!req.user) {
-        throw new AppError(401, ErrorCodes.UNAUTHORIZED, 'Authentication required');
-      }
       const { id } = req.params;
-      const isAdmin = req.user.role === Role.ADMIN;
-      await projectsService.delete(id as string, req.user.id, isAdmin);
+      await projectsService.delete(id as string);
       sendSuccess(res, { id }, 'Project deleted successfully');
     } catch (error) {
       next(error);
