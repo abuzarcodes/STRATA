@@ -40,7 +40,7 @@ export default function App() {
   const [measureMode, setMeasureMode] = useState(false)
   
   // Theme state
-  const [theme, setTheme] = useState('LIGHT')
+  const [theme, setTheme] = useState('CYBER')
 
   const handleToggleTheme = useCallback(() => {
     setTheme((prev) => (prev === 'LIGHT' ? 'CYBER' : 'LIGHT'))
