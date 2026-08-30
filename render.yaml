@@ -1,0 +1,46 @@
+services:
+  # ─── STRATA Backend Web Service ──────────────────────────────
+  - type: web
+    name: strata-backend
+    runtime: node
+    rootDir: backend
+    plan: free
+    region: singapore
+    buildCommand: npm ci && npx prisma generate && npm run build
+    startCommand: node dist/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: DATABASE_URL
+        sync: false # Set via Render dashboard with your Supabase database connection string
+      - key: SUPABASE_URL
+        value: https://wluiaprkdwkrlksxipra.supabase.co
+      - key: SUPABASE_ANON_KEY
+        value: sb_publishable_2eQaKT4naFNwdSuFp8j7Rg_i1_YKyzD
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CORS_ORIGIN
+        value: "*"
+
+  # ─── STRATA Frontend Static Site ────────────────────────────
+  - type: web
+    name: strata-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_SUPABASE_URL
+        value: https://wluiaprkdwkrlksxipra.supabase.co
+      - key: VITE_SUPABASE_ANON_KEY
+        value: sb_publishable_2eQaKT4naFNwdSuFp8j7Rg_i1_YKyzD
+      - key: VITE_API_BASE_URL
+        sync: false # Will point to https://strata-backend.onrender.com/api/v1
