@@ -105,6 +105,33 @@ def extrude_geometry(req: ExtrusionRequest):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+@app.post("/api/v1/ai-ml/analyze")
+def analyze_building_instances(req: Dict[str, Any]):
+    """
+    Executes production PointNet++ MSG building instance separation pipeline on 3D point cloud data.
+    Legal Disclaimer: AI predictions represent candidate evidence only for surveyor review.
+    """
+    try:
+        from ai_ml.integration.production_pipeline import ProductionPipeline
+        pipeline = ProductionPipeline(device="cpu", source_crs="EPSG:2193")
+        points_xyz = req.get("points_xyz", [])
+        intensity = req.get("intensity", None)
+        scene_id = req.get("scene_id", "SCENE_001")
+        
+        import numpy as np
+        pts_np = np.array(points_xyz, dtype=float)
+        int_np = np.array(intensity, dtype=float) if intensity else None
+        
+        res = pipeline.run_inference(pts_np, intensity=int_np, scene_id=scene_id)
+        return {
+            "success": True,
+            "data": res,
+            "legal_disclaimer": "AI PREDICTION ONLY. Candidate building instance evidence generated for surveyor review."
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
