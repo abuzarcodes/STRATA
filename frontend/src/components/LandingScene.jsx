@@ -16,6 +16,8 @@ import {
   ScanLine,
   ShieldCheck,
   Sun,
+  Volume2,
+  VolumeX,
 } from 'lucide-react'
 import StrataLogo from './StrataLogo'
 
@@ -24,6 +26,47 @@ const SIGNALS = [
   { label: 'SUBSURFACE', value: '02', color: '#7ee7d2' },
   { label: 'REGISTERED', value: '128', color: '#f4f0e8' },
 ]
+
+function playInteractionSound(audioContextRef, muted, cue = 'tower') {
+  if (muted || typeof window === 'undefined') return
+
+  const AudioContext = window.AudioContext || window.webkitAudioContext
+  if (!AudioContext) return
+
+  if (!audioContextRef.current) audioContextRef.current = new AudioContext()
+  const context = audioContextRef.current
+  if (context.state === 'suspended') context.resume()
+
+  const now = context.currentTime
+  const master = context.createGain()
+  master.gain.setValueAtTime(0.0001, now)
+  master.gain.exponentialRampToValueAtTime(cue === 'scan' ? 0.12 : 0.08, now + 0.012)
+  master.gain.exponentialRampToValueAtTime(0.0001, now + (cue === 'scan' ? 0.42 : 0.2))
+  master.connect(context.destination)
+
+  const oscillator = context.createOscillator()
+  oscillator.type = cue === 'scan' ? 'sine' : 'triangle'
+  oscillator.frequency.setValueAtTime(cue === 'scan' ? 180 : 280, now)
+  oscillator.frequency.exponentialRampToValueAtTime(cue === 'scan' ? 62 : 680, now + (cue === 'scan' ? 0.34 : 0.14))
+  oscillator.connect(master)
+  oscillator.start(now)
+  oscillator.stop(now + (cue === 'scan' ? 0.42 : 0.2))
+
+  if (cue === 'tower') {
+    const harmonic = context.createOscillator()
+    const harmonicGain = context.createGain()
+    harmonic.type = 'sine'
+    harmonic.frequency.setValueAtTime(560, now)
+    harmonic.frequency.exponentialRampToValueAtTime(920, now + 0.12)
+    harmonicGain.gain.setValueAtTime(0.0001, now)
+    harmonicGain.gain.exponentialRampToValueAtTime(0.035, now + 0.015)
+    harmonicGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16)
+    harmonic.connect(harmonicGain)
+    harmonicGain.connect(context.destination)
+    harmonic.start(now)
+    harmonic.stop(now + 0.17)
+  }
+}
 
 function HologramTower({
   position,
@@ -229,7 +272,15 @@ function DataChip({ icon: Icon, label, value, detail, isLight, accent = 'mint', 
 
 export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleTheme, onNavClick }) {
   const isLight = theme === 'LIGHT'
+  const audioContextRef = useRef(null)
   const [activeSignal, setActiveSignal] = useState(0)
+  const [isMuted, setIsMuted] = useState(() => {
+    try {
+      return window.localStorage.getItem('strata-audio-muted') === 'true'
+    } catch {
+      return false
+    }
+  })
   const [interactionMessage, setInteractionMessage] = useState('Hover a tower to inspect it')
   const [pointer, setPointer] = useState({ x: 50, y: 50 })
 
@@ -238,6 +289,18 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
       setActiveSignal((current) => (current + 1) % SIGNALS.length)
     }, 3000)
     return () => window.clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem('strata-audio-muted', String(isMuted))
+    } catch {
+      // Audio preference persistence is optional.
+    }
+  }, [isMuted])
+
+  useEffect(() => () => {
+    if (audioContextRef.current && audioContextRef.current.state !== 'closed') audioContextRef.current.close()
   }, [])
 
   const handlePointerMove = (event) => {
@@ -249,11 +312,13 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
   }
 
   const handleTowerSelect = (towerId) => {
+    playInteractionSound(audioContextRef, isMuted, 'tower')
     setInteractionMessage(`Tower ${towerId} selected · spatial pulse sent`)
     window.setTimeout(() => setInteractionMessage('Hover a tower to inspect it'), 2200)
   }
 
   const handleScanPulse = () => {
+    playInteractionSound(audioContextRef, isMuted, 'scan')
     setInteractionMessage('Scan pulse dispatched · recalibrating spatial layer')
     window.setTimeout(() => setInteractionMessage('Hover a tower to inspect it'), 2200)
   }
@@ -269,12 +334,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
       <div className="landing-ambient landing-ambient-two" />
       <div className="landing-noise" />
 
-      <div
-        className="absolute inset-0 z-0 overflow-hidden"
-        onPointerDown={(event) => {
-          if (event.target instanceof HTMLCanvasElement) handleScanPulse()
-        }}
-      >
+      <div className="absolute inset-0 z-0 overflow-hidden">
           <Canvas camera={{ position: [40, 31, 50], fov: 38 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }} onPointerMissed={handleScanPulse}>
           <color attach="background" args={[isLight ? '#edf4ef' : '#071216']} />
           <fog attach="fog" args={[isLight ? '#edf4ef' : '#071216', 48, 138]} />
@@ -311,6 +371,15 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
           <div className="hidden rounded-full border border-white/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[#87aaa1] sm:block">
             v2.6 / Delhi pilot
           </div>
+          <button
+            onClick={() => setIsMuted((muted) => !muted)}
+            className="landing-theme-toggle"
+            title={isMuted ? 'Enable interaction sounds' : 'Mute interaction sounds'}
+            aria-label={isMuted ? 'Enable interaction sounds' : 'Mute interaction sounds'}
+            aria-pressed={isMuted}
+          >
+            {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+          </button>
           <button
             onClick={onToggleTheme}
             className="landing-theme-toggle"
