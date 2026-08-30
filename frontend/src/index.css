@@ -699,6 +699,72 @@ button {
   box-shadow: 0 0 15px color-mix(in srgb, var(--signal-color) 45%, transparent);
 }
 
+.landing-interaction-hud {
+  position: absolute;
+  right: 9%;
+  bottom: 2%;
+  z-index: 4;
+  width: min(310px, 58%);
+  border: 1px solid var(--landing-line);
+  border-radius: 14px;
+  padding: 13px 14px;
+  background: rgba(7, 18, 22, 0.62);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.strata-landing-light .landing-interaction-hud {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.landing-interaction-heading,
+.landing-interaction-legend {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--landing-accent);
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.landing-interaction-message {
+  min-height: 15px;
+  margin-top: 8px;
+  color: var(--landing-text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.landing-interaction-legend {
+  flex-wrap: wrap;
+  gap: 8px 15px;
+  margin-top: 10px;
+  color: var(--landing-copy);
+  font-size: 8px;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+.landing-interaction-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.landing-legend-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.landing-legend-dot-hover { background: var(--landing-accent); box-shadow: 0 0 8px var(--landing-accent); }
+.landing-legend-dot-click { background: var(--landing-hot); box-shadow: 0 0 8px var(--landing-hot); }
+
 .landing-floating-tag {
   position: absolute;
   z-index: 4;
@@ -873,6 +939,7 @@ button {
   .landing-preview-title { font-size: 20px; }
   .landing-preview-coordinates { flex-wrap: wrap; gap: 5px 12px; font-size: 8px; }
   .landing-signal-card { bottom: 8%; left: 2%; width: 65%; padding: 13px; }
+  .landing-interaction-hud { right: 0; bottom: 0; width: 67%; padding: 11px; }
   .landing-floating-tag-one { top: 21%; left: 0; }
   .landing-floating-tag-two { right: 0; bottom: 20%; }
   .landing-data-grid { gap: 14px 10px; }

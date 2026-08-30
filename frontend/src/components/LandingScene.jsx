@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import {
   ArrowDownRight,
@@ -25,26 +25,67 @@ const SIGNALS = [
   { label: 'REGISTERED', value: '128', color: '#f4f0e8' },
 ]
 
-function HologramTower({ position, size = [6, 18, 6], isLight, wireColor = '#c8ff33', opacity = 1 }) {
+function HologramTower({
+  position,
+  size = [6, 18, 6],
+  isLight,
+  wireColor = '#c8ff33',
+  opacity = 1,
+  towerId,
+  active = false,
+  onHover,
+  onClick,
+}) {
   const edgesGeom = useMemo(() => new THREE.EdgesGeometry(new THREE.BoxGeometry(...size)), [size])
+  const towerRef = useRef(null)
   const fillColor = isLight ? '#d6e5dc' : '#10252a'
-  const edgeColor = isLight ? '#1b5e4d' : wireColor
+  const edgeColor = active ? '#f4f0e8' : isLight ? '#1b5e4d' : wireColor
+
+  useFrame(() => {
+    if (!towerRef.current) return
+    const targetScale = active ? 1.035 : 1
+    const nextScale = THREE.MathUtils.lerp(towerRef.current.scale.x, targetScale, 0.16)
+    towerRef.current.scale.setScalar(nextScale)
+  })
 
   return (
-    <group position={position}>
+    <group
+      ref={towerRef}
+      position={position}
+      onPointerOver={(event) => {
+        event.stopPropagation()
+        onHover?.(towerId)
+      }}
+      onPointerOut={(event) => {
+        event.stopPropagation()
+        onHover?.(null)
+      }}
+      onClick={(event) => {
+        event.stopPropagation()
+        onClick?.(towerId)
+      }}
+    >
       <mesh>
         <boxGeometry args={size} />
-        <meshStandardMaterial
+          <meshStandardMaterial
           color={fillColor}
           transparent
           opacity={opacity * (isLight ? 0.78 : 0.72)}
           roughness={0.52}
           metalness={0.18}
+          emissive={active ? wireColor : '#000000'}
+          emissiveIntensity={active ? 0.38 : 0}
         />
       </mesh>
       <lineSegments geometry={edgesGeom}>
         <lineBasicMaterial color={edgeColor} transparent opacity={opacity * (isLight ? 0.68 : 0.9)} />
       </lineSegments>
+      {active && (
+        <mesh position={[0, size[1] / 2 + 0.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <ringGeometry args={[1.1, 1.22, 32]} />
+          <meshBasicMaterial color={wireColor} transparent opacity={0.8} side={THREE.DoubleSide} />
+        </mesh>
+      )}
     </group>
   )
 }
@@ -76,19 +117,56 @@ function SignalBeacon({ position, color }) {
   )
 }
 
-function HolographicCityScene({ isLight }) {
+function HolographicCityScene({ isLight, onTowerSelect, onScanPulse }) {
+  const { pointer } = useThree()
   const groupRef = useRef(null)
   const scanRef = useRef(null)
+  const scanRippleRef = useRef(null)
+  const scanPulseRef = useRef(0)
+  const [activeTower, setActiveTower] = useState(null)
+
+  const handleTowerSelect = (towerId) => {
+    setActiveTower(towerId)
+    onTowerSelect?.(towerId)
+    window.setTimeout(() => setActiveTower(null), 900)
+  }
+
+  const handleScanClick = (event) => {
+    event.stopPropagation()
+    scanPulseRef.current = 1
+    onScanPulse?.()
+  }
+
+  const towerProps = (towerId) => ({
+    towerId,
+    active: activeTower === towerId,
+    onHover: setActiveTower,
+    onClick: handleTowerSelect,
+  })
 
   useFrame((state) => {
     const t = state.clock.elapsedTime
+    const delta = state.clock.getDelta()
+    const pointerX = pointer.x || 0
+    const pointerY = pointer.y || 0
+
     if (groupRef.current) {
-      groupRef.current.rotation.y = t * 0.027
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, t * 0.027 + pointerX * 0.055, 0.035)
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, pointerY * -0.026, 0.035)
       groupRef.current.position.y = -6 + Math.sin(t * 0.24) * 0.15
     }
     if (scanRef.current) {
+      scanPulseRef.current = Math.max(0, scanPulseRef.current - delta * 2.8)
+      const pulse = scanPulseRef.current
       scanRef.current.position.y = 4 + Math.sin(t * 0.42) * 8
-      scanRef.current.material.opacity = 0.07 + ((Math.sin(t * 0.42) + 1) / 2) * 0.08
+      scanRef.current.scale.setScalar(1 + pulse * 0.035)
+      scanRef.current.material.opacity = 0.07 + ((Math.sin(t * 0.42) + 1) / 2) * 0.08 + pulse * 0.18
+    }
+    if (scanRippleRef.current) {
+      const pulse = scanPulseRef.current
+      scanRippleRef.current.position.y = scanRef.current?.position.y || 4
+      scanRippleRef.current.scale.setScalar(1 + (1 - pulse) * 1.6)
+      scanRippleRef.current.material.opacity = pulse * 0.46
     }
   })
 
@@ -98,25 +176,35 @@ function HolographicCityScene({ isLight }) {
         <gridHelper
           args={[180, 46, isLight ? '#2e7d63' : '#7ee7d2', isLight ? '#c5ded4' : '#18343a']}
           position={[0, 0, 0]}
+          raycast={() => null}
         />
-        <HologramTower position={[0, 15, 0]} size={[8, 30, 8]} isLight={isLight} wireColor="#c8ff33" />
-        <HologramTower position={[0, 32, 0]} size={[4.8, 6, 4.8]} isLight={isLight} wireColor="#7ee7d2" />
-        <HologramTower position={[0, 36, 0]} size={[1.2, 3, 1.2]} isLight={isLight} wireColor="#c8ff33" />
-        <HologramTower position={[-14, 11, -12]} size={[7, 22, 7]} isLight={isLight} wireColor="#7ee7d2" opacity={0.84} />
-        <HologramTower position={[15, 10, -12]} size={[6, 19, 6]} isLight={isLight} wireColor="#c8ff33" opacity={0.84} />
-        <HologramTower position={[-17, 8, 14]} size={[8, 16, 8]} isLight={isLight} wireColor="#c8ff33" opacity={0.74} />
-        <HologramTower position={[17, 12, 13]} size={[7, 23, 7]} isLight={isLight} wireColor="#7ee7d2" opacity={0.76} />
-        <HologramTower position={[-28, 7, -2]} size={[10, 14, 12]} isLight={isLight} wireColor="#c8ff33" opacity={0.62} />
-        <HologramTower position={[28, 7, 2]} size={[10, 14, 12]} isLight={isLight} wireColor="#7ee7d2" opacity={0.62} />
-        <HologramTower position={[0, 5, -27]} size={[14, 10, 8]} isLight={isLight} wireColor="#c8ff33" opacity={0.52} />
-        <HologramTower position={[1, 6, 28]} size={[12, 12, 10]} isLight={isLight} wireColor="#7ee7d2" opacity={0.52} />
+        <HologramTower position={[0, 15, 0]} size={[8, 30, 8]} isLight={isLight} wireColor="#c8ff33" {...towerProps('core')} />
+        <HologramTower position={[0, 32, 0]} size={[4.8, 6, 4.8]} isLight={isLight} wireColor="#7ee7d2" {...towerProps('spire')} />
+        <HologramTower position={[0, 36, 0]} size={[1.2, 3, 1.2]} isLight={isLight} wireColor="#c8ff33" {...towerProps('antenna')} />
+        <HologramTower position={[-14, 11, -12]} size={[7, 22, 7]} isLight={isLight} wireColor="#7ee7d2" opacity={0.84} {...towerProps('northwest')} />
+        <HologramTower position={[15, 10, -12]} size={[6, 19, 6]} isLight={isLight} wireColor="#c8ff33" opacity={0.84} {...towerProps('northeast')} />
+        <HologramTower position={[-17, 8, 14]} size={[8, 16, 8]} isLight={isLight} wireColor="#c8ff33" opacity={0.74} {...towerProps('southwest')} />
+        <HologramTower position={[17, 12, 13]} size={[7, 23, 7]} isLight={isLight} wireColor="#7ee7d2" opacity={0.76} {...towerProps('southeast')} />
+        <HologramTower position={[-28, 7, -2]} size={[10, 14, 12]} isLight={isLight} wireColor="#c8ff33" opacity={0.62} {...towerProps('west')} />
+        <HologramTower position={[28, 7, 2]} size={[10, 14, 12]} isLight={isLight} wireColor="#7ee7d2" opacity={0.62} {...towerProps('east')} />
+        <HologramTower position={[0, 5, -27]} size={[14, 10, 8]} isLight={isLight} wireColor="#c8ff33" opacity={0.52} {...towerProps('south')} />
+        <HologramTower position={[1, 6, 28]} size={[12, 12, 10]} isLight={isLight} wireColor="#7ee7d2" opacity={0.52} {...towerProps('foreground')} />
         <SignalBeacon position={[-14, 23, -12]} color="#7ee7d2" />
         <SignalBeacon position={[15, 20, -12]} color="#c8ff33" />
         <SignalBeacon position={[17, 23, 13]} color="#f4f0e8" />
       </group>
-      <mesh ref={scanRef} rotation={[0, 0, 0]} position={[0, 5, 0]}>
+      <mesh
+        ref={scanRef}
+        rotation={[0, 0, 0]}
+        position={[0, 5, 0]}
+        onPointerDown={handleScanClick}
+      >
         <boxGeometry args={[78, 0.08, 78]} />
         <meshBasicMaterial color={isLight ? '#2e7d63' : '#c8ff33'} transparent opacity={0.1} />
+      </mesh>
+      <mesh ref={scanRippleRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 5, 0]}>
+        <ringGeometry args={[6, 6.08, 64]} />
+        <meshBasicMaterial color={isLight ? '#2e7d63' : '#c8ff33'} transparent opacity={0} side={THREE.DoubleSide} />
       </mesh>
     </>
   )
@@ -142,6 +230,7 @@ function DataChip({ icon: Icon, label, value, detail, isLight, accent = 'mint', 
 export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleTheme, onNavClick }) {
   const isLight = theme === 'LIGHT'
   const [activeSignal, setActiveSignal] = useState(0)
+  const [interactionMessage, setInteractionMessage] = useState('Hover a tower to inspect it')
   const [pointer, setPointer] = useState({ x: 50, y: 50 })
 
   useEffect(() => {
@@ -159,6 +248,16 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
     })
   }
 
+  const handleTowerSelect = (towerId) => {
+    setInteractionMessage(`Tower ${towerId} selected · spatial pulse sent`)
+    window.setTimeout(() => setInteractionMessage('Hover a tower to inspect it'), 2200)
+  }
+
+  const handleScanPulse = () => {
+    setInteractionMessage('Scan pulse dispatched · recalibrating spatial layer')
+    window.setTimeout(() => setInteractionMessage('Hover a tower to inspect it'), 2200)
+  }
+
   return (
     <div
       className={`strata-landing ${isLight ? 'strata-landing-light' : ''}`}
@@ -170,15 +269,20 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
       <div className="landing-ambient landing-ambient-two" />
       <div className="landing-noise" />
 
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <Canvas camera={{ position: [40, 31, 50], fov: 38 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }}>
+      <div
+        className="absolute inset-0 z-0 overflow-hidden"
+        onPointerDown={(event) => {
+          if (event.target instanceof HTMLCanvasElement) handleScanPulse()
+        }}
+      >
+          <Canvas camera={{ position: [40, 31, 50], fov: 38 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }} onPointerMissed={handleScanPulse}>
           <color attach="background" args={[isLight ? '#edf4ef' : '#071216']} />
           <fog attach="fog" args={[isLight ? '#edf4ef' : '#071216', 48, 138]} />
           <ambientLight intensity={isLight ? 1.1 : 0.55} />
           <directionalLight position={[25, 45, 25]} intensity={isLight ? 1.7 : 1.7} color={isLight ? '#ffffff' : '#a5e9d4'} />
           <directionalLight position={[-25, 25, -25]} intensity={0.8} color={isLight ? '#b2dfcc' : '#c8ff33'} />
           <pointLight position={[0, 15, 14]} intensity={isLight ? 10 : 13} distance={75} color={isLight ? '#c8ff33' : '#7ee7d2'} />
-          <HolographicCityScene isLight={isLight} />
+          <HolographicCityScene isLight={isLight} onTowerSelect={handleTowerSelect} onScanPulse={handleScanPulse} />
         </Canvas>
       </div>
 
@@ -218,7 +322,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
         </div>
       </header>
 
-      <main className="relative z-10 mx-auto flex min-h-0 w-full max-w-[1480px] flex-1 flex-col justify-center px-5 pb-7 pt-2 sm:px-8 lg:px-12 lg:pb-10">
+      <main className="pointer-events-none relative z-10 mx-auto flex min-h-0 w-full max-w-[1480px] flex-1 flex-col justify-center px-5 pb-7 pt-2 sm:px-8 lg:px-12 lg:pb-10">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(480px,1.1fr)] lg:gap-16">
           <section className="max-w-[650px]">
             <div className={`landing-kicker landing-reveal ${isLight ? 'landing-kicker-light' : ''}`}>
@@ -237,7 +341,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
               STRATA turns layered property records into a living 3D registry—so rights, boundaries, and the spaces between them are finally legible.
             </p>
 
-            <div className="landing-hero-actions landing-reveal delay-3">
+            <div className="landing-hero-actions landing-reveal delay-3 pointer-events-auto">
               <button onClick={onScrollBegin} className="landing-primary-action">
                 <span>Enter the registry</span>
                 <ArrowRight size={17} />
@@ -287,7 +391,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
               </div>
             </div>
 
-            <div className="landing-signal-card landing-reveal delay-3">
+            <div className="landing-signal-card landing-reveal delay-3 pointer-events-auto">
               <div className="flex items-center justify-between">
                 <div className="landing-signal-heading"><ScanLine size={14} /> Spatial audit pulse</div>
                 <span className="landing-signal-time">00:03:12</span>
@@ -310,6 +414,12 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
                   />
                 ))}
               </div>
+            </div>
+
+            <div className="landing-interaction-hud landing-reveal delay-4" aria-live="polite">
+              <div className="landing-interaction-heading"><CircleDot size={13} /><span>3D interaction layer</span></div>
+              <div className="landing-interaction-message">{interactionMessage}</div>
+              <div className="landing-interaction-legend"><span><i className="landing-legend-dot landing-legend-dot-hover" /> hover to elevate</span><span><i className="landing-legend-dot landing-legend-dot-click" /> click to scan</span></div>
             </div>
 
             <div className="landing-floating-tag landing-floating-tag-one landing-reveal delay-4"><CircleDot size={13} /><span>LOD 2—4</span></div>
