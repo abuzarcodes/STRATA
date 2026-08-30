@@ -58,43 +58,37 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
 
   return (
     <div
-      className={`fixed inset-0 z-40 flex flex-col items-center justify-between px-6 py-8 overflow-y-auto transition-colors duration-500 backdrop-blur-2xl ${
-        isLight ? 'bg-[#F4FAF5]/95 text-slate-800' : 'bg-[#060B12]/95 text-white'
-      }`}
+      className="theme-app fixed inset-0 z-40 flex flex-col items-center justify-between px-6 py-8 overflow-y-auto transition-colors duration-500 backdrop-blur-2xl"
     >
       {/* Top Header Bar */}
       <div
-        className={`w-full max-w-6xl px-6 py-3.5 flex items-center justify-between rounded-2xl border backdrop-blur-xl ${
-          isLight ? 'bg-white/80 border-[#C8E6C9] shadow-sm' : 'bg-[#0B131E]/80 border-[#1E293B] shadow-xl'
-        }`}
+        className="theme-surface w-full max-w-6xl px-6 py-3.5 flex items-center justify-between rounded-2xl border backdrop-blur-xl shadow-xl"
       >
         <div className="flex items-center gap-3">
           <StrataLogo size={34} isLight={isLight} />
           <div>
-            <div className={`font-black text-sm tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+            <div className="font-black text-sm tracking-wider theme-text-primary">
               STRATA
             </div>
-            <div className={`text-[10px] font-mono font-bold uppercase ${isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}`}>
+            <div className="text-[10px] font-mono font-bold uppercase theme-accent">
               Bhu-Aadhaar 3D
             </div>
           </div>
         </div>
 
         <div
-          className={`hidden md:flex items-center gap-6 text-xs font-mono font-bold ${
-            isLight ? 'text-slate-600' : 'text-slate-400'
-          }`}
+          className="hidden md:flex items-center gap-6 text-xs font-mono font-bold theme-text-muted"
         >
           <button
             onClick={() => onNavClick && onNavClick('about')}
-            className={`cursor-pointer transition-colors ${isLight ? 'hover:text-[#1B5E20]' : 'hover:text-[#00D084]'}`}
+            className="cursor-pointer transition-colors theme-hover-accent"
           >
             About Platform
           </button>
           <span>•</span>
           <button
             onClick={() => onNavClick && onNavClick('documentation')}
-            className={`cursor-pointer transition-colors ${isLight ? 'hover:text-[#1B5E20]' : 'hover:text-[#00D084]'}`}
+            className="cursor-pointer transition-colors theme-hover-accent"
           >
             Documentation
           </button>
@@ -103,11 +97,7 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
         <div className="flex items-center gap-3">
           <button
             onClick={() => handleClick('CITIZEN')}
-            className={`px-4 py-2 rounded-xl font-mono text-xs font-bold tracking-wider transition-all cursor-pointer border flex items-center gap-1.5 shadow-md ${
-              isLight
-                ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white border-[#1B5E20]'
-                : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12] border-[#00D084] shadow-[0_0_15px_rgba(0,208,132,0.3)]'
-            }`}
+            className="theme-button-primary px-4 py-2 rounded-xl font-mono text-xs font-bold tracking-wider transition-all cursor-pointer border flex items-center gap-1.5 shadow-md"
           >
             <span>QUICK EXPLORE</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -120,11 +110,7 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
         {/* Back Link */}
         <button
           onClick={onBack}
-          className={`self-start mb-6 flex items-center gap-2 text-xs font-mono font-bold tracking-wider transition-colors cursor-pointer px-3 py-1.5 rounded-lg border ${
-            isLight
-              ? 'bg-white border-[#C8E6C9] text-slate-600 hover:text-[#1B5E20]'
-              : 'bg-[#0B131E] border-[#1E293B] text-slate-400 hover:text-white'
-          }`}
+          className="theme-surface theme-hover-surface self-start mb-6 flex items-center gap-2 text-xs font-mono font-bold tracking-wider transition-colors cursor-pointer px-3 py-1.5 rounded-lg border"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>BACK TO HOMEPAGE</span>
@@ -133,19 +119,15 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
         {/* Header Titles */}
         <div className="text-center mb-8 space-y-2">
           <div
-            className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest ${
-              isLight
-                ? 'bg-[#E8F5E9] border border-[#C8E6C9] text-[#1B5E20]'
-                : 'bg-[#00D084]/10 border border-[#00D084]/30 text-[#00D084]'
-            }`}
+            className="theme-accent-surface inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest border"
           >
             <Shield className="w-3.5 h-3.5" />
             <span>National Spatial Portal Access</span>
           </div>
-          <h1 className={`text-3xl sm:text-4xl font-black tracking-tight ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+          <h1 className="theme-text-primary text-3xl sm:text-4xl font-black tracking-tight">
             Select Your Cadastral Persona
           </h1>
-          <p className={`text-xs sm:text-sm max-w-md mx-auto ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+          <p className="theme-text-secondary text-xs sm:text-sm max-w-md mx-auto">
             Choose your stakeholder role to load customized 3D spatial tools, layer controls, and legal workflows.
           </p>
         </div>
@@ -163,13 +145,7 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
                 onMouseEnter={() => setHoveredRole(role.id)}
                 onMouseLeave={() => setHoveredRole(null)}
                 onClick={() => handleClick(role.id)}
-                className={`relative p-6 rounded-3xl border transition-all duration-300 cursor-pointer flex flex-col justify-between group overflow-hidden ${
-                  isExiting ? 'scale-95 opacity-80' : 'hover:-translate-y-1'
-                } ${
-                  isLight
-                    ? 'bg-white border-[#C8E6C9] hover:border-[#1B5E20] hover:shadow-xl'
-                    : 'bg-[#0B131E]/90 border-[#1E293B] hover:border-[#00D084]/60 hover:shadow-[0_0_30px_rgba(0,208,132,0.15)]'
-                }`}
+                className={`theme-surface theme-hover-surface relative p-6 rounded-3xl border transition-all duration-300 cursor-pointer flex flex-col justify-between group overflow-hidden ${isExiting ? 'scale-95 opacity-80' : 'hover:-translate-y-1'}`}
               >
                 {/* Accent Top Gradient Glow */}
                 <div
@@ -180,31 +156,23 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all group-hover:scale-110 ${
-                        isLight
-                          ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]'
-                          : 'bg-[#0F172A] border-[#1E293B] text-[#00D084]'
-                      }`}
+                      className="theme-accent-surface w-12 h-12 rounded-2xl flex items-center justify-center border transition-all group-hover:scale-110"
                     >
                       <Icon className="w-6 h-6" />
                     </div>
 
                     <span
-                      className={`text-[10px] font-mono font-bold px-3 py-1 rounded-full border ${
-                        isLight
-                          ? 'bg-slate-100 border-slate-200 text-slate-600'
-                          : 'bg-[#0F172A] border-[#1E293B] text-slate-400'
-                      }`}
+                      className="theme-surface-secondary theme-text-muted text-[10px] font-mono font-bold px-3 py-1 rounded-full border"
                     >
                       {role.badge}
                     </span>
                   </div>
 
-                  <h3 className={`text-lg font-black tracking-tight mb-2 ${isLight ? 'text-slate-800' : 'text-white'}`}>
+                  <h3 className="theme-text-primary text-lg font-black tracking-tight mb-2">
                     {role.title}
                   </h3>
 
-                  <p className={`text-xs leading-relaxed mb-4 ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+                  <p className="theme-text-secondary text-xs leading-relaxed mb-4">
                     {role.description}
                   </p>
 
@@ -220,7 +188,7 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
                 </div>
 
                 <div className="mt-6 pt-4 flex items-center justify-between border-t border-slate-200/40 dark:border-slate-800/40">
-                  <span className={`text-xs font-mono font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+                  <span className="theme-accent text-xs font-mono font-bold">
                     ACCESS PORTAL
                   </span>
                   <div

@@ -57,23 +57,17 @@ export default function LayerControls({
 
   return (
     <div
-      className={`w-72 rounded-3xl border shadow-2xl p-4 space-y-4 backdrop-blur-2xl transition-all duration-300 ${
-        isLight
-          ? 'bg-white/95 border-[#C8E6C9] text-slate-800 shadow-[0_10px_35px_rgba(27,94,32,0.12)]'
-          : 'bg-[#0B131E]/95 border-[#1E293B] text-white shadow-[0_10px_40px_rgba(0,0,0,0.8)]'
-      }`}
+      className="theme-surface w-72 rounded-3xl border shadow-2xl p-4 space-y-4 backdrop-blur-2xl transition-all duration-300"
     >
       {/* Header */}
-      <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+      <div className="theme-divider flex items-center justify-between pb-2 border-b">
         <div className="flex items-center gap-2">
-          <Layers className={`w-4 h-4 ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`} />
+          <Layers className="w-4 h-4 theme-accent" />
           <span className="text-xs font-mono font-bold uppercase tracking-wider">
             Layer Controls
           </span>
         </div>
-        <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full ${
-          isLight ? 'bg-[#E8F5E9] text-[#1B5E20]' : 'bg-[#00D084]/15 text-[#00D084]'
-        }`}>
+        <span className="theme-accent-surface text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">
           LIVE 3D
         </span>
       </div>
@@ -88,22 +82,14 @@ export default function LayerControls({
             <button
               key={l.id}
               onClick={() => onSelectViewMode(l.id)}
-              className={`w-full p-2.5 rounded-2xl text-left transition-all border flex items-center justify-between cursor-pointer ${
-                isSelected
-                  ? isLight
-                    ? 'bg-[#E8F5E9] border-[#1B5E20] shadow-sm text-[#1B5E20]'
-                    : 'bg-[#00D084]/15 border-[#00D084] text-[#00D084] shadow-[0_0_15px_rgba(0,208,132,0.2)]'
-                  : isLight
-                  ? 'bg-[#F9FBF9] border-transparent hover:border-[#C8E6C9] text-slate-700'
-                  : 'bg-[#080E17] border-transparent hover:border-slate-700 text-slate-300'
-              }`}
+              className={`w-full p-2.5 rounded-2xl text-left transition-all border flex items-center justify-between cursor-pointer ${isSelected ? 'theme-accent-surface shadow-[0_0_15px_rgba(0,208,132,0.16)]' : 'theme-surface-secondary theme-text-secondary theme-hover-surface'}`}
             >
               <div className="flex items-center gap-2.5">
                 <div
                   className="w-7 h-7 rounded-xl flex items-center justify-center border"
                   style={{
-                    backgroundColor: isSelected ? `${l.color}25` : isLight ? '#ffffff' : '#0F172A',
-                    borderColor: isSelected ? l.color : isLight ? '#C8E6C9' : '#1E293B',
+                    backgroundColor: isSelected ? `${l.color}25` : 'var(--color-surface-1)',
+                    borderColor: isSelected ? l.color : 'var(--color-border-default)',
                     color: l.color
                   }}
                 >
@@ -133,10 +119,10 @@ export default function LayerControls({
       </div>
 
       {/* Exploded View Slider */}
-      <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
+      <div className="theme-divider pt-2 border-t">
         <div className="flex items-center justify-between text-[11px] font-mono font-bold mb-1.5">
-          <span className={isLight ? 'text-slate-700' : 'text-slate-300'}>3D Exploded View</span>
-          <span className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>
+          <span className="theme-text-secondary">3D Exploded View</span>
+          <span className="theme-accent">
             {explodedOffset > 0 ? `+${(explodedOffset * 5).toFixed(0)}m Z` : 'OFF'}
           </span>
         </div>
@@ -152,7 +138,7 @@ export default function LayerControls({
       </div>
 
       {/* Quick Viewport Utilities */}
-      <div className="pt-2 border-t border-slate-200 dark:border-slate-800 grid grid-cols-4 gap-1.5">
+      <div className="theme-divider pt-2 border-t grid grid-cols-4 gap-1.5">
         <button
           onClick={onResetCamera}
           className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${

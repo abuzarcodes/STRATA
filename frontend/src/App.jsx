@@ -243,10 +243,8 @@ export default function App() {
   return (
     <div
       data-theme={theme}
-      className={`w-screen h-screen relative font-sans transition-colors duration-500 ${
+      className={`theme-app w-screen h-screen relative font-sans transition-colors duration-500 ${
         appPhase === 'ABOUT' || appPhase === 'DOCUMENTATION' ? 'overflow-y-auto' : 'overflow-hidden select-none'
-      } ${
-        isLight ? 'bg-[#E8F5E9] text-[#1B5E20]' : 'bg-[#060B12] text-white'
       }`}
     >
       {/* ── PRE-APP PHASES ────────────────────────────────────────────── */}
@@ -319,25 +317,21 @@ export default function App() {
           />
 
           {/* Sub-Header Top Telemetry Bar */}
-          <div className={`absolute top-16 left-0 right-0 z-20 px-8 py-2 border-b flex items-center justify-between text-[11px] font-mono backdrop-blur-md transition-colors duration-300 ${
-            isLight
-              ? 'bg-white/90 border-[#C8E6C9] text-slate-700'
-              : 'bg-[#0B131E]/80 border-[#1E293B]/60 text-slate-400'
-          }`}>
+          <div className="theme-surface absolute top-16 left-0 right-0 z-20 px-8 py-2 border-b flex items-center justify-between text-[11px] font-mono backdrop-blur-md transition-colors duration-300">
             <div className="flex items-center gap-2">
-              <span className={`font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>DL-DWR-SEC10-07</span>
+                  <span className="font-bold theme-text-primary">DL-DWR-SEC10-07</span>
               <span className="text-slate-400">/</span>
-              <span className={`font-bold ${isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}`}>PARCEL-IND280145987621</span>
+                  <span className="font-bold theme-accent">PARCEL-IND280145987621</span>
             </div>
             <div className="flex items-center gap-6">
               <div>
-                LAT: <strong className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>28.5823° N</strong>
+                LAT: <strong className="theme-accent">28.5823° N</strong>
               </div>
               <div>
-                LONG: <strong className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>77.0602° E</strong>
+                LONG: <strong className="theme-accent">77.0602° E</strong>
               </div>
               <div>
-                DATUM_ELEV: <strong className={isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}>+215.0m MSL</strong>
+                DATUM_ELEV: <strong className="theme-accent">+215.0m MSL</strong>
               </div>
             </div>
           </div>
