@@ -334,7 +334,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
       <div className="landing-ambient landing-ambient-two" />
       <div className="landing-noise" />
 
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="landing-canvas-layer absolute inset-0 z-0 overflow-hidden">
           <Canvas camera={{ position: [40, 31, 50], fov: 38 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }} onPointerMissed={handleScanPulse}>
           <color attach="background" args={[isLight ? '#edf4ef' : '#071216']} />
           <fog attach="fog" args={[isLight ? '#edf4ef' : '#071216', 48, 138]} />
@@ -391,7 +391,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
         </div>
       </header>
 
-      <main className="pointer-events-none relative z-10 mx-auto flex min-h-0 w-full max-w-[1480px] flex-1 flex-col justify-center px-5 pb-7 pt-2 sm:px-8 lg:px-12 lg:pb-10">
+      <main className="landing-hero-section pointer-events-none relative z-10 mx-auto flex min-h-0 w-full max-w-[1480px] flex-1 flex-col justify-center px-5 pb-7 pt-2 sm:px-8 lg:px-12 lg:pb-10">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(480px,1.1fr)] lg:gap-16">
           <section className="max-w-[650px]">
             <div className={`landing-kicker landing-reveal ${isLight ? 'landing-kicker-light' : ''}`}>
@@ -415,7 +415,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
                 <span>Enter the registry</span>
                 <ArrowRight size={17} />
               </button>
-              <button onClick={() => onNavClick?.('documentation')} className={`landing-secondary-action ${isLight ? 'landing-secondary-action-light' : ''}`}>
+              <button onClick={() => document.getElementById('landing-field-notes')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className={`landing-secondary-action ${isLight ? 'landing-secondary-action-light' : ''}`}>
                 <span>Read the field notes</span>
                 <ArrowDownRight size={17} />
               </button>
@@ -503,6 +503,38 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
           <DataChip icon={Database} label="Authority" value="DILRMP ready" detail="A trusted public record" isLight={isLight} delay={660} />
         </div>
       </main>
+
+      <section id="landing-field-notes" className={`landing-field-notes relative z-20 mx-auto w-full max-w-[1480px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28 ${isLight ? 'landing-field-notes-light' : ''}`}>
+        <div className="landing-field-notes-intro">
+          <div className="landing-section-kicker"><span className="landing-kicker-line" /><span>Field notes / 02</span></div>
+          <h2 className="landing-section-title">One registry.<br /><span>Every dimension.</span></h2>
+          <p className="landing-section-lede">A parcel is more than a footprint. STRATA connects geometry, identity, and legal context in one spatial record built to be inspected, shared, and trusted.</p>
+        </div>
+        <div className="landing-field-notes-grid">
+          <article className="landing-note-card">
+            <span className="landing-note-index">01</span>
+            <div className="landing-note-icon">⌘</div>
+            <h3>See the volume</h3>
+            <p>Move from flat parcel lines to watertight building volumes, floor by floor and boundary by boundary.</p>
+            <span className="landing-note-meta">CityGML 3.0 / LOD 2—4</span>
+          </article>
+          <article className="landing-note-card">
+            <span className="landing-note-index">02</span>
+            <div className="landing-note-icon">◎</div>
+            <h3>Trace the rights</h3>
+            <p>Keep ownership, restrictions, responsibilities, and mutations attached to the same spatial unit.</p>
+            <span className="landing-note-meta">ISO 19152 LADM / Part 2</span>
+          </article>
+          <article className="landing-note-card">
+            <span className="landing-note-index">03</span>
+            <div className="landing-note-icon">↗</div>
+            <h3>Act with confidence</h3>
+            <p>Give every stakeholder a clear audit trail—from public lookup to certified surveyor and revenue workflows.</p>
+            <span className="landing-note-meta">3D-ULPIN / DILRMP ready</span>
+          </article>
+        </div>
+        <div className="landing-field-notes-footer"><span>Spatial records, made legible.</span><span>Scroll to explore the registry ↓</span></div>
+      </section>
 
       <footer className={`relative z-20 mx-auto flex w-full max-w-[1480px] flex-col gap-3 border-t px-5 py-4 font-mono text-[10px] uppercase tracking-[0.16em] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12 ${isLight ? 'border-[#b9d8ca] text-[#4d6d64]' : 'border-white/10 text-[#77968e]'}`}>
         <div className="flex items-center gap-3"><span className="landing-footer-pulse" /> <span>Registry status: authoritative</span></div>
