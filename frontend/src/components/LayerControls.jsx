@@ -26,7 +26,7 @@ export default function LayerControls({
       label: 'Cadastral Ownership',
       desc: 'Owner boundaries & 3D parcels',
       icon: Layers,
-      color: '#00D084',
+      color: 'var(--color-accent-primary)',
       badge: null
     },
     {
@@ -34,7 +34,7 @@ export default function LayerControls({
       label: 'FAR & Setback Audit',
       desc: 'Clashes & setback violations',
       icon: AlertTriangle,
-      color: '#EF4444',
+      color: 'var(--color-status-danger)',
       badge: violationsCount > 0 ? `${violationsCount} CLASH` : null
     },
     {
@@ -42,7 +42,7 @@ export default function LayerControls({
       label: 'Subsurface Utilities',
       desc: 'Metro tunnels & utility lines',
       icon: Zap,
-      color: '#3B82F6',
+      color: 'var(--color-status-info)',
       badge: 'B1 / B2'
     },
     {
@@ -50,7 +50,7 @@ export default function LayerControls({
       label: 'Tax & Valuation Heatmap',
       desc: 'Circle rates & revenue status',
       icon: Activity,
-      color: '#F59E0B',
+      color: 'var(--color-status-warning)',
       badge: null
     }
   ]
@@ -88,8 +88,8 @@ export default function LayerControls({
                 <div
                   className="w-7 h-7 rounded-xl flex items-center justify-center border"
                   style={{
-                    backgroundColor: isSelected ? `${l.color}25` : 'var(--color-surface-1)',
-                    borderColor: isSelected ? l.color : 'var(--color-border-default)',
+                    backgroundColor: isSelected ? 'color-mix(in srgb, var(--color-accent-primary) 14%, transparent)' : 'var(--color-surface-1)',
+                    borderColor: isSelected ? 'var(--color-accent-primary)' : 'var(--color-border-default)',
                     color: l.color
                   }}
                 >
@@ -105,9 +105,9 @@ export default function LayerControls({
                 <span
                   className="text-[9px] font-mono font-black px-2 py-0.5 rounded-full"
                   style={{
-                    backgroundColor: `${l.color}20`,
+                    backgroundColor: `color-mix(in srgb, ${l.color} 14%, transparent)`,
                     color: l.color,
-                    border: `1px solid ${l.color}40`
+                    border: `1px solid color-mix(in srgb, ${l.color} 32%, transparent)`
                   }}
                 >
                   {l.badge}
@@ -133,7 +133,7 @@ export default function LayerControls({
           step="0.1"
           value={explodedOffset}
           onChange={(e) => onExplodedChange && onExplodedChange(parseFloat(e.target.value))}
-          className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#00D084]"
+          className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[var(--color-accent-primary)]"
         />
       </div>
 
@@ -143,8 +143,8 @@ export default function LayerControls({
           onClick={onResetCamera}
           className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
             isLight
-              ? 'bg-[#F9FBF9] border-[#C8E6C9] hover:bg-[#E8F5E9] text-[#1B5E20]'
-              : 'bg-[#080E17] border-[#1E293B] hover:border-[#00D084] text-slate-300 hover:text-white'
+              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] hover:bg-[var(--color-surface-muted)] text-[var(--color-accent-primary)]'
+              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)] text-slate-300 hover:text-white'
           }`}
           title="Reset Camera Overview"
         >
@@ -158,8 +158,8 @@ export default function LayerControls({
             measureMode
               ? 'bg-amber-500/20 border-amber-500 text-amber-500'
               : isLight
-              ? 'bg-[#F9FBF9] border-[#C8E6C9] text-slate-700'
-              : 'bg-[#080E17] border-[#1E293B] text-slate-300'
+              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-700'
+              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-300'
           }`}
           title="Toggle 3D Coordinates Grid"
         >
@@ -172,11 +172,11 @@ export default function LayerControls({
           className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
             showBounds
               ? isLight
-                ? 'bg-[#E8F5E9] border-[#1B5E20] text-[#1B5E20]'
-                : 'bg-[#00D084]/20 border-[#00D084] text-[#00D084]'
+                ? 'bg-[var(--color-surface-muted)] border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
+                : 'bg-[var(--color-accent-primary)]/20 border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
               : isLight
-              ? 'bg-[#F9FBF9] border-[#C8E6C9] text-slate-500'
-              : 'bg-[#080E17] border-[#1E293B] text-slate-500'
+              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-500'
+              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-500'
           }`}
           title="Toggle Parcel Bounds"
         >
@@ -188,8 +188,8 @@ export default function LayerControls({
           onClick={onFocusCenter}
           className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
             isLight
-              ? 'bg-[#F9FBF9] border-[#C8E6C9] hover:bg-[#E8F5E9] text-[#1B5E20]'
-              : 'bg-[#080E17] border-[#1E293B] hover:border-[#00D084] text-slate-300 hover:text-white'
+              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] hover:bg-[var(--color-surface-muted)] text-[var(--color-accent-primary)]'
+              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)] text-slate-300 hover:text-white'
           }`}
           title="Focus GPS Center"
         >

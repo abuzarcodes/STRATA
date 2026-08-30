@@ -90,8 +90,8 @@ export default function PropertyDeedCard({
     <div
       className={`w-84 sm:w-96 rounded-3xl border shadow-2xl p-5 space-y-4 backdrop-blur-2xl transition-all duration-300 ${
         isLight
-          ? 'bg-white/95 border-[#C8E6C9] text-slate-800 shadow-[0_15px_45px_rgba(27,94,32,0.15)]'
-          : 'bg-[#0B131E]/95 border-[#1E293B] text-white shadow-[0_15px_50px_rgba(0,0,0,0.85)]'
+          ? 'bg-white/95 border-[var(--color-border-default)] text-slate-800 shadow-[0_15px_45px_rgba(27,94,32,0.15)]'
+          : 'bg-[var(--color-surface-1)]/95 border-[var(--color-border-default)] text-white shadow-[0_15px_50px_rgba(0,0,0,0.85)]'
       }`}
     >
       {/* Header */}
@@ -100,7 +100,7 @@ export default function PropertyDeedCard({
           <div className="flex items-center gap-2">
             <span
               className={`px-2.5 py-0.5 rounded-full font-mono text-[10px] font-extrabold tracking-wider ${
-                isLight ? 'bg-[#E8F5E9] text-[#1B5E20]' : 'bg-[#00D084]/20 text-[#00D084]'
+                isLight ? 'bg-[var(--color-surface-muted)] text-[var(--color-accent-primary)]' : 'bg-[var(--color-accent-primary)]/20 text-[var(--color-accent-primary)]'
               }`}
             >
               LEVEL {unit.level}
@@ -109,7 +109,7 @@ export default function PropertyDeedCard({
               {unit.type || 'RESIDENTIAL'}
             </span>
           </div>
-          <h3 className={`text-xl font-black mt-1 ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+          <h3 className={`text-xl font-black mt-1 ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
             {unit.name}
           </h3>
         </div>
@@ -129,12 +129,12 @@ export default function PropertyDeedCard({
       {/* 3D-ULPIN Identifier Capsule */}
       <div
         className={`p-3 rounded-2xl border flex items-center justify-between font-mono ${
-          isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#080E17] border-[#1E293B]'
+          isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]'
         }`}
       >
         <div>
           <div className="text-[10px] text-slate-500 uppercase">3D-ULPIN (Bhu-Aadhaar 3D)</div>
-          <div className={`text-xs font-bold truncate max-w-[210px] ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+          <div className={`text-xs font-bold truncate max-w-[210px] ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
             {unit.ulpin_3d || 'IND280145987621-A+01-4DAC'}
           </div>
         </div>
@@ -142,9 +142,9 @@ export default function PropertyDeedCard({
           onClick={handleCopyUlpin}
           className={`p-1.5 rounded-lg border text-xs transition-all cursor-pointer ${
             copied
-              ? 'bg-[#00D084]/20 border-[#00D084] text-[#00D084]'
+              ? 'bg-[var(--color-accent-primary)]/20 border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
               : isLight
-              ? 'hover:bg-[#E8F5E9] text-slate-600 border-[#C8E6C9]'
+              ? 'hover:bg-[var(--color-surface-muted)] text-slate-600 border-[var(--color-border-default)]'
               : 'hover:bg-slate-800 text-slate-400 border-slate-700'
           }`}
           title="Copy 3D-ULPIN"
@@ -157,7 +157,7 @@ export default function PropertyDeedCard({
       <div className="grid grid-cols-2 gap-2 text-xs font-mono">
         <div
           className={`p-2.5 rounded-xl border ${
-            isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#080E17] border-[#1E293B]'
+            isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]'
           }`}
         >
           <div className="text-[10px] text-slate-500">Volumetric Space</div>
@@ -168,7 +168,7 @@ export default function PropertyDeedCard({
 
         <div
           className={`p-2.5 rounded-xl border ${
-            isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#080E17] border-[#1E293B]'
+            isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]'
           }`}
         >
           <div className="text-[10px] text-slate-500">Carpet Area (RERA)</div>
@@ -181,7 +181,7 @@ export default function PropertyDeedCard({
       {/* Legal & Ownership Metadata */}
       <div
         className={`p-3 rounded-2xl border space-y-2 text-xs font-mono ${
-          isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#080E17] border-[#1E293B]'
+          isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]'
         }`}
       >
         <div className="flex items-center justify-between">
@@ -194,10 +194,10 @@ export default function PropertyDeedCard({
 
         <div className="flex items-center justify-between">
           <span className="text-slate-500 flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#00D084]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" />
             <span>Topology Manifold</span>
           </span>
-          <span className="font-bold text-[#00D084]">Watertight (Euler χ=2)</span>
+          <span className="font-bold text-[var(--color-accent-primary)]">Watertight (Euler χ=2)</span>
         </div>
 
         <div className="flex items-center justify-between">
@@ -212,8 +212,8 @@ export default function PropertyDeedCard({
         disabled={isDownloadingDeed}
         className={`w-full py-2.5 rounded-2xl font-mono text-xs font-black tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg cursor-pointer ${
           isLight
-            ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[#1B5E20]/20'
-            : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12] shadow-[0_0_20px_rgba(0,208,132,0.3)]'
+            ? 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-white shadow-[var(--color-accent-primary)]/20'
+            : 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-[var(--color-bg-app)] shadow-[0_0_20px_rgba(0,208,132,0.3)]'
         }`}
       >
         <Download className="w-4 h-4" />
@@ -226,8 +226,8 @@ export default function PropertyDeedCard({
           onClick={handleSubdivideClick}
           className={`py-2 px-3 rounded-xl border font-mono text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
             isLight
-              ? 'bg-white border-[#C8E6C9] text-slate-700 hover:bg-[#E8F5E9] hover:text-[#1B5E20]'
-              : 'bg-[#0F172A] border-[#1E293B] text-slate-300 hover:text-white hover:border-[#00D084]'
+              ? 'bg-white border-[var(--color-border-default)] text-slate-700 hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-accent-primary)]'
+              : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-300 hover:text-white hover:border-[var(--color-accent-primary)]'
           }`}
         >
           <Split className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
@@ -238,8 +238,8 @@ export default function PropertyDeedCard({
           onClick={handleMutateClick}
           className={`py-2 px-3 rounded-xl border font-mono text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
             isLight
-              ? 'bg-white border-[#C8E6C9] text-slate-700 hover:bg-[#E8F5E9] hover:text-[#1B5E20]'
-              : 'bg-[#0F172A] border-[#1E293B] text-slate-300 hover:text-white hover:border-[#00D084]'
+              ? 'bg-white border-[var(--color-border-default)] text-slate-700 hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-accent-primary)]'
+              : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-300 hover:text-white hover:border-[var(--color-accent-primary)]'
           }`}
         >
           <ArrowRightLeft className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />

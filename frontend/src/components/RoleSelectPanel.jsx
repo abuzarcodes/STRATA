@@ -12,7 +12,7 @@ const ROLES = [
     badge: 'Free Public Access / Aadhaar Optional',
     description: 'Search parcels, view 3D volumetric ownership boundaries, and inspect public land records.',
     features: ['3D-ULPIN Instant Search', 'Volumetric Deed Inspection', 'Interactive Floor Explorer'],
-    accentColor: '#00D084',
+    accentColor: 'var(--color-accent-primary)',
     Icon: Compass,
   },
   {
@@ -21,7 +21,7 @@ const ROLES = [
     badge: 'DigiLocker Linked / Aadhaar Verified',
     description: 'Access your authenticated digital deed vault, track volumetric mutations, and download certificates.',
     features: ['Encrypted DigiLocker Deed', 'Volumetric Property Tax Preview', 'Mutation Lineage Tracker'],
-    accentColor: '#38BDF8',
+    accentColor: 'var(--color-status-info)',
     Icon: Lock,
   },
   {
@@ -39,7 +39,7 @@ const ROLES = [
     badge: 'Authorized Revenue Officers Only',
     description: 'Run automated AI encroachment detection, FAR compliance audits, and approve title mutations.',
     features: ['Automated Setback Breach Engine', '3D Parcel Subdivision (Split)', 'Legal Mutation Sign-off'],
-    accentColor: '#F59E0B',
+    accentColor: 'var(--color-status-warning)',
     Icon: Scale,
   },
 ]
@@ -180,7 +180,7 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
                   <div className="space-y-1.5 pt-2 border-t border-slate-200/40 dark:border-slate-800/40">
                     {role.features.map((feat, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-[11px] text-slate-500 font-mono">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#00D084] shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--color-accent-primary)] shrink-0" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -194,8 +194,8 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
                   <div
                     className={`w-8 h-8 rounded-xl flex items-center justify-center border transition-transform group-hover:translate-x-1 ${
                       isLight
-                        ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]'
-                        : 'bg-[#0F172A] border-[#1E293B] text-slate-300 group-hover:text-[#00D084]'
+                        ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]'
+                        : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-300 group-hover:text-[var(--color-accent-primary)]'
                     }`}
                   >
                     <ChevronRight className="w-4 h-4" />

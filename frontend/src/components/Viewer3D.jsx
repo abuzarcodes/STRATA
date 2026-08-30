@@ -10,15 +10,15 @@ function Tree({ position, scale = 1, theme = 'CYBER' }) {
     <group position={position} scale={scale}>
       <mesh position={[0, 0.6, 0]}>
         <cylinderGeometry args={[0.15, 0.25, 1.2, 8]} />
-        <meshStandardMaterial color={isLight ? '#1B5E20' : '#112F15'} roughness={0.9} />
+        <meshStandardMaterial color={isLight ? 'var(--color-accent-primary)' : '#112F15'} roughness={0.9} />
       </mesh>
       <mesh position={[0, 1.6, 0]}>
         <coneGeometry args={[1.2, 1.6, 7]} />
-        <meshStandardMaterial color={isLight ? '#2E7D32' : '#062817'} roughness={0.6} />
+        <meshStandardMaterial color={isLight ? 'var(--color-accent-primary-hover)' : '#062817'} roughness={0.6} />
       </mesh>
       <mesh position={[0, 2.4, 0]}>
         <coneGeometry args={[0.9, 1.4, 7]} />
-        <meshStandardMaterial color="#00D084" roughness={0.6} />
+        <meshStandardMaterial color="var(--color-accent-primary)" roughness={0.6} />
       </mesh>
     </group>
   )
@@ -46,9 +46,9 @@ function StreetLight({ position, rotation = [0, 0, 0] }) {
       {/* Bulb Glow */}
       <mesh position={[0.7, 4.42, 0]}>
         <sphereGeometry args={[0.08, 8, 8]} />
-        <meshBasicMaterial color="#00D084" />
+        <meshBasicMaterial color="var(--color-accent-primary)" />
       </mesh>
-      <pointLight position={[0.7, 4.2, 0]} color="#00D084" intensity={0.9} distance={14} decay={2} />
+      <pointLight position={[0.7, 4.2, 0]} color="var(--color-accent-primary)" intensity={0.9} distance={14} decay={2} />
     </group>
   )
 }
@@ -100,7 +100,7 @@ function RoadDataStream({ roadType = 'NORTH' }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="#00D084"
+        color="var(--color-accent-primary)"
         size={0.4}
         transparent
         opacity={0.8}
@@ -117,19 +117,19 @@ function RooftopDetails({ position = [0, 15, 0] }) {
       {/* Lift Machine & Staircase Headroom */}
       <mesh position={[-2, 1.2, -1]} castShadow receiveShadow>
         <boxGeometry args={[4, 2.4, 3]} />
-        <meshStandardMaterial color="#1E293B" roughness={0.7} />
+        <meshStandardMaterial color="var(--color-border-default)" roughness={0.7} />
       </mesh>
       {/* Lift Room Access Door */}
       <mesh position={[-2, 0.9, 0.52]}>
         <planeGeometry args={[0.9, 1.8]} />
-        <meshStandardMaterial color="#00D084" metalness={0.8} />
+        <meshStandardMaterial color="var(--color-accent-primary)" metalness={0.8} />
       </mesh>
 
       {/* Rooftop Water Storage Tanks (Sintex Style) */}
       <group position={[3.5, 0.7, -2]}>
         <mesh castShadow>
           <cylinderGeometry args={[0.7, 0.7, 1.4, 16]} />
-          <meshStandardMaterial color="#0B131E" roughness={0.4} />
+          <meshStandardMaterial color="var(--color-surface-1)" roughness={0.4} />
         </mesh>
         {/* Metal Support Staging */}
         <mesh position={[0, -0.6, 0]}>
@@ -153,19 +153,19 @@ function RooftopDetails({ position = [0, 15, 0] }) {
       <group position={[-2, 0.4, 3]} rotation={[Math.PI / 8, 0, 0]}>
         <mesh receiveShadow castShadow>
           <boxGeometry args={[5, 0.08, 2.2]} />
-          <meshStandardMaterial color="#0F172A" metalness={0.9} roughness={0.1} />
+          <meshStandardMaterial color="var(--color-surface-2)" metalness={0.9} roughness={0.1} />
         </mesh>
         {/* Solar grid cells line */}
         <mesh position={[0, 0.05, 0]}>
           <planeGeometry args={[4.8, 2]} />
-          <meshBasicMaterial color="#00D084" wireframe transparent opacity={0.4} />
+          <meshBasicMaterial color="var(--color-accent-primary)" wireframe transparent opacity={0.4} />
         </mesh>
       </group>
 
       {/* Parapet Perimeter Railing */}
       <mesh position={[0, 0.4, 0]}>
         <boxGeometry args={[14.2, 0.8, 10.2]} />
-        <meshBasicMaterial color="#00D084" wireframe transparent opacity={0.3} />
+        <meshBasicMaterial color="var(--color-accent-primary)" wireframe transparent opacity={0.3} />
       </mesh>
     </group>
   )
@@ -185,7 +185,7 @@ function ScanPlane({ bounds = [16, 12] }) {
     <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
       <planeGeometry args={[bounds[0] + 4, bounds[1] + 4]} />
       <meshBasicMaterial
-        color="#00D084"
+        color="var(--color-accent-primary)"
         transparent
         opacity={0.18}
         side={THREE.DoubleSide}
@@ -205,7 +205,7 @@ function SelectedReticle({ position, isViolating = false }) {
     }
   })
 
-  const color = isViolating ? '#f43f5e' : '#00D084'
+  const color = isViolating ? '#f43f5e' : 'var(--color-accent-primary)'
 
   return (
     <group position={position}>
@@ -287,18 +287,18 @@ function VolumetricUnit({
   const materialProps = useMemo(() => {
     if (viewMode === 'ENCROACHMENT' && isViolating) {
       return {
-        color: '#F43F5E',
+        color: 'var(--color-status-danger)',
         transparent: isFloorDimmed,
         opacity: isFloorDimmed ? 0.15 : 1.0,
         roughness: 0.5,
         metalness: 0.05,
-        emissive: '#F43F5E',
+        emissive: 'var(--color-status-danger)',
         emissiveIntensity: 0.25
       }
     }
 
     if (viewMode === 'TAXATION') {
-      const taxTierColors = ['#10B981', '#00D084', '#F59E0B', '#F43F5E']
+      const taxTierColors = ['var(--color-status-success)', 'var(--color-accent-primary)', 'var(--color-status-warning)', 'var(--color-status-danger)']
       const col = taxTierColors[Math.abs(unit.level) % taxTierColors.length]
       return {
         color: col,
@@ -326,12 +326,12 @@ function VolumetricUnit({
     // Selected Unit Focus (Solid Vibrant Emerald)
     if (isSelected) {
       return {
-        color: '#00D084',
+        color: 'var(--color-accent-primary)',
         transparent: false,
         opacity: 1.0,
         roughness: 0.35,
         metalness: 0.1,
-        emissive: '#00D084',
+        emissive: 'var(--color-accent-primary)',
         emissiveIntensity: 0.3
       }
     }
@@ -339,34 +339,34 @@ function VolumetricUnit({
     // Hovered Unit Focus (Solid Emerald Tint)
     if (isHovered) {
       return {
-        color: '#10B981',
+        color: 'var(--color-status-success)',
         transparent: false,
         opacity: 1.0,
         roughness: 0.4,
         metalness: 0.1,
-        emissive: '#10B981',
+        emissive: 'var(--color-status-success)',
         emissiveIntensity: 0.2
       }
     }
 
     // Regular Solid Architectural Grey Unit Body (Opaque Matte Concrete Finish)
     return {
-      color: isLight ? '#CBD5E1' : '#334155',
+      color: isLight ? '#CBD5E1' : 'var(--color-border-strong)',
       transparent: isFloorDimmed,
       opacity: isFloorDimmed ? 0.1 : 1.0,
       roughness: 0.65,
       metalness: 0.05,
-      emissive: isLight ? '#94A3B8' : '#1E293B',
+      emissive: isLight ? '#94A3B8' : 'var(--color-border-default)',
       emissiveIntensity: isLight ? 0.05 : 0.12
     }
   }, [viewMode, isViolating, isFloorDimmed, isSelected, isHovered, isLight, unit.level])
 
   // Wireframe Edge Color
   const edgeColor = useMemo(() => {
-    if (isViolating && viewMode === 'ENCROACHMENT') return '#F43F5E'
-    if (isSelected) return '#FFFFFF'
+    if (isViolating && viewMode === 'ENCROACHMENT') return 'var(--color-status-danger)'
+    if (isSelected) return 'var(--color-surface-1)'
     if (isHovered) return '#00E676'
-    return isLight ? '#2E7D32' : '#00D084'
+    return isLight ? 'var(--color-accent-primary-hover)' : 'var(--color-accent-primary)'
   }, [isViolating, viewMode, isSelected, isHovered, isLight])
 
   return (
@@ -415,9 +415,9 @@ function VolumetricUnit({
           center
           distanceFactor={35}
         >
-          <div className="pointer-events-none px-2.5 py-1 rounded-lg bg-[#0B131E]/95 border border-[#00D084] text-[10px] font-mono text-white shadow-2xl backdrop-blur-md whitespace-nowrap flex items-center gap-1.5 animate-in fade-in zoom-in-90 duration-150">
-            <span className={`w-2 h-2 rounded-full ${isViolating ? 'bg-rose-500' : 'bg-[#00D084]'} animate-ping`} />
-            <span className="font-bold text-[#00D084]">{unit.name}</span>
+          <div className="pointer-events-none px-2.5 py-1 rounded-lg bg-[var(--color-surface-1)]/95 border border-[var(--color-accent-primary)] text-[10px] font-mono text-white shadow-2xl backdrop-blur-md whitespace-nowrap flex items-center gap-1.5 animate-in fade-in zoom-in-90 duration-150">
+            <span className={`w-2 h-2 rounded-full ${isViolating ? 'bg-rose-500' : 'bg-[var(--color-accent-primary)]'} animate-ping`} />
+            <span className="font-bold text-[var(--color-accent-primary)]">{unit.name}</span>
             <span className="text-slate-400">({unit.rera_volume_m3 || 435.75} m³)</span>
           </div>
         </Html>
@@ -561,29 +561,29 @@ export default function Viewer3D({
   }, [auditSummary])
 
   return (
-    <div className={`absolute inset-0 z-0 overflow-hidden transition-colors duration-500 ${isLight ? 'bg-[#E8F5E9]' : 'bg-[#080E17]'}`}>
+    <div className={`absolute inset-0 z-0 overflow-hidden transition-colors duration-500 ${isLight ? 'bg-[var(--color-surface-muted)]' : 'bg-[var(--color-surface-3)]'}`}>
       <Canvas
         camera={{ position: [28, 22, 34], fov: 38 }}
         gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
         shadows
       >
-        <color attach="background" args={[isLight ? '#E8F5E9' : '#080E17']} />
-        <fog attach="fog" args={[isLight ? '#C8E6C9' : '#080E17', 40, 140]} />
+        <color attach="background" args={[isLight ? 'var(--color-surface-muted)' : 'var(--color-surface-3)']} />
+        <fog attach="fog" args={[isLight ? 'var(--color-border-default)' : 'var(--color-surface-3)', 40, 140]} />
 
         {/* Ambient & Directional Lighting */}
         <ambientLight intensity={isLight ? 0.95 : 0.4} />
         <directionalLight
           position={[30, 45, 25]}
           intensity={isLight ? 1.6 : 1.3}
-          color={isLight ? '#FFFFFF' : '#00D084'}
+          color={isLight ? 'var(--color-surface-1)' : 'var(--color-accent-primary)'}
           castShadow
         />
-        <directionalLight position={[-20, 15, -20]} intensity={isLight ? 0.4 : 0.3} color={isLight ? '#A7F3D0' : '#10B981'} />
-        <pointLight position={[0, 8, 0]} intensity={isLight ? 0.3 : 0.5} color="#00D084" distance={50} decay={2} />
+        <directionalLight position={[-20, 15, -20]} intensity={isLight ? 0.4 : 0.3} color={isLight ? '#A7F3D0' : 'var(--color-status-success)'} />
+        <pointLight position={[0, 8, 0]} intensity={isLight ? 0.3 : 0.5} color="var(--color-accent-primary)" distance={50} decay={2} />
 
         {/* Ground Grid with Cadastral Coordinates */}
         <gridHelper
-          args={[160, 80, isLight ? '#1B5E20' : '#00D084', isLight ? '#C8E6C9' : '#1E293B']}
+          args={[160, 80, isLight ? 'var(--color-accent-primary)' : 'var(--color-accent-primary)', isLight ? 'var(--color-border-default)' : 'var(--color-border-default)']}
           position={[0, -0.05, 0]}
         />
 
@@ -591,14 +591,14 @@ export default function Viewer3D({
         {showBounds && (
           <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
             <ringGeometry args={[15, 15.3, 4]} />
-            <meshBasicMaterial color={isLight ? '#1B5E20' : '#00D084'} transparent opacity={0.85} />
+            <meshBasicMaterial color={isLight ? 'var(--color-accent-primary)' : 'var(--color-accent-primary)'} transparent opacity={0.85} />
           </mesh>
         )}
 
         {/* Optional 3D Measurement Visual Grid Guide */}
         {measureMode && (
           <gridHelper
-            args={[30, 30, '#F59E0B', '#F59E0B']}
+            args={[30, 30, 'var(--color-status-warning)', 'var(--color-status-warning)']}
             position={[0, 0.04, 0]}
           />
         )}

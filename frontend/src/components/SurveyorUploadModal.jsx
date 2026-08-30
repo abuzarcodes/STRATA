@@ -23,17 +23,17 @@ function BoundaryEditorScene({ isCalibrating, isLight }) {
 
   return (
     <group position={[0, -1, 0]}>
-      <gridHelper args={[20, 10, isLight ? '#1B5E20' : '#00D084', isLight ? '#C8E6C9' : '#1E293B']} position={[0, 0, 0]} />
+      <gridHelper args={[20, 10, isLight ? 'var(--color-accent-primary)' : 'var(--color-accent-primary)', isLight ? 'var(--color-border-default)' : 'var(--color-border-default)']} position={[0, 0, 0]} />
 
       <group ref={meshGroupRef}>
         <mesh position={[0, 2.5, 0]}>
           <boxGeometry args={[6, 5, 6]} />
-          <meshStandardMaterial color={isLight ? '#CBD5E1' : '#334155'} roughness={0.65} />
+          <meshStandardMaterial color={isLight ? '#CBD5E1' : 'var(--color-border-strong)'} roughness={0.65} />
         </mesh>
 
         <lineSegments position={[0, 2.5, 0]}>
           <edgesGeometry args={[new THREE.BoxGeometry(6, 5, 6)]} />
-          <lineBasicMaterial color={isLight ? '#1B5E20' : '#00D084'} linewidth={2} />
+          <lineBasicMaterial color={isLight ? 'var(--color-accent-primary)' : 'var(--color-accent-primary)'} linewidth={2} />
         </lineSegments>
 
         {/* 8 Vertex Calibration Nodes */}
@@ -43,7 +43,7 @@ function BoundaryEditorScene({ isCalibrating, isLight }) {
         ].map((pos, idx) => (
           <mesh key={idx} position={pos}>
             <sphereGeometry args={[0.22, 16, 16]} />
-            <meshBasicMaterial color={idx % 2 === 0 ? '#00D084' : '#F59E0B'} />
+            <meshBasicMaterial color={idx % 2 === 0 ? 'var(--color-accent-primary)' : 'var(--color-status-warning)'} />
           </mesh>
         ))}
       </group>
@@ -84,23 +84,23 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
   return (
     <div
       className={`fixed inset-0 z-50 flex flex-col font-sans overflow-hidden backdrop-blur-2xl transition-colors duration-500 ${
-        isLight ? 'bg-[#F4FAF5]/95 text-slate-800' : 'bg-[#060B12]/95 text-slate-100'
+        isLight ? 'bg-[var(--color-bg-app)]/95 text-slate-800' : 'bg-[var(--color-bg-app)]/95 text-slate-100'
       }`}
     >
       {/* Top Header */}
       <header
         className={`px-8 py-4 border-b flex items-center justify-between backdrop-blur-xl ${
-          isLight ? 'bg-white/90 border-[#C8E6C9]' : 'bg-[#0B131E]/90 border-[#1E293B]'
+          isLight ? 'bg-white/90 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)]/90 border-[var(--color-border-default)]'
         }`}
       >
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
             <StrataLogo size={34} isLight={isLight} />
             <div>
-              <div className={`font-black text-sm tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+              <div className={`font-black text-sm tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
                 STRATA
               </div>
-              <div className={`text-[10px] font-mono font-bold uppercase ${isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}`}>
+              <div className={`text-[10px] font-mono font-bold uppercase ${isLight ? 'text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-accent-primary)]'}`}>
                 Surveyor 3D Ingestion & Extrusion Studio
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
         <div className="flex items-center gap-4">
           <div
             className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border font-mono text-xs ${
-              isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#080E17] border-[#1E293B] text-slate-300'
+              isLight ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-300'
             }`}
           >
             <HardHat className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
@@ -121,8 +121,8 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
             onClick={onClose}
             className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
               isLight
-                ? 'bg-white border-[#C8E6C9] text-slate-600 hover:text-[#1B5E20]'
-                : 'bg-[#0F172A] border-[#1E293B] text-slate-400 hover:text-white'
+                ? 'bg-white border-[var(--color-border-default)] text-slate-600 hover:text-[var(--color-accent-primary)]'
+                : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-400 hover:text-white'
             }`}
           >
             <X className="w-5 h-5" />
@@ -135,7 +135,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
         {/* Left Sidebar */}
         <aside
           className={`w-64 border-r p-4 flex flex-col justify-between flex-shrink-0 backdrop-blur-xl ${
-            isLight ? 'bg-white/80 border-[#C8E6C9]' : 'bg-[#0B131E]/80 border-[#1E293B]'
+            isLight ? 'bg-white/80 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)]/80 border-[var(--color-border-default)]'
           }`}
         >
           <div className="space-y-1.5">
@@ -144,8 +144,8 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
               className={`w-full px-3.5 py-2.5 rounded-xl text-left text-xs font-mono font-bold flex items-center gap-3 transition-all cursor-pointer ${
                 activeNav === 'INGESTION'
                   ? isLight
-                    ? 'bg-[#E8F5E9] text-[#1B5E20] border border-[#C8E6C9]'
-                    : 'bg-[#00D084]/15 text-[#00D084] border border-[#00D084]/40 shadow-[0_0_15px_rgba(0,208,132,0.15)]'
+                    ? 'bg-[var(--color-surface-muted)] text-[var(--color-accent-primary)] border border-[var(--color-border-default)]'
+                    : 'bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/40 shadow-[0_0_15px_rgba(0,208,132,0.15)]'
                   : isLight
                   ? 'text-slate-600 hover:bg-slate-100'
                   : 'text-slate-400 hover:bg-slate-800/60 hover:text-white'
@@ -160,8 +160,8 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
               className={`w-full px-3.5 py-2.5 rounded-xl text-left text-xs font-mono font-bold flex items-center gap-3 transition-all cursor-pointer ${
                 activeNav === 'EDITOR'
                   ? isLight
-                    ? 'bg-[#E8F5E9] text-[#1B5E20] border border-[#C8E6C9]'
-                    : 'bg-[#00D084]/15 text-[#00D084] border border-[#00D084]/40'
+                    ? 'bg-[var(--color-surface-muted)] text-[var(--color-accent-primary)] border border-[var(--color-border-default)]'
+                    : 'bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/40'
                   : isLight
                   ? 'text-slate-600 hover:bg-slate-100'
                   : 'text-slate-400 hover:bg-slate-800/60 hover:text-white'
@@ -174,8 +174,8 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
 
           <div className="pt-4 border-t border-slate-200 dark:border-slate-800 text-[10px] font-mono text-slate-500 space-y-1">
             <div className="font-bold uppercase tracking-wider">TOPOLOGY ENGINE</div>
-            <div className={`flex items-center gap-1.5 font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
-              <span className="w-2 h-2 rounded-full bg-[#00D084] animate-pulse" />
+            <div className={`flex items-center gap-1.5 font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
+              <span className="w-2 h-2 rounded-full bg-[var(--color-accent-primary)] animate-pulse" />
               <span>EULER χ=2 WATERTIGHT</span>
             </div>
           </div>
@@ -196,7 +196,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
 
             {/* Dropzone Gateways Grid */}
             <div className="space-y-4">
-              <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+              <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                 Spatial File Gateways (Auto 2.5D Extrusion)
               </h3>
 
@@ -205,7 +205,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
                 <div
                   onClick={() => handleUploadSimulate('BIM/CAD (IFC/DXF)')}
                   className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between transition-all cursor-pointer hover:scale-[1.02] ${
-                    isLight ? 'bg-white border-[#C8E6C9] hover:border-[#1B5E20]' : 'bg-[#0B131E] border-[#1E293B] hover:border-[#00D084]/60'
+                    isLight ? 'bg-white border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)]/60'
                   }`}
                 >
                   <div>
@@ -228,7 +228,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
                 <div
                   onClick={() => handleUploadSimulate('LiDAR Point Cloud (LAS/LAZ)')}
                   className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between transition-all cursor-pointer hover:scale-[1.02] ${
-                    isLight ? 'bg-white border-[#C8E6C9] hover:border-[#1B5E20]' : 'bg-[#0B131E] border-[#1E293B] hover:border-[#00D084]/60'
+                    isLight ? 'bg-white border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)]/60'
                   }`}
                 >
                   <div>
@@ -251,7 +251,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
                 <div
                   onClick={() => handleUploadSimulate('2.5D GeoJSON Footprints')}
                   className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between transition-all cursor-pointer hover:scale-[1.02] ${
-                    isLight ? 'bg-white border-[#C8E6C9] hover:border-[#1B5E20]' : 'bg-[#0B131E] border-[#1E293B] hover:border-[#00D084]/60'
+                    isLight ? 'bg-white border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)]/60'
                   }`}
                 >
                   <div>
@@ -276,7 +276,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
             {isProcessing && (
               <div
                 className={`p-6 rounded-3xl border flex items-center gap-4 animate-in zoom-in-95 duration-200 ${
-                  isLight ? 'bg-white border-[#1B5E20] text-[#1B5E20]' : 'bg-[#0B131E] border-[#00D084] text-[#00D084]'
+                  isLight ? 'bg-white border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-1)] border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
                 }`}
               >
                 <RefreshCw className="w-6 h-6 animate-spin" />
@@ -292,21 +292,21 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
             {/* 3D Interactive Calibration Preview */}
             <div
               className={`p-6 rounded-3xl border shadow-xl space-y-4 ${
-                isLight ? 'bg-white border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
+                isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
               }`}
             >
               <div className="flex items-center justify-between">
-                <h4 className={`text-base font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+                <h4 className={`text-base font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
                   Real-time 3D Boundary Vertex Calibration Canvas
                 </h4>
                 <button
                   onClick={() => setIsCalibrating(!isCalibrating)}
                   className={`px-3 py-1.5 rounded-xl border text-xs font-mono font-bold transition-all cursor-pointer ${
                     isCalibrating
-                      ? 'bg-amber-500 text-[#060B12] border-amber-500'
+                      ? 'bg-amber-500 text-[var(--color-bg-app)] border-amber-500'
                       : isLight
-                      ? 'bg-white border-[#C8E6C9] text-slate-700'
-                      : 'bg-[#0F172A] border-[#1E293B] text-slate-300'
+                      ? 'bg-white border-[var(--color-border-default)] text-slate-700'
+                      : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-300'
                   }`}
                 >
                   {isCalibrating ? 'PAUSE CALIBRATION' : 'ROTATE CALIBRATION'}
@@ -316,7 +316,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
               <div className="w-full h-80 rounded-2xl bg-black/40 border border-slate-700/50 relative overflow-hidden">
                 <Canvas camera={{ position: [12, 10, 12], fov: 40 }}>
                   <ambientLight intensity={0.6} />
-                  <directionalLight position={[10, 15, 10]} intensity={1.2} color="#00D084" />
+                  <directionalLight position={[10, 15, 10]} intensity={1.2} color="var(--color-accent-primary)" />
                   <BoundaryEditorScene isCalibrating={isCalibrating} isLight={isLight} />
                   <OrbitControls enableDamping />
                 </Canvas>

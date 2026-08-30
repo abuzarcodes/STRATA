@@ -105,23 +105,23 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
   return (
     <div
       className={`fixed inset-0 z-50 flex flex-col font-sans overflow-hidden backdrop-blur-2xl transition-colors duration-500 ${
-        isLight ? 'bg-[#F4FAF5]/95 text-slate-800' : 'bg-[#060B12]/95 text-slate-100'
+        isLight ? 'bg-[var(--color-bg-app)]/95 text-slate-800' : 'bg-[var(--color-bg-app)]/95 text-slate-100'
       }`}
     >
       {/* Top Header */}
       <header
         className={`px-8 py-4 border-b flex items-center justify-between backdrop-blur-xl ${
-          isLight ? 'bg-white/90 border-[#C8E6C9]' : 'bg-[#0B131E]/90 border-[#1E293B]'
+          isLight ? 'bg-white/90 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)]/90 border-[var(--color-border-default)]'
         }`}
       >
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
             <StrataLogo size={34} isLight={isLight} />
             <div>
-              <div className={`font-black text-sm tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+              <div className={`font-black text-sm tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
                 STRATA
               </div>
-              <div className={`text-[10px] font-mono font-bold uppercase ${isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}`}>
+              <div className={`text-[10px] font-mono font-bold uppercase ${isLight ? 'text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-accent-primary)]'}`}>
                 Citizen Property Vault (DigiLocker Linked)
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
         <div className="flex items-center gap-4">
           <div
             className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border font-mono text-xs ${
-              isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#080E17] border-[#1E293B] text-slate-300'
+              isLight ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-300'
             }`}
           >
             <Lock className="w-3.5 h-3.5 text-sky-500" />
@@ -142,8 +142,8 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
             onClick={onClose}
             className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
               isLight
-                ? 'bg-white border-[#C8E6C9] text-slate-600 hover:text-[#1B5E20]'
-                : 'bg-[#0F172A] border-[#1E293B] text-slate-400 hover:text-white'
+                ? 'bg-white border-[var(--color-border-default)] text-slate-600 hover:text-[var(--color-accent-primary)]'
+                : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-400 hover:text-white'
             }`}
           >
             <X className="w-5 h-5" />
@@ -159,15 +159,15 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
             {/* Vault Identity Summary Banner */}
             <div
               className={`p-6 rounded-3xl border shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
-                isLight ? 'bg-white border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
+                isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
               }`}
             >
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <h2 className={`text-lg font-black ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+                  <h2 className={`text-lg font-black ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
                     Deepak Joshi • Registered Citizen
                   </h2>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#00D084]/15 text-[#00D084] border border-[#00D084]/40">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/40">
                     AADHAAR VERIFIED
                   </span>
                 </div>
@@ -181,18 +181,18 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
                 disabled={downloadingEC}
                 className={`px-4 py-2.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-2 transition-all shadow-sm cursor-pointer ${
                   isLight
-                    ? 'bg-white border-[#C8E6C9] text-[#1B5E20] hover:bg-[#E8F5E9]'
-                    : 'bg-[#0F172A] border-[#1E293B] text-slate-200 hover:border-[#00D084]'
+                    ? 'bg-white border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]'
+                    : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-200 hover:border-[var(--color-accent-primary)]'
                 }`}
               >
-                <Download className="w-3.5 h-3.5 text-[#00D084]" />
+                <Download className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" />
                 <span>{downloadingEC ? 'PREPARING SIGNED EC...' : 'DOWNLOAD ENCUMBRANCE CERTIFICATE'}</span>
               </button>
             </div>
 
             {/* Properties Grid */}
             <div className="space-y-4">
-              <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+              <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                 Registered 3D Cadastral Properties
               </h3>
 
@@ -201,12 +201,12 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
                   <div
                     key={prop.id}
                     className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between space-y-4 transition-all hover:scale-[1.01] ${
-                      isLight ? 'bg-white border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
+                      isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
                     }`}
                   >
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-[#00D084]/15 text-[#00D084] border border-[#00D084]/30">
+                        <span className="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/30">
                           {prop.status}
                         </span>
                         <span className="text-xs font-mono text-slate-500">Floor Level {prop.level}</span>
@@ -220,7 +220,7 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
                       <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
                         <div>
                           <div className="text-[10px] text-slate-500">3D-ULPIN</div>
-                          <div className={`font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+                          <div className={`font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                             {prop.ulpin}
                           </div>
                         </div>
@@ -248,8 +248,8 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
                         }}
                         className={`px-3 py-1.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                           isLight
-                            ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20] hover:bg-[#C8E6C9]'
-                            : 'bg-[#00D084]/20 border-[#00D084] text-[#00D084] hover:bg-[#00D084] hover:text-[#060B12]'
+                            ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-[var(--color-border-default)]'
+                            : 'bg-[var(--color-accent-primary)]/20 border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary)] hover:text-[var(--color-bg-app)]'
                         }`}
                       >
                         <Building className="w-3.5 h-3.5" />
@@ -263,20 +263,20 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
 
             {/* Mutation Applications Ledger */}
             <div className="space-y-4">
-              <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+              <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                 Live Title Mutation Tracking
               </h3>
 
               <div
                 className={`p-6 rounded-3xl border shadow-xl space-y-4 ${
-                  isLight ? 'bg-white border-[#C8E6C9]' : 'bg-[#0B131E] border-[#1E293B]'
+                  isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
                 }`}
               >
                 {mutationApplications.map((mut) => (
                   <div key={mut.appId} className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-mono font-bold text-sm text-[#00D084]">{mut.appId}</span>
+                        <span className="font-mono font-bold text-sm text-[var(--color-accent-primary)]">{mut.appId}</span>
                         <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/20 text-amber-500 border border-amber-500/30">
                           {mut.status}
                         </span>
@@ -285,7 +285,7 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
                         Transfer of <strong>{mut.property}</strong> to <strong>{mut.toParty}</strong>
                       </p>
                       <div className="text-[11px] font-mono text-slate-400 mt-1">
-                        Stage: <span className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>{mut.step}</span>
+                        Stage: <span className={isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}>{mut.step}</span>
                       </div>
                     </div>
 

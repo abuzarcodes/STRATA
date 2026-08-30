@@ -44,10 +44,10 @@ export default function Navbar({
   }, [searchQuery, societyData])
 
   const roleConfigs = {
-    CITIZEN: { label: 'Public Explorer', icon: Compass, color: '#00D084', badge: 'PUBLIC' },
-    OWNER: { label: 'Property Owner', icon: Lock, color: '#38BDF8', badge: 'OWNER' },
+    CITIZEN: { label: 'Public Explorer', icon: Compass, color: 'var(--color-accent-primary)', badge: 'PUBLIC' },
+    OWNER: { label: 'Property Owner', icon: Lock, color: 'var(--color-status-info)', badge: 'OWNER' },
     SURVEYOR: { label: 'Licensed Surveyor', icon: HardHat, color: '#A855F7', badge: 'SURVEYOR' },
-    GOVT: { label: 'Revenue Admin', icon: Scale, color: '#F59E0B', badge: 'GOVT' }
+    GOVT: { label: 'Revenue Admin', icon: Scale, color: 'var(--color-status-warning)', badge: 'GOVT' }
   }
 
   const currentRole = roleConfigs[activeRole] || roleConfigs.CITIZEN
@@ -189,7 +189,7 @@ export default function Navbar({
                     </div>
                   </div>
                   <div className="text-right text-[11px] font-mono text-slate-400">
-                    <div className={isLight ? 'text-[#1B5E20] font-bold' : 'text-white'}>{u.volume_m3} m³</div>
+                    <div className={isLight ? 'text-[var(--color-accent-primary)] font-bold' : 'text-white'}>{u.volume_m3} m³</div>
                     <div className="text-[10px] text-slate-500">{u.carpet_area_m2} m²</div>
                   </div>
                 </div>
@@ -290,7 +290,7 @@ export default function Navbar({
             </button>
             <button
               onClick={onOpenAIReviewModal}
-              className="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#060B12] font-mono text-xs font-black flex items-center gap-1.5 shadow-lg shadow-amber-500/25 transition-all cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-[var(--color-bg-app)] font-mono text-xs font-black flex items-center gap-1.5 shadow-lg shadow-amber-500/25 transition-all cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>AI REVIEW</span>
@@ -303,12 +303,12 @@ export default function Navbar({
           onClick={onToggleTheme}
           className={`p-2 rounded-xl border transition-all cursor-pointer shadow-sm ${
             isLight
-              ? 'bg-white border-[#C8E6C9] text-[#1B5E20] hover:bg-[#E8F5E9]'
-              : 'bg-[#0B131E] border-[#1E293B] text-slate-300 hover:text-[#00D084]'
+              ? 'bg-white border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]'
+              : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)] text-slate-300 hover:text-[var(--color-accent-primary)]'
           }`}
           title={`Switch to ${isLight ? 'Dark' : 'Light'} Mode`}
         >
-          {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-[#00D084]" />}
+          {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-[var(--color-accent-primary)]" />}
         </button>
       </div>
     </header>

@@ -150,29 +150,29 @@ export default function APIModal({ isOpen, onClose, theme = 'CYBER' }) {
       <div
         className={`relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl border shadow-2xl flex flex-col transition-all duration-300 ${
           isLight
-            ? 'bg-white border-[#C8E6C9] text-slate-800'
-            : 'bg-[#0B131E] border-[#1E293B] text-slate-100'
+            ? 'bg-white border-[var(--color-border-default)] text-slate-800'
+            : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)] text-slate-100'
         }`}
       >
         {/* Modal Header */}
         <div
           className={`px-6 py-4 border-b flex items-center justify-between ${
-            isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'
+            isLight ? 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'
           }`}
         >
           <div className="flex items-center gap-3">
             <div
               className={`w-9 h-9 rounded-xl flex items-center justify-center border font-mono ${
                 isLight
-                  ? 'bg-[#1B5E20]/10 border-[#1B5E20]/40 text-[#1B5E20]'
-                  : 'bg-[#00D084]/20 border-[#00D084]/60 text-[#00D084]'
+                  ? 'bg-[var(--color-accent-primary)]/10 border-[var(--color-accent-primary)]/40 text-[var(--color-accent-primary)]'
+                  : 'bg-[var(--color-accent-primary)]/20 border-[var(--color-accent-primary)]/60 text-[var(--color-accent-primary)]'
               }`}
             >
               <Terminal className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className={`text-base font-extrabold tracking-wide ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+                <h2 className={`text-base font-extrabold tracking-wide ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
                   STRATA REST API & Swagger UI
                 </h2>
                 {/* Live Backend Pulse */}
@@ -189,7 +189,7 @@ export default function APIModal({ isOpen, onClose, theme = 'CYBER' }) {
                   {backendStatus.toUpperCase()} (Port 3001)
                 </span>
               </div>
-              <p className={`text-[11px] font-mono ${isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}`}>
+              <p className={`text-[11px] font-mono ${isLight ? 'text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-accent-primary)]'}`}>
                 Spatial Queries • Volumetric Ingestion • ULPIN Minting
               </p>
             </div>
@@ -202,8 +202,8 @@ export default function APIModal({ isOpen, onClose, theme = 'CYBER' }) {
               rel="noreferrer"
               className={`px-3 py-1.5 rounded-lg border text-xs font-mono font-bold flex items-center gap-1.5 transition-all ${
                 isLight
-                  ? 'bg-white border-[#1B5E20] text-[#1B5E20] hover:bg-[#1B5E20] hover:text-white'
-                  : 'bg-[#00D084]/20 border-[#00D084] text-[#00D084] hover:bg-[#00D084] hover:text-[#060B12]'
+                  ? 'bg-white border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary)] hover:text-white'
+                  : 'bg-[var(--color-accent-primary)]/20 border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary)] hover:text-[var(--color-bg-app)]'
               }`}
             >
               <span>SWAGGER DOCS</span>
@@ -238,11 +238,11 @@ export default function APIModal({ isOpen, onClose, theme = 'CYBER' }) {
                   className={`p-3 rounded-xl border text-left transition-all ${
                     isSelected
                       ? isLight
-                        ? 'bg-[#E8F5E9] border-[#1B5E20] shadow-sm'
-                        : 'bg-[#00D084]/10 border-[#00D084] shadow-[0_0_10px_rgba(0,208,132,0.15)]'
+                        ? 'bg-[var(--color-surface-muted)] border-[var(--color-accent-primary)] shadow-sm'
+                        : 'bg-[var(--color-accent-primary)]/10 border-[var(--color-accent-primary)] shadow-[0_0_10px_rgba(0,208,132,0.15)]'
                       : isLight
                       ? 'bg-white border-slate-200 hover:border-slate-300'
-                      : 'bg-[#0F172A] border-[#1E293B] hover:border-slate-700'
+                      : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] hover:border-slate-700'
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -271,7 +271,7 @@ export default function APIModal({ isOpen, onClose, theme = 'CYBER' }) {
           <div className="md:col-span-7 flex flex-col gap-3 overflow-y-auto max-h-[60vh]">
             <div
               className={`p-4 rounded-xl border ${
-                isLight ? 'bg-slate-50 border-slate-200' : 'bg-[#0F172A] border-[#1E293B]'
+                isLight ? 'bg-slate-50 border-slate-200' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'
               }`}
             >
               <div className="flex items-center justify-between mb-2">
@@ -303,22 +303,22 @@ export default function APIModal({ isOpen, onClose, theme = 'CYBER' }) {
               </div>
               <p className="text-xs text-slate-500">{selectedEndpoint.desc}</p>
               <div className="mt-2 text-[11px] font-mono text-slate-400">
-                Auth: <span className={isLight ? 'text-[#1B5E20] font-bold' : 'text-emerald-400'}>{selectedEndpoint.auth}</span>
+                Auth: <span className={isLight ? 'text-[var(--color-accent-primary)] font-bold' : 'text-emerald-400'}>{selectedEndpoint.auth}</span>
               </div>
             </div>
 
             {/* Response JSON Preview */}
             <div className={`flex-1 flex flex-col rounded-xl border overflow-hidden ${
-              isLight ? 'border-[#C8E6C9] bg-[#F9FBF9]' : 'border-[#1E293B] bg-black/40'
+              isLight ? 'border-[var(--color-border-default)] bg-[var(--color-surface-2)]' : 'border-[var(--color-border-default)] bg-black/40'
             }`}>
               <div className={`px-3 py-2 border-b flex items-center justify-between text-[11px] font-mono ${
-                isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-slate-600' : 'bg-black/60 border-[#1E293B] text-slate-400'
+                isLight ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-slate-600' : 'bg-black/60 border-[var(--color-border-default)] text-slate-400'
               }`}>
                 <span>Response Schema (200 OK)</span>
                 <span>application/json</span>
               </div>
               <pre className={`p-3 font-mono text-xs overflow-x-auto max-h-[30vh] ${
-                isLight ? 'text-[#1B5E20]' : 'text-emerald-400/90'
+                isLight ? 'text-[var(--color-accent-primary)]' : 'text-emerald-400/90'
               }`}>
                 {selectedEndpoint.sampleResponse}
               </pre>
@@ -329,11 +329,11 @@ export default function APIModal({ isOpen, onClose, theme = 'CYBER' }) {
         {/* Modal Footer */}
         <div
           className={`px-6 py-4 border-t flex items-center justify-between ${
-            isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'
+            isLight ? 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'
           }`}
         >
           <div className="text-xs font-mono text-slate-500">
-            Base URL: <code className="text-[#00D084]">http://localhost:3001/api/v1</code>
+            Base URL: <code className="text-[var(--color-accent-primary)]">http://localhost:3001/api/v1</code>
           </div>
           <a
             href="http://localhost:3001/api-docs"
@@ -341,8 +341,8 @@ export default function APIModal({ isOpen, onClose, theme = 'CYBER' }) {
             rel="noreferrer"
             className={`px-4 py-2 rounded-xl text-xs font-mono font-bold flex items-center gap-2 transition-all ${
               isLight
-                ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white'
-                : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12]'
+                ? 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-white'
+                : 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-[var(--color-bg-app)]'
             }`}
           >
             <span>OPEN INTERACTIVE SWAGGER</span>

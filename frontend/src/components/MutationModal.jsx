@@ -45,25 +45,25 @@ export default function MutationModal({
 
   return (
     <div className={`fixed inset-0 z-50 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in duration-200 ${
-      isLight ? 'bg-[#E8F5E9]/80' : 'bg-slate-950/80'
+      isLight ? 'bg-[var(--color-surface-muted)]/80' : 'bg-slate-950/80'
     }`}>
       <div className={`w-full max-w-lg rounded-3xl p-6 shadow-2xl border flex flex-col justify-between transition-all ${
         isLight
-          ? 'bg-white border-[#C8E6C9] text-slate-800'
-          : 'bg-[#0B131E] border-emerald-500/30 text-white'
+          ? 'bg-white border-[var(--color-border-default)] text-slate-800'
+          : 'bg-[var(--color-surface-1)] border-emerald-500/30 text-white'
       }`}>
         {/* Header */}
         <div className={`flex items-center justify-between pb-4 border-b ${
-          isLight ? 'border-[#C8E6C9]' : 'border-slate-800'
+          isLight ? 'border-[var(--color-border-default)]' : 'border-slate-800'
         }`}>
           <div className="flex items-center gap-3">
             <div className={`p-3 rounded-2xl border ${
-              isLight ? 'bg-[#E8F5E9] text-[#1B5E20] border-[#C8E6C9]' : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+              isLight ? 'bg-[var(--color-surface-muted)] text-[var(--color-accent-primary)] border-[var(--color-border-default)]' : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
             }`}>
               <ArrowRightLeft className="w-6 h-6" />
             </div>
             <div>
-              <div className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-[#2E7D32]' : 'text-emerald-400'}`}>
+              <div className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-[var(--color-accent-primary-hover)]' : 'text-emerald-400'}`}>
                 Cadastral Mutation Engine
               </div>
               <h2 className={`text-xl font-extrabold ${isLight ? 'text-slate-800' : 'text-white'}`}>
@@ -85,9 +85,9 @@ export default function MutationModal({
           <form onSubmit={handleExecuteMutation} className="space-y-4 my-4">
             {/* Unit Info Box */}
             <div className={`p-3.5 rounded-2xl border space-y-1 text-xs ${
-              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-slate-900/90 border-slate-800'
+              isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-slate-900/90 border-slate-800'
             }`}>
-              <div className="text-slate-400 font-mono text-[11px]">3D-ULPIN: <strong className={isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}>{unit.ulpin_3d}</strong></div>
+              <div className="text-slate-400 font-mono text-[11px]">3D-ULPIN: <strong className={isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}>{unit.ulpin_3d}</strong></div>
               <div className={`font-bold text-sm ${isLight ? 'text-slate-800' : 'text-white'}`}>{unit.name}</div>
               <div className="text-slate-500 text-xs">Current Registered Owner: <strong className={isLight ? 'text-slate-800' : 'text-slate-200'}>{unit.owner}</strong></div>
             </div>
@@ -108,7 +108,7 @@ export default function MutationModal({
                 placeholder="e.g. Sunil Narang"
                 className={`w-full px-3 py-2 rounded-xl border text-sm font-medium focus:outline-none ${
                   isLight
-                    ? 'bg-white border-[#C8E6C9] text-slate-800 focus:border-[#1B5E20]'
+                    ? 'bg-white border-[var(--color-border-default)] text-slate-800 focus:border-[var(--color-accent-primary)]'
                     : 'bg-slate-900 border-slate-700 text-white focus:border-emerald-500'
                 }`}
               />
@@ -129,7 +129,7 @@ export default function MutationModal({
                 placeholder="XXXX-XXXX-8921"
                 className={`w-full px-3 py-2 rounded-xl border text-xs font-mono focus:outline-none ${
                   isLight
-                    ? 'bg-white border-[#C8E6C9] text-slate-800 focus:border-[#1B5E20]'
+                    ? 'bg-white border-[var(--color-border-default)] text-slate-800 focus:border-[var(--color-accent-primary)]'
                     : 'bg-slate-900 border-slate-700 text-slate-300 focus:border-emerald-500'
                 }`}
               />
@@ -149,7 +149,7 @@ export default function MutationModal({
                 onChange={(e) => setSubRegistrarNote(e.target.value)}
                 className={`w-full px-3 py-2 rounded-xl border text-xs font-mono focus:outline-none ${
                   isLight
-                    ? 'bg-white border-[#C8E6C9] text-slate-800 focus:border-[#1B5E20]'
+                    ? 'bg-white border-[var(--color-border-default)] text-slate-800 focus:border-[var(--color-accent-primary)]'
                     : 'bg-slate-900 border-slate-700 text-slate-300 focus:border-emerald-500'
                 }`}
               />
@@ -162,8 +162,8 @@ export default function MutationModal({
                 disabled={isSubmitting}
                 className={`w-full py-3 rounded-xl font-bold text-xs font-mono uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg ${
                   isLight
-                    ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[#1B5E20]/20'
-                    : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12] shadow-[0_0_20px_rgba(0,208,132,0.3)]'
+                    ? 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-white shadow-[var(--color-accent-primary)]/20'
+                    : 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-[var(--color-bg-app)] shadow-[0_0_20px_rgba(0,208,132,0.3)]'
                 }`}
               >
                 <UserCheck className="w-4 h-4" />
@@ -173,10 +173,10 @@ export default function MutationModal({
           </form>
         ) : (
           <div className="my-8 text-center space-y-4 animate-in zoom-in-95 duration-200">
-            <div className="w-16 h-16 rounded-full bg-[#00D084]/20 border border-[#00D084] text-[#00D084] flex items-center justify-center mx-auto shadow-lg">
+            <div className="w-16 h-16 rounded-full bg-[var(--color-accent-primary)]/20 border border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] flex items-center justify-center mx-auto shadow-lg">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className={`text-lg font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+            <h3 className={`text-lg font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
               Title Mutation Successfully Registered
             </h3>
             <p className="text-xs text-slate-500 max-w-sm mx-auto">
@@ -186,7 +186,7 @@ export default function MutationModal({
               <button
                 onClick={onClose}
                 className={`px-6 py-2.5 rounded-xl font-mono text-xs font-bold ${
-                  isLight ? 'bg-[#1B5E20] text-white' : 'bg-[#00D084] text-[#060B12]'
+                  isLight ? 'bg-[var(--color-accent-primary)] text-white' : 'bg-[var(--color-accent-primary)] text-[var(--color-bg-app)]'
                 }`}
               >
                 RETURN TO 3D DIGITAL TWIN

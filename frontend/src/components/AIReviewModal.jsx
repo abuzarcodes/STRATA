@@ -64,16 +64,16 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
 
   return (
     <div className={`fixed inset-0 z-50 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in duration-200 ${
-      isLight ? 'bg-[#E8F5E9]/80' : 'bg-slate-950/80'
+      isLight ? 'bg-[var(--color-surface-muted)]/80' : 'bg-slate-950/80'
     }`}>
       <div className={`relative w-full max-w-4xl rounded-3xl p-6 shadow-2xl border space-y-6 transition-all ${
         isLight
-          ? 'bg-white border-[#C8E6C9] text-slate-800'
-          : 'bg-[#0B131E] border-purple-500/40 text-slate-100'
+          ? 'bg-white border-[var(--color-border-default)] text-slate-800'
+          : 'bg-[var(--color-surface-1)] border-purple-500/40 text-slate-100'
       }`}>
         {/* Modal Header */}
         <div className={`flex items-center justify-between border-b pb-4 ${
-          isLight ? 'border-[#C8E6C9]' : 'border-slate-800'
+          isLight ? 'border-[var(--color-border-default)]' : 'border-slate-800'
         }`}>
           <div className="flex items-center gap-3">
             <div className="p-3 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]">
@@ -124,12 +124,12 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Left Column: Extraction Details */}
           <div className="space-y-3 md:col-span-1">
-            <div className={`text-xs font-mono font-bold uppercase tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+            <div className={`text-xs font-mono font-bold uppercase tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
               1. Extracted Cadastral Entity
             </div>
             
             <div className={`p-3.5 rounded-2xl border space-y-2 text-xs ${
-              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#0F172A] border-slate-800'
+              isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-slate-800'
             }`}>
               <div className="flex items-center justify-between">
                 <span className="text-slate-500">Target Unit:</span>
@@ -137,7 +137,7 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-500">Floor Level:</span>
-                <span className={`font-mono font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>Level 2 (+6.0m to +9.0m)</span>
+                <span className={`font-mono font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>Level 2 (+6.0m to +9.0m)</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-500">Source Input:</span>
@@ -153,14 +153,14 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
 
             {/* AI Confidence Meter */}
             <div className={`p-3.5 rounded-2xl border space-y-2 ${
-              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#0F172A] border-slate-800'
+              isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-slate-800'
             }`}>
               <div className="flex items-center justify-between text-xs">
                 <span className="text-slate-500">Mesh Watertightness:</span>
                 <span className={`font-mono font-bold ${isLight ? 'text-emerald-700' : 'text-emerald-400'}`}>100% Certified</span>
               </div>
               <div className="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-[#00D084] h-full rounded-full w-[96.4%]" />
+                <div className="bg-[var(--color-accent-primary)] h-full rounded-full w-[96.4%]" />
               </div>
               <div className="flex items-center justify-between text-[10px] font-mono text-slate-500">
                 <span>Tolerance: ±0.02m</span>
@@ -171,23 +171,23 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
 
           {/* Center/Right Column: Geometric Comparison & Review Sliders */}
           <div className="space-y-4 md:col-span-2">
-            <div className={`text-xs font-mono font-bold uppercase tracking-wider ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+            <div className={`text-xs font-mono font-bold uppercase tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
               2. Volumetric Geometry & Fine Tuning
             </div>
 
             {/* Comparison Bento Tiles */}
             <div className="grid grid-cols-2 gap-2 text-xs font-mono">
               <div className={`p-3 rounded-2xl border ${
-                isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#0F172A] border-slate-800'
+                isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-slate-800'
               }`}>
                 <span className="text-[10px] text-slate-500 uppercase font-sans">Predicted RERA Volume</span>
-                <div className={`text-lg font-bold mt-1 ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+                <div className={`text-lg font-bold mt-1 ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                   302.40 <span className="text-xs font-normal text-slate-500">m³</span>
                 </div>
               </div>
 
               <div className={`p-3 rounded-2xl border ${
-                isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#0F172A] border-slate-800'
+                isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-slate-800'
               }`}>
                 <span className="text-[10px] text-slate-500 uppercase font-sans">Extruded Carpet Area</span>
                 <div className={`text-lg font-bold mt-1 ${isLight ? 'text-emerald-700' : 'text-emerald-400'}`}>
@@ -198,14 +198,14 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
 
             {/* Interactive Geometry Correction Slider */}
             <div className={`p-4 rounded-2xl border space-y-2 ${
-              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-[#0F172A] border-slate-800'
+              isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-slate-800'
             }`}>
               <div className="flex items-center justify-between text-xs font-semibold">
                 <span className={`flex items-center gap-1.5 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>
-                  <Sliders className="w-3.5 h-3.5 text-[#00D084]" />
+                  <Sliders className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" />
                   <span>Manual Elevation (Z-Axis) Offset Correction:</span>
                 </span>
-                <span className={`font-mono font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+                <span className={`font-mono font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                   {zOffsetAdjustment > 0 ? `+${zOffsetAdjustment.toFixed(2)}m` : `${zOffsetAdjustment.toFixed(2)}m`}
                 </span>
               </div>
@@ -219,7 +219,7 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
                 value={zOffsetAdjustment}
                 onChange={(e) => setZOffsetAdjustment(parseFloat(e.target.value))}
                 aria-label="Adjust Z-axis elevation offset"
-                className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-[#00D084]"
+                className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-[var(--color-accent-primary)]"
               />
               <div className="flex items-center justify-between text-[10px] font-mono text-slate-500">
                 <span>-0.50m (Lower)</span>
@@ -235,7 +235,7 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
               <div className="text-[10px] text-purple-600 dark:text-purple-300 font-bold uppercase">
                 Simulated 3D-ULPIN to be Minted:
               </div>
-              <div className={`font-bold text-sm tracking-wide ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+              <div className={`font-bold text-sm tracking-wide ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                 IND280145987621-A+02-6D3E
               </div>
             </div>
@@ -244,7 +244,7 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
 
         {/* Modal Action Buttons */}
         <div className={`flex items-center justify-end gap-3 pt-4 border-t ${
-          isLight ? 'border-[#C8E6C9]' : 'border-slate-800'
+          isLight ? 'border-[var(--color-border-default)]' : 'border-slate-800'
         }`}>
           <button
             onClick={handleReject}
@@ -260,8 +260,8 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
             disabled={isProcessing}
             className={`px-6 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-2 shadow-lg transition-all cursor-pointer ${
               isLight
-                ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[#1B5E20]/20'
-                : 'bg-[#00D084] hover:bg-[#00b875] text-[#080E17] shadow-[0_0_15px_rgba(0,208,132,0.3)]'
+                ? 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-white shadow-[var(--color-accent-primary)]/20'
+                : 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-[var(--color-surface-3)] shadow-[0_0_15px_rgba(0,208,132,0.3)]'
             }`}
           >
             <Check className="w-4 h-4" />

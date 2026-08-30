@@ -41,7 +41,7 @@ export default function AboutPage({ onBack, onLaunchPlatform, theme = 'CYBER', o
             className="theme-surface theme-hover-surface p-2 rounded-xl border transition-colors"
             title={`Switch to ${isLight ? 'Dark' : 'Light'} Mode`}
           >
-            {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-[#00D084]" />}
+            {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-[var(--color-accent-primary)]" />}
           </button>
 
           <button
@@ -79,7 +79,7 @@ export default function AboutPage({ onBack, onLaunchPlatform, theme = 'CYBER', o
         {/* The 2D vs 3D Challenge Comparison */}
         <section className="space-y-6">
           <div>
-            <h2 className={`text-2xl font-black ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+            <h2 className={`text-2xl font-black ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
               The Urban Land Record Challenge
             </h2>
             <p className={`mt-1 text-sm ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
@@ -116,23 +116,23 @@ export default function AboutPage({ onBack, onLaunchPlatform, theme = 'CYBER', o
             {/* 3D Solution */}
             <div
               className={`p-6 rounded-2xl border ${
-                isLight ? 'bg-[#E8F5E9]/60 border-[#C8E6C9]' : 'bg-[#00D084]/5 border-[#00D084]/20'
+                isLight ? 'bg-[var(--color-surface-muted)]/60 border-[var(--color-border-default)]' : 'bg-[var(--color-accent-primary)]/5 border-[var(--color-accent-primary)]/20'
               }`}
             >
-              <h3 className={`font-bold text-base mb-3 flex items-center gap-2 ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+              <h3 className={`font-bold text-base mb-3 flex items-center gap-2 ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                 <span>STRATA 3D Volumetric Cadastre</span>
               </h3>
               <ul className="space-y-3 text-xs leading-relaxed text-slate-500">
                 <li className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-[#00D084] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[var(--color-accent-primary)] shrink-0 mt-0.5" />
                   <span><strong>Unique 3D-ULPIN per Unit:</strong> Every apartment, commercial suite, and parking bay receives a dedicated volumetric Bhu-Aadhaar PIN.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-[#00D084] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[var(--color-accent-primary)] shrink-0 mt-0.5" />
                   <span><strong>Watertight Volumetric Ownership:</strong> Exact volume ($m^3$) and carpet area ($m^2$) mathematically sealed with 2-manifold B-Rep geometry.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-[#00D084] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[var(--color-accent-primary)] shrink-0 mt-0.5" />
                   <span><strong>Automated Encroachment Engine:</strong> CSG Boolean spatial queries automatically detect setback breaches and overlapping titles in real-time.</span>
                 </li>
               </ul>
@@ -142,7 +142,7 @@ export default function AboutPage({ onBack, onLaunchPlatform, theme = 'CYBER', o
 
         {/* Architecture & Core Components */}
         <section className="space-y-6">
-          <h2 className={`text-2xl font-black ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+          <h2 className={`text-2xl font-black ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
             Core System Architecture
           </h2>
 
@@ -193,30 +193,30 @@ export default function AboutPage({ onBack, onLaunchPlatform, theme = 'CYBER', o
 
         {/* Stakeholder Portals */}
         <section className="space-y-6">
-          <h2 className={`text-2xl font-black ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+          <h2 className={`text-2xl font-black ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
             Integrated Stakeholder Portals
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className={`p-6 rounded-2xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[#0B131E] border-[#1E293B]'}`}>
+            <div className={`p-6 rounded-2xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'}`}>
               <span className="text-2xl mb-3 block">🏢</span>
-              <h3 className="font-bold text-sm text-[#00D084] mb-2">Public & Citizen Explorer</h3>
+              <h3 className="font-bold text-sm text-[var(--color-accent-primary)] mb-2">Public & Citizen Explorer</h3>
               <p className="text-xs text-slate-500 leading-relaxed">
                 Allows citizens to search parcels by 3D-ULPIN or state/district, view interactive 3D unit models, and access their authenticated digital deed vault.
               </p>
             </div>
 
-            <div className={`p-6 rounded-2xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[#0B131E] border-[#1E293B]'}`}>
+            <div className={`p-6 rounded-2xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'}`}>
               <span className="text-2xl mb-3 block">📐</span>
-              <h3 className="font-bold text-sm text-[#00D084] mb-2">Licensed Surveyor Portal</h3>
+              <h3 className="font-bold text-sm text-[var(--color-accent-primary)] mb-2">Licensed Surveyor Portal</h3>
               <p className="text-xs text-slate-500 leading-relaxed">
                 Provides CAD/BIM ingestion tools, automated 3D mesh extrusion, AI-assisted layer recognition, and instant geometry validation diagnostics.
               </p>
             </div>
 
-            <div className={`p-6 rounded-2xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[#0B131E] border-[#1E293B]'}`}>
+            <div className={`p-6 rounded-2xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'}`}>
               <span className="text-2xl mb-3 block">⚖️</span>
-              <h3 className="font-bold text-sm text-[#00D084] mb-2">Revenue Administrator</h3>
+              <h3 className="font-bold text-sm text-[var(--color-accent-primary)] mb-2">Revenue Administrator</h3>
               <p className="text-xs text-slate-500 leading-relaxed">
                 Empowers revenue officers to conduct FAR compliance audits, resolve boundary disputes, execute legal 3D parcel splits, and approve title mutations.
               </p>
@@ -230,7 +230,7 @@ export default function AboutPage({ onBack, onLaunchPlatform, theme = 'CYBER', o
         >
           <StrataLogo size={54} isLight={isLight} className="mx-auto" />
           <div className="space-y-2">
-            <h2 className={`text-3xl font-black ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+            <h2 className={`text-3xl font-black ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
               Experience the 3D Cadastre Live
             </h2>
             <p className={`text-sm max-w-xl mx-auto ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>

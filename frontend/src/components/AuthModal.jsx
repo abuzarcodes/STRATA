@@ -13,7 +13,7 @@ const ROLE_PRESETS = {
     secondaryText: 'VERIFY VIA AADHAAR OTP',
     hint: 'Public Citizen access lets you search parcels, inspect 3D property deeds, and view volumetric boundaries.',
     icon: Compass,
-    accentColor: '#00D084'
+    accentColor: 'var(--color-accent-primary)'
   },
   OWNER: {
     title: 'Property Owner Vault',
@@ -26,7 +26,7 @@ const ROLE_PRESETS = {
     secondaryText: 'DIGILOCKER FAST LOGIN',
     hint: 'Property Owner vault gives authenticated access to your registered 3D deeds, mutation requests, and tax records.',
     icon: Lock,
-    accentColor: '#38BDF8'
+    accentColor: 'var(--color-status-info)'
   },
   SURVEYOR: {
     title: 'Licensed Cadastral Surveyor',
@@ -52,7 +52,7 @@ const ROLE_PRESETS = {
     secondaryText: 'NIC e-SIGNATURE SIGN-IN',
     hint: 'Revenue Administrator portal enables setback encroachment auditing, AI ingestion sign-off, and mutation approval.',
     icon: Scale,
-    accentColor: '#F59E0B'
+    accentColor: 'var(--color-status-warning)'
   }
 }
 
@@ -94,14 +94,14 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
   return (
     <div
       className={`fixed inset-0 z-50 backdrop-blur-2xl flex items-center justify-center p-4 transition-colors duration-300 ${
-        isLight ? 'bg-[#E8F5E9]/85' : 'bg-[#080E17]/90'
+        isLight ? 'bg-[var(--color-surface-muted)]/85' : 'bg-[var(--color-surface-3)]/90'
       }`}
     >
       <div
         className={`w-full max-w-md rounded-3xl border shadow-2xl p-8 relative overflow-hidden backdrop-blur-2xl transition-all duration-300 ${
           isLight
-            ? 'bg-white/95 border-[#C8E6C9] text-slate-800 shadow-[0_20px_50px_rgba(27,94,32,0.15)]'
-            : 'bg-[#0B131E]/95 border-[#1E293B] text-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.8)]'
+            ? 'bg-white/95 border-[var(--color-border-default)] text-slate-800 shadow-[0_20px_50px_rgba(27,94,32,0.15)]'
+            : 'bg-[var(--color-surface-1)]/95 border-[var(--color-border-default)] text-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.8)]'
         }`}
       >
         {/* Top Glow Bar matching Role Theme */}
@@ -116,8 +116,8 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
             onClick={onBack}
             className={`p-2 rounded-xl border flex items-center gap-1.5 text-xs font-mono font-bold transition-all cursor-pointer ${
               isLight
-                ? 'bg-white border-[#C8E6C9] text-slate-600 hover:text-[#1B5E20] hover:bg-[#E8F5E9]'
-                : 'bg-[#0F172A] border-[#1E293B] text-slate-400 hover:text-white hover:border-[#00D084]'
+                ? 'bg-white border-[var(--color-border-default)] text-slate-600 hover:text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]'
+                : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-400 hover:text-white hover:border-[var(--color-accent-primary)]'
             }`}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -148,7 +148,7 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
             <RoleIcon className="w-6 h-6" style={{ color: config.accentColor }} />
           </div>
           <div>
-            <h2 className={`text-lg font-black tracking-tight ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+            <h2 className={`text-lg font-black tracking-tight ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
               {config.title}
             </h2>
             <p className="text-xs text-slate-500 font-mono">
@@ -161,8 +161,8 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
         <div
           className={`p-3 rounded-2xl border text-xs leading-relaxed mb-6 ${
             isLight
-              ? 'bg-[#F9FBF9] border-[#C8E6C9] text-slate-600'
-              : 'bg-[#080E17] border-[#1E293B] text-slate-300'
+              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-600'
+              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-300'
           }`}
         >
           {config.hint}
@@ -177,7 +177,7 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
             onClick={handleFillDemo}
             type="button"
             className={`text-[11px] font-mono font-bold flex items-center gap-1 transition-colors cursor-pointer ${
-              isLight ? 'text-[#1B5E20] hover:text-[#2E7D32]' : 'text-[#00D084] hover:underline'
+              isLight ? 'text-[var(--color-accent-primary)] hover:text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-accent-primary)] hover:underline'
             }`}
           >
             <Sparkles className="w-3 h-3" />
@@ -199,8 +199,8 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
                 placeholder={config.idPlaceholder}
                 className={`w-full px-4 py-2.5 rounded-xl border text-xs font-mono transition-all focus:outline-none ${
                   isLight
-                    ? 'bg-white border-[#C8E6C9] text-slate-800 focus:border-[#1B5E20] focus:ring-1 focus:ring-[#1B5E20]'
-                    : 'bg-[#080E17] border-[#1E293B] text-white focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084]'
+                    ? 'bg-white border-[var(--color-border-default)] text-slate-800 focus:border-[var(--color-accent-primary)] focus:ring-1 focus:ring-[var(--color-accent-primary)]'
+                    : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-white focus:border-[var(--color-accent-primary)] focus:ring-1 focus:ring-[var(--color-accent-primary)]'
                 }`}
               />
             </div>
@@ -218,8 +218,8 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
                 placeholder="Enter password..."
                 className={`w-full px-4 py-2.5 rounded-xl border text-xs font-mono transition-all focus:outline-none ${
                   isLight
-                    ? 'bg-white border-[#C8E6C9] text-slate-800 focus:border-[#1B5E20] focus:ring-1 focus:ring-[#1B5E20]'
-                    : 'bg-[#080E17] border-[#1E293B] text-white focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084]'
+                    ? 'bg-white border-[var(--color-border-default)] text-slate-800 focus:border-[var(--color-accent-primary)] focus:ring-1 focus:ring-[var(--color-accent-primary)]'
+                    : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-white focus:border-[var(--color-accent-primary)] focus:ring-1 focus:ring-[var(--color-accent-primary)]'
                 }`}
               />
               <button
@@ -239,11 +239,11 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
                 type="checkbox"
                 checked={is2FAEnabled}
                 onChange={(e) => setIs2FAEnabled(e.target.checked)}
-                className="w-4 h-4 rounded accent-[#00D084]"
+                className="w-4 h-4 rounded accent-[var(--color-accent-primary)]"
               />
               <span>Cryptographic 2FA e-KYC Verification</span>
             </label>
-            <span className={`text-[10px] font-mono font-bold ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>ACTIVE</span>
+            <span className={`text-[10px] font-mono font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>ACTIVE</span>
           </div>
 
           {/* Primary Action Button */}
@@ -252,8 +252,8 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
             disabled={isSubmitting}
             className={`w-full py-3 rounded-xl font-black text-xs font-mono tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg ${
               isLight
-                ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[#1B5E20]/20'
-                : 'bg-[#00D084] hover:bg-[#00b875] text-[#080E17] shadow-[0_0_20px_rgba(0,208,132,0.3)]'
+                ? 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-white shadow-[var(--color-accent-primary)]/20'
+                : 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-[var(--color-surface-3)] shadow-[0_0_20px_rgba(0,208,132,0.3)]'
             }`}
           >
             {isSubmitting ? 'AUTHENTICATING TOKEN...' : config.submitText}
@@ -265,8 +265,8 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
             disabled={isSubmitting}
             className={`w-full py-2.5 rounded-xl border font-bold text-xs font-mono tracking-wider transition-all cursor-pointer ${
               isLight
-                ? 'bg-[#F1F8E9] hover:bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]'
-                : 'bg-[#0F172A] hover:bg-[#1E293B] border-[#1E293B] text-slate-200'
+                ? 'bg-[var(--color-surface-3)] hover:bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]'
+                : 'bg-[var(--color-surface-2)] hover:bg-[var(--color-border-default)] border-[var(--color-border-default)] text-slate-200'
             }`}
           >
             {config.secondaryText}

@@ -138,26 +138,26 @@ export default function PublicLocationSearch({
     <div
       className={`w-84 border rounded-3xl p-5 shadow-2xl backdrop-blur-2xl flex flex-col gap-4 text-xs font-sans pointer-events-auto transition-colors duration-300 ${
         isLight
-          ? 'bg-white/95 border-[#C8E6C9] text-slate-800 shadow-[0_15px_45px_rgba(27,94,32,0.12)]'
-          : 'bg-[#0B131E]/95 border-[#1E293B] text-white shadow-[0_15px_50px_rgba(0,0,0,0.8)]'
+          ? 'bg-white/95 border-[var(--color-border-default)] text-slate-800 shadow-[0_15px_45px_rgba(27,94,32,0.12)]'
+          : 'bg-[var(--color-surface-1)]/95 border-[var(--color-border-default)] text-white shadow-[0_15px_50px_rgba(0,0,0,0.8)]'
       }`}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <div className="flex items-center gap-1.5">
-            <span className={`w-2 h-2 rounded-full ${isLight ? 'bg-[#1B5E20]' : 'bg-[#00D084] animate-pulse'}`} />
-            <h2 className={`text-base font-black tracking-wide ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+            <span className={`w-2 h-2 rounded-full ${isLight ? 'bg-[var(--color-accent-primary)]' : 'bg-[var(--color-accent-primary)] animate-pulse'}`} />
+            <h2 className={`text-base font-black tracking-wide ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
               Cadastral Query
             </h2>
           </div>
           <p className={`text-[10px] font-mono font-bold uppercase tracking-wider mt-0.5 ${
-            isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'
+            isLight ? 'text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-accent-primary)]'
           }`}>
             Delhi NCT 3D Spatial Drilldown
           </p>
         </div>
-        <div className={`p-2 rounded-xl border ${isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#0F172A] border-[#1E293B] text-[#00D084]'}`}>
+        <div className={`p-2 rounded-xl border ${isLight ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]'}`}>
           <MapPin className="w-4 h-4" />
         </div>
       </div>
@@ -169,15 +169,15 @@ export default function PublicLocationSearch({
             <label className={`text-[11px] font-mono font-bold uppercase ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
               State / Union Territory
             </label>
-            <span className="text-[10px] font-mono text-[#00D084] font-bold">STATE CODE 07</span>
+            <span className="text-[10px] font-mono text-[var(--color-accent-primary)] font-bold">STATE CODE 07</span>
           </div>
           <div
             className={`w-full px-3 py-2 rounded-xl border font-mono text-xs font-bold flex items-center justify-between ${
-              isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#080E17] border-[#1E293B] text-slate-200'
+              isLight ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-200'
             }`}
           >
             <span>07 - NCT of Delhi</span>
-            <CheckCircle className="w-3.5 h-3.5 text-[#00D084]" />
+            <CheckCircle className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" />
           </div>
         </div>
 
@@ -192,8 +192,8 @@ export default function PublicLocationSearch({
               onChange={(e) => handleDistrictChange(e.target.value)}
               className={`w-full px-3 py-2.5 rounded-xl border appearance-none text-xs focus:outline-none font-medium transition-all ${
                 isLight
-                  ? 'bg-[#F9FBF9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
-                  : 'bg-[#080E17] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
+                  ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-[var(--color-accent-primary)] focus:border-[var(--color-accent-primary)]'
+                  : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-200 focus:border-[var(--color-accent-primary)]'
               }`}
             >
               {Object.keys(DELHI_HIERARCHY).map((dist) => (
@@ -217,8 +217,8 @@ export default function PublicLocationSearch({
               onChange={(e) => handleWardChange(e.target.value)}
               className={`w-full px-3 py-2.5 rounded-xl border appearance-none text-xs focus:outline-none font-medium transition-all ${
                 isLight
-                  ? 'bg-[#F9FBF9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
-                  : 'bg-[#080E17] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
+                  ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-[var(--color-accent-primary)] focus:border-[var(--color-accent-primary)]'
+                  : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-200 focus:border-[var(--color-accent-primary)]'
               }`}
             >
               {availableWards.map((w) => (
@@ -242,8 +242,8 @@ export default function PublicLocationSearch({
               onChange={(e) => handleSocietyChange(e.target.value)}
               className={`w-full px-3 py-2.5 rounded-xl border appearance-none text-xs focus:outline-none font-medium transition-all ${
                 isLight
-                  ? 'bg-[#F9FBF9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
-                  : 'bg-[#080E17] border-[#1E293B] text-slate-200 focus:border-[#00D084]'
+                  ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-[var(--color-accent-primary)] focus:border-[var(--color-accent-primary)]'
+                  : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-200 focus:border-[var(--color-accent-primary)]'
               }`}
             >
               {availableSocieties.map((s) => (
@@ -270,8 +270,8 @@ export default function PublicLocationSearch({
             onChange={(e) => setBaseUlpin(e.target.value)}
             className={`w-full px-3 py-2 rounded-xl border font-mono text-xs font-bold focus:outline-none ${
               isLight
-                ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20] focus:border-[#1B5E20]'
-                : 'bg-[#080E17] border-[#1E293B] text-[#00D084] focus:border-[#00D084]'
+                ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)] focus:border-[var(--color-accent-primary)]'
+                : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-[var(--color-accent-primary)] focus:border-[var(--color-accent-primary)]'
             }`}
           />
         </div>
@@ -281,8 +281,8 @@ export default function PublicLocationSearch({
           type="submit"
           className={`w-full py-3 mt-1 rounded-2xl font-mono text-xs font-black tracking-wider uppercase transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg ${
             isLight
-              ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white shadow-[#1B5E20]/25'
-              : 'bg-[#00D084] hover:bg-[#00b875] text-[#080E17] shadow-[0_0_20px_rgba(0,208,132,0.4)]'
+              ? 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-white shadow-[var(--color-accent-primary)]/25'
+              : 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-[var(--color-surface-3)] shadow-[0_0_20px_rgba(0,208,132,0.4)]'
           }`}
         >
           <Building className="w-4 h-4" />
@@ -291,14 +291,14 @@ export default function PublicLocationSearch({
       </form>
 
       {/* Vertical Floor Slicer & Isolation Chips */}
-      <div className={`pt-3 border-t space-y-2.5 ${isLight ? 'border-[#C8E6C9]' : 'border-[#1E293B]'}`}>
+      <div className={`pt-3 border-t space-y-2.5 ${isLight ? 'border-[var(--color-border-default)]' : 'border-[var(--color-border-default)]'}`}>
         <div className="flex items-center justify-between text-xs">
           <span className={`font-bold font-mono flex items-center gap-1.5 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>
-            <Sliders className="w-3.5 h-3.5 text-[#00D084]" />
+            <Sliders className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" />
             <span>Vertical Floor Slicer</span>
           </span>
           <span className={`font-mono font-bold text-[11px] px-2 py-0.5 rounded-full border ${
-            isLight ? 'bg-[#E8F5E9] border-[#C8E6C9] text-[#1B5E20]' : 'bg-[#0F172A] border-[#1E293B] text-[#00D084]'
+            isLight ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]'
           }`}>
             {activeFloor === 'ALL' ? 'ALL FLOORS' : `LEVEL ${activeFloor}`}
           </span>
@@ -316,11 +316,11 @@ export default function PublicLocationSearch({
                 className={`py-1.5 rounded-xl text-[10px] font-mono font-bold transition-all cursor-pointer border ${
                   isSelected
                     ? isLight
-                      ? 'bg-[#1B5E20] text-white border-[#1B5E20] shadow-sm'
-                      : 'bg-[#00D084] text-[#080E17] border-[#00D084] shadow-[0_0_10px_rgba(0,208,132,0.3)]'
+                      ? 'bg-[var(--color-accent-primary)] text-white border-[var(--color-accent-primary)] shadow-sm'
+                      : 'bg-[var(--color-accent-primary)] text-[var(--color-surface-3)] border-[var(--color-accent-primary)] shadow-[0_0_10px_rgba(0,208,132,0.3)]'
                     : isLight
-                    ? 'bg-[#F9FBF9] border-[#C8E6C9] text-slate-700 hover:bg-[#E8F5E9]'
-                    : 'bg-[#080E17] border-[#1E293B] text-slate-300 hover:bg-[#1E293B]'
+                    ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-700 hover:bg-[var(--color-surface-muted)]'
+                    : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-300 hover:bg-[var(--color-border-default)]'
                 }`}
                 title={fl.label}
               >

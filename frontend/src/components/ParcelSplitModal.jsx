@@ -95,16 +95,16 @@ export default function ParcelSplitModal({
 
   return (
     <div className={`fixed inset-0 z-50 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in duration-200 ${
-      isLight ? 'bg-[#E8F5E9]/80' : 'bg-slate-950/80'
+      isLight ? 'bg-[var(--color-surface-muted)]/80' : 'bg-slate-950/80'
     }`}>
       <div className={`w-full max-w-2xl rounded-3xl p-6 shadow-2xl border flex flex-col justify-between transition-all ${
         isLight
-          ? 'bg-white border-[#C8E6C9] text-slate-800'
-          : 'bg-[#0B131E] border-amber-500/30 text-white'
+          ? 'bg-white border-[var(--color-border-default)] text-slate-800'
+          : 'bg-[var(--color-surface-1)] border-amber-500/30 text-white'
       }`}>
         {/* Header */}
         <div className={`flex items-center justify-between pb-4 border-b ${
-          isLight ? 'border-[#C8E6C9]' : 'border-slate-800'
+          isLight ? 'border-[var(--color-border-default)]' : 'border-slate-800'
         }`}>
           <div className="flex items-center gap-3">
             <div className={`p-3 rounded-2xl border ${
@@ -135,11 +135,11 @@ export default function ParcelSplitModal({
           <div className="space-y-4 my-4">
             {/* Parent Unit Specs */}
             <div className={`p-4 rounded-2xl border flex items-center justify-between text-xs ${
-              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-slate-900/90 border-slate-800'
+              isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-slate-900/90 border-slate-800'
             }`}>
               <div>
                 <span className="text-slate-400 font-mono text-[11px]">Parent 3D-ULPIN:</span>
-                <div className={`font-mono font-bold text-sm ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>{unit.ulpin_3d}</div>
+                <div className={`font-mono font-bold text-sm ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>{unit.ulpin_3d}</div>
                 <div className="font-semibold text-slate-500">{unit.name} ({parentVolume} m³ / {parentCarpetArea} m²)</div>
               </div>
               <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 font-mono text-[10px] font-bold border border-amber-500/40">
@@ -149,7 +149,7 @@ export default function ParcelSplitModal({
 
             {/* Split Slider */}
             <div className={`p-4 rounded-2xl border space-y-3 ${
-              isLight ? 'bg-[#F9FBF9] border-[#C8E6C9]' : 'bg-slate-900/90 border-slate-800'
+              isLight ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]' : 'bg-slate-900/90 border-slate-800'
             }`}>
               <div className="flex items-center justify-between text-xs font-semibold">
                 <span className={isLight ? 'text-slate-700' : 'text-slate-300'}>
@@ -220,7 +220,7 @@ export default function ParcelSplitModal({
               <button
                 onClick={handleExecuteSplit}
                 disabled={isSubmitting}
-                className="w-full py-3 rounded-xl font-mono text-xs font-black uppercase tracking-wider bg-amber-500 hover:bg-amber-400 text-[#060B12] shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 rounded-xl font-mono text-xs font-black uppercase tracking-wider bg-amber-500 hover:bg-amber-400 text-[var(--color-bg-app)] shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Scissors className="w-4 h-4" />
                 <span>{isSubmitting ? 'MINTING CHILD 3D-ULPINS...' : 'CONFIRM 3D PARCEL SUBDIVISION'}</span>
@@ -229,10 +229,10 @@ export default function ParcelSplitModal({
           </div>
         ) : (
           <div className="my-8 text-center space-y-4 animate-in zoom-in-95 duration-200">
-            <div className="w-16 h-16 rounded-full bg-[#00D084]/20 border border-[#00D084] text-[#00D084] flex items-center justify-center mx-auto shadow-lg">
+            <div className="w-16 h-16 rounded-full bg-[var(--color-accent-primary)]/20 border border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] flex items-center justify-center mx-auto shadow-lg">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className={`text-lg font-bold ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+            <h3 className={`text-lg font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
               3D Parcel Subdivided Successfully
             </h3>
             <p className="text-xs text-slate-500 max-w-md mx-auto">
@@ -242,7 +242,7 @@ export default function ParcelSplitModal({
               <button
                 onClick={onClose}
                 className={`px-6 py-2.5 rounded-xl font-mono text-xs font-bold ${
-                  isLight ? 'bg-[#1B5E20] text-white' : 'bg-[#00D084] text-[#060B12]'
+                  isLight ? 'bg-[var(--color-accent-primary)] text-white' : 'bg-[var(--color-accent-primary)] text-[var(--color-bg-app)]'
                 }`}
               >
                 INSPECT NEW PARCELS IN 3D

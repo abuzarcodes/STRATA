@@ -22,31 +22,31 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
       <div
         className={`relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl border shadow-2xl flex flex-col transition-all duration-300 ${
           isLight
-            ? 'bg-white border-[#C8E6C9] text-slate-800'
-            : 'bg-[#0B131E] border-[#1E293B] text-slate-100'
+            ? 'bg-white border-[var(--color-border-default)] text-slate-800'
+            : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)] text-slate-100'
         }`}
       >
         {/* Modal Header */}
         <div
           className={`px-6 py-4 border-b flex items-center justify-between ${
-            isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'
+            isLight ? 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'
           }`}
         >
           <div className="flex items-center gap-3">
             <div
               className={`w-9 h-9 rounded-xl flex items-center justify-center border font-mono ${
                 isLight
-                  ? 'bg-[#1B5E20]/10 border-[#1B5E20]/40 text-[#1B5E20]'
-                  : 'bg-[#00D084]/20 border-[#00D084]/60 text-[#00D084]'
+                  ? 'bg-[var(--color-accent-primary)]/10 border-[var(--color-accent-primary)]/40 text-[var(--color-accent-primary)]'
+                  : 'bg-[var(--color-accent-primary)]/20 border-[var(--color-accent-primary)]/60 text-[var(--color-accent-primary)]'
               }`}
             >
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h2 className={`text-base font-extrabold tracking-wide ${isLight ? 'text-[#1B5E20]' : 'text-white'}`}>
+              <h2 className={`text-base font-extrabold tracking-wide ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
                 STRATA 3D Cadastre Documentation
               </h2>
-              <p className={`text-[11px] font-mono ${isLight ? 'text-[#2E7D32]' : 'text-[#00D084]'}`}>
+              <p className={`text-[11px] font-mono ${isLight ? 'text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-accent-primary)]'}`}>
                 Technical Specifications • Bhu-Aadhaar 3D • ISO 19152 LADM
               </p>
             </div>
@@ -66,7 +66,7 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
         {/* Tab Navigation */}
         <div
           className={`flex border-b px-6 gap-2 text-xs font-mono font-bold overflow-x-auto ${
-            isLight ? 'bg-slate-50 border-[#C8E6C9]' : 'bg-[#0F172A]/50 border-[#1E293B]'
+            isLight ? 'bg-slate-50 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)]/50 border-[var(--color-border-default)]'
           }`}
         >
           <button
@@ -74,8 +74,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
             className={`py-3 px-3 border-b-2 flex items-center gap-1.5 transition-all ${
               activeTab === 'standards'
                 ? isLight
-                  ? 'border-[#1B5E20] text-[#1B5E20]'
-                  : 'border-[#00D084] text-[#00D084]'
+                  ? 'border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
+                  : 'border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
                 : 'border-transparent text-slate-500 hover:text-slate-300'
             }`}
           >
@@ -87,8 +87,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
             className={`py-3 px-3 border-b-2 flex items-center gap-1.5 transition-all ${
               activeTab === 'ulpin'
                 ? isLight
-                  ? 'border-[#1B5E20] text-[#1B5E20]'
-                  : 'border-[#00D084] text-[#00D084]'
+                  ? 'border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
+                  : 'border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
                 : 'border-transparent text-slate-500 hover:text-slate-300'
             }`}
           >
@@ -100,8 +100,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
             className={`py-3 px-3 border-b-2 flex items-center gap-1.5 transition-all ${
               activeTab === 'topology'
                 ? isLight
-                  ? 'border-[#1B5E20] text-[#1B5E20]'
-                  : 'border-[#00D084] text-[#00D084]'
+                  ? 'border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
+                  : 'border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
                 : 'border-transparent text-slate-500 hover:text-slate-300'
             }`}
           >
@@ -113,8 +113,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
             className={`py-3 px-3 border-b-2 flex items-center gap-1.5 transition-all ${
               activeTab === 'workflows'
                 ? isLight
-                  ? 'border-[#1B5E20] text-[#1B5E20]'
-                  : 'border-[#00D084] text-[#00D084]'
+                  ? 'border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
+                  : 'border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
                 : 'border-transparent text-slate-500 hover:text-slate-300'
             }`}
           >
@@ -127,8 +127,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
         <div className="p-6 overflow-y-auto space-y-6 text-sm flex-1">
           {activeTab === 'standards' && (
             <div className="space-y-4">
-              <div className={`p-4 rounded-xl border ${isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'}`}>
-                <h3 className={`font-bold text-sm ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+              <div className={`p-4 rounded-xl border ${isLight ? 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'}`}>
+                <h3 className={`font-bold text-sm ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                   ISO 19152: Land Administration Domain Model (LADM Part 2)
                 </h3>
                 <p className="text-xs text-slate-500 mt-1">
@@ -137,8 +137,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[#0F172A]/70 border-[#1E293B]'}`}>
-                  <h4 className="font-bold text-xs uppercase tracking-wider mb-2 text-[#00D084]">
+                <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[var(--color-surface-2)]/70 border-[var(--color-border-default)]'}`}>
+                  <h4 className="font-bold text-xs uppercase tracking-wider mb-2 text-[var(--color-accent-primary)]">
                     OGC CityGML 3.0 / CityJSON
                   </h4>
                   <ul className="text-xs space-y-1.5 text-slate-500">
@@ -148,8 +148,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
                   </ul>
                 </div>
 
-                <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[#0F172A]/70 border-[#1E293B]'}`}>
-                  <h4 className="font-bold text-xs uppercase tracking-wider mb-2 text-[#00D084]">
+                <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[var(--color-surface-2)]/70 border-[var(--color-border-default)]'}`}>
+                  <h4 className="font-bold text-xs uppercase tracking-wider mb-2 text-[var(--color-accent-primary)]">
                     Spatial Reference Systems
                   </h4>
                   <ul className="text-xs space-y-1.5 text-slate-500">
@@ -164,11 +164,11 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
 
           {activeTab === 'ulpin' && (
             <div className="space-y-4">
-              <div className={`p-4 rounded-xl border ${isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'}`}>
-                <h3 className={`font-bold text-sm ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+              <div className={`p-4 rounded-xl border ${isLight ? 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'}`}>
+                <h3 className={`font-bold text-sm ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                   Standard 3D Bhu-Aadhaar Structure
                 </h3>
-                <div className="mt-3 font-mono text-xs p-3 rounded-lg bg-black/40 text-[#00D084] border border-[#1E293B] flex items-center justify-between">
+                <div className="mt-3 font-mono text-xs p-3 rounded-lg bg-black/40 text-[var(--color-accent-primary)] border border-[var(--color-border-default)] flex items-center justify-between">
                   <span>[14-digit Base ULPIN] - [Domain Flag] [Floor Index (+/-)] - [Spatial Bounding Hash]</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3 text-xs font-mono">
@@ -188,8 +188,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
               </div>
 
               {/* Interactive ULPIN Simulator */}
-              <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[#0F172A]/70 border-[#1E293B]'}`}>
-                <h4 className="font-bold text-xs uppercase tracking-wider mb-3 text-[#00D084]">
+              <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[var(--color-surface-2)]/70 border-[var(--color-border-default)]'}`}>
+                <h4 className="font-bold text-xs uppercase tracking-wider mb-3 text-[var(--color-accent-primary)]">
                   Interactive 3D-ULPIN Generator Simulator
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
@@ -233,9 +233,9 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
                   </div>
                 </div>
 
-                <div className="mt-4 p-3 rounded-lg bg-[#00D084]/10 border border-[#00D084]/40 flex items-center justify-between">
+                <div className="mt-4 p-3 rounded-lg bg-[var(--color-accent-primary)]/10 border border-[var(--color-accent-primary)]/40 flex items-center justify-between">
                   <span className="text-xs text-slate-400">Generated 3D Bhu-Aadhaar:</span>
-                  <span className="font-mono font-bold text-sm text-[#00D084]">{generated3dUlpin}</span>
+                  <span className="font-mono font-bold text-sm text-[var(--color-accent-primary)]">{generated3dUlpin}</span>
                 </div>
               </div>
             </div>
@@ -243,20 +243,20 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
 
           {activeTab === 'topology' && (
             <div className="space-y-4">
-              <div className={`p-4 rounded-xl border ${isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'}`}>
-                <h3 className={`font-bold text-sm ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+              <div className={`p-4 rounded-xl border ${isLight ? 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'}`}>
+                <h3 className={`font-bold text-sm ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                   Watertight 2-Manifold Verification
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
                   Every 3D property unit is verified against Euler's Formula for closed convex polyhedra:
-                  <code className="mx-2 px-2 py-0.5 rounded bg-black/40 text-[#00D084] font-mono">χ = V - E + F = 2</code>
+                  <code className="mx-2 px-2 py-0.5 rounded bg-black/40 text-[var(--color-accent-primary)] font-mono">χ = V - E + F = 2</code>
                   where each edge must be shared by exactly two adjacent polygonal faces with consistent outward-pointing normal vectors.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[#0F172A]/70 border-[#1E293B]'}`}>
-                  <h4 className="font-bold text-xs uppercase tracking-wider mb-2 text-[#00D084]">
+                <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[var(--color-surface-2)]/70 border-[var(--color-border-default)]'}`}>
+                  <h4 className="font-bold text-xs uppercase tracking-wider mb-2 text-[var(--color-accent-primary)]">
                     Encroachment & Setback Engine
                   </h4>
                   <p className="text-slate-500 leading-relaxed">
@@ -264,12 +264,12 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
                   </p>
                 </div>
 
-                <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[#0F172A]/70 border-[#1E293B]'}`}>
-                  <h4 className="font-bold text-xs uppercase tracking-wider mb-2 text-[#00D084]">
+                <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200' : 'bg-[var(--color-surface-2)]/70 border-[var(--color-border-default)]'}`}>
+                  <h4 className="font-bold text-xs uppercase tracking-wider mb-2 text-[var(--color-accent-primary)]">
                     Volumetric Overlap Detection
                   </h4>
                   <p className="text-slate-500 leading-relaxed">
-                    Calculates 3D spatial intersection <code className="font-mono text-[#00D084]">Vol(A ∩ B) &gt; 0.001 m³</code>. Prohibits conflicting ownership claims in multi-storey apartments and common elevator shafts.
+                    Calculates 3D spatial intersection <code className="font-mono text-[var(--color-accent-primary)]">Vol(A ∩ B) &gt; 0.001 m³</code>. Prohibits conflicting ownership claims in multi-storey apartments and common elevator shafts.
                   </p>
                 </div>
               </div>
@@ -278,8 +278,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
 
           {activeTab === 'workflows' && (
             <div className="space-y-4">
-              <div className={`p-4 rounded-xl border ${isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'}`}>
-                <h3 className={`font-bold text-sm ${isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'}`}>
+              <div className={`p-4 rounded-xl border ${isLight ? 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'}`}>
+                <h3 className={`font-bold text-sm ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
                   3D Legal Mutation & Sub-Parcel Division
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
@@ -289,21 +289,21 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
 
               <div className="space-y-2">
                 <div className="p-3 rounded-lg border border-slate-800 bg-black/20 flex items-start gap-3 text-xs">
-                  <span className="w-5 h-5 rounded-full bg-[#00D084]/20 text-[#00D084] flex items-center justify-center font-bold font-mono">1</span>
+                  <span className="w-5 h-5 rounded-full bg-[var(--color-accent-primary)]/20 text-[var(--color-accent-primary)] flex items-center justify-center font-bold font-mono">1</span>
                   <div>
                     <strong className="text-slate-200">BIM / Architectural Drawing Ingestion:</strong>
                     <p className="text-slate-500 mt-0.5">Surveyor uploads DXF/GeoJSON/IFC floor plans with assigned ceiling and floor datum heights.</p>
                   </div>
                 </div>
                 <div className="p-3 rounded-lg border border-slate-800 bg-black/20 flex items-start gap-3 text-xs">
-                  <span className="w-5 h-5 rounded-full bg-[#00D084]/20 text-[#00D084] flex items-center justify-center font-bold font-mono">2</span>
+                  <span className="w-5 h-5 rounded-full bg-[var(--color-accent-primary)]/20 text-[var(--color-accent-primary)] flex items-center justify-center font-bold font-mono">2</span>
                   <div>
                     <strong className="text-slate-200">Automated Topology Validation:</strong>
                     <p className="text-slate-500 mt-0.5">PostGIS 3D spatial queries check for self-intersections, legal setback breaches, and watertight closure.</p>
                   </div>
                 </div>
                 <div className="p-3 rounded-lg border border-slate-800 bg-black/20 flex items-start gap-3 text-xs">
-                  <span className="w-5 h-5 rounded-full bg-[#00D084]/20 text-[#00D084] flex items-center justify-center font-bold font-mono">3</span>
+                  <span className="w-5 h-5 rounded-full bg-[var(--color-accent-primary)]/20 text-[var(--color-accent-primary)] flex items-center justify-center font-bold font-mono">3</span>
                   <div>
                     <strong className="text-slate-200">Revenue Officer Sign-Off & Registry Entry:</strong>
                     <p className="text-slate-500 mt-0.5">Official 3D-ULPIN is minted and encrypted into the National Bhu-Aadhaar registry.</p>
@@ -317,7 +317,7 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
         {/* Modal Footer */}
         <div
           className={`px-6 py-4 border-t flex items-center justify-between ${
-            isLight ? 'bg-[#F1F8E9] border-[#C8E6C9]' : 'bg-[#0F172A] border-[#1E293B]'
+            isLight ? 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'
           }`}
         >
           <div className="text-xs font-mono text-slate-500">
@@ -327,8 +327,8 @@ export default function DocumentationModal({ isOpen, onClose, theme = 'CYBER' })
             onClick={onClose}
             className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
               isLight
-                ? 'bg-[#1B5E20] hover:bg-[#2E7D32] text-white'
-                : 'bg-[#00D084] hover:bg-[#00b875] text-[#060B12]'
+                ? 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-white'
+                : 'bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-[var(--color-bg-app)]'
             }`}
           >
             CLOSE DOCUMENTATION

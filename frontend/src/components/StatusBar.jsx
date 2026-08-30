@@ -20,22 +20,22 @@ export default function StatusBar({ theme = 'LIGHT', onToggleTheme }) {
       }`}
     >
       <div className="flex items-center gap-3">
-        <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#66BB6A]">
-          <MapPin className="w-4 h-4 text-[#1B5E20]" />
+        <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[var(--color-status-success)]">
+          <MapPin className="w-4 h-4 text-[var(--color-accent-primary)]" />
         </div>
-        <span className={`text-xs font-medium tracking-wide ${isLight ? 'text-[#1B5E20] font-black' : 'text-[#A5D6A7]'}`}>
+        <span className={`text-xs font-medium tracking-wide ${isLight ? 'text-[var(--color-accent-primary)] font-black' : 'text-[var(--color-border-strong)]'}`}>
           Dwarka Sec-10, Delhi
         </span>
       </div>
 
       <div className="flex items-center gap-5 text-xs font-mono">
         <div className="flex items-center gap-1.5">
-          <Clock className={`w-3.5 h-3.5 ${isLight ? 'text-[#2E7D32]' : 'text-[#66BB6A]'}`} />
-          <span className={isLight ? 'text-[#1B5E20] font-bold' : 'text-[#E8F5E9]'}>{timeStr}</span>
+          <Clock className={`w-3.5 h-3.5 ${isLight ? 'text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-status-success)]'}`} />
+          <span className={isLight ? 'text-[var(--color-accent-primary)] font-bold' : 'text-[var(--color-surface-muted)]'}>{timeStr}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <Calendar className={`w-3.5 h-3.5 ${isLight ? 'text-[#2E7D32]' : 'text-[#66BB6A]'}`} />
-          <span className={isLight ? 'text-[#1B5E20] font-bold' : 'text-[#E8F5E9]'}>{dateStr}</span>
+          <Calendar className={`w-3.5 h-3.5 ${isLight ? 'text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-status-success)]'}`} />
+          <span className={isLight ? 'text-[var(--color-accent-primary)] font-bold' : 'text-[var(--color-surface-muted)]'}>{dateStr}</span>
         </div>
 
         {onToggleTheme && (
@@ -43,12 +43,12 @@ export default function StatusBar({ theme = 'LIGHT', onToggleTheme }) {
             onClick={onToggleTheme}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${
               isLight
-                ? 'bg-white border-[#A5D6A7] text-[#1B5E20] hover:border-[#66BB6A] hover:bg-[#E8F5E9]'
-                : 'bg-[#112F15] border-[#1B5E20] text-[#A5D6A7] hover:border-[#66BB6A] hover:text-[#FFFFFF]'
+                ? 'bg-white border-[var(--color-border-strong)] text-[var(--color-accent-primary)] hover:border-[var(--color-status-success)] hover:bg-[var(--color-surface-muted)]'
+                : 'bg-[#112F15] border-[var(--color-accent-primary)] text-[var(--color-border-strong)] hover:border-[var(--color-status-success)] hover:text-[var(--color-surface-1)]'
             }`}
             title="Toggle Light / Dark Mode"
           >
-            {isLight ? <Moon className="w-3.5 h-3.5 text-[#1B5E20]" /> : <Sun className="w-3.5 h-3.5 text-[#66BB6A]" />}
+            {isLight ? <Moon className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" /> : <Sun className="w-3.5 h-3.5 text-[var(--color-status-success)]" />}
             <span>{isLight ? 'Dark Mode' : 'Light Mode'}</span>
           </button>
         )}

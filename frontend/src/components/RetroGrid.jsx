@@ -2,7 +2,7 @@ import React from 'react'
 
 /**
  * RetroGrid component using Color Hunt palette:
- * #E8F5E9 (Foam), #A5D6A7 (Pastel Mint), #66BB6A (Vibrant Green), #1B5E20 (Deep Forest)
+ * var(--color-surface-muted) (Foam), var(--color-border-strong) (Pastel Mint), var(--color-status-success) (Vibrant Green), var(--color-accent-primary) (Deep Forest)
  */
 export default function RetroGrid({
   className = '',
