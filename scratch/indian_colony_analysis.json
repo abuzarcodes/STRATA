@@ -1,0 +1,3638 @@
+{
+  "hierarchy": {
+    "property_candidate_id": "PROPERTY_CANDIDATE_INDIAN_COLONY_DWARKA_01",
+    "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+    "verification_status": "CANDIDATE",
+    "parcel_association_status": "NO_AUTHORITATIVE_PARCEL_DATA",
+    "summary": {
+      "total_detected_buildings": 11,
+      "accepted_building_candidates": 11,
+      "rejected_building_candidates": 0
+    },
+    "building_candidates": [
+      {
+        "candidate_instance_id": "CANDIDATE_B_001",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 118,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 31.833,
+            "y": 15.16,
+            "z": 3.354
+          },
+          "footprint_polygon": [
+            [
+              28.597804120854313,
+              18.0
+            ],
+            [
+              31.186481703439178,
+              10.854679063153029
+            ],
+            [
+              31.77797755425494,
+              10.0
+            ],
+            [
+              32.73974103238207,
+              10.0
+            ],
+            [
+              32.8,
+              10.106164376794263
+            ],
+            [
+              32.8,
+              12.507151073458711
+            ],
+            [
+              32.8,
+              14.175653200282195
+            ],
+            [
+              32.8,
+              14.537747820645837
+            ],
+            [
+              32.8,
+              16.586695491244615
+            ],
+            [
+              32.8,
+              17.026093940691617
+            ],
+            [
+              32.8,
+              17.683953496890673
+            ],
+            [
+              32.8,
+              17.795971087918367
+            ],
+            [
+              32.8,
+              17.963241751601345
+            ],
+            [
+              32.700933030281604,
+              18.0
+            ],
+            [
+              32.27422653444877,
+              18.0
+            ],
+            [
+              29.260997738345566,
+              18.0
+            ],
+            [
+              29.259672230467554,
+              18.0
+            ],
+            [
+              28.597804120854313,
+              18.0
+            ]
+          ],
+          "footprint_area_sqm": 21.9,
+          "perimeter_m": 21.79,
+          "bounds_aabb": {
+            "x_min": 28.598,
+            "x_max": 32.8,
+            "y_min": 10.0,
+            "y_max": 18.0,
+            "z_min": -0.023,
+            "z_max": 6.512
+          },
+          "oriented_bbox": {
+            "center": [
+              31.833,
+              15.16
+            ],
+            "extent_x": 4.202,
+            "extent_y": 8.0,
+            "angle_deg": 0.0
+          },
+          "min_z_m": -0.023,
+          "base_z_m": 0.144,
+          "max_z_m": 6.512,
+          "vertical_extent_m": 6.368,
+          "point_density_pts_sqm": 5.39,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 6.527,
+          "base_z_m": -0.014,
+          "roof_z_m": 6.512,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 6.502,
+          "percentile_98_height_m": 6.518,
+          "ransac_roof_height_m": 6.527,
+          "raw_z_max_height_m": 6.527
+        },
+        "floors": {
+          "candidate_floor_count": 2,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.918,
+            "point_coverage": 0.236,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_002",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 1490,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 17.571,
+            "y": 13.828,
+            "z": 7.816
+          },
+          "footprint_polygon": [
+            [
+              9.664429530201343,
+              10.872483221476509
+            ],
+            [
+              10.0,
+              10.235483207185029
+            ],
+            [
+              10.135314458959947,
+              10.0
+            ],
+            [
+              11.0,
+              8.683169361791528
+            ],
+            [
+              11.326274916364657,
+              8.5
+            ],
+            [
+              15.347482866708443,
+              8.5
+            ],
+            [
+              19.783257277120263,
+              8.5
+            ],
+            [
+              20.250624146086686,
+              8.5
+            ],
+            [
+              20.73622292010365,
+              8.5
+            ],
+            [
+              20.92235960907249,
+              8.5
+            ],
+            [
+              30.320547880397307,
+              10.0
+            ],
+            [
+              30.637098347957867,
+              10.072237167143872
+            ],
+            [
+              31.897429044488984,
+              12.902556495724461
+            ],
+            [
+              31.76926485174269,
+              13.629749549949453
+            ],
+            [
+              29.42910324385994,
+              18.0
+            ],
+            [
+              21.99963907214537,
+              19.0
+            ],
+            [
+              10.945052054585517,
+              19.0
+            ],
+            [
+              10.181948999556715,
+              19.0
+            ],
+            [
+              10.077574193944365,
+              19.0
+            ],
+            [
+              10.0,
+              18.864151353265797
+            ],
+            [
+              9.664429530201343,
+              10.872483221476509
+            ]
+          ],
+          "footprint_area_sqm": 207.19,
+          "perimeter_m": 58.75,
+          "bounds_aabb": {
+            "x_min": 9.664,
+            "x_max": 31.897,
+            "y_min": 8.5,
+            "y_max": 19.0,
+            "z_min": -0.019,
+            "z_max": 15.845
+          },
+          "oriented_bbox": {
+            "center": [
+              17.571,
+              13.828
+            ],
+            "extent_x": 22.233,
+            "extent_y": 10.5,
+            "angle_deg": 0.0
+          },
+          "min_z_m": -0.019,
+          "base_z_m": 1.501,
+          "max_z_m": 15.845,
+          "vertical_extent_m": 14.344,
+          "point_density_pts_sqm": 7.19,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 13.514,
+          "base_z_m": -0.014,
+          "roof_z_m": 13.5,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 13.525,
+          "percentile_98_height_m": 13.612,
+          "ransac_roof_height_m": 13.514,
+          "raw_z_max_height_m": 15.859
+        },
+        "floors": {
+          "candidate_floor_count": 5,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 4,
+              "z_min_m": 8.99,
+              "z_max_m": 11.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 5,
+              "z_min_m": 11.99,
+              "z_max_m": 14.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.95,
+            "point_coverage": 1.0,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_003",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 25,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 27.128,
+            "y": 10.224,
+            "z": 2.122
+          },
+          "footprint_polygon": [
+            [
+              24.387109354147,
+              10.0
+            ],
+            [
+              29.340284380840366,
+              10.0
+            ],
+            [
+              29.396338375616164,
+              10.0
+            ],
+            [
+              28.00601253540263,
+              11.935151344671166
+            ],
+            [
+              27.6174441458558,
+              11.976581958647596
+            ],
+            [
+              24.387109354147,
+              10.0
+            ]
+          ],
+          "footprint_area_sqm": 5.3,
+          "perimeter_m": 11.57,
+          "bounds_aabb": {
+            "x_min": 24.387,
+            "x_max": 29.396,
+            "y_min": 10.0,
+            "y_max": 11.977,
+            "z_min": 0.408,
+            "z_max": 4.491
+          },
+          "oriented_bbox": {
+            "center": [
+              27.128,
+              10.224
+            ],
+            "extent_x": 5.009,
+            "extent_y": 1.977,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 0.408,
+          "base_z_m": 0.481,
+          "max_z_m": 4.491,
+          "vertical_extent_m": 4.01,
+          "point_density_pts_sqm": 4.72,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 2.992,
+          "base_z_m": -0.014,
+          "roof_z_m": 2.978,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 4.169,
+          "percentile_98_height_m": 4.374,
+          "ransac_roof_height_m": 2.992,
+          "raw_z_max_height_m": 4.506
+        },
+        "floors": {
+          "candidate_floor_count": 1,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.9,
+            "point_coverage": 0.05,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_004",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 52,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 15.591,
+            "y": 31.07,
+            "z": 3.871
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              33.315286894443574
+            ],
+            [
+              15.0,
+              31.79004797106238
+            ],
+            [
+              15.0,
+              28.210417514359555
+            ],
+            [
+              15.0,
+              25.491821553911226
+            ],
+            [
+              16.481878724458443,
+              25.0
+            ],
+            [
+              16.484851595151962,
+              25.0
+            ],
+            [
+              16.70816786030154,
+              25.0
+            ],
+            [
+              17.963621129316273,
+              29.918055833564022
+            ],
+            [
+              15.0,
+              34.53363650307015
+            ],
+            [
+              15.0,
+              33.315286894443574
+            ]
+          ],
+          "footprint_area_sqm": 17.96,
+          "perimeter_m": 21.39,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 17.964,
+            "y_min": 25.0,
+            "y_max": 34.534,
+            "z_min": 0.269,
+            "z_max": 8.058
+          },
+          "oriented_bbox": {
+            "center": [
+              15.591,
+              31.07
+            ],
+            "extent_x": 2.964,
+            "extent_y": 9.534,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 0.269,
+          "base_z_m": 1.205,
+          "max_z_m": 8.058,
+          "vertical_extent_m": 6.853,
+          "point_density_pts_sqm": 2.89,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 6.573,
+          "base_z_m": -0.014,
+          "roof_z_m": 6.558,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 7.148,
+          "percentile_98_height_m": 7.786,
+          "ransac_roof_height_m": 6.573,
+          "raw_z_max_height_m": 8.072
+        },
+        "floors": {
+          "candidate_floor_count": 2,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.944,
+            "point_coverage": 0.104,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_005",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 49,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 23.279,
+            "y": 25.68,
+            "z": 3.749
+          },
+          "footprint_polygon": [
+            [
+              21.527048290787036,
+              25.0
+            ],
+            [
+              24.851572218534066,
+              25.0
+            ],
+            [
+              24.96301753587862,
+              25.0
+            ],
+            [
+              25.249761580588,
+              25.0
+            ],
+            [
+              25.582454777910343,
+              25.52669008666011
+            ],
+            [
+              23.89211202767945,
+              30.271520967857036
+            ],
+            [
+              23.33794996467678,
+              29.163011580548115
+            ],
+            [
+              21.8897096857513,
+              25.967601769668455
+            ],
+            [
+              21.527048290787036,
+              25.0
+            ]
+          ],
+          "footprint_area_sqm": 11.32,
+          "perimeter_m": 15.16,
+          "bounds_aabb": {
+            "x_min": 21.527,
+            "x_max": 25.582,
+            "y_min": 25.0,
+            "y_max": 30.272,
+            "z_min": 2.131,
+            "z_max": 5.979
+          },
+          "oriented_bbox": {
+            "center": [
+              23.279,
+              25.68
+            ],
+            "extent_x": 4.055,
+            "extent_y": 5.272,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 2.131,
+          "base_z_m": 2.377,
+          "max_z_m": 5.979,
+          "vertical_extent_m": 3.602,
+          "point_density_pts_sqm": 2.03,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 5.961,
+          "base_z_m": -0.014,
+          "roof_z_m": 5.946,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 5.87,
+          "percentile_98_height_m": 5.979,
+          "ransac_roof_height_m": 5.961,
+          "raw_z_max_height_m": 5.994
+        },
+        "floors": {
+          "candidate_floor_count": 2,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.95,
+            "point_coverage": 0.046,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_006",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 30,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 19.366,
+            "y": 32.836,
+            "z": 8.591
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              30.769999015337273
+            ],
+            [
+              15.0,
+              30.569492648147193
+            ],
+            [
+              21.033536698286927,
+              29.508610802075914
+            ],
+            [
+              22.504675356885084,
+              31.372268030188035
+            ],
+            [
+              22.89603728311811,
+              32.0
+            ],
+            [
+              19.288928701381792,
+              38.802303631518285
+            ],
+            [
+              18.869872924110133,
+              39.000142240383184
+            ],
+            [
+              18.60416215637006,
+              38.649117074308634
+            ],
+            [
+              15.0,
+              30.769999015337273
+            ]
+          ],
+          "footprint_area_sqm": 40.99,
+          "perimeter_m": 26.71,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 22.896,
+            "y_min": 29.509,
+            "y_max": 39.0,
+            "z_min": 2.985,
+            "z_max": 10.231
+          },
+          "oriented_bbox": {
+            "center": [
+              19.366,
+              32.836
+            ],
+            "extent_x": 7.896,
+            "extent_y": 9.492,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 2.985,
+          "base_z_m": 2.998,
+          "max_z_m": 10.231,
+          "vertical_extent_m": 7.233,
+          "point_density_pts_sqm": 0.73,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.208,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.193,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.23,
+          "percentile_98_height_m": 10.238,
+          "ransac_roof_height_m": 10.208,
+          "raw_z_max_height_m": 10.246
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.98,
+            "point_coverage": 0.06,
+            "cluster_compactness": 0.85,
+            "density_consistency": 0.365,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_007",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 501,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 18.761,
+            "y": 37.216,
+            "z": 6.175
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              38.6626682951708
+            ],
+            [
+              15.0,
+              37.60969821702065
+            ],
+            [
+              15.0,
+              32.55856999329636
+            ],
+            [
+              15.126049872634905,
+              32.0
+            ],
+            [
+              19.211876787479568,
+              30.45350071607384
+            ],
+            [
+              21.045765476226002,
+              31.1029787314455
+            ],
+            [
+              22.706614714165823,
+              32.0
+            ],
+            [
+              22.0,
+              41.94173775368225
+            ],
+            [
+              21.949067669745254,
+              42.0
+            ],
+            [
+              19.483458484684668,
+              42.0
+            ],
+            [
+              17.27731717763607,
+              42.0
+            ],
+            [
+              16.872725550150356,
+              42.0
+            ],
+            [
+              15.435054476568457,
+              42.0
+            ],
+            [
+              15.057387379365323,
+              42.0
+            ],
+            [
+              15.0,
+              41.99823295548875
+            ],
+            [
+              15.0,
+              38.6626682951708
+            ]
+          ],
+          "footprint_area_sqm": 79.62,
+          "perimeter_m": 35.21,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 22.707,
+            "y_min": 30.454,
+            "y_max": 42.0,
+            "z_min": -0.028,
+            "z_max": 10.244
+          },
+          "oriented_bbox": {
+            "center": [
+              18.761,
+              37.216
+            ],
+            "extent_x": 7.707,
+            "extent_y": 11.546,
+            "angle_deg": 0.0
+          },
+          "min_z_m": -0.028,
+          "base_z_m": 0.735,
+          "max_z_m": 10.244,
+          "vertical_extent_m": 9.508,
+          "point_density_pts_sqm": 6.29,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.2,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.185,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.226,
+          "percentile_98_height_m": 10.241,
+          "ransac_roof_height_m": 10.2,
+          "raw_z_max_height_m": 10.258
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.949,
+            "point_coverage": 1.0,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_008",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 89,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 18.242,
+            "y": 28.635,
+            "z": 9.74
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              25.46579178167268
+            ],
+            [
+              16.905249422322058,
+              25.0
+            ],
+            [
+              17.24166369284601,
+              25.0
+            ],
+            [
+              20.2374897806743,
+              28.080531777558214
+            ],
+            [
+              20.266036971216657,
+              29.720654713335346
+            ],
+            [
+              19.61800223334529,
+              30.35665065085564
+            ],
+            [
+              17.410930750767093,
+              30.103549102387245
+            ],
+            [
+              16.22611750266226,
+              29.79032528807084
+            ],
+            [
+              15.0,
+              25.46579178167268
+            ]
+          ],
+          "footprint_area_sqm": 18.72,
+          "perimeter_m": 17.09,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 20.266,
+            "y_min": 25.0,
+            "y_max": 30.357,
+            "z_min": 8.137,
+            "z_max": 10.236
+          },
+          "oriented_bbox": {
+            "center": [
+              18.242,
+              28.635
+            ],
+            "extent_x": 5.266,
+            "extent_y": 5.357,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 8.137,
+          "base_z_m": 8.378,
+          "max_z_m": 10.236,
+          "vertical_extent_m": 1.858,
+          "point_density_pts_sqm": 1.12,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.235,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.22,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.248,
+          "percentile_98_height_m": 10.249,
+          "ransac_roof_height_m": 10.235,
+          "raw_z_max_height_m": 10.25
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "floor_1_slab_peak_ambiguous",
+            "floor_2_slab_peak_ambiguous"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.97,
+            "point_coverage": 0.042,
+            "cluster_compactness": 0.85,
+            "density_consistency": 0.56,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_010",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 44,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 17.216,
+            "y": 25.314,
+            "z": 6.397
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              25.6280178631883
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              28.91404677429986
+            ],
+            [
+              15.0,
+              25.072902628713557
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              28.91404677429986
+            ],
+            [
+              15.0,
+              25.072902628713557
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              28.91404677429986
+            ],
+            [
+              15.0,
+              25.072902628713557
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              28.91404677429986
+            ],
+            [
+              15.0,
+              25.072902628713557
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              25.6280178631883
+            ]
+          ],
+          "footprint_area_sqm": 54.66,
+          "perimeter_m": 85.05,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 21.496,
+            "y_min": 25.0,
+            "y_max": 28.914,
+            "z_min": 2.822,
+            "z_max": 10.227
+          },
+          "oriented_bbox": {
+            "center": [
+              17.216,
+              25.314
+            ],
+            "extent_x": 6.496,
+            "extent_y": 3.914,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 2.822,
+          "base_z_m": 2.944,
+          "max_z_m": 10.227,
+          "vertical_extent_m": 7.283,
+          "point_density_pts_sqm": 0.8,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.226,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.211,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.224,
+          "percentile_98_height_m": 10.228,
+          "ransac_roof_height_m": 10.226,
+          "raw_z_max_height_m": 10.241
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.888,
+            "point_coverage": 0.088,
+            "cluster_compactness": 0.85,
+            "density_consistency": 0.4,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_012",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 96,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 30.576,
+            "y": 28.77,
+            "z": 4.349
+          },
+          "footprint_polygon": [
+            [
+              26.31165324432684,
+              32.0
+            ],
+            [
+              29.51640539861036,
+              25.0
+            ],
+            [
+              31.862289496734988,
+              25.0
+            ],
+            [
+              32.0,
+              25.101830021583524
+            ],
+            [
+              32.0,
+              28.83482322010606
+            ],
+            [
+              32.0,
+              28.966607858720284
+            ],
+            [
+              31.346944513711342,
+              32.0
+            ],
+            [
+              27.133618709785658,
+              32.0
+            ],
+            [
+              26.31165324432684,
+              32.0
+            ]
+          ],
+          "footprint_area_sqm": 27.6,
+          "perimeter_m": 22.22,
+          "bounds_aabb": {
+            "x_min": 26.312,
+            "x_max": 32.0,
+            "y_min": 25.0,
+            "y_max": 32.0,
+            "z_min": 0.13,
+            "z_max": 6.992
+          },
+          "oriented_bbox": {
+            "center": [
+              30.576,
+              28.77
+            ],
+            "extent_x": 5.688,
+            "extent_y": 7.0,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 0.13,
+          "base_z_m": 0.762,
+          "max_z_m": 6.992,
+          "vertical_extent_m": 6.23,
+          "point_density_pts_sqm": 1.05,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 6.031,
+          "base_z_m": -0.014,
+          "roof_z_m": 6.017,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 6.876,
+          "percentile_98_height_m": 6.975,
+          "ransac_roof_height_m": 6.031,
+          "raw_z_max_height_m": 7.007
+        },
+        "floors": {
+          "candidate_floor_count": 2,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "floor_2_slab_peak_ambiguous"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.939,
+            "point_coverage": 0.058,
+            "cluster_compactness": 0.85,
+            "density_consistency": 0.525,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_014",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 33,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 26.638,
+            "y": 26.342,
+            "z": 10.196
+          },
+          "footprint_polygon": [
+            [
+              24.07690042043551,
+              25.123250346638613
+            ],
+            [
+              25.1483172696812,
+              25.0
+            ],
+            [
+              26.187413045484227,
+              25.0
+            ],
+            [
+              27.358957692542987,
+              25.117880338888146
+            ],
+            [
+              28.207595684175672,
+              25.70249500910844
+            ],
+            [
+              29.08097368931024,
+              27.460404961113383
+            ],
+            [
+              29.089361052778727,
+              28.12505556731021
+            ],
+            [
+              28.03762692918646,
+              28.44134233685109
+            ],
+            [
+              25.141530185961138,
+              27.43142540384514
+            ],
+            [
+              24.92455874367443,
+              27.144056644534494
+            ],
+            [
+              24.07690042043551,
+              25.123250346638613
+            ]
+          ],
+          "footprint_area_sqm": 11.53,
+          "perimeter_m": 13.67,
+          "bounds_aabb": {
+            "x_min": 24.077,
+            "x_max": 29.089,
+            "y_min": 25.0,
+            "y_max": 28.441,
+            "z_min": 10.055,
+            "z_max": 10.251
+          },
+          "oriented_bbox": {
+            "center": [
+              26.638,
+              26.342
+            ],
+            "extent_x": 5.012,
+            "extent_y": 3.441,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 10.055,
+          "base_z_m": 10.123,
+          "max_z_m": 10.251,
+          "vertical_extent_m": 0.129,
+          "point_density_pts_sqm": 2.86,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.235,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.22,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.249,
+          "percentile_98_height_m": 10.257,
+          "ransac_roof_height_m": 10.235,
+          "raw_z_max_height_m": 10.265
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "floor_1_slab_peak_ambiguous",
+            "floor_2_slab_peak_ambiguous",
+            "floor_3_slab_peak_ambiguous"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.957,
+            "point_coverage": 0.066,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      }
+    ],
+    "rejected_candidates": [],
+    "spatial_reference": {
+      "crs": "EPSG:3857",
+      "units": "meters"
+    },
+    "provenance": {
+      "model": {
+        "name": "PointNet2_MSG_DualHead_v1",
+        "checkpoint_filename": "best_pointnet2_msg_dualhead.pt",
+        "checkpoint_sha256": "eb167abd93cde6462b66d1e45fc658585be44776daf59fbb105a6a5ec2665586",
+        "file_size_bytes": 7919620,
+        "parameters": 643617,
+        "status": "FROZEN_BYTE_FOR_BYTE"
+      },
+      "decoder": {
+        "type": "HDBSCAN",
+        "min_cluster_size": 20,
+        "min_samples": 5,
+        "cluster_selection_method": "eom",
+        "alpha": 1.0,
+        "beta": 0.5,
+        "status": "FROZEN_PRODUCTION_CONFIG"
+      },
+      "baseline": {
+        "name": "baseline_v1.0_frozen",
+        "min_hag_m": 2.5,
+        "cluster_distance_m": 2.0,
+        "voxel_size_m": 0.2,
+        "status": "FROZEN_BASELINE"
+      },
+      "input_features": [
+        "X_norm",
+        "Y_norm",
+        "Z_norm",
+        "Intensity"
+      ],
+      "dataset": {
+        "name": "INDIAN_COLONY_DWARKA_01",
+        "source_crs": "EPSG:3857",
+        "processing_crs": "LOCAL_METRIC",
+        "tile_size_m": 40.0,
+        "overlap_m": 10.0
+      },
+      "system_environment": {
+        "python_version": "3.12.13",
+        "operating_system": "Windows",
+        "timestamp_utc": "2026-08-30 19:15:00 UTC"
+      },
+      "software_version": "SIH-2026-v5.0-FINAL"
+    },
+    "legal_disclaimer": "AI PREDICTION ONLY. Candidate building instance evidence generated for surveyor review. Does NOT establish legally authoritative cadastral boundaries, property ownership, or official ULPIN registration."
+  },
+  "ulpin_record": {
+    "candidate_ulpin_id": "ULPIN_CANDIDATE_INDIAN_COLONY_DWARKA_01",
+    "ulpin_status": "NOT_ASSIGNED",
+    "verification_status": "CANDIDATE",
+    "legal_status": {
+      "is_legal_boundary": false,
+      "requires_surveyor_validation": true,
+      "requires_cadastral_authority_validation": true
+    },
+    "spatial_reference": {
+      "crs": "EPSG:3857",
+      "units": "meters"
+    },
+    "property_candidate": {
+      "property_candidate_id": "PROPERTY_CANDIDATE_INDIAN_COLONY_DWARKA_01",
+      "parcel_association": {
+        "parcel_association_status": "NO_AUTHORITATIVE_PARCEL_DATA",
+        "associated_parcel_id": null,
+        "intersection_area_sqm": 0.0,
+        "overlap_percentage": 0.0,
+        "association_confidence": 0.0,
+        "note": "Building Candidate unassociated with authoritative cadastral parcel."
+      },
+      "building_candidates_count": 11
+    },
+    "building_candidates": [
+      {
+        "candidate_instance_id": "CANDIDATE_B_001",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 118,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 31.833,
+            "y": 15.16,
+            "z": 3.354
+          },
+          "footprint_polygon": [
+            [
+              28.597804120854313,
+              18.0
+            ],
+            [
+              31.186481703439178,
+              10.854679063153029
+            ],
+            [
+              31.77797755425494,
+              10.0
+            ],
+            [
+              32.73974103238207,
+              10.0
+            ],
+            [
+              32.8,
+              10.106164376794263
+            ],
+            [
+              32.8,
+              12.507151073458711
+            ],
+            [
+              32.8,
+              14.175653200282195
+            ],
+            [
+              32.8,
+              14.537747820645837
+            ],
+            [
+              32.8,
+              16.586695491244615
+            ],
+            [
+              32.8,
+              17.026093940691617
+            ],
+            [
+              32.8,
+              17.683953496890673
+            ],
+            [
+              32.8,
+              17.795971087918367
+            ],
+            [
+              32.8,
+              17.963241751601345
+            ],
+            [
+              32.700933030281604,
+              18.0
+            ],
+            [
+              32.27422653444877,
+              18.0
+            ],
+            [
+              29.260997738345566,
+              18.0
+            ],
+            [
+              29.259672230467554,
+              18.0
+            ],
+            [
+              28.597804120854313,
+              18.0
+            ]
+          ],
+          "footprint_area_sqm": 21.9,
+          "perimeter_m": 21.79,
+          "bounds_aabb": {
+            "x_min": 28.598,
+            "x_max": 32.8,
+            "y_min": 10.0,
+            "y_max": 18.0,
+            "z_min": -0.023,
+            "z_max": 6.512
+          },
+          "oriented_bbox": {
+            "center": [
+              31.833,
+              15.16
+            ],
+            "extent_x": 4.202,
+            "extent_y": 8.0,
+            "angle_deg": 0.0
+          },
+          "min_z_m": -0.023,
+          "base_z_m": 0.144,
+          "max_z_m": 6.512,
+          "vertical_extent_m": 6.368,
+          "point_density_pts_sqm": 5.39,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 6.527,
+          "base_z_m": -0.014,
+          "roof_z_m": 6.512,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 6.502,
+          "percentile_98_height_m": 6.518,
+          "ransac_roof_height_m": 6.527,
+          "raw_z_max_height_m": 6.527
+        },
+        "floors": {
+          "candidate_floor_count": 2,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.918,
+            "point_coverage": 0.236,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_002",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 1490,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 17.571,
+            "y": 13.828,
+            "z": 7.816
+          },
+          "footprint_polygon": [
+            [
+              9.664429530201343,
+              10.872483221476509
+            ],
+            [
+              10.0,
+              10.235483207185029
+            ],
+            [
+              10.135314458959947,
+              10.0
+            ],
+            [
+              11.0,
+              8.683169361791528
+            ],
+            [
+              11.326274916364657,
+              8.5
+            ],
+            [
+              15.347482866708443,
+              8.5
+            ],
+            [
+              19.783257277120263,
+              8.5
+            ],
+            [
+              20.250624146086686,
+              8.5
+            ],
+            [
+              20.73622292010365,
+              8.5
+            ],
+            [
+              20.92235960907249,
+              8.5
+            ],
+            [
+              30.320547880397307,
+              10.0
+            ],
+            [
+              30.637098347957867,
+              10.072237167143872
+            ],
+            [
+              31.897429044488984,
+              12.902556495724461
+            ],
+            [
+              31.76926485174269,
+              13.629749549949453
+            ],
+            [
+              29.42910324385994,
+              18.0
+            ],
+            [
+              21.99963907214537,
+              19.0
+            ],
+            [
+              10.945052054585517,
+              19.0
+            ],
+            [
+              10.181948999556715,
+              19.0
+            ],
+            [
+              10.077574193944365,
+              19.0
+            ],
+            [
+              10.0,
+              18.864151353265797
+            ],
+            [
+              9.664429530201343,
+              10.872483221476509
+            ]
+          ],
+          "footprint_area_sqm": 207.19,
+          "perimeter_m": 58.75,
+          "bounds_aabb": {
+            "x_min": 9.664,
+            "x_max": 31.897,
+            "y_min": 8.5,
+            "y_max": 19.0,
+            "z_min": -0.019,
+            "z_max": 15.845
+          },
+          "oriented_bbox": {
+            "center": [
+              17.571,
+              13.828
+            ],
+            "extent_x": 22.233,
+            "extent_y": 10.5,
+            "angle_deg": 0.0
+          },
+          "min_z_m": -0.019,
+          "base_z_m": 1.501,
+          "max_z_m": 15.845,
+          "vertical_extent_m": 14.344,
+          "point_density_pts_sqm": 7.19,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 13.514,
+          "base_z_m": -0.014,
+          "roof_z_m": 13.5,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 13.525,
+          "percentile_98_height_m": 13.612,
+          "ransac_roof_height_m": 13.514,
+          "raw_z_max_height_m": 15.859
+        },
+        "floors": {
+          "candidate_floor_count": 5,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 4,
+              "z_min_m": 8.99,
+              "z_max_m": 11.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 5,
+              "z_min_m": 11.99,
+              "z_max_m": 14.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.95,
+            "point_coverage": 1.0,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_003",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 25,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 27.128,
+            "y": 10.224,
+            "z": 2.122
+          },
+          "footprint_polygon": [
+            [
+              24.387109354147,
+              10.0
+            ],
+            [
+              29.340284380840366,
+              10.0
+            ],
+            [
+              29.396338375616164,
+              10.0
+            ],
+            [
+              28.00601253540263,
+              11.935151344671166
+            ],
+            [
+              27.6174441458558,
+              11.976581958647596
+            ],
+            [
+              24.387109354147,
+              10.0
+            ]
+          ],
+          "footprint_area_sqm": 5.3,
+          "perimeter_m": 11.57,
+          "bounds_aabb": {
+            "x_min": 24.387,
+            "x_max": 29.396,
+            "y_min": 10.0,
+            "y_max": 11.977,
+            "z_min": 0.408,
+            "z_max": 4.491
+          },
+          "oriented_bbox": {
+            "center": [
+              27.128,
+              10.224
+            ],
+            "extent_x": 5.009,
+            "extent_y": 1.977,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 0.408,
+          "base_z_m": 0.481,
+          "max_z_m": 4.491,
+          "vertical_extent_m": 4.01,
+          "point_density_pts_sqm": 4.72,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 2.992,
+          "base_z_m": -0.014,
+          "roof_z_m": 2.978,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 4.169,
+          "percentile_98_height_m": 4.374,
+          "ransac_roof_height_m": 2.992,
+          "raw_z_max_height_m": 4.506
+        },
+        "floors": {
+          "candidate_floor_count": 1,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.9,
+            "point_coverage": 0.05,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_004",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 52,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 15.591,
+            "y": 31.07,
+            "z": 3.871
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              33.315286894443574
+            ],
+            [
+              15.0,
+              31.79004797106238
+            ],
+            [
+              15.0,
+              28.210417514359555
+            ],
+            [
+              15.0,
+              25.491821553911226
+            ],
+            [
+              16.481878724458443,
+              25.0
+            ],
+            [
+              16.484851595151962,
+              25.0
+            ],
+            [
+              16.70816786030154,
+              25.0
+            ],
+            [
+              17.963621129316273,
+              29.918055833564022
+            ],
+            [
+              15.0,
+              34.53363650307015
+            ],
+            [
+              15.0,
+              33.315286894443574
+            ]
+          ],
+          "footprint_area_sqm": 17.96,
+          "perimeter_m": 21.39,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 17.964,
+            "y_min": 25.0,
+            "y_max": 34.534,
+            "z_min": 0.269,
+            "z_max": 8.058
+          },
+          "oriented_bbox": {
+            "center": [
+              15.591,
+              31.07
+            ],
+            "extent_x": 2.964,
+            "extent_y": 9.534,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 0.269,
+          "base_z_m": 1.205,
+          "max_z_m": 8.058,
+          "vertical_extent_m": 6.853,
+          "point_density_pts_sqm": 2.89,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 6.573,
+          "base_z_m": -0.014,
+          "roof_z_m": 6.558,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 7.148,
+          "percentile_98_height_m": 7.786,
+          "ransac_roof_height_m": 6.573,
+          "raw_z_max_height_m": 8.072
+        },
+        "floors": {
+          "candidate_floor_count": 2,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.944,
+            "point_coverage": 0.104,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_005",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 49,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 23.279,
+            "y": 25.68,
+            "z": 3.749
+          },
+          "footprint_polygon": [
+            [
+              21.527048290787036,
+              25.0
+            ],
+            [
+              24.851572218534066,
+              25.0
+            ],
+            [
+              24.96301753587862,
+              25.0
+            ],
+            [
+              25.249761580588,
+              25.0
+            ],
+            [
+              25.582454777910343,
+              25.52669008666011
+            ],
+            [
+              23.89211202767945,
+              30.271520967857036
+            ],
+            [
+              23.33794996467678,
+              29.163011580548115
+            ],
+            [
+              21.8897096857513,
+              25.967601769668455
+            ],
+            [
+              21.527048290787036,
+              25.0
+            ]
+          ],
+          "footprint_area_sqm": 11.32,
+          "perimeter_m": 15.16,
+          "bounds_aabb": {
+            "x_min": 21.527,
+            "x_max": 25.582,
+            "y_min": 25.0,
+            "y_max": 30.272,
+            "z_min": 2.131,
+            "z_max": 5.979
+          },
+          "oriented_bbox": {
+            "center": [
+              23.279,
+              25.68
+            ],
+            "extent_x": 4.055,
+            "extent_y": 5.272,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 2.131,
+          "base_z_m": 2.377,
+          "max_z_m": 5.979,
+          "vertical_extent_m": 3.602,
+          "point_density_pts_sqm": 2.03,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 5.961,
+          "base_z_m": -0.014,
+          "roof_z_m": 5.946,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 5.87,
+          "percentile_98_height_m": 5.979,
+          "ransac_roof_height_m": 5.961,
+          "raw_z_max_height_m": 5.994
+        },
+        "floors": {
+          "candidate_floor_count": 2,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.95,
+            "point_coverage": 0.046,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_006",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 30,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 19.366,
+            "y": 32.836,
+            "z": 8.591
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              30.769999015337273
+            ],
+            [
+              15.0,
+              30.569492648147193
+            ],
+            [
+              21.033536698286927,
+              29.508610802075914
+            ],
+            [
+              22.504675356885084,
+              31.372268030188035
+            ],
+            [
+              22.89603728311811,
+              32.0
+            ],
+            [
+              19.288928701381792,
+              38.802303631518285
+            ],
+            [
+              18.869872924110133,
+              39.000142240383184
+            ],
+            [
+              18.60416215637006,
+              38.649117074308634
+            ],
+            [
+              15.0,
+              30.769999015337273
+            ]
+          ],
+          "footprint_area_sqm": 40.99,
+          "perimeter_m": 26.71,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 22.896,
+            "y_min": 29.509,
+            "y_max": 39.0,
+            "z_min": 2.985,
+            "z_max": 10.231
+          },
+          "oriented_bbox": {
+            "center": [
+              19.366,
+              32.836
+            ],
+            "extent_x": 7.896,
+            "extent_y": 9.492,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 2.985,
+          "base_z_m": 2.998,
+          "max_z_m": 10.231,
+          "vertical_extent_m": 7.233,
+          "point_density_pts_sqm": 0.73,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.208,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.193,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.23,
+          "percentile_98_height_m": 10.238,
+          "ransac_roof_height_m": 10.208,
+          "raw_z_max_height_m": 10.246
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.98,
+            "point_coverage": 0.06,
+            "cluster_compactness": 0.85,
+            "density_consistency": 0.365,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_007",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 501,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 18.761,
+            "y": 37.216,
+            "z": 6.175
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              38.6626682951708
+            ],
+            [
+              15.0,
+              37.60969821702065
+            ],
+            [
+              15.0,
+              32.55856999329636
+            ],
+            [
+              15.126049872634905,
+              32.0
+            ],
+            [
+              19.211876787479568,
+              30.45350071607384
+            ],
+            [
+              21.045765476226002,
+              31.1029787314455
+            ],
+            [
+              22.706614714165823,
+              32.0
+            ],
+            [
+              22.0,
+              41.94173775368225
+            ],
+            [
+              21.949067669745254,
+              42.0
+            ],
+            [
+              19.483458484684668,
+              42.0
+            ],
+            [
+              17.27731717763607,
+              42.0
+            ],
+            [
+              16.872725550150356,
+              42.0
+            ],
+            [
+              15.435054476568457,
+              42.0
+            ],
+            [
+              15.057387379365323,
+              42.0
+            ],
+            [
+              15.0,
+              41.99823295548875
+            ],
+            [
+              15.0,
+              38.6626682951708
+            ]
+          ],
+          "footprint_area_sqm": 79.62,
+          "perimeter_m": 35.21,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 22.707,
+            "y_min": 30.454,
+            "y_max": 42.0,
+            "z_min": -0.028,
+            "z_max": 10.244
+          },
+          "oriented_bbox": {
+            "center": [
+              18.761,
+              37.216
+            ],
+            "extent_x": 7.707,
+            "extent_y": 11.546,
+            "angle_deg": 0.0
+          },
+          "min_z_m": -0.028,
+          "base_z_m": 0.735,
+          "max_z_m": 10.244,
+          "vertical_extent_m": 9.508,
+          "point_density_pts_sqm": 6.29,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.2,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.185,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.226,
+          "percentile_98_height_m": 10.241,
+          "ransac_roof_height_m": 10.2,
+          "raw_z_max_height_m": 10.258
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.949,
+            "point_coverage": 1.0,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_008",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 89,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 18.242,
+            "y": 28.635,
+            "z": 9.74
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              25.46579178167268
+            ],
+            [
+              16.905249422322058,
+              25.0
+            ],
+            [
+              17.24166369284601,
+              25.0
+            ],
+            [
+              20.2374897806743,
+              28.080531777558214
+            ],
+            [
+              20.266036971216657,
+              29.720654713335346
+            ],
+            [
+              19.61800223334529,
+              30.35665065085564
+            ],
+            [
+              17.410930750767093,
+              30.103549102387245
+            ],
+            [
+              16.22611750266226,
+              29.79032528807084
+            ],
+            [
+              15.0,
+              25.46579178167268
+            ]
+          ],
+          "footprint_area_sqm": 18.72,
+          "perimeter_m": 17.09,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 20.266,
+            "y_min": 25.0,
+            "y_max": 30.357,
+            "z_min": 8.137,
+            "z_max": 10.236
+          },
+          "oriented_bbox": {
+            "center": [
+              18.242,
+              28.635
+            ],
+            "extent_x": 5.266,
+            "extent_y": 5.357,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 8.137,
+          "base_z_m": 8.378,
+          "max_z_m": 10.236,
+          "vertical_extent_m": 1.858,
+          "point_density_pts_sqm": 1.12,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.235,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.22,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.248,
+          "percentile_98_height_m": 10.249,
+          "ransac_roof_height_m": 10.235,
+          "raw_z_max_height_m": 10.25
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "floor_1_slab_peak_ambiguous",
+            "floor_2_slab_peak_ambiguous"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.97,
+            "point_coverage": 0.042,
+            "cluster_compactness": 0.85,
+            "density_consistency": 0.56,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_010",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 44,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 17.216,
+            "y": 25.314,
+            "z": 6.397
+          },
+          "footprint_polygon": [
+            [
+              15.0,
+              25.6280178631883
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              28.91404677429986
+            ],
+            [
+              15.0,
+              25.072902628713557
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              28.91404677429986
+            ],
+            [
+              15.0,
+              25.072902628713557
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              28.91404677429986
+            ],
+            [
+              15.0,
+              25.072902628713557
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              28.91404677429986
+            ],
+            [
+              15.0,
+              25.072902628713557
+            ],
+            [
+              15.0,
+              25.06124957456899
+            ],
+            [
+              15.638900578455248,
+              25.0
+            ],
+            [
+              16.24130321353337,
+              25.0
+            ],
+            [
+              19.43518833494146,
+              25.0
+            ],
+            [
+              19.789561379743496,
+              25.0
+            ],
+            [
+              19.908028530527723,
+              25.0
+            ],
+            [
+              21.49593585689653,
+              25.15232956292087
+            ],
+            [
+              15.0,
+              25.6280178631883
+            ]
+          ],
+          "footprint_area_sqm": 54.66,
+          "perimeter_m": 85.05,
+          "bounds_aabb": {
+            "x_min": 15.0,
+            "x_max": 21.496,
+            "y_min": 25.0,
+            "y_max": 28.914,
+            "z_min": 2.822,
+            "z_max": 10.227
+          },
+          "oriented_bbox": {
+            "center": [
+              17.216,
+              25.314
+            ],
+            "extent_x": 6.496,
+            "extent_y": 3.914,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 2.822,
+          "base_z_m": 2.944,
+          "max_z_m": 10.227,
+          "vertical_extent_m": 7.283,
+          "point_density_pts_sqm": 0.8,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.226,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.211,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.224,
+          "percentile_98_height_m": 10.228,
+          "ransac_roof_height_m": 10.226,
+          "raw_z_max_height_m": 10.241
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "candidate_floors_inferred_from_lidar_geometry_only"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.888,
+            "point_coverage": 0.088,
+            "cluster_compactness": 0.85,
+            "density_consistency": 0.4,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_012",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 96,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 30.576,
+            "y": 28.77,
+            "z": 4.349
+          },
+          "footprint_polygon": [
+            [
+              26.31165324432684,
+              32.0
+            ],
+            [
+              29.51640539861036,
+              25.0
+            ],
+            [
+              31.862289496734988,
+              25.0
+            ],
+            [
+              32.0,
+              25.101830021583524
+            ],
+            [
+              32.0,
+              28.83482322010606
+            ],
+            [
+              32.0,
+              28.966607858720284
+            ],
+            [
+              31.346944513711342,
+              32.0
+            ],
+            [
+              27.133618709785658,
+              32.0
+            ],
+            [
+              26.31165324432684,
+              32.0
+            ]
+          ],
+          "footprint_area_sqm": 27.6,
+          "perimeter_m": 22.22,
+          "bounds_aabb": {
+            "x_min": 26.312,
+            "x_max": 32.0,
+            "y_min": 25.0,
+            "y_max": 32.0,
+            "z_min": 0.13,
+            "z_max": 6.992
+          },
+          "oriented_bbox": {
+            "center": [
+              30.576,
+              28.77
+            ],
+            "extent_x": 5.688,
+            "extent_y": 7.0,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 0.13,
+          "base_z_m": 0.762,
+          "max_z_m": 6.992,
+          "vertical_extent_m": 6.23,
+          "point_density_pts_sqm": 1.05,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 6.031,
+          "base_z_m": -0.014,
+          "roof_z_m": 6.017,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 6.876,
+          "percentile_98_height_m": 6.975,
+          "ransac_roof_height_m": 6.031,
+          "raw_z_max_height_m": 7.007
+        },
+        "floors": {
+          "candidate_floor_count": 2,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.88,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "floor_2_slab_peak_ambiguous"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.939,
+            "point_coverage": 0.058,
+            "cluster_compactness": 0.85,
+            "density_consistency": 0.525,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      },
+      {
+        "candidate_instance_id": "CANDIDATE_B_014",
+        "source_scene_id": "INDIAN_COLONY_DWARKA_01",
+        "source_tiles": [
+          "TILE_001"
+        ],
+        "point_count": 33,
+        "status": "GEOMETRICALLY_VALIDATED",
+        "rejection_reasons": [],
+        "geometry": {
+          "centroid": {
+            "x": 26.638,
+            "y": 26.342,
+            "z": 10.196
+          },
+          "footprint_polygon": [
+            [
+              24.07690042043551,
+              25.123250346638613
+            ],
+            [
+              25.1483172696812,
+              25.0
+            ],
+            [
+              26.187413045484227,
+              25.0
+            ],
+            [
+              27.358957692542987,
+              25.117880338888146
+            ],
+            [
+              28.207595684175672,
+              25.70249500910844
+            ],
+            [
+              29.08097368931024,
+              27.460404961113383
+            ],
+            [
+              29.089361052778727,
+              28.12505556731021
+            ],
+            [
+              28.03762692918646,
+              28.44134233685109
+            ],
+            [
+              25.141530185961138,
+              27.43142540384514
+            ],
+            [
+              24.92455874367443,
+              27.144056644534494
+            ],
+            [
+              24.07690042043551,
+              25.123250346638613
+            ]
+          ],
+          "footprint_area_sqm": 11.53,
+          "perimeter_m": 13.67,
+          "bounds_aabb": {
+            "x_min": 24.077,
+            "x_max": 29.089,
+            "y_min": 25.0,
+            "y_max": 28.441,
+            "z_min": 10.055,
+            "z_max": 10.251
+          },
+          "oriented_bbox": {
+            "center": [
+              26.638,
+              26.342
+            ],
+            "extent_x": 5.012,
+            "extent_y": 3.441,
+            "angle_deg": 0.0
+          },
+          "min_z_m": 10.055,
+          "base_z_m": 10.123,
+          "max_z_m": 10.251,
+          "vertical_extent_m": 0.129,
+          "point_density_pts_sqm": 2.86,
+          "footprint_status": "VALID_CONVEX_HULL"
+        },
+        "height": {
+          "height_m": 10.235,
+          "base_z_m": -0.014,
+          "roof_z_m": 10.22,
+          "height_quality": "GOOD",
+          "percentile_95_height_m": 10.249,
+          "percentile_98_height_m": 10.257,
+          "ransac_roof_height_m": 10.235,
+          "raw_z_max_height_m": 10.265
+        },
+        "floors": {
+          "candidate_floor_count": 3,
+          "floor_levels": [
+            {
+              "level": 1,
+              "z_min_m": -0.01,
+              "z_max_m": 2.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 2,
+              "z_min_m": 2.99,
+              "z_max_m": 5.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            },
+            {
+              "level": 3,
+              "z_min_m": 5.99,
+              "z_max_m": 8.99,
+              "confidence": 0.65,
+              "inference_evidence": "Z-density vertical rhythm + height constraints"
+            }
+          ],
+          "verification_status": "UNVERIFIED",
+          "verification_required": true,
+          "verification_reasons": [
+            "floor_1_slab_peak_ambiguous",
+            "floor_2_slab_peak_ambiguous",
+            "floor_3_slab_peak_ambiguous"
+          ]
+        },
+        "confidence": {
+          "indicators": {
+            "semantic_confidence": 0.957,
+            "point_coverage": 0.066,
+            "cluster_compactness": 0.85,
+            "density_consistency": 1.0,
+            "geometry_quality": 0.9,
+            "height_quality": 0.9,
+            "floor_quality": 0.8,
+            "spatial_precision_m": 0.2
+          },
+          "composite_confidence": null,
+          "confidence_disclaimer": "Individual quality indicators exported. Composite score un-weighted."
+        },
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "requires_cadastral_authority_validation": true
+      }
+    ],
+    "provenance": {
+      "model": {
+        "name": "PointNet2_MSG_DualHead_v1",
+        "checkpoint_filename": "best_pointnet2_msg_dualhead.pt",
+        "checkpoint_sha256": "eb167abd93cde6462b66d1e45fc658585be44776daf59fbb105a6a5ec2665586",
+        "file_size_bytes": 7919620,
+        "parameters": 643617,
+        "status": "FROZEN_BYTE_FOR_BYTE"
+      },
+      "decoder": {
+        "type": "HDBSCAN",
+        "min_cluster_size": 20,
+        "min_samples": 5,
+        "cluster_selection_method": "eom",
+        "alpha": 1.0,
+        "beta": 0.5,
+        "status": "FROZEN_PRODUCTION_CONFIG"
+      },
+      "baseline": {
+        "name": "baseline_v1.0_frozen",
+        "min_hag_m": 2.5,
+        "cluster_distance_m": 2.0,
+        "voxel_size_m": 0.2,
+        "status": "FROZEN_BASELINE"
+      },
+      "input_features": [
+        "X_norm",
+        "Y_norm",
+        "Z_norm",
+        "Intensity"
+      ],
+      "dataset": {
+        "name": "INDIAN_COLONY_DWARKA_01",
+        "source_crs": "EPSG:3857",
+        "processing_crs": "LOCAL_METRIC",
+        "tile_size_m": 40.0,
+        "overlap_m": 10.0
+      },
+      "system_environment": {
+        "python_version": "3.12.13",
+        "operating_system": "Windows",
+        "timestamp_utc": "2026-08-30 19:15:00 UTC"
+      },
+      "software_version": "SIH-2026-v5.0-FINAL"
+    },
+    "legal_disclaimer": "AI PREDICTION ONLY. Candidate building instance evidence generated for surveyor review. Does NOT establish legally authoritative cadastral boundaries, property ownership, or official ULPIN registration."
+  }
+}

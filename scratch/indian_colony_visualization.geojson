@@ -1,0 +1,11 @@
+{
+  "type": "FeatureCollection",
+  "name": "Indian_Urban_Settlement_3D_Cadastre_Candidates",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": []
+}

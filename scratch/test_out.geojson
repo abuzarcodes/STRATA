@@ -1,0 +1,54 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:2193"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              0,
+              10
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "candidate_instance_id": "CANDIDATE_B_001",
+        "status": "GEOMETRICALLY_VALIDATED",
+        "height_m": 6.0,
+        "base_z_m": 0.0,
+        "roof_z_m": 6.0,
+        "candidate_floor_count": 2,
+        "point_count": 100,
+        "footprint_area_sqm": 100.0,
+        "is_legal_boundary": false,
+        "requires_surveyor_validation": true,
+        "legal_disclaimer": "AI PREDICTION ONLY. Candidate evidence for surveyor review."
+      }
+    }
+  ]
+}
