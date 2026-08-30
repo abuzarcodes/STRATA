@@ -99,13 +99,13 @@ export default function GovtAdminDashboard({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col font-sans overflow-hidden backdrop-blur-2xl transition-colors duration-500 ${
+      className={`responsive-workspace fixed inset-0 z-50 flex flex-col font-sans overflow-hidden backdrop-blur-2xl transition-colors duration-500 ${
         isLight ? 'bg-[var(--color-bg-app)]/95 text-slate-800' : 'bg-[var(--color-bg-app)]/95 text-slate-100'
       }`}
     >
       {/* Top Header */}
       <header
-        className={`px-8 py-4 border-b flex items-center justify-between backdrop-blur-xl ${
+        className={`responsive-workspace-header px-8 py-4 border-b flex items-center justify-between backdrop-blur-xl ${
           isLight ? 'bg-white/90 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)]/90 border-[var(--color-border-default)]'
         }`}
       >
@@ -147,10 +147,10 @@ export default function GovtAdminDashboard({
       </header>
 
       {/* Main Dashboard Layout */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="responsive-workspace-body flex-1 flex overflow-hidden">
         {/* Left Sidebar Nav */}
         <aside
-          className={`w-64 border-r p-4 flex flex-col justify-between flex-shrink-0 backdrop-blur-xl ${
+          className={`responsive-workspace-sidebar w-64 border-r p-4 flex flex-col justify-between flex-shrink-0 backdrop-blur-xl ${
             isLight ? 'bg-white/80 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)]/80 border-[var(--color-border-default)]'
           }`}
         >
@@ -214,7 +214,7 @@ export default function GovtAdminDashboard({
         </aside>
 
         {/* Center Main Content Area */}
-        <main className="flex-1 p-8 overflow-y-auto space-y-8">
+        <main className="responsive-workspace-main flex-1 p-8 overflow-y-auto space-y-8">
           {/* Top 4 KPI Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div

@@ -7,9 +7,9 @@ export default function AboutModal({ isOpen, onClose, onLaunchPlatform, theme = 
   const isLight = theme === 'LIGHT'
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="responsive-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
       <div
-        className={`relative w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-2xl border shadow-2xl flex flex-col transition-all duration-300 ${
+        className={`responsive-modal-panel relative w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-2xl border shadow-2xl flex flex-col transition-all duration-300 ${
           isLight
             ? 'bg-white border-[var(--color-border-default)] text-slate-800'
             : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)] text-slate-100'

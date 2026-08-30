@@ -136,7 +136,7 @@ export default function PublicLocationSearch({
 
   return (
     <div
-      className={`w-84 border rounded-3xl p-5 shadow-2xl backdrop-blur-2xl flex flex-col gap-4 text-xs font-sans pointer-events-auto transition-colors duration-300 ${
+      className={`responsive-query-panel w-84 border rounded-3xl p-5 shadow-2xl backdrop-blur-2xl flex flex-col gap-4 text-xs font-sans pointer-events-auto transition-colors duration-300 ${
         isLight
           ? 'bg-white/95 border-[var(--color-border-default)] text-slate-800 shadow-[0_15px_45px_rgba(27,94,32,0.12)]'
           : 'bg-[var(--color-surface-1)]/95 border-[var(--color-border-default)] text-white shadow-[0_15px_50px_rgba(0,0,0,0.8)]'

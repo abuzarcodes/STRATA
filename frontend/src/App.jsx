@@ -243,7 +243,7 @@ export default function App() {
   return (
     <div
       data-theme={theme}
-      className={`theme-app w-screen h-screen relative font-sans transition-colors duration-500 ${
+      className={`theme-app responsive-app-shell w-screen h-screen relative font-sans transition-colors duration-500 ${
         appPhase === 'ABOUT' || appPhase === 'DOCUMENTATION' ? 'overflow-y-auto' : 'overflow-hidden select-none'
       }`}
     >
@@ -317,7 +317,7 @@ export default function App() {
           />
 
           {/* Sub-Header Top Telemetry Bar */}
-          <div className="theme-surface absolute top-16 left-0 right-0 z-20 px-8 py-2 border-b flex items-center justify-between text-[11px] font-mono backdrop-blur-md transition-colors duration-300">
+          <div className="theme-surface responsive-telemetry absolute top-16 left-0 right-0 z-20 px-8 py-2 border-b flex items-center justify-between text-[11px] font-mono backdrop-blur-md transition-colors duration-300">
             <div className="flex items-center gap-2">
                   <span className="font-bold theme-text-primary">DL-DWR-SEC10-07</span>
               <span className="text-slate-400">/</span>
@@ -382,7 +382,7 @@ export default function App() {
           </div>
 
           {/* Left Panel: Public Location Search & Floor Slicer */}
-          <div className="absolute top-28 left-6 z-20 transition-all duration-300">
+          <div className="responsive-left-panel absolute top-28 left-6 z-20 transition-all duration-300">
             {showLeftSearch && (
               <PublicLocationSearch
                 societyData={societyData}
@@ -398,7 +398,7 @@ export default function App() {
           </div>
 
           {/* Right Panel: View Mode Selector */}
-          <div className="absolute top-28 right-6 z-20 transition-all duration-300">
+          <div className="responsive-right-panel absolute top-28 right-6 z-20 transition-all duration-300">
             {!selectedUnit && (
               <LayerControls
                 viewMode={viewMode}
@@ -527,7 +527,7 @@ export default function App() {
 
           {/* Notification Toast */}
           {toast && (
-            <div className={`absolute top-24 left-1/2 -translate-x-1/2 z-40 px-4 py-2.5 rounded-2xl border text-xs font-mono shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300 backdrop-blur-xl ${
+            <div className={`responsive-notification absolute top-24 left-1/2 -translate-x-1/2 z-40 px-4 py-2.5 rounded-2xl border text-xs font-mono shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300 backdrop-blur-xl ${
               isLight
                 ? toast.type === 'WARNING'
                   ? 'bg-amber-50 border-amber-300 text-amber-900 shadow-amber-500/10'

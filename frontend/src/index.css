@@ -1034,6 +1034,219 @@ button {
   .landing-chip-detail { display: none; }
 }
 
+/* ═════════════════════════════════════════════════════════════════════
+   RESPONSIVE PLATFORM LAYOUT
+   ═════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .responsive-navbar { padding-inline: 1rem; }
+  .responsive-telemetry { padding-inline: 1.25rem; }
+  .responsive-left-panel,
+  .responsive-right-panel { max-width: min(22rem, calc(50vw - 1.5rem)); }
+  .responsive-query-panel,
+  .responsive-deed-card { max-width: 100%; }
+  .responsive-workspace-sidebar { width: 14rem; }
+  .responsive-workspace-main { padding: 1.25rem; }
+  .responsive-workspace-main [class~="lg:grid-cols-4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  .responsive-app-shell { overflow-y: auto !important; overflow-x: hidden; }
+
+  .responsive-navbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .responsive-navbar > .relative.flex-1 {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .responsive-navbar > .flex.items-center.gap-3:last-child { gap: 0.25rem; }
+  .responsive-navbar input { font-size: 11px; }
+
+  .responsive-telemetry {
+    top: 6.85rem;
+    padding: 0.45rem 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    font-size: 9px;
+  }
+
+  .responsive-telemetry > div:last-child {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .responsive-telemetry > div:last-child > div:nth-child(3) { display: none; }
+
+  .responsive-left-panel,
+  .responsive-right-panel {
+    position: fixed;
+    width: auto;
+    max-width: none;
+    left: 0.75rem;
+    right: 0.75rem;
+    transform: none;
+    z-index: 25;
+  }
+
+  .responsive-left-panel {
+    bottom: 0.75rem;
+    top: auto;
+  }
+
+  .responsive-right-panel {
+    bottom: calc(45vh + 1.5rem);
+    top: auto;
+  }
+
+  .responsive-left-panel > *,
+  .responsive-right-panel > * {
+    width: 100%;
+    max-width: none;
+  }
+
+  .responsive-query-panel,
+  .responsive-deed-card {
+    width: 100%;
+    max-width: none;
+    max-height: 43vh;
+    overflow-y: auto;
+    padding: 1rem;
+    border-radius: 1.5rem;
+  }
+
+  .responsive-query-panel .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .responsive-deed-card .grid-cols-2 { grid-template-columns: 1fr; }
+  .responsive-deed-card [class~="max-w-[210px]"] { max-width: calc(100vw - 9rem); }
+  .responsive-deed-card button { min-height: 2.75rem; }
+
+  .responsive-notification {
+    top: 8rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    transform: none;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .responsive-statusbar {
+    padding: 0.5rem 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .responsive-statusbar > div:last-child {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 10px;
+  }
+
+  .responsive-role-screen {
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 0.75rem;
+  }
+
+  .responsive-role-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding: 0.75rem;
+  }
+
+  .responsive-role-header > div:nth-child(2) { display: none; }
+  .responsive-role-header > div:last-child { margin-left: auto; }
+  .responsive-role-content { max-width: none; margin: 0; padding: 1rem 0; }
+  .responsive-role-content .p-6 { padding: 1rem; }
+
+  .responsive-workspace { overflow-y: auto; }
+  .responsive-workspace-header { padding: 0.75rem 1rem; }
+  .responsive-workspace-header > div:first-child { min-width: 0; }
+  .responsive-workspace-header > div:last-child { gap: 0.5rem; }
+  .responsive-workspace-header .text-\[10px\] { display: none; }
+
+  .responsive-workspace-body {
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .responsive-workspace-sidebar {
+    order: 2;
+    width: 100%;
+    min-height: auto;
+    border-right: 0;
+    border-top: 1px solid var(--color-border-default);
+    padding: 0.75rem;
+  }
+
+  .responsive-workspace-sidebar > div:first-child {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .responsive-workspace-sidebar > div:last-child { display: none; }
+
+  .responsive-workspace-main {
+    order: 1;
+    min-width: 0;
+    min-height: 0;
+    padding: 1rem;
+    overflow: visible;
+  }
+
+  .responsive-workspace-main > div { max-width: none; }
+  .responsive-workspace-main table { display: block; overflow-x: auto; white-space: nowrap; }
+  .responsive-workspace-main [class~="lg:grid-cols-4"],
+  .responsive-workspace-main [class~="md:grid-cols-3"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .responsive-workspace-main .h-72 { height: 14rem; }
+  .responsive-surveyor-studio .responsive-workspace-sidebar > div:first-child,
+  .responsive-surveyor-studio .responsive-workspace-main .grid { grid-template-columns: 1fr; }
+  .responsive-surveyor-studio .w-full.h-80 { height: 13rem; }
+
+  .responsive-modal-backdrop {
+    align-items: flex-end;
+    padding: 0.75rem;
+  }
+
+  .responsive-modal-panel {
+    width: 100%;
+    max-width: none;
+    max-height: calc(100dvh - 1.5rem);
+    min-height: 0;
+    border-radius: 1.25rem;
+  }
+
+  .responsive-modal-panel > * { min-width: 0; }
+  .responsive-modal-panel pre { max-width: 100%; overflow-x: auto; }
+
+  .landing-data-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .landing-chip-value { font-size: 11px; }
+}
+
+@media (max-width: 479px) {
+  .responsive-navbar .landing-brand-name { font-size: 0.8rem; }
+  .responsive-navbar .relative.flex-1 { min-width: 0; }
+  .responsive-telemetry > div:first-child span:nth-child(3) { display: none; }
+  .responsive-workspace-sidebar > div:first-child { grid-template-columns: 1fr; }
+  .responsive-workspace-main .lg\\:grid-cols-4,
+  .responsive-workspace-main .md\\:grid-cols-3 { grid-template-columns: 1fr; }
+  .responsive-role-header button { min-height: 2.75rem; }
+  .landing-data-grid { grid-template-columns: 1fr; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

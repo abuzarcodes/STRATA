@@ -63,10 +63,10 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
   }
 
   return (
-    <div className={`fixed inset-0 z-50 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in duration-200 ${
+    <div className={`responsive-modal-backdrop fixed inset-0 z-50 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in duration-200 ${
       isLight ? 'bg-[var(--color-surface-muted)]/80' : 'bg-slate-950/80'
     }`}>
-      <div className={`relative w-full max-w-4xl rounded-3xl p-6 shadow-2xl border space-y-6 transition-all ${
+      <div className={`responsive-modal-panel relative w-full max-w-4xl rounded-3xl p-6 shadow-2xl border space-y-6 transition-all ${
         isLight
           ? 'bg-white border-[var(--color-border-default)] text-slate-800'
           : 'bg-[var(--color-surface-1)] border-purple-500/40 text-slate-100'

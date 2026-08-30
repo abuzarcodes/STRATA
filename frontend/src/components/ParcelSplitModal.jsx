@@ -94,10 +94,10 @@ export default function ParcelSplitModal({
   }
 
   return (
-    <div className={`fixed inset-0 z-50 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in duration-200 ${
+    <div className={`responsive-modal-backdrop fixed inset-0 z-50 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in duration-200 ${
       isLight ? 'bg-[var(--color-surface-muted)]/80' : 'bg-slate-950/80'
     }`}>
-      <div className={`w-full max-w-2xl rounded-3xl p-6 shadow-2xl border flex flex-col justify-between transition-all ${
+      <div className={`responsive-modal-panel w-full max-w-2xl rounded-3xl p-6 shadow-2xl border flex flex-col justify-between transition-all ${
         isLight
           ? 'bg-white border-[var(--color-border-default)] text-slate-800'
           : 'bg-[var(--color-surface-1)] border-amber-500/30 text-white'

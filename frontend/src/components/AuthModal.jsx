@@ -93,12 +93,12 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
 
   return (
     <div
-      className={`fixed inset-0 z-50 backdrop-blur-2xl flex items-center justify-center p-4 transition-colors duration-300 ${
+      className={`responsive-modal-backdrop fixed inset-0 z-50 backdrop-blur-2xl flex items-center justify-center p-4 transition-colors duration-300 ${
         isLight ? 'bg-[var(--color-surface-muted)]/85' : 'bg-[var(--color-surface-3)]/90'
       }`}
     >
       <div
-        className={`w-full max-w-md rounded-3xl border shadow-2xl p-8 relative overflow-hidden backdrop-blur-2xl transition-all duration-300 ${
+        className={`responsive-modal-panel w-full max-w-md rounded-3xl border shadow-2xl p-8 relative overflow-hidden backdrop-blur-2xl transition-all duration-300 ${
           isLight
             ? 'bg-white/95 border-[var(--color-border-default)] text-slate-800 shadow-[0_20px_50px_rgba(27,94,32,0.15)]'
             : 'bg-[var(--color-surface-1)]/95 border-[var(--color-border-default)] text-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.8)]'

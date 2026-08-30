@@ -88,7 +88,7 @@ export default function PropertyDeedCard({
 
   return (
     <div
-      className={`w-84 sm:w-96 rounded-3xl border shadow-2xl p-5 space-y-4 backdrop-blur-2xl transition-all duration-300 ${
+      className={`responsive-deed-card w-84 sm:w-96 rounded-3xl border shadow-2xl p-5 space-y-4 backdrop-blur-2xl transition-all duration-300 ${
         isLight
           ? 'bg-white/95 border-[var(--color-border-default)] text-slate-800 shadow-[0_15px_45px_rgba(27,94,32,0.15)]'
           : 'bg-[var(--color-surface-1)]/95 border-[var(--color-border-default)] text-white shadow-[0_15px_50px_rgba(0,0,0,0.85)]'

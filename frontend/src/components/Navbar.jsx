@@ -78,7 +78,7 @@ export default function Navbar({
 
   return (
     <header
-      className="theme-surface absolute top-0 left-0 right-0 z-30 px-6 py-3 border-b flex items-center justify-between gap-4 backdrop-blur-2xl transition-colors duration-300 shadow-2xl"
+      className="theme-surface responsive-navbar absolute top-0 left-0 right-0 z-30 px-6 py-3 border-b flex items-center justify-between gap-4 backdrop-blur-2xl transition-colors duration-300 shadow-2xl"
     >
       {/* Brand & National Spatial Identity */}
       <div className="flex items-center gap-6">

@@ -83,7 +83,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col font-sans overflow-hidden backdrop-blur-2xl transition-colors duration-500 ${
+      className={`responsive-workspace responsive-surveyor-studio fixed inset-0 z-50 flex flex-col font-sans overflow-hidden backdrop-blur-2xl transition-colors duration-500 ${
         isLight ? 'bg-[var(--color-bg-app)]/95 text-slate-800' : 'bg-[var(--color-bg-app)]/95 text-slate-100'
       }`}
     >
@@ -131,10 +131,10 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
       </header>
 
       {/* Main 3-Column Studio Body */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="responsive-workspace-body flex-1 flex overflow-hidden">
         {/* Left Sidebar */}
         <aside
-          className={`w-64 border-r p-4 flex flex-col justify-between flex-shrink-0 backdrop-blur-xl ${
+          className={`responsive-workspace-sidebar w-64 border-r p-4 flex flex-col justify-between flex-shrink-0 backdrop-blur-xl ${
             isLight ? 'bg-white/80 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)]/80 border-[var(--color-border-default)]'
           }`}
         >
@@ -182,7 +182,7 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
         </aside>
 
         {/* Center Canvas / Ingestion Area */}
-        <main className="flex-1 p-8 overflow-y-auto space-y-8">
+        <main className="responsive-workspace-main flex-1 p-8 overflow-y-auto space-y-8">
           <div className="max-w-5xl mx-auto space-y-8">
             {/* Success Banner */}
             {successMessage && (

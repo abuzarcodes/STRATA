@@ -15,7 +15,7 @@ export default function StatusBar({ theme = 'LIGHT', onToggleTheme }) {
 
   return (
     <div
-      className={`absolute bottom-0 left-0 right-0 z-30 px-6 py-2.5 glass-hud-neon-lime border-t flex items-center justify-between ${
+      className={`responsive-statusbar absolute bottom-0 left-0 right-0 z-30 px-6 py-2.5 glass-hud-neon-lime border-t flex items-center justify-between ${
         isLight ? 'border-t-slate-200 bg-white/95 text-slate-800' : 'border-t-[#1E2532] bg-[#06080B] text-slate-200'
       }`}
     >

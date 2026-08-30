@@ -58,11 +58,11 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
 
   return (
     <div
-      className="theme-app fixed inset-0 z-40 flex flex-col items-center justify-between px-6 py-8 overflow-y-auto transition-colors duration-500 backdrop-blur-2xl"
+      className="theme-app responsive-role-screen fixed inset-0 z-40 flex flex-col items-center justify-between px-6 py-8 overflow-y-auto transition-colors duration-500 backdrop-blur-2xl"
     >
       {/* Top Header Bar */}
       <div
-        className="theme-surface w-full max-w-6xl px-6 py-3.5 flex items-center justify-between rounded-2xl border backdrop-blur-xl shadow-xl"
+        className="theme-surface responsive-role-header w-full max-w-6xl px-6 py-3.5 flex items-center justify-between rounded-2xl border backdrop-blur-xl shadow-xl"
       >
         <div className="flex items-center gap-3">
           <StrataLogo size={34} isLight={isLight} />
@@ -106,7 +106,7 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-5xl my-auto py-8">
+      <div className="responsive-role-content relative z-10 flex flex-col items-center w-full max-w-5xl my-auto py-8">
         {/* Back Link */}
         <button
           onClick={onBack}
