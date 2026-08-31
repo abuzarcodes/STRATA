@@ -353,7 +353,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
       <div className="landing-grid-overlay" />
       <div className="landing-vignette" />
 
-      <header className="relative z-20 mx-auto flex w-full max-w-[1480px] items-center justify-between px-5 py-5 sm:px-8 lg:px-12 lg:py-7">
+      <header className="relative z-20 mx-auto flex w-full max-w-[1480px] items-center justify-between px-5 py-3.5 sm:px-8 lg:px-12 lg:py-4">
         <button className="landing-brand landing-reveal" onClick={() => onNavClick?.('landing')} aria-label="Return to STRATA landing page">
           <span className="landing-brand-mark">
             <StrataLogo size={39} isLight={isLight} />

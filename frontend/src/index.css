@@ -406,12 +406,12 @@ button {
 
 .landing-headline {
   max-width: 760px;
-  margin: 20px 0 0;
+  margin: 12px 0 0;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(3.8rem, 8vw, 7.8rem);
+  font-size: clamp(2.6rem, 5.2vw, 5.2rem);
   font-weight: 500;
-  letter-spacing: -0.075em;
-  line-height: 0.88;
+  letter-spacing: -0.065em;
+  line-height: 0.90;
   color: var(--landing-text);
 }
 
@@ -421,12 +421,12 @@ button {
 }
 
 .landing-headline span {
-  padding-left: clamp(0.5rem, 4vw, 4.2rem);
+  padding-left: clamp(0.4rem, 2.5vw, 2.6rem);
   color: var(--landing-accent);
 }
 
 .landing-headline em {
-  padding-left: clamp(1.5rem, 9vw, 9rem);
+  padding-left: clamp(0.8rem, 5vw, 5.2rem);
   color: var(--landing-hot);
   font-style: normal;
 }
@@ -440,12 +440,12 @@ button {
 }
 
 .landing-lede {
-  max-width: 510px;
-  margin: 28px 0 0 clamp(0rem, 9vw, 9rem);
-  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  max-width: 480px;
+  margin: 16px 0 0 clamp(0rem, 5vw, 5.2rem);
+  font-size: clamp(0.84rem, 1vw, 0.96rem);
   font-weight: 500;
   letter-spacing: -0.01em;
-  line-height: 1.7;
+  line-height: 1.5;
   color: var(--landing-copy);
 }
 
@@ -454,7 +454,7 @@ button {
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
-  margin: 32px 0 0 clamp(0rem, 9vw, 9rem);
+  margin: 18px 0 0 clamp(0rem, 5vw, 5.2rem);
 }
 
 .landing-primary-action,
@@ -463,9 +463,9 @@ button {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  min-height: 48px;
-  border-radius: 13px;
-  padding: 0 18px;
+  min-height: 44px;
+  border-radius: 12px;
+  padding: 0 20px;
   cursor: pointer;
   font-family: 'DM Mono', monospace;
   font-size: 10px;
@@ -514,7 +514,7 @@ button {
   display: flex;
   align-items: center;
   gap: 13px;
-  margin: 42px 0 0 clamp(0rem, 9vw, 9rem);
+  margin: 18px 0 0 clamp(0rem, 5vw, 5.2rem);
 }
 
 .landing-proof-avatar-stack {
@@ -1019,8 +1019,13 @@ button {
 }
 
 .landing-hero-section {
-  min-height: clamp(680px, calc(100svh - 96px), 940px);
-  padding-top: clamp(2rem, 5vh, 5rem);
+  min-height: calc(100vh - 72px);
+  min-height: calc(100svh - 72px);
+  padding-top: clamp(0.25rem, 1.2vh, 1rem);
+  padding-bottom: clamp(0.75rem, 2vh, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .landing-field-notes {
