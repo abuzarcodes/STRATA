@@ -56,12 +56,20 @@ const ROLE_PRESETS = {
   }
 }
 
+const MOCK_CITIZENS = [
+  { name: 'Deepak Joshi', id: 'DL-8849-2026-IN', pass: 'deepak@strata2026', props: 'Flat 104 & 302, Aura Residency' },
+  { name: 'Rajesh Kumar', id: 'DL-1102-2026-IN', pass: 'rajesh@strata2026', props: 'Flat 101, Aura Residency' },
+  { name: 'Priya Sharma', id: 'DL-7731-2026-IN', pass: 'priya@strata2026', props: 'Flat 102, Aura Residency' },
+  { name: 'Vikram Malhotra', id: 'DL-3904-2026-IN', pass: 'vikram@strata2026', props: 'Flat 301, Aura Residency' }
+]
+
 export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, theme = 'CYBER' }) {
   const config = ROLE_PRESETS[activeRole] || ROLE_PRESETS.CITIZEN
   const RoleIcon = config.icon
 
-  const [identifier, setIdentifier] = useState(config.demoId)
-  const [password, setPassword] = useState(config.demoPass)
+  const [selectedCitizen, setSelectedCitizen] = useState(MOCK_CITIZENS[0])
+  const [identifier, setIdentifier] = useState(activeRole === 'OWNER' ? MOCK_CITIZENS[0].id : config.demoId)
+  const [password, setPassword] = useState(activeRole === 'OWNER' ? MOCK_CITIZENS[0].pass : config.demoPass)
   const [showPassword, setShowPassword] = useState(false)
   const [is2FAEnabled, setIs2FAEnabled] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -70,13 +78,19 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
 
   // Update preset when role changes
   useEffect(() => {
-    setIdentifier(config.demoId)
-    setPassword(config.demoPass)
-  }, [activeRole])
+    if (activeRole === 'OWNER') {
+      setIdentifier(selectedCitizen.id)
+      setPassword(selectedCitizen.pass)
+    } else {
+      setIdentifier(config.demoId)
+      setPassword(config.demoPass)
+    }
+  }, [activeRole, selectedCitizen])
 
-  const handleFillDemo = () => {
-    setIdentifier(config.demoId)
-    setPassword(config.demoPass)
+  const handleSelectCitizen = (cit) => {
+    setSelectedCitizen(cit)
+    setIdentifier(cit.id)
+    setPassword(cit.pass)
   }
 
   const handleSignIn = (method = 'PRIMARY') => {
@@ -86,9 +100,10 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
       onSuccess({
         role: activeRole,
         identifier: identifier.trim() || config.demoId,
+        citizenName: activeRole === 'OWNER' ? selectedCitizen.name : (activeRole === 'GOVT' ? 'Revenue Officer (SDM Dwarka)' : (activeRole === 'SURVEYOR' ? 'Er. Alok Saxena' : 'Public Explorer')),
         method
       })
-    }, 500)
+    }, 400)
   }
 
   return (
@@ -168,20 +183,56 @@ export default function AuthModal({ activeRole = 'CITIZEN', onBack, onSuccess, t
           {config.hint}
         </div>
 
+        {/* Mock Citizen Selector when role is OWNER */}
+        {activeRole === 'OWNER' && (
+          <div className="mb-4">
+            <label className="block text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider mb-2">
+              Select Verified Citizen Persona:
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {MOCK_CITIZENS.map((cit) => {
+                const isSelected = selectedCitizen.name === cit.name
+                return (
+                  <button
+                    key={cit.name}
+                    type="button"
+                    onClick={() => handleSelectCitizen(cit)}
+                    className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                      isSelected
+                        ? isLight
+                          ? 'bg-[var(--color-surface-muted)] border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] shadow-sm'
+                          : 'bg-[var(--color-accent-primary)]/15 border-[var(--color-accent-primary)] text-white shadow-[0_0_10px_rgba(0,208,132,0.2)]'
+                        : isLight
+                        ? 'bg-slate-50 border-[var(--color-border-default)] text-slate-700 hover:bg-slate-100'
+                        : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    <div className="font-bold text-xs flex items-center justify-between">
+                      <span>{cit.name}</span>
+                      {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-primary)]" />}
+                    </div>
+                    <div className="text-[10px] font-mono text-slate-500 truncate mt-0.5">{cit.props}</div>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Quick Demo Pre-Fill Button */}
         <div className="flex justify-between items-center mb-3">
           <span className="text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider">
             Sign In Details
           </span>
           <button
-            onClick={handleFillDemo}
+            onClick={() => activeRole === 'OWNER' ? handleSelectCitizen(selectedCitizen) : setIdentifier(config.demoId)}
             type="button"
             className={`text-[11px] font-mono font-bold flex items-center gap-1 transition-colors cursor-pointer ${
               isLight ? 'text-[var(--color-accent-primary)] hover:text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-accent-primary)] hover:underline'
             }`}
           >
             <Sparkles className="w-3 h-3" />
-            <span>Auto-fill Demo Details</span>
+            <span>Reset Demo Credentials</span>
           </button>
         </div>
 

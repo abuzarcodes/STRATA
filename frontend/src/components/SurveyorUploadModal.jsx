@@ -8,7 +8,6 @@ import {
   RefreshCw, FolderOpen, Sliders, ShieldCheck, Sparkles,
   Check
 } from 'lucide-react'
-import confetti from 'canvas-confetti'
 import StrataLogo from './StrataLogo'
 
 // Interactive 3D Boundary Calibration Scene
@@ -68,7 +67,6 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
     setTimeout(() => {
       setIsProcessing(false)
       setSuccessMessage(`Successfully parsed ${gatewayName} architectural spatial boundaries. Certified 2-manifold watertight mesh (Euler χ=2). Minted 3D-ULPIN IND280145987621-A+04-89C1.`)
-      confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } })
       if (onIngestSuccess) {
         onIngestSuccess({
           gateway: gatewayName,

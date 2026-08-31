@@ -46,6 +46,53 @@ export default function App() {
     setTheme((prev) => (prev === 'LIGHT' ? 'CYBER' : 'LIGHT'))
   }, [])
 
+  // Citizen and Mutation State
+  const [activeCitizen, setActiveCitizen] = useState('Deepak Joshi')
+  const [mutationApplications, setMutationApplications] = useState([
+    {
+      appId: 'MUT-2026-8812',
+      unitId: 'FLAT-104',
+      property: 'Flat 104 (Level 1, Tower A)',
+      ulpin_3d: 'IND280145987621-A+01-4DAC',
+      fromCitizen: 'Deepak Joshi',
+      toParty: 'Priya Sharma',
+      type: 'GIFT_DEED_BLOOD_RELATION',
+      sroOffice: 'Dwarka Sub-District (SRO-IX)',
+      stampReceiptNo: 'DLR-STAMP-2026-81902',
+      submittedOn: '31-AUG-2026',
+      status: 'PENDING_REVENUE_APPROVAL',
+      step: 'Revenue Officer Field & 3D Cadastre Verification (Step 2 of 3)'
+    }
+  ])
+
+  const handleSubmitMutationApplication = (newApp) => {
+    setMutationApplications((prev) => [newApp, ...prev])
+    showNotification('Application Queued', `Mutation ${newApp.appId} is under Revenue Review.`, 'INFO')
+  }
+
+  const handleApproveMutation = (app) => {
+    setMutationApplications((prev) =>
+      prev.map((m) => (m.appId === app.appId ? { ...m, status: 'APPROVED', step: 'Executed & Digitally Signed' } : m))
+    )
+    setSocietyData((prev) => {
+      const updatedUnits = prev.units.map((u) => {
+        if (u.unit_id === app.unitId) {
+          return { ...u, owner: app.toParty }
+        }
+        return u
+      })
+      return { ...prev, units: updatedUnits }
+    })
+    showNotification('Title Mutation Approved', `Ownership of ${app.property} updated to ${app.toParty}. Added to owner vault.`, 'SUCCESS')
+  }
+
+  const handleRejectMutation = (appId) => {
+    setMutationApplications((prev) =>
+      prev.map((m) => (m.appId === appId ? { ...m, status: 'REJECTED', step: 'Rejected by Revenue Officer' } : m))
+    )
+    showNotification('Mutation Rejected', `Application ${appId} was rejected.`, 'WARNING')
+  }
+
   // Modals state
   const [showAdminDashboard, setShowAdminDashboard] = useState(false)
   const [showSplitModal, setShowSplitModal] = useState(false)
@@ -100,9 +147,10 @@ export default function App() {
     setAppPhase('AUTH')
   }, [])
 
-  const handleAuthSuccess = useCallback(({ role }) => {
+  const handleAuthSuccess = useCallback(({ role, citizenName }) => {
     const targetRole = role || activeRole
     setActiveRole(targetRole)
+    if (citizenName) setActiveCitizen(citizenName)
     setAppPhase('APP')
 
     if (targetRole === 'GOVT') {
@@ -113,7 +161,7 @@ export default function App() {
       showNotification('Surveyor Ingestion Tool', 'Signed in as Licensed Cadastral Surveyor. Ready for BIM/CAD/LiDAR ingestion.', 'SUCCESS')
     } else if (targetRole === 'OWNER') {
       setShowLocker(true)
-      showNotification('Citizen Vault', 'Authenticated Property Owner Vault Opened (Deepak Joshi).', 'SUCCESS')
+      showNotification('Citizen Vault', `Authenticated Property Owner Vault Opened (${citizenName || 'Deepak Joshi'}).`, 'SUCCESS')
     } else {
       showNotification('Public Portal', 'Welcome to STRATA National 3D Cadastral Digital Twin.', 'INFO')
     }
@@ -470,6 +518,9 @@ export default function App() {
                 setShowSplitModal(true)
                 setShowAdminDashboard(false)
               }}
+              mutationApplications={mutationApplications}
+              onApproveMutation={handleApproveMutation}
+              onRejectMutation={handleRejectMutation}
             />
           )}
 
@@ -482,6 +533,11 @@ export default function App() {
                 if (target) handleSelectUnit(target)
               }}
               onNotify={showNotification}
+              activeCitizen={activeCitizen}
+              onSelectCitizen={setActiveCitizen}
+              societyData={societyData}
+              mutationApplications={mutationApplications}
+              onSubmitMutationApplication={handleSubmitMutationApplication}
             />
           )}
 

@@ -1,101 +1,28 @@
-import React, { useState, useRef } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import * as THREE from 'three'
+import React, { useState } from 'react'
 import {
   ShieldAlert, Layers, FileCheck2, FileSpreadsheet,
   AlertTriangle, Flame, CheckCircle2, X, Radio,
   Check, TrendingUp, Scale, FolderKanban, Shield,
-  Building, Award, ExternalLink, ArrowRight
+  Building, Award, ExternalLink, ArrowRight, Eye, UserCheck
 } from 'lucide-react'
 import StrataLogo from './StrataLogo'
-
-// Mini 3D Ward Cadastre Preview for Government Dashboard
-function MiniWardCadastre({ isLight }) {
-  return (
-    <group position={[0, -2, 0]}>
-      {/* Ground Grid */}
-      <gridHelper args={[40, 20, isLight ? 'var(--color-accent-primary)' : 'var(--color-accent-primary)', isLight ? 'var(--color-border-default)' : 'var(--color-border-default)']} position={[0, 0, 0]} />
-
-      {/* Society Blocks Cluster */}
-      <group>
-        <mesh position={[-6, 2.5, -4]}>
-          <boxGeometry args={[4, 5, 4]} />
-          <meshStandardMaterial color={isLight ? '#CBD5E1' : 'var(--color-border-strong)'} roughness={0.65} />
-        </mesh>
-        <lineSegments position={[-6, 2.5, -4]}>
-          <edgesGeometry args={[new THREE.BoxGeometry(4, 5, 4)]} />
-          <lineBasicMaterial color={isLight ? 'var(--color-accent-primary)' : 'var(--color-accent-primary)'} />
-        </lineSegments>
-
-        <mesh position={[6, 4, 3]}>
-          <boxGeometry args={[5, 8, 5]} />
-          <meshStandardMaterial color={isLight ? '#CBD5E1' : 'var(--color-border-strong)'} roughness={0.65} />
-        </mesh>
-        <lineSegments position={[6, 4, 3]}>
-          <edgesGeometry args={[new THREE.BoxGeometry(5, 8, 5)]} />
-          <lineBasicMaterial color={isLight ? 'var(--color-accent-primary)' : 'var(--color-accent-primary)'} />
-        </lineSegments>
-
-        {/* Encroaching Cantilever Unit (Highlighted Red) */}
-        <mesh position={[0, 4.5, -2]}>
-          <boxGeometry args={[6, 9, 6]} />
-          <meshStandardMaterial color="var(--color-status-danger)" transparent opacity={0.65} />
-        </mesh>
-        <lineSegments position={[0, 4.5, -2]}>
-          <edgesGeometry args={[new THREE.BoxGeometry(6, 9, 6)]} />
-          <lineBasicMaterial color="var(--color-status-danger)" linewidth={2} />
-        </lineSegments>
-      </group>
-    </group>
-  )
-}
 
 export default function GovtAdminDashboard({
   societyData,
   onClose,
   onFocusUnit,
   onOpenSplitModal,
-  theme = 'CYBER'
+  theme = 'CYBER',
+  mutationApplications = [],
+  onApproveMutation,
+  onRejectMutation
 }) {
   const [activeNav, setActiveNav] = useState('DASHBOARD')
-  const [approvals, setApprovals] = useState([
-    {
-      id: 'APP-983',
-      applicant: 'Anil Ambani Trust',
-      ulpin: 'IND280145987621-A+04-7F9C',
-      type: 'New 3D Title Registration',
-      status: 'PENDING'
-    },
-    {
-      id: 'APP-984',
-      applicant: 'Rajesh Developers',
-      ulpin: 'IND280145987621-A+01-4DAC',
-      type: 'Volumetric 3D Subdivision (Split)',
-      status: 'PENDING'
-    },
-    {
-      id: 'APP-985',
-      applicant: 'Sunil Narang',
-      ulpin: 'IND280145987621-A+01-4DAC',
-      type: 'Title Mutation Transfer',
-      status: 'PENDING'
-    }
-  ])
-
   const isLight = theme === 'LIGHT'
 
-  const handleApprove = (id) => {
-    setApprovals((prev) =>
-      prev.map((a) => (a.id === id ? { ...a, status: 'APPROVED' } : a))
-    )
-  }
-
-  const handleReject = (id) => {
-    setApprovals((prev) =>
-      prev.map((a) => (a.id === id ? { ...a, status: 'REJECTED' } : a))
-    )
-  }
+  const auditSummary = societyData?.audit_summary || {}
+  const violationsList = societyData?.units?.filter((u) => u.violation?.has_violation) || []
+  const pendingMutations = mutationApplications.filter((m) => m.status === 'PENDING_REVENUE_APPROVAL')
 
   return (
     <div
@@ -117,7 +44,7 @@ export default function GovtAdminDashboard({
                 STRATA
               </div>
               <div className={`text-[10px] font-mono font-bold uppercase ${isLight ? 'text-[var(--color-accent-primary-hover)]' : 'text-[var(--color-accent-primary)]'}`}>
-                Revenue Administrator Compliance Center
+                Revenue Administrator Compliance Center • Dwarka Sub-District
               </div>
             </div>
           </div>
@@ -196,8 +123,8 @@ export default function GovtAdminDashboard({
                   : 'text-slate-400 hover:bg-slate-800/60 hover:text-white'
               }`}
             >
-              <ShieldAlert className="w-4 h-4" />
-              <span>Encroachment Radar</span>
+              <ShieldAlert className="w-4 h-4 text-rose-500" />
+              <span>Encroachment Radar ({violationsList.length})</span>
             </button>
 
             <button
@@ -212,22 +139,22 @@ export default function GovtAdminDashboard({
                   : 'text-slate-400 hover:bg-slate-800/60 hover:text-white'
               }`}
             >
-              <FileCheck2 className="w-4 h-4" />
-              <span>Mutation Approvals ({approvals.filter(a => a.status === 'PENDING').length})</span>
+              <FileCheck2 className="w-4 h-4 text-amber-500" />
+              <span>Mutation Approvals ({pendingMutations.length})</span>
             </button>
           </div>
 
           <div className="pt-4 border-t border-slate-200 dark:border-slate-800 text-[10px] font-mono text-slate-500 space-y-1">
-            <div className="font-bold uppercase tracking-wider">SECURE LEDGER NODE</div>
+            <div className="font-bold uppercase tracking-wider">SECURE REVENUE NODE</div>
             <div className={`flex items-center gap-1.5 font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
               <span className="w-2 h-2 rounded-full bg-[var(--color-accent-primary)] animate-pulse" />
-              <span>MoLR-NODE-DEL-04 (Dwarka)</span>
+              <span>MoLR-NODE-DEL-04 (Dwarka Sec-10)</span>
             </div>
           </div>
         </aside>
 
         {/* Center Main Content Area */}
-        <main className="responsive-workspace-main flex-1 p-8 overflow-y-auto space-y-8">
+        <main className="responsive-workspace-main flex-1 p-6 lg:p-8 overflow-y-auto space-y-6">
           {/* Top 4 KPI Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div
@@ -236,11 +163,11 @@ export default function GovtAdminDashboard({
               }`}
             >
               <div className="text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider mb-2">
-                PENDING APPROVALS
+                PENDING MUTATIONS
               </div>
               <div className="flex items-baseline justify-between">
                 <span className={`text-3xl font-black font-mono ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
-                  {approvals.filter(a => a.status === 'PENDING').length}
+                  {pendingMutations.length}
                 </span>
                 <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-full bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/30">
                   Active Queue
@@ -257,9 +184,9 @@ export default function GovtAdminDashboard({
                 ACTIVE ENCROACHMENTS
               </div>
               <div className="flex items-baseline justify-between">
-                <span className="text-3xl font-black text-rose-500 font-mono">02</span>
+                <span className="text-3xl font-black text-rose-500 font-mono">0{violationsList.length}</span>
                 <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-500 border border-rose-500/30">
-                  Critical
+                  Flagged by AI
                 </span>
               </div>
             </div>
@@ -274,10 +201,10 @@ export default function GovtAdminDashboard({
               </div>
               <div className="flex items-baseline justify-between">
                 <span className={`text-3xl font-black font-mono ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
-                  97.8%
+                  94.6%
                 </span>
                 <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-full bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/30">
-                  +1.2%
+                  Authoritative
                 </span>
               </div>
             </div>
@@ -288,176 +215,249 @@ export default function GovtAdminDashboard({
               }`}
             >
               <div className="text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider mb-2">
-                VOLUMETRIC REVENUE
+                TOTAL UNITS AUDITED
               </div>
               <div className="flex items-baseline justify-between">
                 <span className={`text-3xl font-black font-mono ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
-                  ₹4.8 Cr
+                  {societyData?.units?.length || 37}
                 </span>
                 <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-full bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/30">
-                  +18%
+                  Dwarka Sec-10
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Interactive 3D Radar + Alert Stream */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div
-              className={`lg:col-span-2 p-6 rounded-2xl border shadow-xl flex flex-col justify-between ${
-                isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className={`text-base font-bold flex items-center gap-2 ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
-                  <span>AI Encroachment Radar Map View</span>
-                  <span className="text-[11px] font-mono text-[var(--color-accent-primary)] font-normal">(Interactive 3D Ward Orbit)</span>
-                </h3>
-                <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-500 border border-rose-500/40 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" />
-                  SCANNING LIVE WARD
-                </span>
+          {/* TAB 1: EXECUTIVE DASHBOARD */}
+          {activeNav === 'DASHBOARD' && (
+            <div className="space-y-6">
+              <div
+                className={`p-6 rounded-3xl border shadow-xl ${
+                  isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-slate-800' : 'text-white'}`}>
+                      Dwarka Sector 10 Urban Zone Cadastral Summary
+                    </h3>
+                    <p className="text-xs text-slate-500 font-mono mt-0.5">
+                      Integrated 3D Bhu-Aadhaar Land Registry with Automated Spatial Audit
+                    </p>
+                  </div>
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">
+                    ISO 19152 LADM SYNCHRONIZED
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+                  <div className={`p-4 rounded-2xl border ${isLight ? 'bg-slate-50 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]'}`}>
+                    <div className="text-slate-500 text-[10px]">TOTAL REGISTERED PARCELS</div>
+                    <div className="text-lg font-bold mt-1 text-slate-800 dark:text-white">{societyData?.units?.length || 37} Units</div>
+                    <div className="text-[10px] text-slate-400 mt-1">4 Urban Blocks + Blue Line Metro Corridor</div>
+                  </div>
+
+                  <div className={`p-4 rounded-2xl border ${isLight ? 'bg-slate-50 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]'}`}>
+                    <div className="text-slate-500 text-[10px]">REGISTERED CARPET AREA</div>
+                    <div className="text-lg font-bold mt-1 text-slate-800 dark:text-white">{societyData?.metadata?.total_carpet_area_m2 || 3420} m²</div>
+                    <div className="text-[10px] text-slate-400 mt-1">Total Built Volume: {societyData?.metadata?.total_volume_m3 || 9580} m³</div>
+                  </div>
+
+                  <div className={`p-4 rounded-2xl border ${isLight ? 'bg-slate-50 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)]'}`}>
+                    <div className="text-slate-500 text-[10px]">TAX & CIRCLE RATE VALUATION</div>
+                    <div className="text-lg font-bold mt-1 text-slate-800 dark:text-white">₹38.4 Cr</div>
+                    <div className="text-[10px] text-emerald-500 mt-1">100% Tax Assessment Mapped</div>
+                  </div>
+                </div>
               </div>
 
-              <div className="w-full h-72 rounded-2xl bg-black/40 border border-slate-700/50 relative overflow-hidden">
-                <Canvas camera={{ position: [18, 14, 20], fov: 42 }}>
-                  <ambientLight intensity={0.6} />
-                  <directionalLight position={[10, 20, 10]} intensity={1.2} color="var(--color-accent-primary)" />
-                  <directionalLight position={[-10, -10, -10]} intensity={0.3} color="var(--color-status-danger)" />
-                  <MiniWardCadastre isLight={isLight} />
-                  <OrbitControls enableDamping autoRotate autoRotateSpeed={0.8} />
-                </Canvas>
+              {/* Quick Actions Panel */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div
+                  className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between ${
+                    isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
+                  }`}
+                >
+                  <div>
+                    <h4 className="font-bold text-sm text-slate-800 dark:text-white flex items-center gap-2">
+                      <ShieldAlert className="w-4 h-4 text-rose-500" />
+                      <span>Municipal Encroachment Inspection</span>
+                    </h4>
+                    <p className="text-xs text-slate-500 mt-1 font-mono">
+                      {violationsList.length} active spatial encroachments detected exceeding municipal setback rules.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setActiveNav('RADAR')}
+                    className="mt-4 px-4 py-2 rounded-xl bg-rose-500/15 text-rose-500 border border-rose-500/30 text-xs font-mono font-bold hover:bg-rose-500/25 flex items-center justify-between cursor-pointer"
+                  >
+                    <span>View Flagged Units ({violationsList.length})</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
 
-                <div className="absolute bottom-3 left-3 px-3 py-1 rounded-lg bg-black/70 border border-slate-700 text-[10px] font-mono text-slate-300">
-                  Dwarka Sector 10 Ward • Multi-Level Cadastre Mesh • EPSG:4326 WGS84
+                <div
+                  className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between ${
+                    isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
+                  }`}
+                >
+                  <div>
+                    <h4 className="font-bold text-sm text-slate-800 dark:text-white flex items-center gap-2">
+                      <FileCheck2 className="w-4 h-4 text-amber-500" />
+                      <span>Title Mutation Approval Queue</span>
+                    </h4>
+                    <p className="text-xs text-slate-500 mt-1 font-mono">
+                      {pendingMutations.length} legal mutation applications submitted by registered citizens awaiting officer e-Sign.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setActiveNav('QUEUE')}
+                    className="mt-4 px-4 py-2 rounded-xl bg-amber-500/15 text-amber-500 border border-amber-500/30 text-xs font-mono font-bold hover:bg-amber-500/25 flex items-center justify-between cursor-pointer"
+                  >
+                    <span>Open Mutation Queue ({pendingMutations.length})</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             </div>
+          )}
 
-            {/* Violation Alert Stream */}
-            <div
-              className={`p-6 rounded-2xl border shadow-xl space-y-4 ${
-                isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'
-              }`}
-            >
-              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-rose-500 flex items-center justify-between">
-                <span>LIVE VIOLATION STREAM</span>
-                <span className="text-[10px] text-slate-400">Click to Focus in 3D</span>
+          {/* TAB 2: ENCROACHMENT RADAR */}
+          {activeNav === 'RADAR' && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-slate-800' : 'text-white'}`}>
+                    AI-Detected Spatial Setback & FAR Encroachments
+                  </h3>
+                  <p className="text-xs text-slate-500 font-mono">
+                    3D Volumetric Breaches Against Delhi Master Plan (MPD 2041) Statutory Setbacks
+                  </p>
+                </div>
               </div>
 
-              <div className="space-y-3">
-                <div
-                  onClick={() => {
-                    const unit = societyData?.units?.find(u => u.unit_id === 'FLAT-202') || { unit_id: 'FLAT-202', name: 'Apartment 202 (3BHK Deluxe Encroached)' }
-                    if (onFocusUnit) onFocusUnit(unit)
-                    onClose()
-                  }}
-                  className="p-4 rounded-xl bg-rose-950/20 border border-rose-500/40 space-y-1 hover:border-rose-500 transition-colors cursor-pointer"
-                >
-                  <div className="text-[11px] font-mono font-bold text-rose-400">
-                    ULPIN: IND280145987621-A+02-244A
-                  </div>
-                  <div className={`text-xs font-bold ${isLight ? 'text-slate-800' : 'text-white'}`}>
-                    Cantilever Balcony Setback Encroachment (Level 02)
-                  </div>
-                  <div className="text-[10px] text-slate-500 flex items-center justify-between">
-                    <span>Encroachment Volume: <strong className="text-rose-400">39.2 m³</strong></span>
-                    <span className="text-[var(--color-accent-primary)] font-bold flex items-center gap-1 font-mono">
-                      <span>INSPECT IN 3D</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </span>
-                  </div>
-                </div>
+              <div className="space-y-4">
+                {violationsList.map((unit) => (
+                  <div
+                    key={unit.unit_id}
+                    className={`p-6 rounded-3xl border shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
+                      isLight ? 'bg-white border-rose-300' : 'bg-[var(--color-surface-1)] border-rose-500/40'
+                    }`}
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-500/20 text-rose-500 border border-rose-500/40">
+                          {unit.violation.violation_type.replace(/_/g, ' ')}
+                        </span>
+                        <span className="text-xs font-mono text-slate-500">Severity: {unit.violation.severity}</span>
+                      </div>
 
-                <div
-                  onClick={() => {
-                    const unit = societyData?.units?.find(u => u.unit_id === 'PARK-B106') || { unit_id: 'PARK-B106', name: 'Basement Parking Bay #06' }
-                    if (onFocusUnit) onFocusUnit(unit)
-                    onClose()
-                  }}
-                  className="p-4 rounded-xl border border-amber-500/30 bg-amber-950/10 space-y-1 hover:border-amber-400 transition-colors cursor-pointer"
-                >
-                  <div className="text-[11px] font-mono font-bold text-amber-400">
-                    ULPIN: IND280145987621-U-01-5FAF
+                      <h4 className="text-base font-bold text-slate-800 dark:text-white">
+                        {unit.name} • <span className="text-slate-500 font-normal">{unit.owner}</span>
+                      </h4>
+
+                      <p className="text-xs text-rose-600 dark:text-rose-400 font-mono">
+                        {unit.violation.description}
+                      </p>
+
+                      <div className="flex items-center gap-4 text-xs font-mono text-slate-500 pt-1">
+                        <span>3D-ULPIN: <strong className="theme-accent">{unit.ulpin_3d}</strong></span>
+                        <span>Excess Area: <strong className="text-rose-500">+{unit.violation.encroachment_area_m2} m²</strong></span>
+                        <span>Excess Volume: <strong className="text-rose-500">+{unit.violation.encroachment_volume_m3} m³</strong></span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        if (onFocusUnit) onFocusUnit(unit)
+                        onClose()
+                      }}
+                      className="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-mono text-xs font-bold flex items-center gap-2 shadow-lg shadow-rose-600/25 transition-all cursor-pointer flex-shrink-0"
+                    >
+                      <Eye className="w-4 h-4" />
+                      <span>INSPECT IN 3D CADASTRE</span>
+                    </button>
                   </div>
-                  <div className={`text-xs font-bold ${isLight ? 'text-slate-800' : 'text-white'}`}>
-                    Basement Subsurface Over-Excavation (Level -01)
-                  </div>
-                  <div className="text-[10px] text-slate-500 flex items-center justify-between">
-                    <span>Severity: <strong className="text-amber-400">HIGH AUDIT</strong></span>
-                    <span className="text-[var(--color-accent-primary)] font-bold flex items-center gap-1 font-mono">
-                      <span>INSPECT IN 3D</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </span>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Pending Title Approval Table */}
-          <div>
-            <h3 className={`text-base font-bold mb-4 ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
-              Pending Title Approval & Mutation Queue
-            </h3>
-            <div
-              className={`rounded-2xl border overflow-hidden shadow-xl ${
-                isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)]'
-              }`}
-            >
-              <table className="w-full text-left text-xs">
-                <thead className={`font-mono text-[11px] uppercase border-b ${
-                  isLight ? 'bg-[var(--color-surface-2)] text-slate-600 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] text-slate-400 border-[var(--color-border-default)]'
-                }`}>
-                  <tr>
-                    <th className="p-3.5 pl-5">APPLICATION ID</th>
-                    <th className="p-3.5">APPLICANT</th>
-                    <th className="p-3.5">PARCEL 3D-ULPIN</th>
-                    <th className="p-3.5">MUTATION TYPE</th>
-                    <th className="p-3.5 pr-5">OFFICER ACTIONS</th>
-                  </tr>
-                </thead>
-                <tbody className={`divide-y font-medium ${
-                  isLight ? 'divide-slate-200' : 'divide-[var(--color-border-default)]/70'
-                }`}>
-                  {approvals.map((app) => (
-                    <tr key={app.id} className={`transition-colors ${isLight ? 'hover:bg-slate-50' : 'hover:bg-[#131F37]'}`}>
-                      <td className="p-3.5 pl-5 font-mono text-[var(--color-accent-primary)] font-bold">{app.id}</td>
-                      <td className={`p-3.5 font-semibold ${isLight ? 'text-slate-800' : 'text-white'}`}>{app.applicant}</td>
-                      <td className="p-3.5 font-mono text-slate-400">{app.ulpin}</td>
-                      <td className="p-3.5 text-slate-500">{app.type}</td>
-                      <td className="p-3.5 pr-5">
-                        {app.status === 'APPROVED' ? (
-                          <span className="px-2.5 py-1 rounded-lg bg-[var(--color-accent-primary)]/20 text-[var(--color-accent-primary)] font-mono text-[10px] font-bold">
-                            APPROVED ✓
+          {/* TAB 3: MUTATION APPROVALS QUEUE */}
+          {activeNav === 'QUEUE' && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-slate-800' : 'text-white'}`}>
+                    Statutory Title Mutation Transfer Applications
+                  </h3>
+                  <p className="text-xs text-slate-500 font-mono">
+                    Delhi Land Revenue Act (Section 89) Electronic Approval Workflow
+                  </p>
+                </div>
+              </div>
+
+              {mutationApplications.length === 0 ? (
+                <div className="p-8 text-center rounded-3xl border border-dashed text-slate-500 font-mono text-xs">
+                  No title mutation applications currently submitted in queue.
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {mutationApplications.map((app) => (
+                    <div
+                      key={app.appId}
+                      className={`p-6 rounded-3xl border shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
+                        isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
+                      }`}
+                    >
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono font-bold text-xs theme-accent">{app.appId}</span>
+                          <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-bold ${
+                            app.status === 'APPROVED' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
+                          }`}>
+                            {app.status.replace(/_/g, ' ')}
                           </span>
-                        ) : app.status === 'REJECTED' ? (
-                          <span className="px-2.5 py-1 rounded-lg bg-rose-500/20 text-rose-500 font-mono text-[10px] font-bold">
-                            REJECTED ✕
-                          </span>
-                        ) : (
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => handleApprove(app.id)}
-                              className="px-3 py-1 rounded-lg bg-[var(--color-accent-primary)]/20 hover:bg-[var(--color-accent-primary)] text-[var(--color-accent-primary)] hover:text-[var(--color-surface-3)] border border-[var(--color-accent-primary)]/40 font-mono text-[10px] font-bold transition-all cursor-pointer"
-                            >
-                              APPROVE
-                            </button>
-                            <button
-                              onClick={() => handleReject(app.id)}
-                              className="px-3 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-500 hover:text-white border border-rose-500/40 font-mono text-[10px] font-bold transition-all cursor-pointer"
-                            >
-                              REJECT
-                            </button>
-                          </div>
-                        )}
-                      </td>
-                    </tr>
+                          <span className="text-xs font-mono text-slate-500">Submitted: {app.submittedOn}</span>
+                        </div>
+
+                        <h4 className="text-base font-bold text-slate-800 dark:text-white">
+                          {app.property} — Transfer from <span className="theme-accent">{app.fromCitizen}</span> to <span className="text-emerald-500">{app.toParty}</span>
+                        </h4>
+
+                        <div className="text-xs text-slate-500 font-mono">
+                          Mode: {app.type.replace(/_/g, ' ')} • SRO: {app.sroOffice || 'Dwarka (SRO-IX)'} • Stamp Receipt: {app.stampReceiptNo || 'DLR-STAMP-90412'}
+                        </div>
+                      </div>
+
+                      {app.status === 'PENDING_REVENUE_APPROVAL' ? (
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                          <button
+                            onClick={() => onRejectMutation && onRejectMutation(app.appId)}
+                            className="px-3.5 py-2 rounded-xl border border-rose-500/40 text-rose-500 hover:bg-rose-500/10 font-mono text-xs font-bold transition-all cursor-pointer"
+                          >
+                            Reject
+                          </button>
+                          <button
+                            onClick={() => onApproveMutation && onApproveMutation(app)}
+                            className="px-4 py-2 rounded-xl bg-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary-hover)] text-slate-950 font-mono text-xs font-bold transition-all cursor-pointer shadow-md flex items-center gap-1.5"
+                          >
+                            <Check className="w-4 h-4" />
+                            <span>Approve & Execute Title Transfer</span>
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 text-xs font-mono text-emerald-500 font-bold">
+                          <CheckCircle2 className="w-4 h-4" />
+                          <span>TITLE TRANSFERRED TO {app.toParty.toUpperCase()}</span>
+                        </div>
+                      )}
+                    </div>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              )}
             </div>
-          </div>
+          )}
         </main>
       </div>
     </div>

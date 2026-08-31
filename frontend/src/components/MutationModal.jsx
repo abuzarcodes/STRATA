@@ -9,7 +9,6 @@ import {
   ShieldCheck,
   User
 } from 'lucide-react'
-import confetti from 'canvas-confetti'
 
 export default function MutationModal({
   unit,
@@ -35,12 +34,11 @@ export default function MutationModal({
     setTimeout(() => {
       setIsSubmitting(false)
       setSuccess(true)
-      confetti({ particleCount: 70, spread: 60 })
 
       if (onApplyMutation) {
         onApplyMutation(unit.unit_id, newOwner.trim())
       }
-    }, 800)
+    }, 600)
   }
 
   return (

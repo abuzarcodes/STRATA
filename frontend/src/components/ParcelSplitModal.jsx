@@ -9,7 +9,6 @@ import {
   X,
   FileCheck
 } from 'lucide-react'
-import confetti from 'canvas-confetti'
 
 export default function ParcelSplitModal({
   unit,
@@ -48,11 +47,6 @@ export default function ParcelSplitModal({
     setTimeout(() => {
       setIsSubmitting(false)
       setSplitSuccess(true)
-      confetti({
-        particleCount: 80,
-        spread: 60,
-        origin: { y: 0.6 }
-      })
 
       // Notify parent app
       if (onApplySplit) {

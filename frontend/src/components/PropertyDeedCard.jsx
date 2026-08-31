@@ -4,7 +4,7 @@ import {
   Share2, Split, ArrowRightLeft, X, Check, Copy, AlertTriangle,
   QrCode, ExternalLink, Box
 } from 'lucide-react'
-import confetti from 'canvas-confetti'
+import { generateTitleDeedPDF } from '../utils/pdfGenerator'
 
 export default function PropertyDeedCard({
   unit,
@@ -30,40 +30,13 @@ export default function PropertyDeedCard({
   const handleDownloadDeedCertificate = () => {
     setIsDownloadingDeed(true)
     setTimeout(() => {
-      const deedPayload = {
-        title_deed_type: "3D_VOLUMETRIC_PROPERTY_DEED",
-        standard: "ISO 19152 LADM Part 2 compliant",
-        national_cadastre_system: "STRATA Bhu-Aadhaar 3D",
-        metadata: {
-          ulpin_3d: unit.ulpin_3d,
-          spatial_unit_id: unit.unit_id,
-          unit_name: unit.name,
-          floor_level: unit.level,
-          owner_name: unit.owner,
-          volumetric_m3: unit.volume_m3,
-          carpet_area_m2: unit.carpet_area_m2,
-          built_up_area_m2: unit.built_up_area_m2,
-          property_type: unit.type,
-          tax_assessment_val_inr: unit.tax_assessed_val_inr,
-          watertight_manifold: unit.is_watertight ? "VERIFIED (Euler χ=2)" : "NON_MANIFOLD"
-        },
-        certification: {
-          issuing_authority: "Ministry of Land Resources & Department of Revenue, Government of NCT of Delhi",
-          cryptographic_seal: "SHA256: 8f94d12c0192ea0183b0f5899a19c62c3e4495c",
-          issued_at: new Date().toISOString()
-        }
+      try {
+        generateTitleDeedPDF(unit)
+      } catch (err) {
+        console.error('Failed to generate Deed PDF:', err)
       }
-
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(deedPayload, null, 2))
-      const downloadAnchor = document.createElement('a')
-      downloadAnchor.setAttribute("href", dataStr)
-      downloadAnchor.setAttribute("download", `3D_DEED_${unit.ulpin_3d || unit.unit_id}.json`)
-      document.body.appendChild(downloadAnchor)
-      downloadAnchor.click()
-      downloadAnchor.remove()
       setIsDownloadingDeed(false)
-      confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } })
-    }, 500)
+    }, 400)
   }
 
   const handleSubdivideClick = () => {

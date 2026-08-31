@@ -1,1014 +1,367 @@
 {
   "metadata": {
-    "system": "AuraCadastre 3D Land Administration Platform",
+    "system": "STRATA 3D Bhu-Aadhaar Land Administration Platform",
     "standard_compliance": [
-      "ISO 19152 LADM Part 2",
+      "ISO 19152:2024 LADM Part 2",
       "OGC CityGML 3.0",
-      "Bhu-Aadhaar 3D Specification"
+      "Survey of India 3D Bhu-Aadhaar Standard"
     ],
-    "society_name": "Aura Residency CGHS",
-    "locality": "Plot 12, Sector 10, Dwarka, New Delhi 110075",
+    "society_name": "Dwarka Sector 10 Urban Zone",
+    "locality": "Sector 10, Dwarka, South West Delhi 110075",
     "state": "07 (Delhi NCT)",
     "district": "South West Delhi",
-    "sub_registrar_office": "Kapashera / Dwarka",
+    "sub_registrar_office": "Dwarka Sub-District",
     "base_ulpin": "IND280145987621",
     "anchor_wgs84": {
       "latitude": 28.5823,
       "longitude": 77.0602,
       "elevation_msl": 215.0
     },
-    "total_registered_units": 29,
-    "total_carpet_area_m2": 2533.0,
-    "total_volume_m3": 6983.9
+    "total_registered_units": 37,
+    "total_carpet_area_m2": 1731.9,
+    "total_volume_m3": 6458.5
   },
   "audit_summary": {
-    "total_units_audited": 29,
-    "compliant_units": 27,
+    "total_units_audited": 37,
+    "compliant_units": 35,
     "violation_count": 2,
     "air_rights_violations": [
       {
-        "unit_id": "FLAT-202",
-        "ulpin_3d": "IND280145987621-A+02-244A",
-        "name": "Apartment 202 (3BHK Deluxe Encroached)",
-        "level": 2,
+        "unit_id": "FLAT-304",
+        "ulpin_3d": "IND280145987621-A+03-7E91",
+        "name": "Flat 304 (3BHK Balcony Encroachment)",
+        "owner": "Harpreet Singh",
+        "block": "BLOCK_A",
+        "level": 3,
+        "type": "RESIDENTIAL",
         "domain": "A",
-        "owner": "Sunita Rao (Cantilever Balcony)",
+        "carpet_area_m2": 34.4,
+        "rera_volume_m3": 117.6,
         "is_watertight": true,
-        "volume_m3": 266.0,
-        "carpet_area_m2": 95.0,
+        "centroid_local": [
+          -5.5,
+          -5.0,
+          10.6
+        ],
+        "vertices_local": [
+          [
+            -9,
+            -8,
+            9.2
+          ],
+          [
+            -2,
+            -8,
+            9.2
+          ],
+          [
+            -2,
+            -2,
+            9.2
+          ],
+          [
+            -9,
+            -2,
+            9.2
+          ],
+          [
+            -9,
+            -8,
+            12.0
+          ],
+          [
+            -2,
+            -8,
+            12.0
+          ],
+          [
+            -2,
+            -2,
+            12.0
+          ],
+          [
+            -9,
+            -2,
+            12.0
+          ]
+        ],
+        "faces": [
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            6,
+            7,
+            4
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            0,
+            5,
+            4
+          ],
+          [
+            1,
+            2,
+            6
+          ],
+          [
+            1,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7
+          ],
+          [
+            2,
+            7,
+            6
+          ],
+          [
+            3,
+            0,
+            4
+          ],
+          [
+            3,
+            4,
+            7
+          ]
+        ],
+        "deed_no": "DEL-DWK-2023-88911",
+        "deed_token": "2233d87690cd252bc00cbc4a65b4a6c40772eca64c992ca78c5d16b1d2e9452f",
+        "registration_date": "14-OCT-2023",
+        "mortgage": "NONE (Clear Title)",
+        "tax_status": "PAID (FY 2025-26)",
+        "circle_rate_inr_m2": 74500,
+        "estimated_valuation_inr": 3203500,
         "violation": {
           "has_violation": true,
           "violation_type": "AIR_RIGHTS_SETBACK_ENCROACHMENT",
           "severity": "HIGH",
-          "encroachment_area_m2": 14.0,
-          "encroachment_volume_m3": 39.2,
-          "description": "Apartment 202 (3BHK Deluxe Encroached) cantilevered extension exceeds approved setback envelope by 14.0 m\u00b2 (39.2 m\u00b3)."
+          "encroachment_area_m2": 10.0,
+          "encroachment_volume_m3": 28.0,
+          "description": "Flat 304 unauthorized cantilevered balcony extends 2.0m into the statutory public road setback envelope."
         }
       }
     ],
     "subsurface_violations": [
       {
-        "unit_id": "PARK-B106",
-        "ulpin_3d": "IND280145987621-U-01-5FAF",
-        "name": "Basement Parking Bay #06 (Unapproved Extension)",
-        "level": -1,
-        "domain": "U",
-        "owner": "Builder Reserved / Unsanctioned",
-        "is_watertight": true,
-        "volume_m3": 132.0,
-        "carpet_area_m2": 40.0,
-        "violation": {
-          "has_violation": true,
-          "violation_type": "SUBSURFACE_BOUNDARY_BREACH",
-          "severity": "CRITICAL",
-          "encroachment_area_m2": 7.5,
-          "encroachment_volume_m3": 24.75,
-          "description": "Basement Parking Bay #06 (Unapproved Extension) breaches the outer parcel boundary by 7.5 m\u00b2 (24.75 m\u00b3)."
-        }
-      }
-    ],
-    "inter_unit_clashes": [],
-    "units_summary": [
-      {
-        "unit_id": "PARK-B101",
-        "ulpin_3d": "IND280145987621-U-01-39F1",
-        "name": "Basement Parking Bay #01",
-        "level": -1,
-        "domain": "U",
-        "owner": "Rajesh Kumar (Flat 101 Link)",
-        "is_watertight": true,
-        "volume_m3": 99.0,
-        "carpet_area_m2": 30.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "PARK-B102",
-        "ulpin_3d": "IND280145987621-U-01-0004",
-        "name": "Basement Parking Bay #02",
-        "level": -1,
-        "domain": "U",
-        "owner": "Priya Sharma (Flat 102 Link)",
-        "is_watertight": true,
-        "volume_m3": 99.0,
-        "carpet_area_m2": 30.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "PARK-B103",
-        "ulpin_3d": "IND280145987621-U-01-161F",
-        "name": "Basement Parking Bay #03",
-        "level": -1,
-        "domain": "U",
-        "owner": "Amitabh Verma (Flat 201 Link)",
-        "is_watertight": true,
-        "volume_m3": 99.0,
-        "carpet_area_m2": 30.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "PARK-B104",
-        "ulpin_3d": "IND280145987621-U-01-E59D",
-        "name": "Basement Parking Bay #04",
-        "level": -1,
-        "domain": "U",
-        "owner": "Sunita Rao (Flat 202 Link)",
-        "is_watertight": true,
-        "volume_m3": 99.0,
-        "carpet_area_m2": 30.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "PARK-B105",
-        "ulpin_3d": "IND280145987621-U-01-9FA1",
-        "name": "Basement Parking Bay #05",
-        "level": -1,
-        "domain": "U",
-        "owner": "Vikram Malhotra (Flat 301 Link)",
-        "is_watertight": true,
-        "volume_m3": 99.0,
-        "carpet_area_m2": 30.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "PARK-B106",
-        "ulpin_3d": "IND280145987621-U-01-5FAF",
-        "name": "Basement Parking Bay #06 (Unapproved Extension)",
-        "level": -1,
-        "domain": "U",
-        "owner": "Builder Reserved / Unsanctioned",
-        "is_watertight": true,
-        "volume_m3": 132.0,
-        "carpet_area_m2": 40.0,
-        "violation": {
-          "has_violation": true,
-          "violation_type": "SUBSURFACE_BOUNDARY_BREACH",
-          "severity": "CRITICAL",
-          "encroachment_area_m2": 7.5,
-          "encroachment_volume_m3": 24.75,
-          "description": "Basement Parking Bay #06 (Unapproved Extension) breaches the outer parcel boundary by 7.5 m\u00b2 (24.75 m\u00b3)."
-        }
-      },
-      {
-        "unit_id": "UTIL-B101",
-        "ulpin_3d": "IND280145987621-U-01-5BB7",
-        "name": "Basement Substation & Pump Room",
-        "level": -1,
-        "domain": "U",
-        "owner": "Aura Residency RWA",
-        "is_watertight": true,
-        "volume_m3": 82.5,
-        "carpet_area_m2": 25.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "COMM-G01",
-        "ulpin_3d": "IND280145987621-S00-76B4",
-        "name": "Grand Entrance Lobby & Admin Office",
+        "unit_id": "COMM-G04",
+        "ulpin_3d": "IND280145987622-S00-44D4",
+        "name": "Shop 04: Cafe Coffee Day (Sidewalk Encroachment)",
+        "owner": "CCD Delhi Franchise",
+        "block": "BLOCK_B",
         "level": 0,
+        "type": "COMMERCIAL",
         "domain": "S",
-        "owner": "Aura Residency RWA",
+        "carpet_area_m2": 41.3,
+        "rera_volume_m3": 166.3,
         "is_watertight": true,
-        "volume_m3": 1209.6,
-        "carpet_area_m2": 432.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "LOBBY-100",
-        "ulpin_3d": "IND280145987621-A+01-48A2",
-        "name": "Floor 1 Elevator Lobby & Fire Corridor",
-        "level": 1,
-        "domain": "A",
-        "owner": "Aura Residency RWA",
-        "is_watertight": true,
-        "volume_m3": 100.8,
-        "carpet_area_m2": 36.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-101",
-        "ulpin_3d": "IND280145987621-A+01-E5D1",
-        "name": "Apartment 101 (3BHK Executive)",
-        "level": 1,
-        "domain": "A",
-        "owner": "Rajesh Kumar",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-102",
-        "ulpin_3d": "IND280145987621-A+01-869A",
-        "name": "Apartment 102 (3BHK Executive)",
-        "level": 1,
-        "domain": "A",
-        "owner": "Priya Sharma",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-103",
-        "ulpin_3d": "IND280145987621-A+01-AF18",
-        "name": "Apartment 103 (2BHK Premium)",
-        "level": 1,
-        "domain": "A",
-        "owner": "Karan Kapoor",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-104",
-        "ulpin_3d": "IND280145987621-A+01-4DAC",
-        "name": "Apartment 104 (2BHK Premium)",
-        "level": 1,
-        "domain": "A",
-        "owner": "Deepak Joshi",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "LOBBY-200",
-        "ulpin_3d": "IND280145987621-A+02-2759",
-        "name": "Floor 2 Elevator Lobby & Fire Corridor",
-        "level": 2,
-        "domain": "A",
-        "owner": "Aura Residency RWA",
-        "is_watertight": true,
-        "volume_m3": 100.8,
-        "carpet_area_m2": 36.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-201",
-        "ulpin_3d": "IND280145987621-A+02-811E",
-        "name": "Apartment 201 (3BHK Executive)",
-        "level": 2,
-        "domain": "A",
-        "owner": "Amitabh Verma",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-202",
-        "ulpin_3d": "IND280145987621-A+02-244A",
-        "name": "Apartment 202 (3BHK Deluxe Encroached)",
-        "level": 2,
-        "domain": "A",
-        "owner": "Sunita Rao (Cantilever Balcony)",
-        "is_watertight": true,
-        "volume_m3": 266.0,
-        "carpet_area_m2": 95.0,
+        "centroid_local": [
+          14.2,
+          -5.0,
+          1.85
+        ],
+        "vertices_local": [
+          [
+            10,
+            -8,
+            0.2
+          ],
+          [
+            18.4,
+            -8,
+            0.2
+          ],
+          [
+            18.4,
+            -2,
+            0.2
+          ],
+          [
+            10,
+            -2,
+            0.2
+          ],
+          [
+            10,
+            -8,
+            3.5
+          ],
+          [
+            18.4,
+            -8,
+            3.5
+          ],
+          [
+            18.4,
+            -2,
+            3.5
+          ],
+          [
+            10,
+            -2,
+            3.5
+          ]
+        ],
+        "faces": [
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            6,
+            7,
+            4
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            0,
+            5,
+            4
+          ],
+          [
+            1,
+            2,
+            6
+          ],
+          [
+            1,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7
+          ],
+          [
+            2,
+            7,
+            6
+          ],
+          [
+            3,
+            0,
+            4
+          ],
+          [
+            3,
+            4,
+            7
+          ]
+        ],
+        "deed_no": "DEL-DWK-2022-COM04",
+        "deed_token": "0e61a36404b9a3551dc7fbf96840da30460eda1ed66404f28d0917427f43b683",
+        "registration_date": "14-OCT-2023",
+        "mortgage": "NONE (Clear Title)",
+        "tax_status": "PAID (FY 2025-26)",
+        "circle_rate_inr_m2": 74500,
+        "estimated_valuation_inr": 3846062,
         "violation": {
           "has_violation": true,
-          "violation_type": "AIR_RIGHTS_SETBACK_ENCROACHMENT",
-          "severity": "HIGH",
-          "encroachment_area_m2": 14.0,
-          "encroachment_volume_m3": 39.2,
-          "description": "Apartment 202 (3BHK Deluxe Encroached) cantilevered extension exceeds approved setback envelope by 14.0 m\u00b2 (39.2 m\u00b3)."
-        }
-      },
-      {
-        "unit_id": "FLAT-203",
-        "ulpin_3d": "IND280145987621-A+02-0D80",
-        "name": "Apartment 203 (2BHK Premium)",
-        "level": 2,
-        "domain": "A",
-        "owner": "Ananya Sen",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-204",
-        "ulpin_3d": "IND280145987621-A+02-AAF7",
-        "name": "Apartment 204 (2BHK Premium)",
-        "level": 2,
-        "domain": "A",
-        "owner": "Harish Mehta",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "LOBBY-300",
-        "ulpin_3d": "IND280145987621-A+03-5F17",
-        "name": "Floor 3 Elevator Lobby & Fire Corridor",
-        "level": 3,
-        "domain": "A",
-        "owner": "Aura Residency RWA",
-        "is_watertight": true,
-        "volume_m3": 100.8,
-        "carpet_area_m2": 36.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-301",
-        "ulpin_3d": "IND280145987621-A+03-3BD9",
-        "name": "Apartment 301 (3BHK Executive)",
-        "level": 3,
-        "domain": "A",
-        "owner": "Vikram Malhotra",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-302",
-        "ulpin_3d": "IND280145987621-A+03-8460",
-        "name": "Apartment 302 (3BHK Executive)",
-        "level": 3,
-        "domain": "A",
-        "owner": "Suresh Raina",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-303",
-        "ulpin_3d": "IND280145987621-A+03-89BC",
-        "name": "Apartment 303 (2BHK Premium)",
-        "level": 3,
-        "domain": "A",
-        "owner": "Pooja Hegde",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-304",
-        "ulpin_3d": "IND280145987621-A+03-983A",
-        "name": "Apartment 304 (2BHK Premium)",
-        "level": 3,
-        "domain": "A",
-        "owner": "Naveen Jindal",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "LOBBY-400",
-        "ulpin_3d": "IND280145987621-A+04-757C",
-        "name": "Floor 4 Elevator Lobby & Fire Corridor",
-        "level": 4,
-        "domain": "A",
-        "owner": "Aura Residency RWA",
-        "is_watertight": true,
-        "volume_m3": 100.8,
-        "carpet_area_m2": 36.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-401",
-        "ulpin_3d": "IND280145987621-A+04-0ABB",
-        "name": "Apartment 401 (Penthouse North-A)",
-        "level": 4,
-        "domain": "A",
-        "owner": "Rohan Singhania",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-402",
-        "ulpin_3d": "IND280145987621-A+04-3CCA",
-        "name": "Apartment 402 (Penthouse North-B)",
-        "level": 4,
-        "domain": "A",
-        "owner": "Manish Goel",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-403",
-        "ulpin_3d": "IND280145987621-A+04-95CE",
-        "name": "Apartment 403 (Penthouse South-A)",
-        "level": 4,
-        "domain": "A",
-        "owner": "Sanjay Dutt",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "FLAT-404",
-        "ulpin_3d": "IND280145987621-A+04-5281",
-        "name": "Apartment 404 (Penthouse South-B)",
-        "level": 4,
-        "domain": "A",
-        "owner": "Alok Nath",
-        "is_watertight": true,
-        "volume_m3": 226.8,
-        "carpet_area_m2": 81.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
-        }
-      },
-      {
-        "unit_id": "ROOF-501",
-        "ulpin_3d": "IND280145987621-A+05-A049",
-        "name": "Terrace Solar Array & Overhead Water Storage",
-        "level": 5,
-        "domain": "A",
-        "owner": "Aura Residency RWA",
-        "is_watertight": true,
-        "volume_m3": 993.6,
-        "carpet_area_m2": 432.0,
-        "violation": {
-          "has_violation": false,
-          "violation_type": "NONE",
-          "severity": "COMPLIANT",
-          "encroachment_area_m2": 0.0,
-          "encroachment_volume_m3": 0.0,
-          "description": "Within legal parcel & setback boundaries."
+          "violation_type": "GROUND_COVERAGE_SIDEWALK_ENCROACHMENT",
+          "severity": "CRITICAL",
+          "encroachment_area_m2": 14.4,
+          "encroachment_volume_m3": 47.5,
+          "description": "Commercial Plaza G04 unauthorized front extension encroaches 2.4m onto public pedestrian walkway."
         }
       }
-    ],
-    "total_clashes": 0,
-    "overall_cadastral_status": "PASSED_WITH_WARNINGS"
-  },
-  "parcel_boundary": {
-    "local_coordinates": [
-      [
-        -18.0,
-        -14.0
-      ],
-      [
-        18.0,
-        -14.0
-      ],
-      [
-        18.0,
-        14.0
-      ],
-      [
-        -18.0,
-        14.0
-      ],
-      [
-        -18.0,
-        -14.0
-      ]
-    ],
-    "wgs84_coordinates": [
-      [
-        77.060016,
-        28.5821737,
-        215.0
-      ],
-      [
-        77.060384,
-        28.5821737,
-        215.0
-      ],
-      [
-        77.060384,
-        28.5824263,
-        215.0
-      ],
-      [
-        77.060016,
-        28.5824263,
-        215.0
-      ],
-      [
-        77.060016,
-        28.5821737,
-        215.0
-      ]
-    ]
-  },
-  "context_layers": {
-    "north_road_wgs84": [
-      [
-        77.0598422,
-        28.5824263,
-        215.0
-      ],
-      [
-        77.0605578,
-        28.5824263,
-        215.0
-      ],
-      [
-        77.0605578,
-        28.5825346,
-        215.0
-      ],
-      [
-        77.0598422,
-        28.5825346,
-        215.0
-      ],
-      [
-        77.0598422,
-        28.5824263,
-        215.0
-      ]
-    ],
-    "east_road_wgs84": [
-      [
-        77.060384,
-        28.5820293,
-        215.0
-      ],
-      [
-        77.0604658,
-        28.5820293,
-        215.0
-      ],
-      [
-        77.0604658,
-        28.5825707,
-        215.0
-      ],
-      [
-        77.060384,
-        28.5825707,
-        215.0
-      ],
-      [
-        77.060384,
-        28.5820293,
-        215.0
-      ]
-    ],
-    "neighbor_west_wgs84": [
-      [
-        77.0598422,
-        28.5821737,
-        215.0
-      ],
-      [
-        77.060016,
-        28.5821737,
-        215.0
-      ],
-      [
-        77.060016,
-        28.5824263,
-        215.0
-      ],
-      [
-        77.0598422,
-        28.5824263,
-        215.0
-      ],
-      [
-        77.0598422,
-        28.5821737,
-        215.0
-      ]
-    ],
-    "neighbor_south_wgs84": [
-      [
-        77.060016,
-        28.5820293,
-        215.0
-      ],
-      [
-        77.060384,
-        28.5820293,
-        215.0
-      ],
-      [
-        77.060384,
-        28.5821737,
-        215.0
-      ],
-      [
-        77.060016,
-        28.5821737,
-        215.0
-      ],
-      [
-        77.060016,
-        28.5820293,
-        215.0
-      ]
-    ],
-    "north_road_local": [
-      [
-        -35.0,
-        14.0
-      ],
-      [
-        35.0,
-        14.0
-      ],
-      [
-        35.0,
-        26.0
-      ],
-      [
-        -35.0,
-        26.0
-      ],
-      [
-        -35.0,
-        14.0
-      ]
-    ],
-    "east_road_local": [
-      [
-        18.0,
-        -30.0
-      ],
-      [
-        26.0,
-        -30.0
-      ],
-      [
-        26.0,
-        30.0
-      ],
-      [
-        18.0,
-        30.0
-      ],
-      [
-        18.0,
-        -30.0
-      ]
-    ],
-    "neighbor_west_local": [
-      [
-        -35.0,
-        -14.0
-      ],
-      [
-        -18.0,
-        -14.0
-      ],
-      [
-        -18.0,
-        14.0
-      ],
-      [
-        -35.0,
-        14.0
-      ],
-      [
-        -35.0,
-        -14.0
-      ]
-    ],
-    "neighbor_south_local": [
-      [
-        -18.0,
-        -30.0
-      ],
-      [
-        18.0,
-        -30.0
-      ],
-      [
-        18.0,
-        -14.0
-      ],
-      [
-        -18.0,
-        -14.0
-      ],
-      [
-        -18.0,
-        -30.0
-      ]
     ]
   },
   "units": [
     {
       "unit_id": "PARK-B101",
+      "ulpin_3d": "IND280145987621-U-01-39F1",
       "name": "Basement Parking Bay #01",
+      "owner": "Rajesh Kumar",
+      "block": "BLOCK_A",
       "level": -1,
+      "type": "PARKING",
       "domain": "U",
-      "type": "RESTRICTED_COMMON_PARKING",
-      "owner": "Rajesh Kumar (Flat 101 Link)",
-      "poly_2d": [
-        [
-          -11.5,
-          3.5
-        ],
-        [
-          -5.5,
-          3.5
-        ],
-        [
-          -5.5,
-          8.5
-        ],
-        [
-          -11.5,
-          8.5
-        ],
-        [
-          -11.5,
-          3.5
-        ]
-      ],
-      "z_min": -3.5,
-      "z_max": -0.2,
-      "color": "#00D084",
-      "carpet_area_m2": 30.0,
-      "volume_m3": 99.0,
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 99.0,
       "is_watertight": true,
       "centroid_local": [
-        -8.5,
-        6.0,
-        -1.85
-      ],
-      "bbox_local": [
         -11.5,
-        3.5,
-        -3.5,
-        -5.5,
-        8.5,
-        -0.2
-      ],
-      "centroid_wgs84": [
-        77.0601131,
-        28.5823541,
-        213.15
+        -11.0,
+        -1.85
       ],
       "vertices_local": [
         [
-          -11.5,
-          3.5,
+          -14,
+          -14,
           -3.5
         ],
         [
-          -5.5,
-          3.5,
+          -9,
+          -14,
           -3.5
         ],
         [
-          -5.5,
-          8.5,
+          -9,
+          -8,
           -3.5
         ],
         [
-          -11.5,
-          8.5,
+          -14,
+          -8,
           -3.5
         ],
         [
-          -11.5,
-          3.5,
+          -14,
+          -14,
           -0.2
         ],
         [
-          -5.5,
-          3.5,
+          -9,
+          -14,
           -0.2
         ],
         [
-          -5.5,
-          8.5,
+          -9,
+          -8,
           -0.2
         ],
         [
-          -11.5,
-          8.5,
+          -14,
+          -8,
           -0.2
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600824,
-          28.5823316,
-          211.5
-        ],
-        [
-          77.0601438,
-          28.5823316,
-          211.5
-        ],
-        [
-          77.0601438,
-          28.5823767,
-          211.5
-        ],
-        [
-          77.0600824,
-          28.5823767,
-          211.5
-        ],
-        [
-          77.0600824,
-          28.5823316,
-          214.8
-        ],
-        [
-          77.0601438,
-          28.5823316,
-          214.8
-        ],
-        [
-          77.0601438,
-          28.5823767,
-          214.8
-        ],
-        [
-          77.0600824,
-          28.5823767,
-          214.8
         ]
       ],
       "faces": [
@@ -1073,157 +426,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-U-01-39F1",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "U",
-      "floor_index": -1,
-      "unit_code": "PARK-B101",
-      "spatial_hash": "39F1",
-      "deed_token": "1ad6751837063f6c6213160f00aaa8358b6215d54e406d303e2825804f5f4aa8",
-      "qr_payload": {
-        "id": "IND280145987621-U-01-39F1",
-        "base": "IND280145987621",
-        "domain": "U",
-        "floor": -1,
-        "unit": "PARK-B101",
-        "token": "1ad6751837063f6c"
+      "deed_no": "DEL-DWK-2023-88901",
+      "deed_token": "0438afe335bdf27b7d41e406b8fc746dd536313be42e7df648b83d3f0ef06c49",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "PARK-B102",
+      "ulpin_3d": "IND280145987621-U-01-0004",
       "name": "Basement Parking Bay #02",
+      "owner": "Priya Sharma",
+      "block": "BLOCK_A",
       "level": -1,
+      "type": "PARKING",
       "domain": "U",
-      "type": "RESTRICTED_COMMON_PARKING",
-      "owner": "Priya Sharma (Flat 102 Link)",
-      "poly_2d": [
-        [
-          -5.5,
-          3.5
-        ],
-        [
-          0.5,
-          3.5
-        ],
-        [
-          0.5,
-          8.5
-        ],
-        [
-          -5.5,
-          8.5
-        ],
-        [
-          -5.5,
-          3.5
-        ]
-      ],
-      "z_min": -3.5,
-      "z_max": -0.2,
-      "color": "#00D084",
-      "carpet_area_m2": 30.0,
-      "volume_m3": 99.0,
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 99.0,
       "is_watertight": true,
       "centroid_local": [
-        -2.5,
-        6.0,
+        -6.5,
+        -11.0,
         -1.85
-      ],
-      "bbox_local": [
-        -5.5,
-        3.5,
-        -3.5,
-        0.5,
-        8.5,
-        -0.2
-      ],
-      "centroid_wgs84": [
-        77.0601744,
-        28.5823541,
-        213.15
       ],
       "vertices_local": [
         [
-          -5.5,
-          3.5,
+          -9,
+          -14,
           -3.5
         ],
         [
-          0.5,
-          3.5,
+          -4,
+          -14,
           -3.5
         ],
         [
-          0.5,
-          8.5,
+          -4,
+          -8,
           -3.5
         ],
         [
-          -5.5,
-          8.5,
+          -9,
+          -8,
           -3.5
         ],
         [
-          -5.5,
-          3.5,
+          -9,
+          -14,
           -0.2
         ],
         [
-          0.5,
-          3.5,
+          -4,
+          -14,
           -0.2
         ],
         [
-          0.5,
-          8.5,
+          -4,
+          -8,
           -0.2
         ],
         [
-          -5.5,
-          8.5,
+          -9,
+          -8,
           -0.2
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0601438,
-          28.5823316,
-          211.5
-        ],
-        [
-          77.0602051,
-          28.5823316,
-          211.5
-        ],
-        [
-          77.0602051,
-          28.5823767,
-          211.5
-        ],
-        [
-          77.0601438,
-          28.5823767,
-          211.5
-        ],
-        [
-          77.0601438,
-          28.5823316,
-          214.8
-        ],
-        [
-          77.0602051,
-          28.5823316,
-          214.8
-        ],
-        [
-          77.0602051,
-          28.5823767,
-          214.8
-        ],
-        [
-          77.0601438,
-          28.5823767,
-          214.8
         ]
       ],
       "faces": [
@@ -1288,157 +563,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-U-01-0004",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "U",
-      "floor_index": -1,
-      "unit_code": "PARK-B102",
-      "spatial_hash": "0004",
-      "deed_token": "fd86ae3fca874d8dbf699f3068f0b2ec4a0b43a61914cfc0f72cff6346f57633",
-      "qr_payload": {
-        "id": "IND280145987621-U-01-0004",
-        "base": "IND280145987621",
-        "domain": "U",
-        "floor": -1,
-        "unit": "PARK-B102",
-        "token": "fd86ae3fca874d8d"
+      "deed_no": "DEL-DWK-2023-88902",
+      "deed_token": "bdefa8d9d6ba3ba759771256e557c5918e86cf522d0a2cb5596d62e0a5efacd6",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "PARK-B103",
+      "ulpin_3d": "IND280145987621-U-01-161F",
       "name": "Basement Parking Bay #03",
+      "owner": "Amitabh Verma",
+      "block": "BLOCK_A",
       "level": -1,
+      "type": "PARKING",
       "domain": "U",
-      "type": "RESTRICTED_COMMON_PARKING",
-      "owner": "Amitabh Verma (Flat 201 Link)",
-      "poly_2d": [
-        [
-          0.5,
-          3.5
-        ],
-        [
-          6.5,
-          3.5
-        ],
-        [
-          6.5,
-          8.5
-        ],
-        [
-          0.5,
-          8.5
-        ],
-        [
-          0.5,
-          3.5
-        ]
-      ],
-      "z_min": -3.5,
-      "z_max": -0.2,
-      "color": "#00D084",
-      "carpet_area_m2": 30.0,
-      "volume_m3": 99.0,
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 99.0,
       "is_watertight": true,
       "centroid_local": [
-        3.5,
-        6.0,
+        -11.5,
+        -5.0,
         -1.85
-      ],
-      "bbox_local": [
-        0.5,
-        3.5,
-        -3.5,
-        6.5,
-        8.5,
-        -0.2
-      ],
-      "centroid_wgs84": [
-        77.0602358,
-        28.5823541,
-        213.15
       ],
       "vertices_local": [
         [
-          0.5,
-          3.5,
+          -14,
+          -8,
           -3.5
         ],
         [
-          6.5,
-          3.5,
+          -9,
+          -8,
           -3.5
         ],
         [
-          6.5,
-          8.5,
+          -9,
+          -2,
           -3.5
         ],
         [
-          0.5,
-          8.5,
+          -14,
+          -2,
           -3.5
         ],
         [
-          0.5,
-          3.5,
+          -14,
+          -8,
           -0.2
         ],
         [
-          6.5,
-          3.5,
+          -9,
+          -8,
           -0.2
         ],
         [
-          6.5,
-          8.5,
+          -9,
+          -2,
           -0.2
         ],
         [
-          0.5,
-          8.5,
+          -14,
+          -2,
           -0.2
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0602051,
-          28.5823316,
-          211.5
-        ],
-        [
-          77.0602664,
-          28.5823316,
-          211.5
-        ],
-        [
-          77.0602664,
-          28.5823767,
-          211.5
-        ],
-        [
-          77.0602051,
-          28.5823767,
-          211.5
-        ],
-        [
-          77.0602051,
-          28.5823316,
-          214.8
-        ],
-        [
-          77.0602664,
-          28.5823316,
-          214.8
-        ],
-        [
-          77.0602664,
-          28.5823767,
-          214.8
-        ],
-        [
-          77.0602051,
-          28.5823767,
-          214.8
         ]
       ],
       "faces": [
@@ -1503,372 +700,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-U-01-161F",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "U",
-      "floor_index": -1,
-      "unit_code": "PARK-B103",
-      "spatial_hash": "161F",
-      "deed_token": "e0462a7283d93264f837cad7617becfa67b16f62586c453adf0d54db36d368cb",
-      "qr_payload": {
-        "id": "IND280145987621-U-01-161F",
-        "base": "IND280145987621",
-        "domain": "U",
-        "floor": -1,
-        "unit": "PARK-B103",
-        "token": "e0462a7283d93264"
+      "deed_no": "DEL-DWK-2023-88903",
+      "deed_token": "14a2bfc2ab0047e8a6bf00f87fa81de402c10770f6cbf4a51d2d5c69280ba0e2",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "PARK-B104",
-      "name": "Basement Parking Bay #04",
-      "level": -1,
-      "domain": "U",
-      "type": "RESTRICTED_COMMON_PARKING",
-      "owner": "Sunita Rao (Flat 202 Link)",
-      "poly_2d": [
-        [
-          -11.5,
-          -8.5
-        ],
-        [
-          -5.5,
-          -8.5
-        ],
-        [
-          -5.5,
-          -3.5
-        ],
-        [
-          -11.5,
-          -3.5
-        ],
-        [
-          -11.5,
-          -8.5
-        ]
-      ],
-      "z_min": -3.5,
-      "z_max": -0.2,
-      "color": "#00D084",
-      "carpet_area_m2": 30.0,
-      "volume_m3": 99.0,
-      "is_watertight": true,
-      "centroid_local": [
-        -8.5,
-        -6.0,
-        -1.85
-      ],
-      "bbox_local": [
-        -11.5,
-        -8.5,
-        -3.5,
-        -5.5,
-        -3.5,
-        -0.2
-      ],
-      "centroid_wgs84": [
-        77.0601131,
-        28.5822459,
-        213.15
-      ],
-      "vertices_local": [
-        [
-          -11.5,
-          -8.5,
-          -3.5
-        ],
-        [
-          -5.5,
-          -8.5,
-          -3.5
-        ],
-        [
-          -5.5,
-          -3.5,
-          -3.5
-        ],
-        [
-          -11.5,
-          -3.5,
-          -3.5
-        ],
-        [
-          -11.5,
-          -8.5,
-          -0.2
-        ],
-        [
-          -5.5,
-          -8.5,
-          -0.2
-        ],
-        [
-          -5.5,
-          -3.5,
-          -0.2
-        ],
-        [
-          -11.5,
-          -3.5,
-          -0.2
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600824,
-          28.5822233,
-          211.5
-        ],
-        [
-          77.0601438,
-          28.5822233,
-          211.5
-        ],
-        [
-          77.0601438,
-          28.5822684,
-          211.5
-        ],
-        [
-          77.0600824,
-          28.5822684,
-          211.5
-        ],
-        [
-          77.0600824,
-          28.5822233,
-          214.8
-        ],
-        [
-          77.0601438,
-          28.5822233,
-          214.8
-        ],
-        [
-          77.0601438,
-          28.5822684,
-          214.8
-        ],
-        [
-          77.0600824,
-          28.5822684,
-          214.8
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
       "ulpin_3d": "IND280145987621-U-01-E59D",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "U",
-      "floor_index": -1,
-      "unit_code": "PARK-B104",
-      "spatial_hash": "E59D",
-      "deed_token": "559fa1a79b4b6504b403577f68784ffc4ccad1ebe1d63fbec46ca391df42bf3c",
-      "qr_payload": {
-        "id": "IND280145987621-U-01-E59D",
-        "base": "IND280145987621",
-        "domain": "U",
-        "floor": -1,
-        "unit": "PARK-B104",
-        "token": "559fa1a79b4b6504"
-      }
-    },
-    {
-      "unit_id": "PARK-B105",
-      "name": "Basement Parking Bay #05",
+      "name": "Basement Parking Bay #04",
+      "owner": "Deepak Joshi",
+      "block": "BLOCK_A",
       "level": -1,
+      "type": "PARKING",
       "domain": "U",
-      "type": "RESTRICTED_COMMON_PARKING",
-      "owner": "Vikram Malhotra (Flat 301 Link)",
-      "poly_2d": [
-        [
-          -5.5,
-          -8.5
-        ],
-        [
-          0.5,
-          -8.5
-        ],
-        [
-          0.5,
-          -3.5
-        ],
-        [
-          -5.5,
-          -3.5
-        ],
-        [
-          -5.5,
-          -8.5
-        ]
-      ],
-      "z_min": -3.5,
-      "z_max": -0.2,
-      "color": "#00D084",
-      "carpet_area_m2": 30.0,
-      "volume_m3": 99.0,
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 99.0,
       "is_watertight": true,
       "centroid_local": [
-        -2.5,
-        -6.0,
+        -6.5,
+        -5.0,
         -1.85
-      ],
-      "bbox_local": [
-        -5.5,
-        -8.5,
-        -3.5,
-        0.5,
-        -3.5,
-        -0.2
-      ],
-      "centroid_wgs84": [
-        77.0601744,
-        28.5822459,
-        213.15
       ],
       "vertices_local": [
         [
-          -5.5,
-          -8.5,
+          -9,
+          -8,
           -3.5
         ],
         [
-          0.5,
-          -8.5,
+          -4,
+          -8,
           -3.5
         ],
         [
-          0.5,
-          -3.5,
+          -4,
+          -2,
           -3.5
         ],
         [
-          -5.5,
-          -3.5,
+          -9,
+          -2,
           -3.5
         ],
         [
-          -5.5,
-          -8.5,
+          -9,
+          -8,
           -0.2
         ],
         [
-          0.5,
-          -8.5,
+          -4,
+          -8,
           -0.2
         ],
         [
-          0.5,
-          -3.5,
+          -4,
+          -2,
           -0.2
         ],
         [
-          -5.5,
-          -3.5,
+          -9,
+          -2,
           -0.2
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0601438,
-          28.5822233,
-          211.5
-        ],
-        [
-          77.0602051,
-          28.5822233,
-          211.5
-        ],
-        [
-          77.0602051,
-          28.5822684,
-          211.5
-        ],
-        [
-          77.0601438,
-          28.5822684,
-          211.5
-        ],
-        [
-          77.0601438,
-          28.5822233,
-          214.8
-        ],
-        [
-          77.0602051,
-          28.5822233,
-          214.8
-        ],
-        [
-          77.0602051,
-          28.5822684,
-          214.8
-        ],
-        [
-          77.0601438,
-          28.5822684,
-          214.8
         ]
       ],
       "faces": [
@@ -1933,587 +837,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-U-01-9FA1",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "U",
-      "floor_index": -1,
-      "unit_code": "PARK-B105",
-      "spatial_hash": "9FA1",
-      "deed_token": "4c971e8115d518cd9d29dc7a7ba7a832d34d9cb5625592b5ad60a010b49ba15a",
-      "qr_payload": {
-        "id": "IND280145987621-U-01-9FA1",
-        "base": "IND280145987621",
-        "domain": "U",
-        "floor": -1,
-        "unit": "PARK-B105",
-        "token": "4c971e8115d518cd"
+      "deed_no": "DEL-DWK-2023-88904",
+      "deed_token": "fc7277ffdb07905460e37415493c9f072ef4c3d7fd1235d5a607d2f72cb2ce4a",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
-      "unit_id": "PARK-B106",
-      "name": "Basement Parking Bay #06 (Unapproved Extension)",
-      "level": -1,
-      "domain": "U",
-      "type": "RESTRICTED_COMMON_PARKING",
-      "owner": "Builder Reserved / Unsanctioned",
-      "poly_2d": [
-        [
-          11.5,
-          -8.5
-        ],
-        [
-          19.5,
-          -8.5
-        ],
-        [
-          19.5,
-          -3.5
-        ],
-        [
-          11.5,
-          -3.5
-        ],
-        [
-          11.5,
-          -8.5
-        ]
-      ],
-      "z_min": -3.5,
-      "z_max": -0.2,
-      "color": "#ef4444",
-      "carpet_area_m2": 40.0,
-      "volume_m3": 132.0,
-      "is_watertight": true,
-      "centroid_local": [
-        15.5,
-        -6.0,
-        -1.85
-      ],
-      "bbox_local": [
-        11.5,
-        -8.5,
-        -3.5,
-        19.5,
-        -3.5,
-        -0.2
-      ],
-      "centroid_wgs84": [
-        77.0603584,
-        28.5822459,
-        213.15
-      ],
-      "vertices_local": [
-        [
-          11.5,
-          -8.5,
-          -3.5
-        ],
-        [
-          19.5,
-          -8.5,
-          -3.5
-        ],
-        [
-          19.5,
-          -3.5,
-          -3.5
-        ],
-        [
-          11.5,
-          -3.5,
-          -3.5
-        ],
-        [
-          11.5,
-          -8.5,
-          -0.2
-        ],
-        [
-          19.5,
-          -8.5,
-          -0.2
-        ],
-        [
-          19.5,
-          -3.5,
-          -0.2
-        ],
-        [
-          11.5,
-          -3.5,
-          -0.2
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0603176,
-          28.5822233,
-          211.5
-        ],
-        [
-          77.0603993,
-          28.5822233,
-          211.5
-        ],
-        [
-          77.0603993,
-          28.5822684,
-          211.5
-        ],
-        [
-          77.0603176,
-          28.5822684,
-          211.5
-        ],
-        [
-          77.0603176,
-          28.5822233,
-          214.8
-        ],
-        [
-          77.0603993,
-          28.5822233,
-          214.8
-        ],
-        [
-          77.0603993,
-          28.5822684,
-          214.8
-        ],
-        [
-          77.0603176,
-          28.5822684,
-          214.8
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
-      "ulpin_3d": "IND280145987621-U-01-5FAF",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "U",
-      "floor_index": -1,
-      "unit_code": "PARK-B106",
-      "spatial_hash": "5FAF",
-      "deed_token": "99525d52213b3a83027fbae267e53ef84b126d285c6d0c8bdaed499b769d99c0",
-      "qr_payload": {
-        "id": "IND280145987621-U-01-5FAF",
-        "base": "IND280145987621",
-        "domain": "U",
-        "floor": -1,
-        "unit": "PARK-B106",
-        "token": "99525d52213b3a83"
-      }
-    },
-    {
-      "unit_id": "UTIL-B101",
-      "name": "Basement Substation & Pump Room",
-      "level": -1,
-      "domain": "U",
-      "type": "COMMON_UTILITY",
+      "unit_id": "LOBBY-G01",
+      "ulpin_3d": "IND280145987621-S00-76B4",
+      "name": "Tower A Ground Lobby & Concierge",
       "owner": "Aura Residency RWA",
-      "poly_2d": [
-        [
-          6.5,
-          3.5
-        ],
-        [
-          11.5,
-          3.5
-        ],
-        [
-          11.5,
-          8.5
-        ],
-        [
-          6.5,
-          8.5
-        ],
-        [
-          6.5,
-          3.5
-        ]
-      ],
-      "z_min": -3.5,
-      "z_max": -0.2,
-      "color": "#64748b",
-      "carpet_area_m2": 25.0,
-      "volume_m3": 82.5,
-      "is_watertight": true,
-      "centroid_local": [
-        9.0,
-        6.0,
-        -1.85
-      ],
-      "bbox_local": [
-        6.5,
-        3.5,
-        -3.5,
-        11.5,
-        8.5,
-        -0.2
-      ],
-      "centroid_wgs84": [
-        77.060292,
-        28.5823541,
-        213.15
-      ],
-      "vertices_local": [
-        [
-          6.5,
-          3.5,
-          -3.5
-        ],
-        [
-          11.5,
-          3.5,
-          -3.5
-        ],
-        [
-          11.5,
-          8.5,
-          -3.5
-        ],
-        [
-          6.5,
-          8.5,
-          -3.5
-        ],
-        [
-          6.5,
-          3.5,
-          -0.2
-        ],
-        [
-          11.5,
-          3.5,
-          -0.2
-        ],
-        [
-          11.5,
-          8.5,
-          -0.2
-        ],
-        [
-          6.5,
-          8.5,
-          -0.2
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0602664,
-          28.5823316,
-          211.5
-        ],
-        [
-          77.0603176,
-          28.5823316,
-          211.5
-        ],
-        [
-          77.0603176,
-          28.5823767,
-          211.5
-        ],
-        [
-          77.0602664,
-          28.5823767,
-          211.5
-        ],
-        [
-          77.0602664,
-          28.5823316,
-          214.8
-        ],
-        [
-          77.0603176,
-          28.5823316,
-          214.8
-        ],
-        [
-          77.0603176,
-          28.5823767,
-          214.8
-        ],
-        [
-          77.0602664,
-          28.5823767,
-          214.8
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
-      "ulpin_3d": "IND280145987621-U-01-5BB7",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "U",
-      "floor_index": -1,
-      "unit_code": "UTIL-B101",
-      "spatial_hash": "5BB7",
-      "deed_token": "a72dbf8c7e88c8fabbb1f4e6f918b6033c43c5978d23ecc60547e97533a3f3c3",
-      "qr_payload": {
-        "id": "IND280145987621-U-01-5BB7",
-        "base": "IND280145987621",
-        "domain": "U",
-        "floor": -1,
-        "unit": "UTIL-B101",
-        "token": "a72dbf8c7e88c8fa"
-      }
-    },
-    {
-      "unit_id": "COMM-G01",
-      "name": "Grand Entrance Lobby & Admin Office",
+      "block": "BLOCK_A",
       "level": 0,
+      "type": "COMMON_LOBBY",
       "domain": "S",
-      "type": "COMMON_AMENITY",
-      "owner": "Aura Residency RWA",
-      "poly_2d": [
-        [
-          -12.0,
-          -9.0
-        ],
-        [
-          12.0,
-          -9.0
-        ],
-        [
-          12.0,
-          9.0
-        ],
-        [
-          -12.0,
-          9.0
-        ],
-        [
-          -12.0,
-          -9.0
-        ]
-      ],
-      "z_min": 0.2,
-      "z_max": 3.0,
-      "color": "#10b981",
-      "carpet_area_m2": 432.0,
-      "volume_m3": 1209.6,
+      "carpet_area_m2": 98.4,
+      "rera_volume_m3": 336.0,
       "is_watertight": true,
       "centroid_local": [
-        0.0,
-        0.0,
+        -9.0,
+        -8.0,
         1.6
       ],
-      "bbox_local": [
-        -12.0,
-        -9.0,
-        0.2,
-        12.0,
-        9.0,
-        3.0
-      ],
-      "centroid_wgs84": [
-        77.0602,
-        28.5823,
-        216.6
-      ],
       "vertices_local": [
         [
-          -12.0,
-          -9.0,
+          -14,
+          -14,
           0.2
         ],
         [
-          12.0,
-          -9.0,
+          -4,
+          -14,
           0.2
         ],
         [
-          12.0,
-          9.0,
+          -4,
+          -2,
           0.2
         ],
         [
-          -12.0,
-          9.0,
+          -14,
+          -2,
           0.2
         ],
         [
-          -12.0,
-          -9.0,
+          -14,
+          -14,
           3.0
         ],
         [
-          12.0,
-          -9.0,
+          -4,
+          -14,
           3.0
         ],
         [
-          12.0,
-          9.0,
+          -4,
+          -2,
           3.0
         ],
         [
-          -12.0,
-          9.0,
+          -14,
+          -2,
           3.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5822188,
-          215.2
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          215.2
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          215.2
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          215.2
-        ],
-        [
-          77.0600773,
-          28.5822188,
-          218.0
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          218.0
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          218.0
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          218.0
         ]
       ],
       "faces": [
@@ -2578,372 +974,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-S00-76B4",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "S",
-      "floor_index": 0,
-      "unit_code": "COMM-G01",
-      "spatial_hash": "76B4",
-      "deed_token": "b1edc2e1b79338b858bcae082f72143761938bab6a480d3f7758c7b7ac87e536",
-      "qr_payload": {
-        "id": "IND280145987621-S00-76B4",
-        "base": "IND280145987621",
-        "domain": "S",
-        "floor": 0,
-        "unit": "COMM-G01",
-        "token": "b1edc2e1b79338b8"
-      }
-    },
-    {
-      "unit_id": "LOBBY-100",
-      "name": "Floor 1 Elevator Lobby & Fire Corridor",
-      "level": 1,
-      "domain": "A",
-      "type": "COMMON_CIRCULATION",
-      "owner": "Aura Residency RWA",
-      "poly_2d": [
-        [
-          -3.0,
-          -3.0
-        ],
-        [
-          3.0,
-          -3.0
-        ],
-        [
-          3.0,
-          3.0
-        ],
-        [
-          -3.0,
-          3.0
-        ],
-        [
-          -3.0,
-          -3.0
-        ]
-      ],
-      "z_min": 3.2,
-      "z_max": 6.0,
-      "color": "#94a3b8",
-      "carpet_area_m2": 36.0,
-      "volume_m3": 100.8,
-      "is_watertight": true,
-      "centroid_local": [
-        0.0,
-        0.0,
-        4.6
-      ],
-      "bbox_local": [
-        -3.0,
-        -3.0,
-        3.2,
-        3.0,
-        3.0,
-        6.0
-      ],
-      "centroid_wgs84": [
-        77.0602,
-        28.5823,
-        219.6
-      ],
-      "vertices_local": [
-        [
-          -3.0,
-          -3.0,
-          3.2
-        ],
-        [
-          3.0,
-          -3.0,
-          3.2
-        ],
-        [
-          3.0,
-          3.0,
-          3.2
-        ],
-        [
-          -3.0,
-          3.0,
-          3.2
-        ],
-        [
-          -3.0,
-          -3.0,
-          6.0
-        ],
-        [
-          3.0,
-          -3.0,
-          6.0
-        ],
-        [
-          3.0,
-          3.0,
-          6.0
-        ],
-        [
-          -3.0,
-          3.0,
-          6.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0601693,
-          28.5822729,
-          218.2
-        ],
-        [
-          77.0602307,
-          28.5822729,
-          218.2
-        ],
-        [
-          77.0602307,
-          28.5823271,
-          218.2
-        ],
-        [
-          77.0601693,
-          28.5823271,
-          218.2
-        ],
-        [
-          77.0601693,
-          28.5822729,
-          221.0
-        ],
-        [
-          77.0602307,
-          28.5822729,
-          221.0
-        ],
-        [
-          77.0602307,
-          28.5823271,
-          221.0
-        ],
-        [
-          77.0601693,
-          28.5823271,
-          221.0
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
-      "ulpin_3d": "IND280145987621-A+01-48A2",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 1,
-      "unit_code": "LOBBY-100",
-      "spatial_hash": "48A2",
-      "deed_token": "88868dd7f486a8939344438ad39d9ff9069a531104ed5dc7702232c59a2e0ed8",
-      "qr_payload": {
-        "id": "IND280145987621-A+01-48A2",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 1,
-        "unit": "LOBBY-100",
-        "token": "88868dd7f486a893"
+      "deed_no": "DEL-DWK-2023-RWA01",
+      "deed_token": "9b80976e60d6d9bbdc75841272b25dd3c5eaffc90dca007c20deae54fa485c1b",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 9163500,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-101",
-      "name": "Apartment 101 (3BHK Executive)",
-      "level": 1,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
+      "ulpin_3d": "IND280145987621-A+01-E5D1",
+      "name": "Flat 101 (3BHK Executive, Tower A)",
       "owner": "Rajesh Kumar",
-      "poly_2d": [
-        [
-          -12.0,
-          0.0
-        ],
-        [
-          -3.0,
-          0.0
-        ],
-        [
-          -3.0,
-          9.0
-        ],
-        [
-          -12.0,
-          9.0
-        ],
-        [
-          -12.0,
-          0.0
-        ]
-      ],
-      "z_min": 3.2,
-      "z_max": 6.0,
-      "color": "#6366f1",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "block": "BLOCK_A",
+      "level": 1,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        -7.5,
-        4.5,
+        -11.5,
+        -11.0,
         4.6
-      ],
-      "bbox_local": [
-        -12.0,
-        0.0,
-        3.2,
-        -3.0,
-        9.0,
-        6.0
-      ],
-      "centroid_wgs84": [
-        77.0601233,
-        28.5823406,
-        219.6
       ],
       "vertices_local": [
         [
-          -12.0,
-          0.0,
+          -14,
+          -14,
           3.2
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -14,
           3.2
         ],
         [
-          -3.0,
-          9.0,
+          -9,
+          -8,
           3.2
         ],
         [
-          -12.0,
-          9.0,
+          -14,
+          -8,
           3.2
         ],
         [
-          -12.0,
-          0.0,
+          -14,
+          -14,
           6.0
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -14,
           6.0
         ],
         [
-          -3.0,
-          9.0,
+          -9,
+          -8,
           6.0
         ],
         [
-          -12.0,
-          9.0,
+          -14,
+          -8,
           6.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5823,
-          218.2
-        ],
-        [
-          77.0601693,
-          28.5823,
-          218.2
-        ],
-        [
-          77.0601693,
-          28.5823812,
-          218.2
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          218.2
-        ],
-        [
-          77.0600773,
-          28.5823,
-          221.0
-        ],
-        [
-          77.0601693,
-          28.5823,
-          221.0
-        ],
-        [
-          77.0601693,
-          28.5823812,
-          221.0
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          221.0
         ]
       ],
       "faces": [
@@ -3008,157 +1111,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+01-E5D1",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 1,
-      "unit_code": "FLAT-101",
-      "spatial_hash": "E5D1",
-      "deed_token": "8506c1a48aec2bfc825f338cc2091236e0a7b9784814f693c4e83cb68e7967ac",
-      "qr_payload": {
-        "id": "IND280145987621-A+01-E5D1",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 1,
-        "unit": "FLAT-101",
-        "token": "8506c1a48aec2bfc"
+      "deed_no": "DEL-DWK-2023-88901",
+      "deed_token": "749e983240c8890275ce94517204ced5722b12da4fc56ba71717a680643db0e4",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-102",
-      "name": "Apartment 102 (3BHK Executive)",
-      "level": 1,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
+      "ulpin_3d": "IND280145987621-A+01-869A",
+      "name": "Flat 102 (3BHK Executive, Tower A)",
       "owner": "Priya Sharma",
-      "poly_2d": [
-        [
-          3.0,
-          0.0
-        ],
-        [
-          12.0,
-          0.0
-        ],
-        [
-          12.0,
-          9.0
-        ],
-        [
-          3.0,
-          9.0
-        ],
-        [
-          3.0,
-          0.0
-        ]
-      ],
-      "z_min": 3.2,
-      "z_max": 6.0,
-      "color": "#6366f1",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "block": "BLOCK_A",
+      "level": 1,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        7.5,
-        4.5,
+        -6.5,
+        -11.0,
         4.6
-      ],
-      "bbox_local": [
-        3.0,
-        0.0,
-        3.2,
-        12.0,
-        9.0,
-        6.0
-      ],
-      "centroid_wgs84": [
-        77.0602767,
-        28.5823406,
-        219.6
       ],
       "vertices_local": [
         [
-          3.0,
-          0.0,
+          -9,
+          -14,
           3.2
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -14,
           3.2
         ],
         [
-          12.0,
-          9.0,
+          -4,
+          -8,
           3.2
         ],
         [
-          3.0,
-          9.0,
+          -9,
+          -8,
           3.2
         ],
         [
-          3.0,
-          0.0,
+          -9,
+          -14,
           6.0
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -14,
           6.0
         ],
         [
-          12.0,
-          9.0,
+          -4,
+          -8,
           6.0
         ],
         [
-          3.0,
-          9.0,
+          -9,
+          -8,
           6.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0602307,
-          28.5823,
-          218.2
-        ],
-        [
-          77.0603227,
-          28.5823,
-          218.2
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          218.2
-        ],
-        [
-          77.0602307,
-          28.5823812,
-          218.2
-        ],
-        [
-          77.0602307,
-          28.5823,
-          221.0
-        ],
-        [
-          77.0603227,
-          28.5823,
-          221.0
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          221.0
-        ],
-        [
-          77.0602307,
-          28.5823812,
-          221.0
         ]
       ],
       "faces": [
@@ -3223,157 +1248,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+01-869A",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 1,
-      "unit_code": "FLAT-102",
-      "spatial_hash": "869A",
-      "deed_token": "f45ff5adbe4cd13b871a4aa78412928859327a6c12912c3bbd3ea740b95c9cbd",
-      "qr_payload": {
-        "id": "IND280145987621-A+01-869A",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 1,
-        "unit": "FLAT-102",
-        "token": "f45ff5adbe4cd13b"
+      "deed_no": "DEL-DWK-2023-88902",
+      "deed_token": "368a171807c0c158fa1b670ac86e7876d1aae11e52e0cf0bd46da1bec7a8b59b",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "HDFC Home Loan (Active Lien: \u20b938.0 L)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-103",
-      "name": "Apartment 103 (2BHK Premium)",
-      "level": 1,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
+      "ulpin_3d": "IND280145987621-A+01-AF18",
+      "name": "Flat 103 (2BHK Premium, Tower A)",
       "owner": "Karan Kapoor",
-      "poly_2d": [
-        [
-          -12.0,
-          -9.0
-        ],
-        [
-          -3.0,
-          -9.0
-        ],
-        [
-          -3.0,
-          0.0
-        ],
-        [
-          -12.0,
-          0.0
-        ],
-        [
-          -12.0,
-          -9.0
-        ]
-      ],
-      "z_min": 3.2,
-      "z_max": 6.0,
-      "color": "#3b82f6",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "block": "BLOCK_A",
+      "level": 1,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        -7.5,
-        -4.5,
+        -11.5,
+        -5.0,
         4.6
-      ],
-      "bbox_local": [
-        -12.0,
-        -9.0,
-        3.2,
-        -3.0,
-        0.0,
-        6.0
-      ],
-      "centroid_wgs84": [
-        77.0601233,
-        28.5822594,
-        219.6
       ],
       "vertices_local": [
         [
-          -12.0,
-          -9.0,
+          -14,
+          -8,
           3.2
         ],
         [
-          -3.0,
-          -9.0,
+          -9,
+          -8,
           3.2
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -2,
           3.2
         ],
         [
-          -12.0,
-          0.0,
+          -14,
+          -2,
           3.2
         ],
         [
-          -12.0,
-          -9.0,
+          -14,
+          -8,
           6.0
         ],
         [
-          -3.0,
-          -9.0,
+          -9,
+          -8,
           6.0
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -2,
           6.0
         ],
         [
-          -12.0,
-          0.0,
+          -14,
+          -2,
           6.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5822188,
-          218.2
-        ],
-        [
-          77.0601693,
-          28.5822188,
-          218.2
-        ],
-        [
-          77.0601693,
-          28.5823,
-          218.2
-        ],
-        [
-          77.0600773,
-          28.5823,
-          218.2
-        ],
-        [
-          77.0600773,
-          28.5822188,
-          221.0
-        ],
-        [
-          77.0601693,
-          28.5822188,
-          221.0
-        ],
-        [
-          77.0601693,
-          28.5823,
-          221.0
-        ],
-        [
-          77.0600773,
-          28.5823,
-          221.0
         ]
       ],
       "faces": [
@@ -3438,157 +1385,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+01-AF18",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 1,
-      "unit_code": "FLAT-103",
-      "spatial_hash": "AF18",
-      "deed_token": "aa43fc100eac833a9a0e5d07f04ea4d51e461c07a93809ecc43ae6a166163d36",
-      "qr_payload": {
-        "id": "IND280145987621-A+01-AF18",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 1,
-        "unit": "FLAT-103",
-        "token": "aa43fc100eac833a"
+      "deed_no": "DEL-DWK-2023-88903",
+      "deed_token": "c94159683a0df57c2314da44b9dc9271e726f56afa06ec96837f224fff6db55c",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-104",
-      "name": "Apartment 104 (2BHK Premium)",
-      "level": 1,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
+      "ulpin_3d": "IND280145987621-A+01-4DAC",
+      "name": "Flat 104 (Level 1, Tower A)",
       "owner": "Deepak Joshi",
-      "poly_2d": [
-        [
-          3.0,
-          -9.0
-        ],
-        [
-          12.0,
-          -9.0
-        ],
-        [
-          12.0,
-          0.0
-        ],
-        [
-          3.0,
-          0.0
-        ],
-        [
-          3.0,
-          -9.0
-        ]
-      ],
-      "z_min": 3.2,
-      "z_max": 6.0,
-      "color": "#3b82f6",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "block": "BLOCK_A",
+      "level": 1,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        7.5,
-        -4.5,
+        -6.5,
+        -5.0,
         4.6
       ],
-      "bbox_local": [
-        3.0,
-        -9.0,
-        3.2,
-        12.0,
-        0.0,
-        6.0
-      ],
-      "centroid_wgs84": [
-        77.0602767,
-        28.5822594,
-        219.6
-      ],
       "vertices_local": [
         [
-          3.0,
-          -9.0,
+          -9,
+          -8,
           3.2
         ],
         [
-          12.0,
-          -9.0,
+          -4,
+          -8,
           3.2
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -2,
           3.2
         ],
         [
-          3.0,
-          0.0,
+          -9,
+          -2,
           3.2
         ],
         [
-          3.0,
-          -9.0,
+          -9,
+          -8,
           6.0
         ],
         [
-          12.0,
-          -9.0,
+          -4,
+          -8,
           6.0
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -2,
           6.0
         ],
         [
-          3.0,
-          0.0,
+          -9,
+          -2,
           6.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0602307,
-          28.5822188,
-          218.2
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          218.2
-        ],
-        [
-          77.0603227,
-          28.5823,
-          218.2
-        ],
-        [
-          77.0602307,
-          28.5823,
-          218.2
-        ],
-        [
-          77.0602307,
-          28.5822188,
-          221.0
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          221.0
-        ],
-        [
-          77.0603227,
-          28.5823,
-          221.0
-        ],
-        [
-          77.0602307,
-          28.5823,
-          221.0
         ]
       ],
       "faces": [
@@ -3653,372 +1522,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+01-4DAC",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 1,
-      "unit_code": "FLAT-104",
-      "spatial_hash": "4DAC",
-      "deed_token": "de78d87b4bafb38334a0843c480204a330022efa841f696a67a389deddbbe3f3",
-      "qr_payload": {
-        "id": "IND280145987621-A+01-4DAC",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 1,
-        "unit": "FLAT-104",
-        "token": "de78d87b4bafb383"
-      }
-    },
-    {
-      "unit_id": "LOBBY-200",
-      "name": "Floor 2 Elevator Lobby & Fire Corridor",
-      "level": 2,
-      "domain": "A",
-      "type": "COMMON_CIRCULATION",
-      "owner": "Aura Residency RWA",
-      "poly_2d": [
-        [
-          -3.0,
-          -3.0
-        ],
-        [
-          3.0,
-          -3.0
-        ],
-        [
-          3.0,
-          3.0
-        ],
-        [
-          -3.0,
-          3.0
-        ],
-        [
-          -3.0,
-          -3.0
-        ]
-      ],
-      "z_min": 6.2,
-      "z_max": 9.0,
-      "color": "#94a3b8",
-      "carpet_area_m2": 36.0,
-      "volume_m3": 100.8,
-      "is_watertight": true,
-      "centroid_local": [
-        0.0,
-        0.0,
-        7.6
-      ],
-      "bbox_local": [
-        -3.0,
-        -3.0,
-        6.2,
-        3.0,
-        3.0,
-        9.0
-      ],
-      "centroid_wgs84": [
-        77.0602,
-        28.5823,
-        222.6
-      ],
-      "vertices_local": [
-        [
-          -3.0,
-          -3.0,
-          6.2
-        ],
-        [
-          3.0,
-          -3.0,
-          6.2
-        ],
-        [
-          3.0,
-          3.0,
-          6.2
-        ],
-        [
-          -3.0,
-          3.0,
-          6.2
-        ],
-        [
-          -3.0,
-          -3.0,
-          9.0
-        ],
-        [
-          3.0,
-          -3.0,
-          9.0
-        ],
-        [
-          3.0,
-          3.0,
-          9.0
-        ],
-        [
-          -3.0,
-          3.0,
-          9.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0601693,
-          28.5822729,
-          221.2
-        ],
-        [
-          77.0602307,
-          28.5822729,
-          221.2
-        ],
-        [
-          77.0602307,
-          28.5823271,
-          221.2
-        ],
-        [
-          77.0601693,
-          28.5823271,
-          221.2
-        ],
-        [
-          77.0601693,
-          28.5822729,
-          224.0
-        ],
-        [
-          77.0602307,
-          28.5822729,
-          224.0
-        ],
-        [
-          77.0602307,
-          28.5823271,
-          224.0
-        ],
-        [
-          77.0601693,
-          28.5823271,
-          224.0
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
-      "ulpin_3d": "IND280145987621-A+02-2759",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 2,
-      "unit_code": "LOBBY-200",
-      "spatial_hash": "2759",
-      "deed_token": "5d6f1aa6b81fb9ac7daef4c93b73a1ae02df8c6afd9b2852a993aa7155a8f88e",
-      "qr_payload": {
-        "id": "IND280145987621-A+02-2759",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 2,
-        "unit": "LOBBY-200",
-        "token": "5d6f1aa6b81fb9ac"
+      "deed_no": "DEL-DWK-2023-88904",
+      "deed_token": "47055b112ea8a4f22092dbbded7ebb80a59b23f08333968e1ac0c12b1c76fa04",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-201",
-      "name": "Apartment 201 (3BHK Executive)",
-      "level": 2,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
+      "ulpin_3d": "IND280145987621-A+02-811E",
+      "name": "Flat 201 (3BHK Executive, Tower A)",
       "owner": "Amitabh Verma",
-      "poly_2d": [
-        [
-          -12.0,
-          0.0
-        ],
-        [
-          -3.0,
-          0.0
-        ],
-        [
-          -3.0,
-          9.0
-        ],
-        [
-          -12.0,
-          9.0
-        ],
-        [
-          -12.0,
-          0.0
-        ]
-      ],
-      "z_min": 6.2,
-      "z_max": 9.0,
-      "color": "#6366f1",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "block": "BLOCK_A",
+      "level": 2,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        -7.5,
-        4.5,
+        -11.5,
+        -11.0,
         7.6
-      ],
-      "bbox_local": [
-        -12.0,
-        0.0,
-        6.2,
-        -3.0,
-        9.0,
-        9.0
-      ],
-      "centroid_wgs84": [
-        77.0601233,
-        28.5823406,
-        222.6
       ],
       "vertices_local": [
         [
-          -12.0,
-          0.0,
+          -14,
+          -14,
           6.2
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -14,
           6.2
         ],
         [
-          -3.0,
-          9.0,
+          -9,
+          -8,
           6.2
         ],
         [
-          -12.0,
-          9.0,
+          -14,
+          -8,
           6.2
         ],
         [
-          -12.0,
-          0.0,
+          -14,
+          -14,
           9.0
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -14,
           9.0
         ],
         [
-          -3.0,
-          9.0,
+          -9,
+          -8,
           9.0
         ],
         [
-          -12.0,
-          9.0,
+          -14,
+          -8,
           9.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5823,
-          221.2
-        ],
-        [
-          77.0601693,
-          28.5823,
-          221.2
-        ],
-        [
-          77.0601693,
-          28.5823812,
-          221.2
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          221.2
-        ],
-        [
-          77.0600773,
-          28.5823,
-          224.0
-        ],
-        [
-          77.0601693,
-          28.5823,
-          224.0
-        ],
-        [
-          77.0601693,
-          28.5823812,
-          224.0
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          224.0
         ]
       ],
       "faces": [
@@ -4083,260 +1659,86 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+02-811E",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 2,
-      "unit_code": "FLAT-201",
-      "spatial_hash": "811E",
-      "deed_token": "610df58ecb92ae8deb8d494a9999b78dfa8a65bc1424153abc58e3c915a78ea5",
-      "qr_payload": {
-        "id": "IND280145987621-A+02-811E",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 2,
-        "unit": "FLAT-201",
-        "token": "610df58ecb92ae8d"
+      "deed_no": "DEL-DWK-2023-88905",
+      "deed_token": "73161d9aa9c3b48f8b50edb6f82db4e03eeb2a84d9bebf93516461ed4653177f",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-202",
-      "name": "Apartment 202 (3BHK Deluxe Encroached)",
+      "ulpin_3d": "IND280145987621-A+02-244A",
+      "name": "Flat 202 (3BHK Executive, Tower A)",
+      "owner": "Sunita Rao",
+      "block": "BLOCK_A",
       "level": 2,
+      "type": "RESIDENTIAL",
       "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Sunita Rao (Cantilever Balcony)",
-      "poly_2d": [
-        [
-          3.0,
-          0.0
-        ],
-        [
-          12.0,
-          0.0
-        ],
-        [
-          12.0,
-          9.0
-        ],
-        [
-          11.0,
-          9.0
-        ],
-        [
-          11.0,
-          11.0
-        ],
-        [
-          4.0,
-          11.0
-        ],
-        [
-          4.0,
-          9.0
-        ],
-        [
-          3.0,
-          9.0
-        ],
-        [
-          3.0,
-          0.0
-        ]
-      ],
-      "z_min": 6.2,
-      "z_max": 9.0,
-      "color": "#ef4444",
-      "carpet_area_m2": 95.0,
-      "volume_m3": 266.0,
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        7.5,
-        5.344,
+        -6.5,
+        -11.0,
         7.6
-      ],
-      "bbox_local": [
-        3.0,
-        0.0,
-        6.2,
-        12.0,
-        11.0,
-        9.0
-      ],
-      "centroid_wgs84": [
-        77.0602767,
-        28.5823482,
-        222.6
       ],
       "vertices_local": [
         [
-          3.0,
-          0.0,
+          -9,
+          -14,
           6.2
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -14,
           6.2
         ],
         [
-          12.0,
-          9.0,
+          -4,
+          -8,
           6.2
         ],
         [
-          11.0,
-          9.0,
+          -9,
+          -8,
           6.2
         ],
         [
-          11.0,
-          11.0,
-          6.2
-        ],
-        [
-          4.0,
-          11.0,
-          6.2
-        ],
-        [
-          4.0,
-          9.0,
-          6.2
-        ],
-        [
-          3.0,
-          9.0,
-          6.2
-        ],
-        [
-          3.0,
-          0.0,
+          -9,
+          -14,
           9.0
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -14,
           9.0
         ],
         [
-          12.0,
-          9.0,
+          -4,
+          -8,
           9.0
         ],
         [
-          11.0,
-          9.0,
+          -9,
+          -8,
           9.0
-        ],
-        [
-          11.0,
-          11.0,
-          9.0
-        ],
-        [
-          4.0,
-          11.0,
-          9.0
-        ],
-        [
-          4.0,
-          9.0,
-          9.0
-        ],
-        [
-          3.0,
-          9.0,
-          9.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0602307,
-          28.5823,
-          221.2
-        ],
-        [
-          77.0603227,
-          28.5823,
-          221.2
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          221.2
-        ],
-        [
-          77.0603124,
-          28.5823812,
-          221.2
-        ],
-        [
-          77.0603124,
-          28.5823993,
-          221.2
-        ],
-        [
-          77.0602409,
-          28.5823993,
-          221.2
-        ],
-        [
-          77.0602409,
-          28.5823812,
-          221.2
-        ],
-        [
-          77.0602307,
-          28.5823812,
-          221.2
-        ],
-        [
-          77.0602307,
-          28.5823,
-          224.0
-        ],
-        [
-          77.0603227,
-          28.5823,
-          224.0
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          224.0
-        ],
-        [
-          77.0603124,
-          28.5823812,
-          224.0
-        ],
-        [
-          77.0603124,
-          28.5823993,
-          224.0
-        ],
-        [
-          77.0602409,
-          28.5823993,
-          224.0
-        ],
-        [
-          77.0602409,
-          28.5823812,
-          224.0
-        ],
-        [
-          77.0602307,
-          28.5823812,
-          224.0
         ]
       ],
       "faces": [
         [
-          6,
+          2,
           0,
-          7
+          3
         ],
         [
           0,
@@ -4344,287 +1746,129 @@
           1
         ],
         [
-          3,
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
           5,
           4
         ],
         [
-          0,
-          3,
-          2
+          1,
+          2,
+          6
         ],
         [
-          3,
+          1,
           6,
           5
         ],
         [
-          6,
-          3,
-          0
-        ],
-        [
-          14,
-          15,
-          8
-        ],
-        [
-          8,
-          9,
-          10
-        ],
-        [
-          11,
-          12,
-          13
-        ],
-        [
-          8,
-          10,
-          11
-        ],
-        [
-          11,
-          13,
-          14
-        ],
-        [
-          14,
-          8,
-          11
-        ],
-        [
-          0,
-          1,
-          9
-        ],
-        [
-          0,
-          9,
-          8
-        ],
-        [
-          1,
-          2,
-          10
-        ],
-        [
-          1,
-          10,
-          9
-        ],
-        [
           2,
           3,
-          11
+          7
         ],
         [
           2,
-          11,
-          10
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
         ],
         [
           3,
           4,
-          12
-        ],
-        [
-          3,
-          12,
-          11
-        ],
-        [
-          4,
-          5,
-          13
-        ],
-        [
-          4,
-          13,
-          12
-        ],
-        [
-          5,
-          6,
-          14
-        ],
-        [
-          5,
-          14,
-          13
-        ],
-        [
-          6,
-          7,
-          15
-        ],
-        [
-          6,
-          15,
-          14
-        ],
-        [
-          7,
-          0,
-          8
-        ],
-        [
-          7,
-          8,
-          15
+          7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+02-244A",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 2,
-      "unit_code": "FLAT-202",
-      "spatial_hash": "244A",
-      "deed_token": "289dca9aad9de0f2cd7e58c7455e51f75bfdb02e780cc48511ec7e93100a74f9",
-      "qr_payload": {
-        "id": "IND280145987621-A+02-244A",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 2,
-        "unit": "FLAT-202",
-        "token": "289dca9aad9de0f2"
+      "deed_no": "DEL-DWK-2023-88906",
+      "deed_token": "8ba9cd523bb3b863c00356ff5be211e39801a38cc9c980296cb8f988bae4a472",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-203",
-      "name": "Apartment 203 (2BHK Premium)",
+      "ulpin_3d": "IND280145987621-A+02-99B1",
+      "name": "Flat 203 (2BHK Premium, Tower A)",
+      "owner": "Manish Tiwari",
+      "block": "BLOCK_A",
       "level": 2,
+      "type": "RESIDENTIAL",
       "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Ananya Sen",
-      "poly_2d": [
-        [
-          -12.0,
-          -9.0
-        ],
-        [
-          -3.0,
-          -9.0
-        ],
-        [
-          -3.0,
-          0.0
-        ],
-        [
-          -12.0,
-          0.0
-        ],
-        [
-          -12.0,
-          -9.0
-        ]
-      ],
-      "z_min": 6.2,
-      "z_max": 9.0,
-      "color": "#3b82f6",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        -7.5,
-        -4.5,
+        -11.5,
+        -5.0,
         7.6
-      ],
-      "bbox_local": [
-        -12.0,
-        -9.0,
-        6.2,
-        -3.0,
-        0.0,
-        9.0
-      ],
-      "centroid_wgs84": [
-        77.0601233,
-        28.5822594,
-        222.6
       ],
       "vertices_local": [
         [
-          -12.0,
-          -9.0,
+          -14,
+          -8,
           6.2
         ],
         [
-          -3.0,
-          -9.0,
+          -9,
+          -8,
           6.2
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -2,
           6.2
         ],
         [
-          -12.0,
-          0.0,
+          -14,
+          -2,
           6.2
         ],
         [
-          -12.0,
-          -9.0,
+          -14,
+          -8,
           9.0
         ],
         [
-          -3.0,
-          -9.0,
+          -9,
+          -8,
           9.0
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -2,
           9.0
         ],
         [
-          -12.0,
-          0.0,
+          -14,
+          -2,
           9.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5822188,
-          221.2
-        ],
-        [
-          77.0601693,
-          28.5822188,
-          221.2
-        ],
-        [
-          77.0601693,
-          28.5823,
-          221.2
-        ],
-        [
-          77.0600773,
-          28.5823,
-          221.2
-        ],
-        [
-          77.0600773,
-          28.5822188,
-          224.0
-        ],
-        [
-          77.0601693,
-          28.5822188,
-          224.0
-        ],
-        [
-          77.0601693,
-          28.5823,
-          224.0
-        ],
-        [
-          77.0600773,
-          28.5823,
-          224.0
         ]
       ],
       "faces": [
@@ -4689,157 +1933,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+02-0D80",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 2,
-      "unit_code": "FLAT-203",
-      "spatial_hash": "0D80",
-      "deed_token": "cd8093fecd767bd5216c2a902bc6e9af6264b8547c1841ceb98fb8576ae4fd6f",
-      "qr_payload": {
-        "id": "IND280145987621-A+02-0D80",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 2,
-        "unit": "FLAT-203",
-        "token": "cd8093fecd767bd5"
+      "deed_no": "DEL-DWK-2023-88907",
+      "deed_token": "58c39d44c87b7a651b9c3bed1c03935d8df93b8a9dd39c519e82c5157474d15a",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-204",
-      "name": "Apartment 204 (2BHK Premium)",
+      "ulpin_3d": "IND280145987621-A+02-5A11",
+      "name": "Flat 204 (2BHK Premium, Tower A)",
+      "owner": "Ananya Roy",
+      "block": "BLOCK_A",
       "level": 2,
+      "type": "RESIDENTIAL",
       "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Harish Mehta",
-      "poly_2d": [
-        [
-          3.0,
-          -9.0
-        ],
-        [
-          12.0,
-          -9.0
-        ],
-        [
-          12.0,
-          0.0
-        ],
-        [
-          3.0,
-          0.0
-        ],
-        [
-          3.0,
-          -9.0
-        ]
-      ],
-      "z_min": 6.2,
-      "z_max": 9.0,
-      "color": "#3b82f6",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        7.5,
-        -4.5,
+        -6.5,
+        -5.0,
         7.6
       ],
-      "bbox_local": [
-        3.0,
-        -9.0,
-        6.2,
-        12.0,
-        0.0,
-        9.0
-      ],
-      "centroid_wgs84": [
-        77.0602767,
-        28.5822594,
-        222.6
-      ],
       "vertices_local": [
         [
-          3.0,
-          -9.0,
+          -9,
+          -8,
           6.2
         ],
         [
-          12.0,
-          -9.0,
+          -4,
+          -8,
           6.2
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -2,
           6.2
         ],
         [
-          3.0,
-          0.0,
+          -9,
+          -2,
           6.2
         ],
         [
-          3.0,
-          -9.0,
+          -9,
+          -8,
           9.0
         ],
         [
-          12.0,
-          -9.0,
+          -4,
+          -8,
           9.0
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -2,
           9.0
         ],
         [
-          3.0,
-          0.0,
+          -9,
+          -2,
           9.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0602307,
-          28.5822188,
-          221.2
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          221.2
-        ],
-        [
-          77.0603227,
-          28.5823,
-          221.2
-        ],
-        [
-          77.0602307,
-          28.5823,
-          221.2
-        ],
-        [
-          77.0602307,
-          28.5822188,
-          224.0
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          224.0
-        ],
-        [
-          77.0603227,
-          28.5823,
-          224.0
-        ],
-        [
-          77.0602307,
-          28.5823,
-          224.0
         ]
       ],
       "faces": [
@@ -4904,372 +2070,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+02-AAF7",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 2,
-      "unit_code": "FLAT-204",
-      "spatial_hash": "AAF7",
-      "deed_token": "758a522c91ad32dba5a9bdf3a4d2d82bb75ae73919d2e66e1a737d740f143535",
-      "qr_payload": {
-        "id": "IND280145987621-A+02-AAF7",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 2,
-        "unit": "FLAT-204",
-        "token": "758a522c91ad32db"
-      }
-    },
-    {
-      "unit_id": "LOBBY-300",
-      "name": "Floor 3 Elevator Lobby & Fire Corridor",
-      "level": 3,
-      "domain": "A",
-      "type": "COMMON_CIRCULATION",
-      "owner": "Aura Residency RWA",
-      "poly_2d": [
-        [
-          -3.0,
-          -3.0
-        ],
-        [
-          3.0,
-          -3.0
-        ],
-        [
-          3.0,
-          3.0
-        ],
-        [
-          -3.0,
-          3.0
-        ],
-        [
-          -3.0,
-          -3.0
-        ]
-      ],
-      "z_min": 9.2,
-      "z_max": 12.0,
-      "color": "#94a3b8",
-      "carpet_area_m2": 36.0,
-      "volume_m3": 100.8,
-      "is_watertight": true,
-      "centroid_local": [
-        0.0,
-        -0.0,
-        10.6
-      ],
-      "bbox_local": [
-        -3.0,
-        -3.0,
-        9.2,
-        3.0,
-        3.0,
-        12.0
-      ],
-      "centroid_wgs84": [
-        77.0602,
-        28.5823,
-        225.6
-      ],
-      "vertices_local": [
-        [
-          -3.0,
-          -3.0,
-          9.2
-        ],
-        [
-          3.0,
-          -3.0,
-          9.2
-        ],
-        [
-          3.0,
-          3.0,
-          9.2
-        ],
-        [
-          -3.0,
-          3.0,
-          9.2
-        ],
-        [
-          -3.0,
-          -3.0,
-          12.0
-        ],
-        [
-          3.0,
-          -3.0,
-          12.0
-        ],
-        [
-          3.0,
-          3.0,
-          12.0
-        ],
-        [
-          -3.0,
-          3.0,
-          12.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0601693,
-          28.5822729,
-          224.2
-        ],
-        [
-          77.0602307,
-          28.5822729,
-          224.2
-        ],
-        [
-          77.0602307,
-          28.5823271,
-          224.2
-        ],
-        [
-          77.0601693,
-          28.5823271,
-          224.2
-        ],
-        [
-          77.0601693,
-          28.5822729,
-          227.0
-        ],
-        [
-          77.0602307,
-          28.5822729,
-          227.0
-        ],
-        [
-          77.0602307,
-          28.5823271,
-          227.0
-        ],
-        [
-          77.0601693,
-          28.5823271,
-          227.0
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
-      "ulpin_3d": "IND280145987621-A+03-5F17",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 3,
-      "unit_code": "LOBBY-300",
-      "spatial_hash": "5F17",
-      "deed_token": "cc5f1d0ceef68a45cd6b130a84066c0744dea64db3c241b19b8161944c455af2",
-      "qr_payload": {
-        "id": "IND280145987621-A+03-5F17",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 3,
-        "unit": "LOBBY-300",
-        "token": "cc5f1d0ceef68a45"
+      "deed_no": "DEL-DWK-2023-88908",
+      "deed_token": "cab8cddf51042fc10a44c3d469ee7b1dff8f3efc265fd60defc0698bff28132b",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-301",
-      "name": "Apartment 301 (3BHK Executive)",
-      "level": 3,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
+      "ulpin_3d": "IND280145987621-A+03-31C4",
+      "name": "Flat 301 (3BHK Executive, Tower A)",
       "owner": "Vikram Malhotra",
-      "poly_2d": [
-        [
-          -12.0,
-          0.0
-        ],
-        [
-          -3.0,
-          0.0
-        ],
-        [
-          -3.0,
-          9.0
-        ],
-        [
-          -12.0,
-          9.0
-        ],
-        [
-          -12.0,
-          0.0
-        ]
-      ],
-      "z_min": 9.2,
-      "z_max": 12.0,
-      "color": "#6366f1",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "block": "BLOCK_A",
+      "level": 3,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        -7.5,
-        4.5,
+        -11.5,
+        -11.0,
         10.6
-      ],
-      "bbox_local": [
-        -12.0,
-        0.0,
-        9.2,
-        -3.0,
-        9.0,
-        12.0
-      ],
-      "centroid_wgs84": [
-        77.0601233,
-        28.5823406,
-        225.6
       ],
       "vertices_local": [
         [
-          -12.0,
-          0.0,
+          -14,
+          -14,
           9.2
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -14,
           9.2
         ],
         [
-          -3.0,
-          9.0,
+          -9,
+          -8,
           9.2
         ],
         [
-          -12.0,
-          9.0,
+          -14,
+          -8,
           9.2
         ],
         [
-          -12.0,
-          0.0,
+          -14,
+          -14,
           12.0
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -14,
           12.0
         ],
         [
-          -3.0,
-          9.0,
+          -9,
+          -8,
           12.0
         ],
         [
-          -12.0,
-          9.0,
+          -14,
+          -8,
           12.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5823,
-          224.2
-        ],
-        [
-          77.0601693,
-          28.5823,
-          224.2
-        ],
-        [
-          77.0601693,
-          28.5823812,
-          224.2
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          224.2
-        ],
-        [
-          77.0600773,
-          28.5823,
-          227.0
-        ],
-        [
-          77.0601693,
-          28.5823,
-          227.0
-        ],
-        [
-          77.0601693,
-          28.5823812,
-          227.0
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          227.0
         ]
       ],
       "faces": [
@@ -5334,157 +2207,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+03-3BD9",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 3,
-      "unit_code": "FLAT-301",
-      "spatial_hash": "3BD9",
-      "deed_token": "5827884f00632f143038565901235b6aaa1cf6c073421e25d38b7b4f7ae776e7",
-      "qr_payload": {
-        "id": "IND280145987621-A+03-3BD9",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 3,
-        "unit": "FLAT-301",
-        "token": "5827884f00632f14"
+      "deed_no": "DEL-DWK-2023-88909",
+      "deed_token": "468744f838685032fbe47eb133200186e46222d0f297512be96702bcc74ba441",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-302",
-      "name": "Apartment 302 (3BHK Executive)",
+      "ulpin_3d": "IND280145987621-A+03-9FB2",
+      "name": "Flat 302 (Level 3, Tower A)",
+      "owner": "Deepak Joshi",
+      "block": "BLOCK_A",
       "level": 3,
+      "type": "RESIDENTIAL",
       "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Suresh Raina",
-      "poly_2d": [
-        [
-          3.0,
-          0.0
-        ],
-        [
-          12.0,
-          0.0
-        ],
-        [
-          12.0,
-          9.0
-        ],
-        [
-          3.0,
-          9.0
-        ],
-        [
-          3.0,
-          0.0
-        ]
-      ],
-      "z_min": 9.2,
-      "z_max": 12.0,
-      "color": "#6366f1",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        7.5,
-        4.5,
+        -6.5,
+        -11.0,
         10.6
-      ],
-      "bbox_local": [
-        3.0,
-        0.0,
-        9.2,
-        12.0,
-        9.0,
-        12.0
-      ],
-      "centroid_wgs84": [
-        77.0602767,
-        28.5823406,
-        225.6
       ],
       "vertices_local": [
         [
-          3.0,
-          0.0,
+          -9,
+          -14,
           9.2
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -14,
           9.2
         ],
         [
-          12.0,
-          9.0,
+          -4,
+          -8,
           9.2
         ],
         [
-          3.0,
-          9.0,
+          -9,
+          -8,
           9.2
         ],
         [
-          3.0,
-          0.0,
+          -9,
+          -14,
           12.0
         ],
         [
-          12.0,
-          0.0,
+          -4,
+          -14,
           12.0
         ],
         [
-          12.0,
-          9.0,
+          -4,
+          -8,
           12.0
         ],
         [
-          3.0,
-          9.0,
+          -9,
+          -8,
           12.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0602307,
-          28.5823,
-          224.2
-        ],
-        [
-          77.0603227,
-          28.5823,
-          224.2
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          224.2
-        ],
-        [
-          77.0602307,
-          28.5823812,
-          224.2
-        ],
-        [
-          77.0602307,
-          28.5823,
-          227.0
-        ],
-        [
-          77.0603227,
-          28.5823,
-          227.0
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          227.0
-        ],
-        [
-          77.0602307,
-          28.5823812,
-          227.0
         ]
       ],
       "faces": [
@@ -5549,157 +2344,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+03-8460",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 3,
-      "unit_code": "FLAT-302",
-      "spatial_hash": "8460",
-      "deed_token": "52ffd0838ddc3b09c6cf32ab4e79b1f63fc4f5df3c867e4e3680e1a6b91f7e65",
-      "qr_payload": {
-        "id": "IND280145987621-A+03-8460",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 3,
-        "unit": "FLAT-302",
-        "token": "52ffd0838ddc3b09"
+      "deed_no": "DEL-DWK-2025-10492",
+      "deed_token": "e846404e3c1d3a4d79593d87e4decaa98a84d156fcfd8b8a37459e11dd8d43f5",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "SBI Home Loan (Active Lien: \u20b942.5 L)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-303",
-      "name": "Apartment 303 (2BHK Premium)",
+      "ulpin_3d": "IND280145987621-A+03-67D2",
+      "name": "Flat 303 (2BHK Premium, Tower A)",
+      "owner": "Neha Gupta",
+      "block": "BLOCK_A",
       "level": 3,
+      "type": "RESIDENTIAL",
       "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Pooja Hegde",
-      "poly_2d": [
-        [
-          -12.0,
-          -9.0
-        ],
-        [
-          -3.0,
-          -9.0
-        ],
-        [
-          -3.0,
-          0.0
-        ],
-        [
-          -12.0,
-          0.0
-        ],
-        [
-          -12.0,
-          -9.0
-        ]
-      ],
-      "z_min": 9.2,
-      "z_max": 12.0,
-      "color": "#3b82f6",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "carpet_area_m2": 24.6,
+      "rera_volume_m3": 84.0,
       "is_watertight": true,
       "centroid_local": [
-        -7.5,
-        -4.5,
+        -11.5,
+        -5.0,
         10.6
-      ],
-      "bbox_local": [
-        -12.0,
-        -9.0,
-        9.2,
-        -3.0,
-        0.0,
-        12.0
-      ],
-      "centroid_wgs84": [
-        77.0601233,
-        28.5822594,
-        225.6
       ],
       "vertices_local": [
         [
-          -12.0,
-          -9.0,
+          -14,
+          -8,
           9.2
         ],
         [
-          -3.0,
-          -9.0,
+          -9,
+          -8,
           9.2
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -2,
           9.2
         ],
         [
-          -12.0,
-          0.0,
+          -14,
+          -2,
           9.2
         ],
         [
-          -12.0,
-          -9.0,
+          -14,
+          -8,
           12.0
         ],
         [
-          -3.0,
-          -9.0,
+          -9,
+          -8,
           12.0
         ],
         [
-          -3.0,
-          0.0,
+          -9,
+          -2,
           12.0
         ],
         [
-          -12.0,
-          0.0,
+          -14,
+          -2,
           12.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5822188,
-          224.2
-        ],
-        [
-          77.0601693,
-          28.5822188,
-          224.2
-        ],
-        [
-          77.0601693,
-          28.5823,
-          224.2
-        ],
-        [
-          77.0600773,
-          28.5823,
-          224.2
-        ],
-        [
-          77.0600773,
-          28.5822188,
-          227.0
-        ],
-        [
-          77.0601693,
-          28.5822188,
-          227.0
-        ],
-        [
-          77.0601693,
-          28.5823,
-          227.0
-        ],
-        [
-          77.0600773,
-          28.5823,
-          227.0
         ]
       ],
       "faces": [
@@ -5764,159 +2481,81 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+03-89BC",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 3,
-      "unit_code": "FLAT-303",
-      "spatial_hash": "89BC",
-      "deed_token": "9014d8958176ea39587e2eac6765a8fc848676c4910c5b33a2e89e94a5a81ba0",
-      "qr_payload": {
-        "id": "IND280145987621-A+03-89BC",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 3,
-        "unit": "FLAT-303",
-        "token": "9014d8958176ea39"
+      "deed_no": "DEL-DWK-2023-88910",
+      "deed_token": "f6014330e8ce3fd7f42937dc8701326f46b54d9d1f9a860b0f41a0dcea2b64fa",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2290875,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "FLAT-304",
-      "name": "Apartment 304 (2BHK Premium)",
+      "ulpin_3d": "IND280145987621-A+03-7E91",
+      "name": "Flat 304 (3BHK Balcony Encroachment)",
+      "owner": "Harpreet Singh",
+      "block": "BLOCK_A",
       "level": 3,
+      "type": "RESIDENTIAL",
       "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Naveen Jindal",
-      "poly_2d": [
-        [
-          3.0,
-          -9.0
-        ],
-        [
-          12.0,
-          -9.0
-        ],
-        [
-          12.0,
-          0.0
-        ],
-        [
-          3.0,
-          0.0
-        ],
-        [
-          3.0,
-          -9.0
-        ]
-      ],
-      "z_min": 9.2,
-      "z_max": 12.0,
-      "color": "#3b82f6",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
+      "carpet_area_m2": 34.4,
+      "rera_volume_m3": 117.6,
       "is_watertight": true,
       "centroid_local": [
-        7.5,
-        -4.5,
+        -5.5,
+        -5.0,
         10.6
       ],
-      "bbox_local": [
-        3.0,
-        -9.0,
-        9.2,
-        12.0,
-        0.0,
-        12.0
-      ],
-      "centroid_wgs84": [
-        77.0602767,
-        28.5822594,
-        225.6
-      ],
       "vertices_local": [
         [
-          3.0,
-          -9.0,
+          -9,
+          -8,
           9.2
         ],
         [
-          12.0,
-          -9.0,
+          -2,
+          -8,
           9.2
         ],
         [
-          12.0,
-          0.0,
+          -2,
+          -2,
           9.2
         ],
         [
-          3.0,
-          0.0,
+          -9,
+          -2,
           9.2
         ],
         [
-          3.0,
-          -9.0,
+          -9,
+          -8,
           12.0
         ],
         [
-          12.0,
-          -9.0,
+          -2,
+          -8,
           12.0
         ],
         [
-          12.0,
-          0.0,
+          -2,
+          -2,
           12.0
         ],
         [
-          3.0,
-          0.0,
+          -9,
+          -2,
           12.0
         ]
       ],
-      "vertices_wgs84": [
-        [
-          77.0602307,
-          28.5822188,
-          224.2
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          224.2
-        ],
-        [
-          77.0603227,
-          28.5823,
-          224.2
-        ],
-        [
-          77.0602307,
-          28.5823,
-          224.2
-        ],
-        [
-          77.0602307,
-          28.5822188,
-          227.0
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          227.0
-        ],
-        [
-          77.0603227,
-          28.5823,
-          227.0
-        ],
-        [
-          77.0602307,
-          28.5823,
-          227.0
-        ]
-      ],
       "faces": [
         [
           2,
@@ -5979,157 +2618,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+03-983A",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 3,
-      "unit_code": "FLAT-304",
-      "spatial_hash": "983A",
-      "deed_token": "59560e8d7c5be0df85c1ccdf211d0357e6511f4f95fb1eccc0fa9a98bc7d3e9f",
-      "qr_payload": {
-        "id": "IND280145987621-A+03-983A",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 3,
-        "unit": "FLAT-304",
-        "token": "59560e8d7c5be0df"
+      "deed_no": "DEL-DWK-2023-88911",
+      "deed_token": "2233d87690cd252bc00cbc4a65b4a6c40772eca64c992ca78c5d16b1d2e9452f",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 3203500,
+      "violation": {
+        "has_violation": true,
+        "violation_type": "AIR_RIGHTS_SETBACK_ENCROACHMENT",
+        "severity": "HIGH",
+        "encroachment_area_m2": 10.0,
+        "encroachment_volume_m3": 28.0,
+        "description": "Flat 304 unauthorized cantilevered balcony extends 2.0m into the statutory public road setback envelope."
       }
     },
     {
-      "unit_id": "LOBBY-400",
-      "name": "Floor 4 Elevator Lobby & Fire Corridor",
+      "unit_id": "PENT-401",
+      "ulpin_3d": "IND280145987621-A+04-P401",
+      "name": "Sky Penthouse 401 (Duplex Luxury Suite)",
+      "owner": "Anil Ambani Trust",
+      "block": "BLOCK_A",
       "level": 4,
+      "type": "PENTHOUSE",
       "domain": "A",
-      "type": "COMMON_CIRCULATION",
-      "owner": "Aura Residency RWA",
-      "poly_2d": [
-        [
-          -3.0,
-          -3.0
-        ],
-        [
-          3.0,
-          -3.0
-        ],
-        [
-          3.0,
-          3.0
-        ],
-        [
-          -3.0,
-          3.0
-        ],
-        [
-          -3.0,
-          -3.0
-        ]
-      ],
-      "z_min": 12.2,
-      "z_max": 15.0,
-      "color": "#94a3b8",
-      "carpet_area_m2": 36.0,
-      "volume_m3": 100.8,
+      "carpet_area_m2": 73.8,
+      "rera_volume_m3": 297.0,
       "is_watertight": true,
       "centroid_local": [
-        0.0,
-        -0.0,
-        13.6
-      ],
-      "bbox_local": [
-        -3.0,
-        -3.0,
-        12.2,
-        3.0,
-        3.0,
-        15.0
-      ],
-      "centroid_wgs84": [
-        77.0602,
-        28.5823,
-        228.6
+        -8.5,
+        -8.0,
+        13.85
       ],
       "vertices_local": [
         [
-          -3.0,
-          -3.0,
+          -13,
+          -13,
           12.2
         ],
         [
-          3.0,
-          -3.0,
+          -4,
+          -13,
           12.2
         ],
         [
-          3.0,
-          3.0,
+          -4,
+          -3,
           12.2
         ],
         [
-          -3.0,
-          3.0,
+          -13,
+          -3,
           12.2
         ],
         [
-          -3.0,
-          -3.0,
-          15.0
+          -13,
+          -13,
+          15.5
         ],
         [
-          3.0,
-          -3.0,
-          15.0
+          -4,
+          -13,
+          15.5
         ],
         [
-          3.0,
-          3.0,
-          15.0
+          -4,
+          -3,
+          15.5
         ],
         [
-          -3.0,
-          3.0,
-          15.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0601693,
-          28.5822729,
-          227.2
-        ],
-        [
-          77.0602307,
-          28.5822729,
-          227.2
-        ],
-        [
-          77.0602307,
-          28.5823271,
-          227.2
-        ],
-        [
-          77.0601693,
-          28.5823271,
-          227.2
-        ],
-        [
-          77.0601693,
-          28.5822729,
-          230.0
-        ],
-        [
-          77.0602307,
-          28.5822729,
-          230.0
-        ],
-        [
-          77.0602307,
-          28.5823271,
-          230.0
-        ],
-        [
-          77.0601693,
-          28.5823271,
-          230.0
+          -13,
+          -3,
+          15.5
         ]
       ],
       "faces": [
@@ -6194,1017 +2755,79 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+04-757C",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 4,
-      "unit_code": "LOBBY-400",
-      "spatial_hash": "757C",
-      "deed_token": "3e6a2118e4487056001b94883208a45f48b937b1264644c310d2e8f79962df58",
-      "qr_payload": {
-        "id": "IND280145987621-A+04-757C",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 4,
-        "unit": "LOBBY-400",
-        "token": "3e6a2118e4487056"
-      }
-    },
-    {
-      "unit_id": "FLAT-401",
-      "name": "Apartment 401 (Penthouse North-A)",
-      "level": 4,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Rohan Singhania",
-      "poly_2d": [
-        [
-          -12.0,
-          0.0
-        ],
-        [
-          -3.0,
-          0.0
-        ],
-        [
-          -3.0,
-          9.0
-        ],
-        [
-          -12.0,
-          9.0
-        ],
-        [
-          -12.0,
-          0.0
-        ]
-      ],
-      "z_min": 12.2,
-      "z_max": 15.0,
-      "color": "#6366f1",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
-      "is_watertight": true,
-      "centroid_local": [
-        -7.5,
-        4.5,
-        13.6
-      ],
-      "bbox_local": [
-        -12.0,
-        0.0,
-        12.2,
-        -3.0,
-        9.0,
-        15.0
-      ],
-      "centroid_wgs84": [
-        77.0601233,
-        28.5823406,
-        228.6
-      ],
-      "vertices_local": [
-        [
-          -12.0,
-          0.0,
-          12.2
-        ],
-        [
-          -3.0,
-          0.0,
-          12.2
-        ],
-        [
-          -3.0,
-          9.0,
-          12.2
-        ],
-        [
-          -12.0,
-          9.0,
-          12.2
-        ],
-        [
-          -12.0,
-          0.0,
-          15.0
-        ],
-        [
-          -3.0,
-          0.0,
-          15.0
-        ],
-        [
-          -3.0,
-          9.0,
-          15.0
-        ],
-        [
-          -12.0,
-          9.0,
-          15.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5823,
-          227.2
-        ],
-        [
-          77.0601693,
-          28.5823,
-          227.2
-        ],
-        [
-          77.0601693,
-          28.5823812,
-          227.2
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          227.2
-        ],
-        [
-          77.0600773,
-          28.5823,
-          230.0
-        ],
-        [
-          77.0601693,
-          28.5823,
-          230.0
-        ],
-        [
-          77.0601693,
-          28.5823812,
-          230.0
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          230.0
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
-      "ulpin_3d": "IND280145987621-A+04-0ABB",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 4,
-      "unit_code": "FLAT-401",
-      "spatial_hash": "0ABB",
-      "deed_token": "89e658e1005abbe91cc462959488330611480db87329ce7331bf2e99fa0bb592",
-      "qr_payload": {
-        "id": "IND280145987621-A+04-0ABB",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 4,
-        "unit": "FLAT-401",
-        "token": "89e658e1005abbe9"
-      }
-    },
-    {
-      "unit_id": "FLAT-402",
-      "name": "Apartment 402 (Penthouse North-B)",
-      "level": 4,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Manish Goel",
-      "poly_2d": [
-        [
-          3.0,
-          0.0
-        ],
-        [
-          12.0,
-          0.0
-        ],
-        [
-          12.0,
-          9.0
-        ],
-        [
-          3.0,
-          9.0
-        ],
-        [
-          3.0,
-          0.0
-        ]
-      ],
-      "z_min": 12.2,
-      "z_max": 15.0,
-      "color": "#6366f1",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
-      "is_watertight": true,
-      "centroid_local": [
-        7.5,
-        4.5,
-        13.6
-      ],
-      "bbox_local": [
-        3.0,
-        0.0,
-        12.2,
-        12.0,
-        9.0,
-        15.0
-      ],
-      "centroid_wgs84": [
-        77.0602767,
-        28.5823406,
-        228.6
-      ],
-      "vertices_local": [
-        [
-          3.0,
-          0.0,
-          12.2
-        ],
-        [
-          12.0,
-          0.0,
-          12.2
-        ],
-        [
-          12.0,
-          9.0,
-          12.2
-        ],
-        [
-          3.0,
-          9.0,
-          12.2
-        ],
-        [
-          3.0,
-          0.0,
-          15.0
-        ],
-        [
-          12.0,
-          0.0,
-          15.0
-        ],
-        [
-          12.0,
-          9.0,
-          15.0
-        ],
-        [
-          3.0,
-          9.0,
-          15.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0602307,
-          28.5823,
-          227.2
-        ],
-        [
-          77.0603227,
-          28.5823,
-          227.2
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          227.2
-        ],
-        [
-          77.0602307,
-          28.5823812,
-          227.2
-        ],
-        [
-          77.0602307,
-          28.5823,
-          230.0
-        ],
-        [
-          77.0603227,
-          28.5823,
-          230.0
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          230.0
-        ],
-        [
-          77.0602307,
-          28.5823812,
-          230.0
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
-      "ulpin_3d": "IND280145987621-A+04-3CCA",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 4,
-      "unit_code": "FLAT-402",
-      "spatial_hash": "3CCA",
-      "deed_token": "82d3be3c32e32427705965d819ad07c4afb9ee33b0b72d8bc0a3941461f55b20",
-      "qr_payload": {
-        "id": "IND280145987621-A+04-3CCA",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 4,
-        "unit": "FLAT-402",
-        "token": "82d3be3c32e32427"
-      }
-    },
-    {
-      "unit_id": "FLAT-403",
-      "name": "Apartment 403 (Penthouse South-A)",
-      "level": 4,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Sanjay Dutt",
-      "poly_2d": [
-        [
-          -12.0,
-          -9.0
-        ],
-        [
-          -3.0,
-          -9.0
-        ],
-        [
-          -3.0,
-          0.0
-        ],
-        [
-          -12.0,
-          0.0
-        ],
-        [
-          -12.0,
-          -9.0
-        ]
-      ],
-      "z_min": 12.2,
-      "z_max": 15.0,
-      "color": "#6366f1",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
-      "is_watertight": true,
-      "centroid_local": [
-        -7.5,
-        -4.5,
-        13.6
-      ],
-      "bbox_local": [
-        -12.0,
-        -9.0,
-        12.2,
-        -3.0,
-        0.0,
-        15.0
-      ],
-      "centroid_wgs84": [
-        77.0601233,
-        28.5822594,
-        228.6
-      ],
-      "vertices_local": [
-        [
-          -12.0,
-          -9.0,
-          12.2
-        ],
-        [
-          -3.0,
-          -9.0,
-          12.2
-        ],
-        [
-          -3.0,
-          0.0,
-          12.2
-        ],
-        [
-          -12.0,
-          0.0,
-          12.2
-        ],
-        [
-          -12.0,
-          -9.0,
-          15.0
-        ],
-        [
-          -3.0,
-          -9.0,
-          15.0
-        ],
-        [
-          -3.0,
-          0.0,
-          15.0
-        ],
-        [
-          -12.0,
-          0.0,
-          15.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5822188,
-          227.2
-        ],
-        [
-          77.0601693,
-          28.5822188,
-          227.2
-        ],
-        [
-          77.0601693,
-          28.5823,
-          227.2
-        ],
-        [
-          77.0600773,
-          28.5823,
-          227.2
-        ],
-        [
-          77.0600773,
-          28.5822188,
-          230.0
-        ],
-        [
-          77.0601693,
-          28.5822188,
-          230.0
-        ],
-        [
-          77.0601693,
-          28.5823,
-          230.0
-        ],
-        [
-          77.0600773,
-          28.5823,
-          230.0
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
-      "ulpin_3d": "IND280145987621-A+04-95CE",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 4,
-      "unit_code": "FLAT-403",
-      "spatial_hash": "95CE",
-      "deed_token": "5e3024c0786d4c99699850a17a4c696609687dc6b049cc8c06ff88c95f1b1e30",
-      "qr_payload": {
-        "id": "IND280145987621-A+04-95CE",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 4,
-        "unit": "FLAT-403",
-        "token": "5e3024c0786d4c99"
-      }
-    },
-    {
-      "unit_id": "FLAT-404",
-      "name": "Apartment 404 (Penthouse South-B)",
-      "level": 4,
-      "domain": "A",
-      "type": "PRIVATE_RESIDENTIAL",
-      "owner": "Alok Nath",
-      "poly_2d": [
-        [
-          3.0,
-          -9.0
-        ],
-        [
-          12.0,
-          -9.0
-        ],
-        [
-          12.0,
-          0.0
-        ],
-        [
-          3.0,
-          0.0
-        ],
-        [
-          3.0,
-          -9.0
-        ]
-      ],
-      "z_min": 12.2,
-      "z_max": 15.0,
-      "color": "#6366f1",
-      "carpet_area_m2": 81.0,
-      "volume_m3": 226.8,
-      "is_watertight": true,
-      "centroid_local": [
-        7.5,
-        -4.5,
-        13.6
-      ],
-      "bbox_local": [
-        3.0,
-        -9.0,
-        12.2,
-        12.0,
-        0.0,
-        15.0
-      ],
-      "centroid_wgs84": [
-        77.0602767,
-        28.5822594,
-        228.6
-      ],
-      "vertices_local": [
-        [
-          3.0,
-          -9.0,
-          12.2
-        ],
-        [
-          12.0,
-          -9.0,
-          12.2
-        ],
-        [
-          12.0,
-          0.0,
-          12.2
-        ],
-        [
-          3.0,
-          0.0,
-          12.2
-        ],
-        [
-          3.0,
-          -9.0,
-          15.0
-        ],
-        [
-          12.0,
-          -9.0,
-          15.0
-        ],
-        [
-          12.0,
-          0.0,
-          15.0
-        ],
-        [
-          3.0,
-          0.0,
-          15.0
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0602307,
-          28.5822188,
-          227.2
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          227.2
-        ],
-        [
-          77.0603227,
-          28.5823,
-          227.2
-        ],
-        [
-          77.0602307,
-          28.5823,
-          227.2
-        ],
-        [
-          77.0602307,
-          28.5822188,
-          230.0
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          230.0
-        ],
-        [
-          77.0603227,
-          28.5823,
-          230.0
-        ],
-        [
-          77.0602307,
-          28.5823,
-          230.0
-        ]
-      ],
-      "faces": [
-        [
-          2,
-          0,
-          3
-        ],
-        [
-          0,
-          2,
-          1
-        ],
-        [
-          6,
-          7,
-          4
-        ],
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          0,
-          1,
-          5
-        ],
-        [
-          0,
-          5,
-          4
-        ],
-        [
-          1,
-          2,
-          6
-        ],
-        [
-          1,
-          6,
-          5
-        ],
-        [
-          2,
-          3,
-          7
-        ],
-        [
-          2,
-          7,
-          6
-        ],
-        [
-          3,
-          0,
-          4
-        ],
-        [
-          3,
-          4,
-          7
-        ]
-      ],
-      "ulpin_3d": "IND280145987621-A+04-5281",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 4,
-      "unit_code": "FLAT-404",
-      "spatial_hash": "5281",
-      "deed_token": "07d8e1d8c031004da9cec603f4f2d3d15dd21e14f506aee7922204f6c8671618",
-      "qr_payload": {
-        "id": "IND280145987621-A+04-5281",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 4,
-        "unit": "FLAT-404",
-        "token": "07d8e1d8c031004d"
+      "deed_no": "DEL-DWK-2024-99012",
+      "deed_token": "139cc891efbbb2c66c789040f5d3ed13b34c9372e885fcd0d69433b368589003",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "Axis Bank Mortgage Lien: \u20b91.4 Cr",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 6872625,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     },
     {
       "unit_id": "ROOF-501",
-      "name": "Terrace Solar Array & Overhead Water Storage",
-      "level": 5,
-      "domain": "A",
-      "type": "COMMON_UTILITY",
+      "ulpin_3d": "IND280145987621-A+05-A049",
+      "name": "Terrace Solar Array & Overhead Water Tanks",
       "owner": "Aura Residency RWA",
-      "poly_2d": [
-        [
-          -12.0,
-          -9.0
-        ],
-        [
-          12.0,
-          -9.0
-        ],
-        [
-          12.0,
-          9.0
-        ],
-        [
-          -12.0,
-          9.0
-        ],
-        [
-          -12.0,
-          -9.0
-        ]
-      ],
-      "z_min": 15.2,
-      "z_max": 17.5,
-      "color": "#0ea5e9",
-      "carpet_area_m2": 432.0,
-      "volume_m3": 993.6,
+      "block": "BLOCK_A",
+      "level": 5,
+      "type": "COMMON_ROOF",
+      "domain": "A",
+      "carpet_area_m2": 59.0,
+      "rera_volume_m3": 136.8,
       "is_watertight": true,
       "centroid_local": [
-        0.0,
-        0.0,
-        16.35
-      ],
-      "bbox_local": [
-        -12.0,
         -9.0,
-        15.2,
-        12.0,
-        9.0,
-        17.5
-      ],
-      "centroid_wgs84": [
-        77.0602,
-        28.5823,
-        231.35
+        -8.5,
+        16.55
       ],
       "vertices_local": [
         [
-          -12.0,
-          -9.0,
-          15.2
+          -13,
+          -13,
+          15.6
         ],
         [
-          12.0,
-          -9.0,
-          15.2
+          -5,
+          -13,
+          15.6
         ],
         [
-          12.0,
-          9.0,
-          15.2
+          -5,
+          -4,
+          15.6
         ],
         [
-          -12.0,
-          9.0,
-          15.2
+          -13,
+          -4,
+          15.6
         ],
         [
-          -12.0,
-          -9.0,
+          -13,
+          -13,
           17.5
         ],
         [
-          12.0,
-          -9.0,
+          -5,
+          -13,
           17.5
         ],
         [
-          12.0,
-          9.0,
+          -5,
+          -4,
           17.5
         ],
         [
-          -12.0,
-          9.0,
+          -13,
+          -4,
           17.5
-        ]
-      ],
-      "vertices_wgs84": [
-        [
-          77.0600773,
-          28.5822188,
-          230.2
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          230.2
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          230.2
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          230.2
-        ],
-        [
-          77.0600773,
-          28.5822188,
-          232.5
-        ],
-        [
-          77.0603227,
-          28.5822188,
-          232.5
-        ],
-        [
-          77.0603227,
-          28.5823812,
-          232.5
-        ],
-        [
-          77.0600773,
-          28.5823812,
-          232.5
         ]
       ],
       "faces": [
@@ -7269,20 +2892,2486 @@
           7
         ]
       ],
-      "ulpin_3d": "IND280145987621-A+05-A049",
-      "base_ulpin": "IND280145987621",
-      "domain_flag": "A",
-      "floor_index": 5,
-      "unit_code": "ROOF-501",
-      "spatial_hash": "A049",
-      "deed_token": "f5c6ecb6956652bb7427d4439e4848c6176b4cf4556290d65ddf9e0e05953cad",
-      "qr_payload": {
-        "id": "IND280145987621-A+05-A049",
-        "base": "IND280145987621",
-        "domain": "A",
-        "floor": 5,
-        "unit": "ROOF-501",
-        "token": "f5c6ecb6956652bb"
+      "deed_no": "DEL-DWK-2023-RWA02",
+      "deed_token": "75057062313b18ce0572169c29b3d0b059c7d440881a0b8918b55616bc970be1",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 5494375,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "COMM-G01",
+      "ulpin_3d": "IND280145987622-S00-11A1",
+      "name": "Shop 01: Apollo 24/7 Pharmacy & Clinic",
+      "owner": "Apollo Health Enterprises",
+      "block": "BLOCK_B",
+      "level": 0,
+      "type": "COMMERCIAL",
+      "domain": "S",
+      "carpet_area_m2": 29.5,
+      "rera_volume_m3": 118.8,
+      "is_watertight": true,
+      "centroid_local": [
+        7.0,
+        -11.0,
+        1.85
+      ],
+      "vertices_local": [
+        [
+          4,
+          -14,
+          0.2
+        ],
+        [
+          10,
+          -14,
+          0.2
+        ],
+        [
+          10,
+          -8,
+          0.2
+        ],
+        [
+          4,
+          -8,
+          0.2
+        ],
+        [
+          4,
+          -14,
+          3.5
+        ],
+        [
+          10,
+          -14,
+          3.5
+        ],
+        [
+          10,
+          -8,
+          3.5
+        ],
+        [
+          4,
+          -8,
+          3.5
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2022-COM01",
+      "deed_token": "0b2fd15e0eb3393fec6d355015823bad5d74b2a3045fd160c8f250c6b25cd879",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2747187,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "COMM-G02",
+      "ulpin_3d": "IND280145987622-S00-22B2",
+      "name": "Shop 02: State Bank of India E-Corner & ATM",
+      "owner": "SBI Delhi Region",
+      "block": "BLOCK_B",
+      "level": 0,
+      "type": "COMMERCIAL",
+      "domain": "S",
+      "carpet_area_m2": 29.5,
+      "rera_volume_m3": 118.8,
+      "is_watertight": true,
+      "centroid_local": [
+        13.0,
+        -11.0,
+        1.85
+      ],
+      "vertices_local": [
+        [
+          10,
+          -14,
+          0.2
+        ],
+        [
+          16,
+          -14,
+          0.2
+        ],
+        [
+          16,
+          -8,
+          0.2
+        ],
+        [
+          10,
+          -8,
+          0.2
+        ],
+        [
+          10,
+          -14,
+          3.5
+        ],
+        [
+          16,
+          -14,
+          3.5
+        ],
+        [
+          16,
+          -8,
+          3.5
+        ],
+        [
+          10,
+          -8,
+          3.5
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2022-COM02",
+      "deed_token": "ee79ba8326457f02891fe60e14f65b4f9e3142ae3d3e6db79d0c9bc5c04100e5",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2747187,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "COMM-G03",
+      "ulpin_3d": "IND280145987622-S00-33C3",
+      "name": "Shop 03: Mother Dairy Milk & Organic Goods",
+      "owner": "Delhi Milk Scheme",
+      "block": "BLOCK_B",
+      "level": 0,
+      "type": "COMMERCIAL",
+      "domain": "S",
+      "carpet_area_m2": 29.5,
+      "rera_volume_m3": 118.8,
+      "is_watertight": true,
+      "centroid_local": [
+        7.0,
+        -5.0,
+        1.85
+      ],
+      "vertices_local": [
+        [
+          4,
+          -8,
+          0.2
+        ],
+        [
+          10,
+          -8,
+          0.2
+        ],
+        [
+          10,
+          -2,
+          0.2
+        ],
+        [
+          4,
+          -2,
+          0.2
+        ],
+        [
+          4,
+          -8,
+          3.5
+        ],
+        [
+          10,
+          -8,
+          3.5
+        ],
+        [
+          10,
+          -2,
+          3.5
+        ],
+        [
+          4,
+          -2,
+          3.5
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2022-COM03",
+      "deed_token": "75c8d8d3b93639af96658a9237f91d01df932b7e2f74a6ab34790e810fa2114d",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 2747187,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "COMM-G04",
+      "ulpin_3d": "IND280145987622-S00-44D4",
+      "name": "Shop 04: Cafe Coffee Day (Sidewalk Encroachment)",
+      "owner": "CCD Delhi Franchise",
+      "block": "BLOCK_B",
+      "level": 0,
+      "type": "COMMERCIAL",
+      "domain": "S",
+      "carpet_area_m2": 41.3,
+      "rera_volume_m3": 166.3,
+      "is_watertight": true,
+      "centroid_local": [
+        14.2,
+        -5.0,
+        1.85
+      ],
+      "vertices_local": [
+        [
+          10,
+          -8,
+          0.2
+        ],
+        [
+          18.4,
+          -8,
+          0.2
+        ],
+        [
+          18.4,
+          -2,
+          0.2
+        ],
+        [
+          10,
+          -2,
+          0.2
+        ],
+        [
+          10,
+          -8,
+          3.5
+        ],
+        [
+          18.4,
+          -8,
+          3.5
+        ],
+        [
+          18.4,
+          -2,
+          3.5
+        ],
+        [
+          10,
+          -2,
+          3.5
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2022-COM04",
+      "deed_token": "0e61a36404b9a3551dc7fbf96840da30460eda1ed66404f28d0917427f43b683",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 3846062,
+      "violation": {
+        "has_violation": true,
+        "violation_type": "GROUND_COVERAGE_SIDEWALK_ENCROACHMENT",
+        "severity": "CRITICAL",
+        "encroachment_area_m2": 14.4,
+        "encroachment_volume_m3": 47.5,
+        "description": "Commercial Plaza G04 unauthorized front extension encroaches 2.4m onto public pedestrian walkway."
+      }
+    },
+    {
+      "unit_id": "OFFC-101",
+      "ulpin_3d": "IND280145987622-A+01-55E5",
+      "name": "Office 101: Sharma & Associates C.A.",
+      "owner": "Ramesh Sharma, FCA",
+      "block": "BLOCK_B",
+      "level": 1,
+      "type": "COMMERCIAL_OFFICE",
+      "domain": "A",
+      "carpet_area_m2": 59.0,
+      "rera_volume_m3": 223.2,
+      "is_watertight": true,
+      "centroid_local": [
+        7.0,
+        -8.0,
+        5.25
+      ],
+      "vertices_local": [
+        [
+          4,
+          -14,
+          3.7
+        ],
+        [
+          10,
+          -14,
+          3.7
+        ],
+        [
+          10,
+          -2,
+          3.7
+        ],
+        [
+          4,
+          -2,
+          3.7
+        ],
+        [
+          4,
+          -14,
+          6.8
+        ],
+        [
+          10,
+          -14,
+          6.8
+        ],
+        [
+          10,
+          -2,
+          6.8
+        ],
+        [
+          4,
+          -2,
+          6.8
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2023-OFC01",
+      "deed_token": "e67b9cf36aff1ba0cbfbfd7b2f976e13114c16f6d6bf7ad9565acc28fccd4f19",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 5494375,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "OFFC-102",
+      "ulpin_3d": "IND280145987622-A+01-66F6",
+      "name": "Office 102: Apex Geospatial & Legal Chambers",
+      "owner": "Adv. Meenakshi Lekhi",
+      "block": "BLOCK_B",
+      "level": 1,
+      "type": "COMMERCIAL_OFFICE",
+      "domain": "A",
+      "carpet_area_m2": 59.0,
+      "rera_volume_m3": 223.2,
+      "is_watertight": true,
+      "centroid_local": [
+        13.0,
+        -8.0,
+        5.25
+      ],
+      "vertices_local": [
+        [
+          10,
+          -14,
+          3.7
+        ],
+        [
+          16,
+          -14,
+          3.7
+        ],
+        [
+          16,
+          -2,
+          3.7
+        ],
+        [
+          10,
+          -2,
+          3.7
+        ],
+        [
+          10,
+          -14,
+          6.8
+        ],
+        [
+          16,
+          -14,
+          6.8
+        ],
+        [
+          16,
+          -2,
+          6.8
+        ],
+        [
+          10,
+          -2,
+          6.8
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2023-OFC02",
+      "deed_token": "3ddf4bc9c74b767828de96576647eef78df699ba997892464021cc94f461b256",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 5494375,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "ROOF-C01",
+      "ulpin_3d": "IND280145987622-A+02-77G7",
+      "name": "Terrace Open-Air Food Court & Deck",
+      "owner": "Sector 10 Market Association",
+      "block": "BLOCK_B",
+      "level": 2,
+      "type": "COMMERCIAL",
+      "domain": "A",
+      "carpet_area_m2": 118.1,
+      "rera_volume_m3": 316.8,
+      "is_watertight": true,
+      "centroid_local": [
+        10.0,
+        -8.0,
+        8.1
+      ],
+      "vertices_local": [
+        [
+          4,
+          -14,
+          7.0
+        ],
+        [
+          16,
+          -14,
+          7.0
+        ],
+        [
+          16,
+          -2,
+          7.0
+        ],
+        [
+          4,
+          -2,
+          7.0
+        ],
+        [
+          4,
+          -14,
+          9.2
+        ],
+        [
+          16,
+          -14,
+          9.2
+        ],
+        [
+          16,
+          -2,
+          9.2
+        ],
+        [
+          4,
+          -2,
+          9.2
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2023-OFC03",
+      "deed_token": "30e81a8cf84654ec170ff45ef4a7e632afc692e9473572acfdef947bd4ac4e29",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 10998062,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "VMH-G01",
+      "ulpin_3d": "IND280145987623-S00-88H8",
+      "name": "VM Heights Stilt Parking & Gatehouse",
+      "owner": "VM Heights RWA",
+      "block": "BLOCK_C",
+      "level": 0,
+      "type": "COMMON_STILT",
+      "domain": "S",
+      "carpet_area_m2": 98.4,
+      "rera_volume_m3": 336.0,
+      "is_watertight": true,
+      "centroid_local": [
+        -9.0,
+        10.0,
+        1.6
+      ],
+      "vertices_local": [
+        [
+          -14,
+          4,
+          0.2
+        ],
+        [
+          -4,
+          4,
+          0.2
+        ],
+        [
+          -4,
+          16,
+          0.2
+        ],
+        [
+          -14,
+          16,
+          0.2
+        ],
+        [
+          -14,
+          4,
+          3.0
+        ],
+        [
+          -4,
+          4,
+          3.0
+        ],
+        [
+          -4,
+          16,
+          3.0
+        ],
+        [
+          -14,
+          16,
+          3.0
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2021-VM01",
+      "deed_token": "d76df96b933914c0ebae721b9fe5a00a92ba6ea0f966f70f30cc59d236f93955",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 9163500,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "VMH-101",
+      "ulpin_3d": "IND280145987623-A+01-99I9",
+      "name": "Apartment 101: Suresh Oberoi",
+      "owner": "Suresh Oberoi",
+      "block": "BLOCK_C",
+      "level": 1,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 49.2,
+      "rera_volume_m3": 168.0,
+      "is_watertight": true,
+      "centroid_local": [
+        -11.5,
+        10.0,
+        4.6
+      ],
+      "vertices_local": [
+        [
+          -14,
+          4,
+          3.2
+        ],
+        [
+          -9,
+          4,
+          3.2
+        ],
+        [
+          -9,
+          16,
+          3.2
+        ],
+        [
+          -14,
+          16,
+          3.2
+        ],
+        [
+          -14,
+          4,
+          6.0
+        ],
+        [
+          -9,
+          4,
+          6.0
+        ],
+        [
+          -9,
+          16,
+          6.0
+        ],
+        [
+          -14,
+          16,
+          6.0
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2021-VM02",
+      "deed_token": "5db6da97de8ca53f7e9257428bc0ff5bf04d3858b0428aa9d5d31c4b23a2ff18",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 4581750,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "VMH-102",
+      "ulpin_3d": "IND280145987623-A+01-00J0",
+      "name": "Apartment 102: Kavita Menon",
+      "owner": "Kavita Menon",
+      "block": "BLOCK_C",
+      "level": 1,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 49.2,
+      "rera_volume_m3": 168.0,
+      "is_watertight": true,
+      "centroid_local": [
+        -6.5,
+        10.0,
+        4.6
+      ],
+      "vertices_local": [
+        [
+          -9,
+          4,
+          3.2
+        ],
+        [
+          -4,
+          4,
+          3.2
+        ],
+        [
+          -4,
+          16,
+          3.2
+        ],
+        [
+          -9,
+          16,
+          3.2
+        ],
+        [
+          -9,
+          4,
+          6.0
+        ],
+        [
+          -4,
+          4,
+          6.0
+        ],
+        [
+          -4,
+          16,
+          6.0
+        ],
+        [
+          -9,
+          16,
+          6.0
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2021-VM03",
+      "deed_token": "cd898ba7d847cd2c1e3bfbf37645e5621e0ae0705e95c832f158c9208994a155",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 4581750,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "VMH-201",
+      "ulpin_3d": "IND280145987623-A+02-11K1",
+      "name": "Apartment 201: Ramesh Chawla",
+      "owner": "Ramesh Chawla",
+      "block": "BLOCK_C",
+      "level": 2,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 49.2,
+      "rera_volume_m3": 168.0,
+      "is_watertight": true,
+      "centroid_local": [
+        -11.5,
+        10.0,
+        7.6
+      ],
+      "vertices_local": [
+        [
+          -14,
+          4,
+          6.2
+        ],
+        [
+          -9,
+          4,
+          6.2
+        ],
+        [
+          -9,
+          16,
+          6.2
+        ],
+        [
+          -14,
+          16,
+          6.2
+        ],
+        [
+          -14,
+          4,
+          9.0
+        ],
+        [
+          -9,
+          4,
+          9.0
+        ],
+        [
+          -9,
+          16,
+          9.0
+        ],
+        [
+          -14,
+          16,
+          9.0
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2021-VM04",
+      "deed_token": "c3763dfc889214deb8d282f20cbc55e0f8400d47b474fad975e36547fec6add0",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 4581750,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "VMH-202",
+      "ulpin_3d": "IND280145987623-A+02-22L2",
+      "name": "Apartment 202: Aarti Singhania",
+      "owner": "Aarti Singhania",
+      "block": "BLOCK_C",
+      "level": 2,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 49.2,
+      "rera_volume_m3": 168.0,
+      "is_watertight": true,
+      "centroid_local": [
+        -6.5,
+        10.0,
+        7.6
+      ],
+      "vertices_local": [
+        [
+          -9,
+          4,
+          6.2
+        ],
+        [
+          -4,
+          4,
+          6.2
+        ],
+        [
+          -4,
+          16,
+          6.2
+        ],
+        [
+          -9,
+          16,
+          6.2
+        ],
+        [
+          -9,
+          4,
+          9.0
+        ],
+        [
+          -4,
+          4,
+          9.0
+        ],
+        [
+          -4,
+          16,
+          9.0
+        ],
+        [
+          -9,
+          16,
+          9.0
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2021-VM05",
+      "deed_token": "afe5b9c5ac0edd309af912e11ac1fba0163be4f1477de2e5088d1263018c7ce5",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 4581750,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "VMH-301",
+      "ulpin_3d": "IND280145987623-A+03-33M3",
+      "name": "Apartment 301: Dr. Rajiv Sethi",
+      "owner": "Dr. Rajiv Sethi",
+      "block": "BLOCK_C",
+      "level": 3,
+      "type": "RESIDENTIAL",
+      "domain": "A",
+      "carpet_area_m2": 98.4,
+      "rera_volume_m3": 336.0,
+      "is_watertight": true,
+      "centroid_local": [
+        -9.0,
+        10.0,
+        10.6
+      ],
+      "vertices_local": [
+        [
+          -14,
+          4,
+          9.2
+        ],
+        [
+          -4,
+          4,
+          9.2
+        ],
+        [
+          -4,
+          16,
+          9.2
+        ],
+        [
+          -14,
+          16,
+          9.2
+        ],
+        [
+          -14,
+          4,
+          12.0
+        ],
+        [
+          -4,
+          4,
+          12.0
+        ],
+        [
+          -4,
+          16,
+          12.0
+        ],
+        [
+          -14,
+          16,
+          12.0
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2021-VM06",
+      "deed_token": "68a80985e4d00373dddc3c312f9280fb3e9f47b0ba2061e1163d007ef5170493",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 9163500,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "PLOT-14A",
+      "ulpin_3d": "IND280145987624-S00-44N4",
+      "name": "Bungalow 14-A (G+1 Duplex & Lawn)",
+      "owner": "Col. Balvinder Singh (Retd.)",
+      "block": "BLOCK_D",
+      "level": 1,
+      "type": "PLOTTED_BUNGALOW",
+      "domain": "A",
+      "carpet_area_m2": 54.1,
+      "rera_volume_m3": 415.8,
+      "is_watertight": true,
+      "centroid_local": [
+        6.75,
+        10.0,
+        3.35
+      ],
+      "vertices_local": [
+        [
+          4,
+          4,
+          0.2
+        ],
+        [
+          9.5,
+          4,
+          0.2
+        ],
+        [
+          9.5,
+          16,
+          0.2
+        ],
+        [
+          4,
+          16,
+          0.2
+        ],
+        [
+          4,
+          4,
+          6.5
+        ],
+        [
+          9.5,
+          4,
+          6.5
+        ],
+        [
+          9.5,
+          16,
+          6.5
+        ],
+        [
+          4,
+          16,
+          6.5
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2019-PL01",
+      "deed_token": "f973b11d050ac7a2bac79de3661c3c4629fe98c1812b4cf3700fb4fa339cdf30",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 5038062,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "PLOT-14B",
+      "ulpin_3d": "IND280145987624-S00-55O5",
+      "name": "Bungalow 14-B (G+1 Duplex & Lawn)",
+      "owner": "Dr. Meenakshi Sundaram",
+      "block": "BLOCK_D",
+      "level": 1,
+      "type": "PLOTTED_BUNGALOW",
+      "domain": "A",
+      "carpet_area_m2": 54.1,
+      "rera_volume_m3": 415.8,
+      "is_watertight": true,
+      "centroid_local": [
+        13.25,
+        10.0,
+        3.35
+      ],
+      "vertices_local": [
+        [
+          10.5,
+          4,
+          0.2
+        ],
+        [
+          16,
+          4,
+          0.2
+        ],
+        [
+          16,
+          16,
+          0.2
+        ],
+        [
+          10.5,
+          16,
+          0.2
+        ],
+        [
+          10.5,
+          4,
+          6.5
+        ],
+        [
+          16,
+          4,
+          6.5
+        ],
+        [
+          16,
+          16,
+          6.5
+        ],
+        [
+          10.5,
+          16,
+          6.5
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DEL-DWK-2019-PL02",
+      "deed_token": "38f5077c17c1c1f8d4ee2479fdbc36791d4717c99afd005fa523525c7c5c21ed",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 5038062,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "METRO-T01",
+      "ulpin_3d": "IND280145987625-U-02-66P6",
+      "name": "DMRC Blue Line Metro Transit Tunnel Tube",
+      "owner": "Delhi Metro Rail Corporation (DMRC)",
+      "block": "CORRIDOR_U",
+      "level": -2,
+      "type": "TRANSIT_METRO",
+      "domain": "U",
+      "carpet_area_m2": 118.1,
+      "rera_volume_m3": 432.0,
+      "is_watertight": true,
+      "centroid_local": [
+        0.0,
+        0.0,
+        -6.0
+      ],
+      "vertices_local": [
+        [
+          -18,
+          -2,
+          -7.5
+        ],
+        [
+          18,
+          -2,
+          -7.5
+        ],
+        [
+          18,
+          2,
+          -7.5
+        ],
+        [
+          -18,
+          2,
+          -7.5
+        ],
+        [
+          -18,
+          -2,
+          -4.5
+        ],
+        [
+          18,
+          -2,
+          -4.5
+        ],
+        [
+          18,
+          2,
+          -4.5
+        ],
+        [
+          -18,
+          2,
+          -4.5
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DMRC-NCT-METRO-2018-09",
+      "deed_token": "c686fa3296087c138787bf8fd1d37c87ebfa88f7fb6edf2f788a1f0a89de960f",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 10998062,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "UTIL-E01",
+      "ulpin_3d": "IND280145987625-U-01-77Q7",
+      "name": "BSES 11kV Subterranean Power Substation",
+      "owner": "BSES Rajdhani Power Ltd.",
+      "block": "CORRIDOR_U",
+      "level": -1,
+      "type": "INFRA_POWER",
+      "domain": "U",
+      "carpet_area_m2": 52.5,
+      "rera_volume_m3": 192.0,
+      "is_watertight": true,
+      "centroid_local": [
+        0.0,
+        0.0,
+        -2.5
+      ],
+      "vertices_local": [
+        [
+          -4,
+          -4,
+          -4.0
+        ],
+        [
+          4,
+          -4,
+          -4.0
+        ],
+        [
+          4,
+          4,
+          -4.0
+        ],
+        [
+          -4,
+          4,
+          -4.0
+        ],
+        [
+          -4,
+          -4,
+          -1.0
+        ],
+        [
+          4,
+          -4,
+          -1.0
+        ],
+        [
+          4,
+          4,
+          -1.0
+        ],
+        [
+          -4,
+          4,
+          -1.0
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "BSES-SWD-2020-PW01",
+      "deed_token": "58825c2378d2cae4bfa32e97367e025ecca4518f64081ae89ebb2b3a6525b5ba",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 4889062,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
+      }
+    },
+    {
+      "unit_id": "UTIL-W01",
+      "ulpin_3d": "IND280145987625-U-01-88R8",
+      "name": "Delhi Jal Board Stormwater Main Drainage Culvert",
+      "owner": "Delhi Jal Board (DJB)",
+      "block": "CORRIDOR_U",
+      "level": -1,
+      "type": "INFRA_WATER",
+      "domain": "U",
+      "carpet_area_m2": 59.0,
+      "rera_volume_m3": 165.6,
+      "is_watertight": true,
+      "centroid_local": [
+        0.0,
+        -15.0,
+        -2.35
+      ],
+      "vertices_local": [
+        [
+          -18,
+          -16,
+          -3.5
+        ],
+        [
+          18,
+          -16,
+          -3.5
+        ],
+        [
+          18,
+          -14,
+          -3.5
+        ],
+        [
+          -18,
+          -14,
+          -3.5
+        ],
+        [
+          -18,
+          -16,
+          -1.2
+        ],
+        [
+          18,
+          -16,
+          -1.2
+        ],
+        [
+          18,
+          -14,
+          -1.2
+        ],
+        [
+          -18,
+          -14,
+          -1.2
+        ]
+      ],
+      "faces": [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          6,
+          7,
+          4
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "deed_no": "DJB-SWD-2021-DR01",
+      "deed_token": "bd3e8691c09481b506521bc5d10e30a9c9f6c8fdfd2f05c156eeb15fdc89646e",
+      "registration_date": "14-OCT-2023",
+      "mortgage": "NONE (Clear Title)",
+      "tax_status": "PAID (FY 2025-26)",
+      "circle_rate_inr_m2": 74500,
+      "estimated_valuation_inr": 5494375,
+      "violation": {
+        "has_violation": false,
+        "violation_type": "NONE",
+        "severity": "COMPLIANT",
+        "encroachment_area_m2": 0.0,
+        "encroachment_volume_m3": 0.0,
+        "description": "Within statutory FAR & property envelope boundaries."
       }
     }
   ]

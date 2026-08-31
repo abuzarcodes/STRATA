@@ -1,105 +1,136 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import {
   FileText, Download, Share2, Shield, Building,
   Key, Lock, CheckCircle2, AlertCircle, RefreshCw, X, HardHat,
-  ExternalLink, Sparkles
+  ExternalLink, Sparkles, UserCheck, Send, ChevronRight, FileCheck
 } from 'lucide-react'
-import confetti from 'canvas-confetti'
 import StrataLogo from './StrataLogo'
+import { generateEncumbranceCertificatePDF } from '../utils/pdfGenerator'
 
-export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 'CYBER' }) {
+export default function CitizenLocker({
+  onClose,
+  onFocusUnit,
+  onNotify,
+  theme = 'CYBER',
+  activeCitizen = 'Deepak Joshi',
+  onSelectCitizen,
+  societyData,
+  mutationApplications = [],
+  onSubmitMutationApplication
+}) {
   const [downloadingEC, setDownloadingEC] = useState(false)
+  const [showMutationModal, setShowMutationModal] = useState(false)
   const isLight = theme === 'LIGHT'
 
-  // Citizen's registered 3D properties in society
-  const myProperties = [
-    {
-      id: 'prop_01',
-      unitId: 'FLAT-104',
-      ulpin: 'IND280145987621-A+01-4DAC',
-      name: 'Flat 104 (Level 1)',
-      location: 'Aura Residency Complex, Sector 10, Dwarka, New Delhi',
-      area: '1050 sq.ft (97.5 m²)',
-      carpetArea: '81.0 m²',
-      volume: '226.8 m³',
-      level: 1,
-      share: '100% Freehold',
-      status: 'VERIFIED & REGISTERED',
-      registrationDate: '12-OCT-2023',
-      deedNo: 'DEL-DWK-2023-88901',
-      mortgage: 'NONE (Clear Title)',
-      taxStatus: 'PAID (FY 2025-26)'
-    },
-    {
-      id: 'prop_02',
-      unitId: 'FLAT-302',
-      ulpin: 'IND280145987621-A+03-9FB2',
-      name: 'Flat 302 (Level 3)',
-      location: 'Aura Residency Complex, Sector 10, Dwarka, New Delhi',
-      area: '1450 sq.ft (134.7 m²)',
-      carpetArea: '112.5 m²',
-      volume: '315.0 m³',
-      level: 3,
-      share: '100% Freehold',
-      status: 'VERIFIED & REGISTERED',
-      registrationDate: '04-JAN-2025',
-      deedNo: 'DEL-DWK-2025-10492',
-      mortgage: 'SBI Home Loan (Active Lien: ₹42.5 L)',
-      taxStatus: 'PAID (FY 2025-26)'
-    }
+  // Available Citizen Personas in Sector 10
+  const citizenOptions = [
+    { name: 'Deepak Joshi', id: 'DL-8849-2026-IN', aadhaar: 'XXXX-XXXX-4491' },
+    { name: 'Rajesh Kumar', id: 'DL-1102-2026-IN', aadhaar: 'XXXX-XXXX-1102' },
+    { name: 'Priya Sharma', id: 'DL-7731-2026-IN', aadhaar: 'XXXX-XXXX-7731' },
+    { name: 'Vikram Malhotra', id: 'DL-3904-2026-IN', aadhaar: 'XXXX-XXXX-3904' }
   ]
 
-  const mutationApplications = [
-    {
-      appId: 'MUT-2026-0891',
-      property: 'Flat 104 (Level 1)',
-      type: 'TITLE_MUTATION_TRANSFER',
-      toParty: 'Priya Sharma (Daughter)',
-      submittedOn: '18-FEB-2026',
-      status: 'PENDING_REVENUE_APPROVAL',
-      step: 'Revenue Officer Field Verification (Step 2 of 3)'
-    }
-  ]
+  const currentCitizenObj = citizenOptions.find((c) => c.name === activeCitizen) || citizenOptions[0]
+
+  // Dynamically extract registered properties for the selected citizen from live societyData
+  const myProperties = useMemo(() => {
+    if (!societyData?.units) return []
+    return societyData.units
+      .filter((u) => u.owner?.toLowerCase().includes(activeCitizen.toLowerCase()))
+      .map((u) => ({
+        id: u.unit_id,
+        unitId: u.unit_id,
+        ulpin: u.ulpin_3d,
+        name: u.name,
+        location: 'Aura Residency Complex, Sector 10, Dwarka, New Delhi',
+        area: `${u.carpet_area_m2} m² (${(u.carpet_area_m2 * 10.764).toFixed(0)} sq.ft)`,
+        carpetArea: `${u.carpet_area_m2} m²`,
+        volume: `${u.rera_volume_m3} m³`,
+        level: u.level,
+        share: '100% Freehold',
+        status: 'VERIFIED & REGISTERED',
+        registrationDate: u.registration_date || '14-OCT-2023',
+        deedNo: u.deed_no || 'DEL-DWK-2023-88904',
+        mortgage: u.mortgage || 'NONE (Clear Title)',
+        taxStatus: u.tax_status || 'PAID (FY 2025-26)',
+        valuation: u.estimated_valuation_inr
+      }))
+  }, [societyData, activeCitizen])
+
+  // Filter mutation applications for current citizen
+  const citizenMutations = useMemo(() => {
+    return mutationApplications.filter(
+      (m) => m.fromCitizen === activeCitizen || m.toParty === activeCitizen
+    )
+  }, [mutationApplications, activeCitizen])
+
+  // Mutation Form State
+  const [mutationForm, setMutationForm] = useState({
+    propertyUnitId: myProperties[0]?.unitId || '',
+    mutationType: 'GIFT_DEED_BLOOD_RELATION',
+    toParty: 'Priya Sharma (Daughter)',
+    toAadhaar: 'XXXX-XXXX-7731',
+    sroOffice: 'Dwarka Sub-District (SRO-IX)',
+    stampReceiptNo: 'DLR-STAMP-2026-90412',
+    applicantRemarks: 'Voluntary title mutation gift transfer executed with e-Sign.'
+  })
 
   const handleDownloadEC = () => {
     setDownloadingEC(true)
     setTimeout(() => {
-      const ecCertificate = {
-        document_type: "DIGILOCKER_CERTIFIED_ENCUMBRANCE_CERTIFICATE",
-        issuer: "Department of Revenue & Land Records, Government of NCT of Delhi",
-        bhu_aadhaar_authority: "STRATA 3D Cadastre Division",
-        holder: "Deepak Joshi",
-        digilocker_id: "DL-8849-2026-IN",
-        timestamp: new Date().toISOString(),
-        certified_properties: myProperties.map(p => ({
-          ulpin_3d: p.ulpin,
-          unit: p.name,
-          location: p.location,
-          floor_level: p.level,
-          volumetric_space: p.volume,
-          carpet_area: p.carpetArea,
-          encumbrance_status: p.mortgage
-        })),
-        digital_signature: {
-          signed_by: "Sub-Registrar Kapashera, Delhi NCT",
-          algorithm: "SHA256withRSA",
-          timestamp: new Date().toISOString()
+      try {
+        generateEncumbranceCertificatePDF({
+          citizenName: activeCitizen,
+          properties: myProperties,
+          digilockerId: currentCitizenObj.id
+        })
+        if (onNotify) {
+          onNotify(
+            'Encumbrance Certificate Generated',
+            `Official Government Form 15 PDF downloaded for ${activeCitizen}.`,
+            'SUCCESS'
+          )
         }
+      } catch (err) {
+        console.error('Failed to generate EC PDF:', err)
+        if (onNotify) onNotify('PDF Error', 'Could not compile EC PDF.', 'ERROR')
       }
-
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(ecCertificate, null, 2))
-      const downloadAnchor = document.createElement('a')
-      downloadAnchor.setAttribute("href", dataStr)
-      downloadAnchor.setAttribute("download", `ENCUMBRANCE_CERTIFICATE_DEEPAK_JOSHI.json`)
-      document.body.appendChild(downloadAnchor)
-      downloadAnchor.click()
-      downloadAnchor.remove()
       setDownloadingEC(false)
-      confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } })
-      if (onNotify) {
-        onNotify('Encumbrance Certificate Downloaded', 'Official DigiLocker signed EC Form 15 saved successfully.', 'SUCCESS')
-      }
     }, 600)
+  }
+
+  const handleMutationSubmit = (e) => {
+    e.preventDefault()
+    const targetProp = myProperties.find((p) => p.unitId === mutationForm.propertyUnitId) || myProperties[0]
+    if (!targetProp) return
+
+    const newApp = {
+      appId: `MUT-2026-${Math.floor(1000 + Math.random() * 9000)}`,
+      unitId: targetProp.unitId,
+      property: targetProp.name,
+      ulpin_3d: targetProp.ulpin,
+      fromCitizen: activeCitizen,
+      toParty: mutationForm.toParty.split('(')[0].trim(),
+      type: mutationForm.mutationType,
+      sroOffice: mutationForm.sroOffice,
+      stampReceiptNo: mutationForm.stampReceiptNo,
+      submittedOn: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase(),
+      status: 'PENDING_REVENUE_APPROVAL',
+      step: 'Revenue Officer Field & 3D Cadastre Verification (Step 2 of 3)'
+    }
+
+    if (onSubmitMutationApplication) {
+      onSubmitMutationApplication(newApp)
+    }
+
+    setShowMutationModal(false)
+    if (onNotify) {
+      onNotify(
+        'Mutation Application Dispatched',
+        `Application ${newApp.appId} queued for Revenue Officer review.`,
+        'SUCCESS'
+      )
+    }
   }
 
   return (
@@ -129,13 +160,22 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
         </div>
 
         <div className="flex items-center gap-3">
-          <div
-            className={`hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl border font-mono text-xs ${
-              isLight ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-300'
-            }`}
-          >
-            <Lock className="w-3.5 h-3.5 text-sky-500" />
-            <span className="font-bold text-[11px]">DEEPAK_JOSHI_VAULT</span>
+          {/* Citizen Switcher Dropdown */}
+          <div className="flex items-center gap-2">
+            <UserCheck className="w-3.5 h-3.5 theme-accent" />
+            <select
+              value={activeCitizen}
+              onChange={(e) => onSelectCitizen && onSelectCitizen(e.target.value)}
+              className={`px-3 py-1.5 rounded-xl border font-mono text-xs font-bold appearance-none cursor-pointer focus:outline-none ${
+                isLight ? 'bg-white border-[var(--color-border-default)] text-slate-800' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-white'
+              }`}
+            >
+              {citizenOptions.map((c) => (
+                <option key={c.name} value={c.name}>
+                  {c.name} ({c.id})
+                </option>
+              ))}
+            </select>
           </div>
 
           <button
@@ -167,8 +207,8 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
       {/* Main Studio Body */}
       <div className="flex-1 flex overflow-hidden">
         {/* Main Content Area */}
-        <main className="flex-1 p-8 overflow-y-auto space-y-8">
-          <div className="max-w-5xl mx-auto space-y-8">
+        <main className="flex-1 p-6 lg:p-8 overflow-y-auto space-y-6">
+          <div className="max-w-5xl mx-auto space-y-6">
             {/* Vault Identity Summary Banner */}
             <div
               className={`p-6 rounded-3xl border shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
@@ -178,140 +218,308 @@ export default function CitizenLocker({ onClose, onFocusUnit, onNotify, theme = 
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <h2 className={`text-lg font-black ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-white'}`}>
-                    Deepak Joshi • Registered Citizen
+                    {activeCitizen} • Registered Citizen
                   </h2>
                   <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/40">
-                    AADHAAR VERIFIED
+                    AADHAAR VERIFIED ({currentCitizenObj.aadhaar})
                   </span>
                 </div>
                 <p className="text-xs text-slate-500 font-mono">
-                  DigiLocker ID: DL-8849-2026-IN • 2 Properties Registered
+                  DigiLocker ID: {currentCitizenObj.id} • {myProperties.length} Properties Registered in Dwarka Sector 10
                 </p>
               </div>
 
-              <button
-                onClick={handleDownloadEC}
-                disabled={downloadingEC}
-                className={`px-4 py-2.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-2 transition-all shadow-sm cursor-pointer ${
-                  isLight
-                    ? 'bg-white border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]'
-                    : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-200 hover:border-[var(--color-accent-primary)]'
-                }`}
-              >
-                <Download className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" />
-                <span>{downloadingEC ? 'PREPARING SIGNED EC...' : 'DOWNLOAD ENCUMBRANCE CERTIFICATE'}</span>
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setShowMutationModal(true)}
+                  disabled={myProperties.length === 0}
+                  className={`px-4 py-2.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-2 transition-all shadow-sm cursor-pointer ${
+                    isLight
+                      ? 'bg-slate-900 text-white hover:bg-slate-800'
+                      : 'bg-emerald-600/20 text-emerald-400 border-emerald-500/40 hover:bg-emerald-600/30'
+                  }`}
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>APPLY TITLE MUTATION</span>
+                </button>
+
+                <button
+                  onClick={handleDownloadEC}
+                  disabled={downloadingEC || myProperties.length === 0}
+                  className={`px-4 py-2.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-2 transition-all shadow-sm cursor-pointer ${
+                    isLight
+                      ? 'bg-white border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]'
+                      : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-200 hover:border-[var(--color-accent-primary)]'
+                  }`}
+                >
+                  <Download className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" />
+                  <span>{downloadingEC ? 'COMPILING OFFICIAL PDF...' : 'DOWNLOAD EC (FORM 15 PDF)'}</span>
+                </button>
+              </div>
             </div>
 
             {/* Properties Grid */}
             <div className="space-y-4">
-              <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
-                Registered 3D Cadastral Properties
-              </h3>
+              <div className="flex items-center justify-between">
+                <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
+                  Registered 3D Cadastral Properties ({myProperties.length})
+                </h3>
+                <span className="text-xs font-mono text-slate-500">
+                  Authoritative Bhu-Aadhaar Digital Twin
+                </span>
+              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {myProperties.map((prop) => (
-                  <div
-                    key={prop.id}
-                    className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between space-y-4 transition-all hover:scale-[1.01] ${
-                      isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/30">
-                          {prop.status}
-                        </span>
-                        <span className="text-xs font-mono text-slate-500">Floor Level {prop.level}</span>
-                      </div>
+              {myProperties.length === 0 ? (
+                <div className="p-8 text-center rounded-3xl border border-dashed text-slate-500 font-mono text-xs">
+                  No active 3D properties currently registered under {activeCitizen}.
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {myProperties.map((prop) => (
+                    <div
+                      key={prop.id}
+                      className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between space-y-4 transition-all hover:scale-[1.01] ${
+                        isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
+                      }`}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-[var(--color-accent-primary)]/15 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/30">
+                            {prop.status}
+                          </span>
+                          <span className="text-xs font-mono text-slate-500">Floor Level {prop.level}</span>
+                        </div>
 
-                      <h4 className={`text-lg font-black ${isLight ? 'text-slate-800' : 'text-white'}`}>
-                        {prop.name}
-                      </h4>
-                      <p className="text-xs text-slate-500 mt-1">{prop.location}</p>
+                        <h4 className={`text-lg font-black ${isLight ? 'text-slate-800' : 'text-white'}`}>
+                          {prop.name}
+                        </h4>
+                        <p className="text-xs text-slate-500 mt-1">{prop.location}</p>
 
-                      <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
-                        <div>
-                          <div className="text-[10px] text-slate-500">3D-ULPIN</div>
-                          <div className={`font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
-                            {prop.ulpin}
+                        <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
+                          <div>
+                            <div className="text-[10px] text-slate-500">3D-ULPIN</div>
+                            <div className={`font-bold ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
+                              {prop.ulpin}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-[10px] text-slate-500">Volumetric Volume</div>
+                            <div className="font-bold text-slate-700 dark:text-slate-300">{prop.volume}</div>
+                          </div>
+                          <div>
+                            <div className="text-[10px] text-slate-500">Carpet Area</div>
+                            <div className="font-bold text-slate-700 dark:text-slate-300">{prop.carpetArea}</div>
+                          </div>
+                          <div>
+                            <div className="text-[10px] text-slate-500">Encumbrance / Lien</div>
+                            <div className={`font-bold ${prop.mortgage && !prop.mortgage.includes('NONE') ? 'text-amber-500' : 'text-emerald-500'}`}>
+                              {prop.mortgage}
+                            </div>
                           </div>
                         </div>
-                        <div>
-                          <div className="text-[10px] text-slate-500">Volumetric Volume</div>
-                          <div className="font-bold text-slate-700 dark:text-slate-300">{prop.volume}</div>
-                        </div>
-                        <div>
-                          <div className="text-[10px] text-slate-500">Carpet Area</div>
-                          <div className="font-bold text-slate-700 dark:text-slate-300">{prop.carpetArea}</div>
-                        </div>
-                        <div>
-                          <div className="text-[10px] text-slate-500">Encumbrance / Lien</div>
-                          <div className="font-bold text-slate-700 dark:text-slate-300">{prop.mortgage}</div>
-                        </div>
+                      </div>
+
+                      <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                        <span className="text-xs font-mono text-slate-500">Deed #{prop.deedNo}</span>
+                        <button
+                          onClick={() => {
+                            if (onFocusUnit) onFocusUnit(prop.unitId)
+                            onClose()
+                          }}
+                          className={`px-3.5 py-1.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                            isLight
+                              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]'
+                              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:border-[var(--color-accent-primary)]'
+                          }`}
+                        >
+                          <Building className="w-3.5 h-3.5" />
+                          <span>VIEW IN 3D DIGITAL TWIN</span>
+                        </button>
                       </div>
                     </div>
-
-                    <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                      <span className="text-xs font-mono text-slate-500">Deed #{prop.deedNo}</span>
-                      <button
-                        onClick={() => {
-                          onFocusUnit(prop.unitId)
-                          onClose()
-                        }}
-                        className={`px-3 py-1.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                          isLight
-                            ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-[var(--color-border-default)]'
-                            : 'bg-[var(--color-accent-primary)]/20 border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary)] hover:text-[var(--color-bg-app)]'
-                        }`}
-                      >
-                        <Building className="w-3.5 h-3.5" />
-                        <span>VIEW IN 3D DIGITAL TWIN</span>
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Mutation Applications Ledger */}
-            <div className="space-y-4">
+            {/* Live Mutation Applications Timeline */}
+            <div className="space-y-4 pt-2">
               <h3 className={`text-base font-bold uppercase tracking-wider ${isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}`}>
-                Live Title Mutation Tracking
+                Live Title Mutation Tracking ({citizenMutations.length})
               </h3>
 
-              <div
-                className={`p-6 rounded-3xl border shadow-xl space-y-4 ${
+              {citizenMutations.length === 0 ? (
+                <div className={`p-6 rounded-3xl border text-xs font-mono text-slate-500 flex items-center justify-between ${
                   isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
-                }`}
-              >
-                {mutationApplications.map((mut) => (
-                  <div key={mut.appId} className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono font-bold text-sm text-[var(--color-accent-primary)]">{mut.appId}</span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/20 text-amber-500 border border-amber-500/30">
-                          {mut.status}
-                        </span>
+                }`}>
+                  <span>No active title mutation proceedings currently pending for {activeCitizen}.</span>
+                  <button
+                    onClick={() => setShowMutationModal(true)}
+                    className="theme-accent font-bold hover:underline cursor-pointer"
+                  >
+                    + Initiate Transfer
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {citizenMutations.map((mut) => (
+                    <div
+                      key={mut.appId}
+                      className={`p-5 rounded-2xl border flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
+                        isLight ? 'bg-white border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)]'
+                      }`}
+                    >
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono font-bold text-xs theme-accent">{mut.appId}</span>
+                          <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-bold ${
+                            mut.status === 'APPROVED' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
+                          }`}>
+                            {mut.status.replace(/_/g, ' ')}
+                          </span>
+                        </div>
+                        <div className="text-sm font-bold text-slate-800 dark:text-slate-100 mt-1">
+                          {mut.property} • Transfer to {mut.toParty}
+                        </div>
+                        <div className="text-xs text-slate-500 font-mono mt-0.5">
+                          Submitted on {mut.submittedOn} • {mut.step}
+                        </div>
                       </div>
-                      <p className="text-xs text-slate-500 mt-1">
-                        Transfer of <strong>{mut.property}</strong> to <strong>{mut.toParty}</strong>
-                      </p>
-                      <div className="text-[11px] font-mono text-slate-400 mt-1">
-                        Stage: <span className={isLight ? 'text-[var(--color-accent-primary)]' : 'text-[var(--color-accent-primary)]'}>{mut.step}</span>
-                      </div>
-                    </div>
 
-                    <div className="text-xs font-mono text-slate-500 text-right">
-                      Submitted on: {mut.submittedOn}
+                      <div className="text-right font-mono text-xs text-slate-500">
+                        <div>SRO: {mut.sroOffice || 'Dwarka (SRO-IX)'}</div>
+                        <div className="text-[10px] text-slate-400">Stamp Receipt: {mut.stampReceiptNo || 'DLR-STAMP-90412'}</div>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </main>
       </div>
+
+      {/* Official Delhi Revenue Title Mutation Application Modal */}
+      {showMutationModal && (
+        <div className="fixed inset-0 z-60 backdrop-blur-xl bg-slate-950/80 flex items-center justify-center p-4">
+          <div className={`w-full max-w-xl rounded-3xl p-6 border shadow-2xl space-y-5 animate-in zoom-in-95 duration-150 ${
+            isLight ? 'bg-white border-[var(--color-border-default)] text-slate-800' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)] text-slate-100'
+          }`}>
+            <div className="flex items-center justify-between border-b pb-3">
+              <div className="flex items-center gap-2">
+                <FileCheck className="w-5 h-5 theme-accent" />
+                <div>
+                  <h3 className="font-bold text-sm">Delhi Land Revenue Title Mutation Application</h3>
+                  <p className="text-[10px] font-mono text-slate-500">Form No. 8 — Statutory 3D-ULPIN Mutation & Transfer</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowMutationModal(false)}
+                className="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer"
+              >
+                <X className="w-5 h-5 text-slate-400" />
+              </button>
+            </div>
+
+            <form onSubmit={handleMutationSubmit} className="space-y-4 text-xs font-sans">
+              <div>
+                <label className="block font-mono font-bold text-[11px] mb-1">Select Property to Transfer</label>
+                <select
+                  value={mutationForm.propertyUnitId}
+                  onChange={(e) => setMutationForm({ ...mutationForm, propertyUnitId: e.target.value })}
+                  className={`w-full p-2.5 rounded-xl border text-xs font-mono ${
+                    isLight ? 'bg-slate-50 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-white'
+                  }`}
+                >
+                  {myProperties.map((p) => (
+                    <option key={p.unitId} value={p.unitId}>
+                      {p.name} ({p.ulpin})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-mono font-bold text-[11px] mb-1">Mode of Title Mutation</label>
+                  <select
+                    value={mutationForm.mutationType}
+                    onChange={(e) => setMutationForm({ ...mutationForm, mutationType: e.target.value })}
+                    className={`w-full p-2.5 rounded-xl border text-xs font-mono ${
+                      isLight ? 'bg-slate-50 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-white'
+                    }`}
+                  >
+                    <option value="GIFT_DEED_BLOOD_RELATION">Gift Deed (Blood Relation)</option>
+                    <option value="REGISTERED_SALE_CONVEYANCE">Registered Sale Conveyance</option>
+                    <option value="INHERITANCE_TESTAMENTARY">Inheritance / Succession</option>
+                    <option value="RELINQUISHMENT_DEED">Relinquishment Deed</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-mono font-bold text-[11px] mb-1">Transferee / New Owner Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={mutationForm.toParty}
+                    onChange={(e) => setMutationForm({ ...mutationForm, toParty: e.target.value })}
+                    placeholder="e.g. Priya Sharma"
+                    className={`w-full p-2.5 rounded-xl border text-xs font-mono ${
+                      isLight ? 'bg-slate-50 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-white'
+                    }`}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-mono font-bold text-[11px] mb-1">Transferee Aadhaar No</label>
+                  <input
+                    type="text"
+                    required
+                    value={mutationForm.toAadhaar}
+                    onChange={(e) => setMutationForm({ ...mutationForm, toAadhaar: e.target.value })}
+                    placeholder="XXXX-XXXX-7731"
+                    className={`w-full p-2.5 rounded-xl border text-xs font-mono ${
+                      isLight ? 'bg-slate-50 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-white'
+                    }`}
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-mono font-bold text-[11px] mb-1">e-Stamp Receipt Ref</label>
+                  <input
+                    type="text"
+                    required
+                    value={mutationForm.stampReceiptNo}
+                    onChange={(e) => setMutationForm({ ...mutationForm, stampReceiptNo: e.target.value })}
+                    placeholder="DLR-STAMP-2026-90412"
+                    className={`w-full p-2.5 rounded-xl border text-xs font-mono ${
+                      isLight ? 'bg-slate-50 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-white'
+                    }`}
+                  />
+                </div>
+              </div>
+
+              <div className="pt-2 flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowMutationModal(false)}
+                  className="px-4 py-2 rounded-xl border text-xs font-mono font-bold hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-xl bg-[var(--color-accent-primary)] text-slate-950 font-mono font-bold text-xs hover:bg-[var(--color-accent-primary-hover)] cursor-pointer shadow-lg"
+                >
+                  Sign & Submit to Revenue Officer
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

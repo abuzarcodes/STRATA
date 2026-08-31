@@ -15,7 +15,6 @@ import {
   Check,
   XCircle
 } from 'lucide-react'
-import confetti from 'canvas-confetti'
 
 export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme = 'CYBER' }) {
   const [selectedExtraction, setSelectedExtraction] = useState('UNIT-203')
@@ -35,11 +34,6 @@ export default function AIReviewModal({ isOpen, onClose, onAcceptAIResult, theme
       setDecisionFeedback({
         type: 'ACCEPTED',
         message: 'AI Extrusion Accepted! 3D-ULPIN Minted & Promoted to Tier 1 Authoritative Cadastre.'
-      })
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 }
       })
       setTimeout(() => {
         if (onAcceptAIResult) onAcceptAIResult(selectedExtraction)
