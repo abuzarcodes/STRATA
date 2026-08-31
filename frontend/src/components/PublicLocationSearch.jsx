@@ -93,16 +93,16 @@ export default function PublicLocationSearch({
     return (
       <button
         onClick={() => setIsCollapsed(false)}
-        className={`pointer-events-auto p-3 rounded-2xl border shadow-2xl backdrop-blur-2xl flex items-center gap-2 font-mono text-xs font-bold transition-all duration-300 cursor-pointer ${
+        className={`pointer-events-auto px-4 py-2.5 rounded-2xl border shadow-2xl flex items-center gap-2.5 font-mono text-xs font-bold transition-all duration-300 cursor-pointer ${
           isLight
-            ? 'bg-white/95 border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]'
-            : 'bg-[var(--color-surface-1)]/95 border-[var(--color-border-default)] text-white hover:border-[var(--color-accent-primary)]'
+            ? 'bg-white border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-slate-50 shadow-md'
+            : 'bg-[#071216] border-[var(--color-border-default)] text-white hover:border-[var(--color-accent-primary)] shadow-[0_4px_20px_rgba(0,0,0,0.8)]'
         }`}
         title="Open Cadastral Query Panel"
       >
         <MapPin className="w-4 h-4 text-[var(--color-accent-primary)]" />
         <span>Cadastral Query</span>
-        <ChevronRight className="w-4 h-4" />
+        <ChevronRight className="w-4 h-4 text-slate-400" />
       </button>
     )
   }

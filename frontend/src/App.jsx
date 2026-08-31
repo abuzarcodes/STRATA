@@ -371,6 +371,7 @@ export default function App() {
               <span className="font-bold theme-text-primary">DL-DWR-SEC10-07</span>
               <span className="text-slate-400">/</span>
               <span className="font-bold theme-accent">PARCEL-IND280145987621</span>
+              <span className="hidden sm:inline text-slate-500 font-normal">| EPSG:4326 (WGS84)</span>
             </div>
             <div className="flex items-center gap-6">
               <div>
@@ -379,7 +380,7 @@ export default function App() {
               <div>
                 LONG: <strong className="theme-accent">77.0602° E</strong>
               </div>
-              <div>
+              <div className="hidden md:block">
                 DATUM_ELEV: <strong className="theme-accent">+215.0m MSL</strong>
               </div>
             </div>
@@ -402,20 +403,8 @@ export default function App() {
               measureMode={measureMode}
             />
 
-            {/* HUD Viewport Framing & Corner Crosshairs */}
-            <div className="absolute inset-0 pointer-events-none z-10 p-6 flex flex-col justify-between">
-              {/* Top Row Markers */}
-              <div className="flex justify-between items-start mt-[104px]">
-                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#2e7d63]/80' : 'text-[#7ee7d2]/70'}`}>
-                  <span className={`w-3 h-3 border-t-2 border-l-2 ${isLight ? 'border-[#2e7d63]' : 'border-[#7ee7d2]'}`} />
-                  <span>GRID_01 / EPSG:4326 WGS84</span>
-                </div>
-                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#2e7d63]/80' : 'text-[#7ee7d2]/70'}`}>
-                  <span>3D_CADASTRE_SYNC_ONLINE</span>
-                  <span className={`w-3 h-3 border-t-2 border-r-2 ${isLight ? 'border-[#2e7d63]' : 'border-[#7ee7d2]'}`} />
-                </div>
-              </div>
-
+            {/* HUD Viewport Bottom Framing & Corner Crosshairs */}
+            <div className="absolute inset-0 pointer-events-none z-10 p-6 flex flex-col justify-end">
               {/* Bottom Row Markers */}
               <div className="flex justify-between items-end">
                 <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#2e7d63]/80' : 'text-[#7ee7d2]/70'}`}>

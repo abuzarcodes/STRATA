@@ -136,8 +136,8 @@ export default function Navbar({
             id="cadastre-search-input"
             name="cadastreSearch"
             type="text"
-            aria-label="Search 3D-ULPIN, Flat number, or Owner name"
-            placeholder="Search 3D-ULPIN, Flat (e.g. 104), or Owner..."
+            aria-label="Search 3D-ULPIN, Building, Tower, or Owner name"
+            placeholder="Search 3D-ULPIN, Building / Tower (e.g. T-01, P-04), or Owner..."
             value={searchQuery}
             onFocus={() => setIsSearchOpen(true)}
             onChange={(e) => {
@@ -189,7 +189,7 @@ export default function Navbar({
                     </div>
                   </div>
                   <div className="text-right text-[11px] font-mono text-slate-400">
-                    <div className={isLight ? 'text-[var(--color-accent-primary)] font-bold' : 'text-white'}>{u.volume_m3} m³</div>
+                    <div className={isLight ? 'text-[var(--color-accent-primary)] font-bold' : 'text-white'}>{u.rera_volume_m3 || u.volume_m3} m³</div>
                     <div className="text-[10px] text-slate-500">{u.carpet_area_m2} m²</div>
                   </div>
                 </div>
