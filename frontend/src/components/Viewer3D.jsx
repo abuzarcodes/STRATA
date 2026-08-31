@@ -3,40 +3,129 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Text, Html } from '@react-three/drei'
 import * as THREE from 'three'
 
+// Concrete hex palettes matching STRATA Landing Page Design System
+export const VIEWER_PALETTES = {
+  CYBER: {
+    bg: '#071216',
+    fog: '#071216',
+    gridPrimary: '#7ee7d2',
+    gridSecondary: '#163238',
+    ambientLight: '#ffffff',
+    ambientIntensity: 0.55,
+    dirLight1: '#a5e9d4',
+    dirLight1Intensity: 1.7,
+    dirLight2: '#c8ff33',
+    dirLight2Intensity: 0.8,
+    pointLight: '#7ee7d2',
+    pointLightIntensity: 12,
+    boundaryRing: '#7ee7d2',
+    measureGrid: '#c8ff33',
+    unitDefault: '#0d2226',
+    unitDefaultEmissive: '#061316',
+    unitSelected: '#7ee7d2',
+    unitSelectedEmissive: '#7ee7d2',
+    unitHovered: '#9ef3e2',
+    unitHoveredEmissive: '#26545b',
+    unitEncroachment: '#f43f5e',
+    unitEncroachmentEmissive: '#f43f5e',
+    unitSubsurface: '#0d9488',
+    unitSubsurfaceEmissive: '#0d9488',
+    unitTax: ['#7ee7d2', '#c8ff33', '#f59e0b', '#f43f5e'],
+    edgeDefault: '#26545b',
+    edgeHovered: '#c8ff33',
+    edgeSelected: '#ffffff',
+    edgeEncroachment: '#f43f5e',
+    treeTrunk: '#0f2923',
+    treeFoliage1: '#134e42',
+    treeFoliage2: '#1b5e4d',
+    pole: '#1e293b',
+    rooftopHeadroom: '#162e33',
+    rooftopDoor: '#7ee7d2',
+    rooftopTank: '#0d2226',
+    solarFrame: '#081519',
+    solarGrid: '#7ee7d2',
+    parapet: '#7ee7d2',
+    scanPlane: '#7ee7d2',
+    dataStream: '#7ee7d2',
+  },
+  LIGHT: {
+    bg: '#edf4ef',
+    fog: '#edf4ef',
+    gridPrimary: '#2e7d63',
+    gridSecondary: '#b9d8ca',
+    ambientLight: '#ffffff',
+    ambientIntensity: 1.1,
+    dirLight1: '#ffffff',
+    dirLight1Intensity: 1.7,
+    dirLight2: '#b2dfcc',
+    dirLight2Intensity: 0.8,
+    pointLight: '#2e7d63',
+    pointLightIntensity: 10,
+    boundaryRing: '#2e7d63',
+    measureGrid: '#b45309',
+    unitDefault: '#d5e2dc',
+    unitDefaultEmissive: '#c4d7cf',
+    unitSelected: '#2e7d63',
+    unitSelectedEmissive: '#2e7d63',
+    unitHovered: '#1b5e4d',
+    unitHoveredEmissive: '#2e7d63',
+    unitEncroachment: '#be123c',
+    unitEncroachmentEmissive: '#be123c',
+    unitSubsurface: '#0f766e',
+    unitSubsurfaceEmissive: '#0f766e',
+    unitTax: ['#2e7d63', '#6d9500', '#b45309', '#be123c'],
+    edgeDefault: '#8aa69b',
+    edgeHovered: '#173b36',
+    edgeSelected: '#173b36',
+    edgeEncroachment: '#be123c',
+    treeTrunk: '#5c4033',
+    treeFoliage1: '#2e7d63',
+    treeFoliage2: '#1b5e4d',
+    pole: '#475569',
+    rooftopHeadroom: '#c8dcd3',
+    rooftopDoor: '#2e7d63',
+    rooftopTank: '#e2ece6',
+    solarFrame: '#2c3e39',
+    solarGrid: '#2e7d63',
+    parapet: '#2e7d63',
+    scanPlane: '#2e7d63',
+    dataStream: '#2e7d63',
+  }
+}
+
 // Stylized 3D Tree for Society Landscaping
-function Tree({ position, scale = 1, theme = 'CYBER' }) {
-  const isLight = theme === 'LIGHT'
+function Tree({ position, scale = 1, isLight = false, palette }) {
   return (
     <group position={position} scale={scale}>
       <mesh position={[0, 0.6, 0]}>
         <cylinderGeometry args={[0.15, 0.25, 1.2, 8]} />
-        <meshStandardMaterial color={isLight ? 'var(--color-accent-primary)' : '#112F15'} roughness={0.9} />
+        <meshStandardMaterial color={palette.treeTrunk} roughness={0.9} />
       </mesh>
       <mesh position={[0, 1.6, 0]}>
         <coneGeometry args={[1.2, 1.6, 7]} />
-        <meshStandardMaterial color={isLight ? 'var(--color-accent-primary-hover)' : '#062817'} roughness={0.6} />
+        <meshStandardMaterial color={palette.treeFoliage1} roughness={0.6} />
       </mesh>
       <mesh position={[0, 2.4, 0]}>
         <coneGeometry args={[0.9, 1.4, 7]} />
-        <meshStandardMaterial color="var(--color-accent-primary)" roughness={0.6} />
+        <meshStandardMaterial color={palette.treeFoliage2} roughness={0.6} />
       </mesh>
     </group>
   )
 }
 
 // Street Light with Warm Point Light & Glowing Fixture
-function StreetLight({ position, rotation = [0, 0, 0] }) {
+function StreetLight({ position, rotation = [0, 0, 0], palette }) {
   return (
     <group position={position} rotation={rotation}>
       {/* Pole */}
       <mesh position={[0, 2.2, 0]}>
         <cylinderGeometry args={[0.06, 0.08, 4.4, 8]} />
-        <meshStandardMaterial color="#1e293b" metalness={0.9} roughness={0.2} />
+        <meshStandardMaterial color={palette.pole} metalness={0.9} roughness={0.2} />
       </mesh>
       {/* Arm */}
       <mesh position={[0.4, 4.3, 0]} rotation={[0, 0, -Math.PI / 4]}>
         <cylinderGeometry args={[0.04, 0.04, 0.8, 6]} />
-        <meshStandardMaterial color="#1e293b" metalness={0.9} roughness={0.2} />
+        <meshStandardMaterial color={palette.pole} metalness={0.9} roughness={0.2} />
       </mesh>
       {/* Lamp Head */}
       <mesh position={[0.7, 4.5, 0]}>
@@ -46,15 +135,15 @@ function StreetLight({ position, rotation = [0, 0, 0] }) {
       {/* Bulb Glow */}
       <mesh position={[0.7, 4.42, 0]}>
         <sphereGeometry args={[0.08, 8, 8]} />
-        <meshBasicMaterial color="var(--color-accent-primary)" />
+        <meshBasicMaterial color={palette.gridPrimary} />
       </mesh>
-      <pointLight position={[0.7, 4.2, 0]} color="var(--color-accent-primary)" intensity={0.9} distance={14} decay={2} />
+      <pointLight position={[0.7, 4.2, 0]} color={palette.gridPrimary} intensity={0.9} distance={14} decay={2} />
     </group>
   )
 }
 
 // Animated Data Stream along Access Roads
-function RoadDataStream({ roadType = 'NORTH' }) {
+function RoadDataStream({ roadType = 'NORTH', palette }) {
   const pointsRef = useRef()
   const count = 16
 
@@ -100,7 +189,7 @@ function RoadDataStream({ roadType = 'NORTH' }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="var(--color-accent-primary)"
+        color={palette.dataStream}
         size={0.4}
         transparent
         opacity={0.8}
@@ -111,25 +200,25 @@ function RoadDataStream({ roadType = 'NORTH' }) {
 }
 
 // Procedural Indian Rooftop Details (Water Tanks, Lift Room, Solar Arrays)
-function RooftopDetails({ position = [0, 15, 0] }) {
+function RooftopDetails({ position = [0, 15, 0], palette }) {
   return (
     <group position={position}>
       {/* Lift Machine & Staircase Headroom */}
       <mesh position={[-2, 1.2, -1]} castShadow receiveShadow>
         <boxGeometry args={[4, 2.4, 3]} />
-        <meshStandardMaterial color="var(--color-border-default)" roughness={0.7} />
+        <meshStandardMaterial color={palette.rooftopHeadroom} roughness={0.7} />
       </mesh>
       {/* Lift Room Access Door */}
       <mesh position={[-2, 0.9, 0.52]}>
         <planeGeometry args={[0.9, 1.8]} />
-        <meshStandardMaterial color="var(--color-accent-primary)" metalness={0.8} />
+        <meshStandardMaterial color={palette.rooftopDoor} metalness={0.8} />
       </mesh>
 
       {/* Rooftop Water Storage Tanks (Sintex Style) */}
       <group position={[3.5, 0.7, -2]}>
         <mesh castShadow>
           <cylinderGeometry args={[0.7, 0.7, 1.4, 16]} />
-          <meshStandardMaterial color="var(--color-surface-1)" roughness={0.4} />
+          <meshStandardMaterial color={palette.rooftopTank} roughness={0.4} />
         </mesh>
         {/* Metal Support Staging */}
         <mesh position={[0, -0.6, 0]}>
@@ -153,50 +242,26 @@ function RooftopDetails({ position = [0, 15, 0] }) {
       <group position={[-2, 0.4, 3]} rotation={[Math.PI / 8, 0, 0]}>
         <mesh receiveShadow castShadow>
           <boxGeometry args={[5, 0.08, 2.2]} />
-          <meshStandardMaterial color="var(--color-surface-2)" metalness={0.9} roughness={0.1} />
+          <meshStandardMaterial color={palette.solarFrame} metalness={0.9} roughness={0.1} />
         </mesh>
         {/* Solar grid cells line */}
         <mesh position={[0, 0.05, 0]}>
           <planeGeometry args={[4.8, 2]} />
-          <meshBasicMaterial color="var(--color-accent-primary)" wireframe transparent opacity={0.4} />
+          <meshBasicMaterial color={palette.solarGrid} wireframe transparent opacity={0.4} />
         </mesh>
       </group>
 
       {/* Parapet Perimeter Railing */}
       <mesh position={[0, 0.4, 0]}>
         <boxGeometry args={[14.2, 0.8, 10.2]} />
-        <meshBasicMaterial color="var(--color-accent-primary)" wireframe transparent opacity={0.3} />
+        <meshBasicMaterial color={palette.parapet} wireframe transparent opacity={0.3} />
       </mesh>
     </group>
   )
 }
 
-// Laser Scanning Plane passing vertically
-function ScanPlane({ bounds = [16, 12] }) {
-  const meshRef = useRef()
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.position.y = ((Math.sin(state.clock.elapsedTime * 1.2) + 1) / 2) * 16
-    }
-  })
-
-  return (
-    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
-      <planeGeometry args={[bounds[0] + 4, bounds[1] + 4]} />
-      <meshBasicMaterial
-        color="var(--color-accent-primary)"
-        transparent
-        opacity={0.18}
-        side={THREE.DoubleSide}
-        blending={THREE.AdditiveBlending}
-      />
-    </mesh>
-  )
-}
-
 // Reticle Focus Beam for Selected Unit
-function SelectedReticle({ position, isViolating = false }) {
+function SelectedReticle({ position, isViolating = false, palette }) {
   const ringRef = useRef()
 
   useFrame((state) => {
@@ -205,7 +270,7 @@ function SelectedReticle({ position, isViolating = false }) {
     }
   })
 
-  const color = isViolating ? '#f43f5e' : 'var(--color-accent-primary)'
+  const color = isViolating ? '#f43f5e' : palette.unitSelected
 
   return (
     <group position={position}>
@@ -213,7 +278,7 @@ function SelectedReticle({ position, isViolating = false }) {
       <group position={[0, 1.2, 0]} rotation={[-Math.PI / 2, 0, 0]} ref={ringRef}>
         <mesh>
           <ringGeometry args={[1.4, 1.55, 32]} />
-          <meshBasicMaterial color={color} side={THREE.DoubleSide} transparent opacity={0.8} />
+          <meshBasicMaterial color={color} side={THREE.DoubleSide} transparent opacity={0.85} />
         </mesh>
         {[0, Math.PI / 2, Math.PI, (3 * Math.PI) / 2].map((angle, i) => (
           <mesh key={i} position={[Math.cos(angle) * 1.5, Math.sin(angle) * 1.5, 0]}>
@@ -243,7 +308,8 @@ function VolumetricUnit({
   viewMode,
   isViolating,
   explodedOffset = 0,
-  theme = 'CYBER'
+  isLight = false,
+  palette
 }) {
   const meshRef = useRef()
   const isSelected = selectedUnit?.unit_id === unit.unit_id
@@ -281,93 +347,94 @@ function VolumetricUnit({
     return new THREE.EdgesGeometry(geometry, 25)
   }, [geometry])
 
-  const isLight = theme === 'LIGHT'
-
   // Solid Architectural Cadastre Material Colors
   const materialProps = useMemo(() => {
-    if (viewMode === 'ENCROACHMENT' && isViolating) {
+    // 1. Encroachment / FAR Violation Mode
+    if ((viewMode === 'ENCROACHMENT' || viewMode === 'AUDIT') && isViolating) {
       return {
-        color: 'var(--color-status-danger)',
+        color: palette.unitEncroachment,
         transparent: isFloorDimmed,
-        opacity: isFloorDimmed ? 0.15 : 1.0,
-        roughness: 0.5,
-        metalness: 0.05,
-        emissive: 'var(--color-status-danger)',
-        emissiveIntensity: 0.25
+        opacity: isFloorDimmed ? 0.18 : 0.95,
+        roughness: 0.4,
+        metalness: 0.1,
+        emissive: palette.unitEncroachmentEmissive,
+        emissiveIntensity: 0.35
       }
     }
 
-    if (viewMode === 'TAXATION') {
-      const taxTierColors = ['var(--color-status-success)', 'var(--color-accent-primary)', 'var(--color-status-warning)', 'var(--color-status-danger)']
+    // 2. Taxation / Circle Rate Heatmap Mode
+    if (viewMode === 'TAXATION' || viewMode === 'TAX') {
+      const taxTierColors = palette.unitTax
       const col = taxTierColors[Math.abs(unit.level) % taxTierColors.length]
       return {
         color: col,
         transparent: isFloorDimmed,
-        opacity: isFloorDimmed ? 0.15 : 1.0,
-        roughness: 0.55,
+        opacity: isFloorDimmed ? 0.18 : 0.9,
+        roughness: 0.5,
         metalness: 0.05,
         emissive: col,
-        emissiveIntensity: 0.15
-      }
-    }
-
-    if (viewMode === 'SUBSURFACE' && unit.level < 0) {
-      return {
-        color: '#059669',
-        transparent: isFloorDimmed,
-        opacity: isFloorDimmed ? 0.2 : 1.0,
-        roughness: 0.6,
-        metalness: 0.05,
-        emissive: '#059669',
         emissiveIntensity: 0.2
       }
     }
 
-    // Selected Unit Focus (Solid Vibrant Emerald)
-    if (isSelected) {
+    // 3. Subsurface / Utilities Isolation Mode
+    if ((viewMode === 'SUBSURFACE' || viewMode === 'UTILITIES') && unit.level < 0) {
       return {
-        color: 'var(--color-accent-primary)',
-        transparent: false,
-        opacity: 1.0,
-        roughness: 0.35,
+        color: palette.unitSubsurface,
+        transparent: isFloorDimmed,
+        opacity: isFloorDimmed ? 0.25 : 0.95,
+        roughness: 0.5,
         metalness: 0.1,
-        emissive: 'var(--color-accent-primary)',
+        emissive: palette.unitSubsurfaceEmissive,
         emissiveIntensity: 0.3
       }
     }
 
-    // Hovered Unit Focus (Solid Emerald Tint)
-    if (isHovered) {
+    // 4. Selected Unit Focus (Vibrant Primary Emerald/Mint Glow)
+    if (isSelected) {
       return {
-        color: 'var(--color-status-success)',
+        color: palette.unitSelected,
         transparent: false,
         opacity: 1.0,
-        roughness: 0.4,
-        metalness: 0.1,
-        emissive: 'var(--color-status-success)',
-        emissiveIntensity: 0.2
+        roughness: 0.3,
+        metalness: 0.15,
+        emissive: palette.unitSelectedEmissive,
+        emissiveIntensity: 0.4
       }
     }
 
-    // Regular Solid Architectural Grey Unit Body (Opaque Matte Concrete Finish)
-    return {
-      color: isLight ? '#CBD5E1' : 'var(--color-border-strong)',
-      transparent: isFloorDimmed,
-      opacity: isFloorDimmed ? 0.1 : 1.0,
-      roughness: 0.65,
-      metalness: 0.05,
-      emissive: isLight ? '#94A3B8' : 'var(--color-border-default)',
-      emissiveIntensity: isLight ? 0.05 : 0.12
+    // 5. Hovered Unit Focus
+    if (isHovered) {
+      return {
+        color: palette.unitHovered,
+        transparent: false,
+        opacity: 1.0,
+        roughness: 0.35,
+        metalness: 0.1,
+        emissive: palette.unitHoveredEmissive,
+        emissiveIntensity: 0.25
+      }
     }
-  }, [viewMode, isViolating, isFloorDimmed, isSelected, isHovered, isLight, unit.level])
+
+    // 6. Regular Solid Architectural Unit Body
+    return {
+      color: palette.unitDefault,
+      transparent: isFloorDimmed,
+      opacity: isFloorDimmed ? 0.12 : 0.88,
+      roughness: 0.6,
+      metalness: 0.05,
+      emissive: palette.unitDefaultEmissive,
+      emissiveIntensity: isLight ? 0.08 : 0.18
+    }
+  }, [viewMode, isViolating, isFloorDimmed, isSelected, isHovered, isLight, unit.level, palette])
 
   // Wireframe Edge Color
   const edgeColor = useMemo(() => {
-    if (isViolating && viewMode === 'ENCROACHMENT') return 'var(--color-status-danger)'
-    if (isSelected) return 'var(--color-surface-1)'
-    if (isHovered) return '#00E676'
-    return isLight ? 'var(--color-accent-primary-hover)' : 'var(--color-accent-primary)'
-  }, [isViolating, viewMode, isSelected, isHovered, isLight])
+    if (isViolating && (viewMode === 'ENCROACHMENT' || viewMode === 'AUDIT')) return palette.edgeEncroachment
+    if (isSelected) return palette.edgeSelected
+    if (isHovered) return palette.edgeHovered
+    return palette.edgeDefault
+  }, [isViolating, viewMode, isSelected, isHovered, palette])
 
   return (
     <group position={[0, verticalExplode, 0]}>
@@ -396,7 +463,7 @@ function VolumetricUnit({
           color={edgeColor}
           linewidth={isSelected || isHovered ? 2.5 : 1.2}
           transparent
-          opacity={isFloorDimmed ? 0.2 : (isSelected ? 1.0 : 0.8)}
+          opacity={isFloorDimmed ? 0.2 : (isSelected ? 1.0 : 0.85)}
         />
       </lineSegments>
 
@@ -405,6 +472,7 @@ function VolumetricUnit({
         <SelectedReticle
           position={[unit.centroid_local[0], unit.centroid_local[2], -unit.centroid_local[1]]}
           isViolating={isViolating}
+          palette={palette}
         />
       )}
 
@@ -415,10 +483,10 @@ function VolumetricUnit({
           center
           distanceFactor={35}
         >
-          <div className="pointer-events-none px-2.5 py-1 rounded-lg bg-[var(--color-surface-1)]/95 border border-[var(--color-accent-primary)] text-[10px] font-mono text-white shadow-2xl backdrop-blur-md whitespace-nowrap flex items-center gap-1.5 animate-in fade-in zoom-in-90 duration-150">
+          <div className="pointer-events-none px-2.5 py-1 rounded-lg bg-[var(--color-surface-1)]/95 border border-[var(--color-accent-primary)] text-[10px] font-mono theme-text-primary shadow-2xl backdrop-blur-md whitespace-nowrap flex items-center gap-1.5 animate-in fade-in zoom-in-90 duration-150">
             <span className={`w-2 h-2 rounded-full ${isViolating ? 'bg-rose-500' : 'bg-[var(--color-accent-primary)]'} animate-ping`} />
-            <span className="font-bold text-[var(--color-accent-primary)]">{unit.name}</span>
-            <span className="text-slate-400">({unit.rera_volume_m3 || 435.75} m³)</span>
+            <span className="font-bold theme-accent">{unit.name}</span>
+            <span className="theme-text-muted">({unit.rera_volume_m3 || 435.75} m³)</span>
           </div>
         </Html>
       )}
@@ -448,55 +516,46 @@ function AdaptiveCameraController({ selectedUnit, cameraPreset, activeFloor, fly
         const tz = -selectedUnit.centroid_local[1]
 
         animTargetPos.current.set(tx, ty, tz)
-
-        // Calculate dynamic optimal viewing angle:
-        // Position camera on the specific exterior side that directly faces the selected property
-        const dx = tx
-        const dz = tz
-        const dist = Math.sqrt(dx * dx + dz * dz)
-
-        let dirX = 0.707
-        let dirZ = 0.707
-        if (dist > 0.4) {
-          dirX = dx / dist
-          dirZ = dz / dist
-        }
-
-        // Add an eye-level aesthetic parallax angle (offset by ~22 degrees) so both facade and depth are visible
-        const angle = Math.atan2(dirZ, dirX) + 0.38
-        const finalDirX = Math.cos(angle)
-        const finalDirZ = Math.sin(angle)
-
-        // Distance adapted to floor level and unit volume
-        const viewDistance = selectedUnit.level < 0 ? 15 : 18
-        const viewElevation = selectedUnit.level < 0 ? Math.max(1.5, ty + 3.5) : ty + 5.5
-
-        animCamPos.current.set(
-          tx + finalDirX * viewDistance,
-          viewElevation,
-          tz + finalDirZ * viewDistance
-        )
+        animCamPos.current.set(tx + 14, ty + 9, tz + 16)
       }
-    } else if (cameraPreset !== lastPreset.current) {
+    } else {
+      lastSelectedId.current = null
+    }
+  }, [selectedUnit])
+
+  useEffect(() => {
+    if (flyTarget && flyTarget.targetPosition) {
+      isTransitioning.current = true
+      const [fx, fy, fz] = flyTarget.targetPosition
+      animTargetPos.current.set(fx, fy !== undefined ? fy : 6, fz !== undefined ? -fz : 0)
+      animCamPos.current.set(fx + 22, (fy || 6) + 16, (fz ? -fz : 0) + 26)
+    }
+  }, [flyTarget])
+
+  useEffect(() => {
+    if (cameraPreset !== lastPreset.current) {
       lastPreset.current = cameraPreset
-      lastSelectedId.current = null
       isTransitioning.current = true
 
-      if (cameraPreset === 'OVERVIEW') {
-        animTargetPos.current.set(0, 6, 0)
-        animCamPos.current.set(28, 22, 34)
-      } else if (cameraPreset === 'ENCROACHMENT') {
-        animTargetPos.current.set(0, 8, 0)
-        animCamPos.current.set(-20, 22, 26)
-      } else if (cameraPreset === 'TOP') {
+      if (cameraPreset === 'TOP_DOWN') {
+        animCamPos.current.set(0, 52, 0.001)
         animTargetPos.current.set(0, 0, 0)
-        animCamPos.current.set(0, 48, 0.1)
+      } else if (cameraPreset === 'FRONT_ELEVATION') {
+        animCamPos.current.set(0, 8, 38)
+        animTargetPos.current.set(0, 7, 0)
+      } else if (cameraPreset === 'OVERVIEW') {
+        animCamPos.current.set(28, 22, 34)
+        animTargetPos.current.set(0, 6, 0)
       }
-    } else if (!selectedUnit && lastSelectedId.current) {
-      lastSelectedId.current = null
+    }
+  }, [cameraPreset])
+
+  useEffect(() => {
+    if (activeFloor !== 'ALL' && !selectedUnit) {
       isTransitioning.current = true
-      animTargetPos.current.set(0, 6, 0)
-      animCamPos.current.set(28, 22, 34)
+      const targetY = typeof activeFloor === 'number' ? activeFloor * 3 + 1.5 : 6
+      animTargetPos.current.set(0, targetY, 0)
+      animCamPos.current.set(24, targetY + 12, 28)
     }
   }, [selectedUnit, cameraPreset, activeFloor])
 
@@ -542,7 +601,7 @@ export default function Viewer3D({
   viewMode = 'CADASTRE',
   cameraPreset = 'OVERVIEW',
   explodedOffset = 0,
-  theme = 'LIGHT',
+  theme = 'CYBER',
   flyTarget,
   onFlightProgress,
   showBounds = true,
@@ -550,6 +609,7 @@ export default function Viewer3D({
 }) {
   const [hoveredUnit, setHoveredUnit] = useState(null)
   const isLight = theme === 'LIGHT'
+  const palette = isLight ? VIEWER_PALETTES.LIGHT : VIEWER_PALETTES.CYBER
 
   const units = societyData?.units || []
   const auditSummary = societyData?.audit_summary || {}
@@ -561,29 +621,39 @@ export default function Viewer3D({
   }, [auditSummary])
 
   return (
-    <div className={`absolute inset-0 z-0 overflow-hidden transition-colors duration-500 ${isLight ? 'bg-[var(--color-surface-muted)]' : 'bg-[var(--color-surface-3)]'}`}>
+    <div className={`absolute inset-0 z-0 overflow-hidden transition-colors duration-500 ${isLight ? 'bg-[#edf4ef]' : 'bg-[#071216]'}`}>
       <Canvas
         camera={{ position: [28, 22, 34], fov: 38 }}
         gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
         shadows
       >
-        <color attach="background" args={[isLight ? 'var(--color-surface-muted)' : 'var(--color-surface-3)']} />
-        <fog attach="fog" args={[isLight ? 'var(--color-border-default)' : 'var(--color-surface-3)', 40, 140]} />
+        <color attach="background" args={[palette.bg]} />
+        <fog attach="fog" args={[palette.fog, 40, 140]} />
 
         {/* Ambient & Directional Lighting */}
-        <ambientLight intensity={isLight ? 0.95 : 0.4} />
+        <ambientLight intensity={palette.ambientIntensity} color={palette.ambientLight} />
         <directionalLight
           position={[30, 45, 25]}
-          intensity={isLight ? 1.6 : 1.3}
-          color={isLight ? 'var(--color-surface-1)' : 'var(--color-accent-primary)'}
+          intensity={palette.dirLight1Intensity}
+          color={palette.dirLight1}
           castShadow
         />
-        <directionalLight position={[-20, 15, -20]} intensity={isLight ? 0.4 : 0.3} color={isLight ? '#A7F3D0' : 'var(--color-status-success)'} />
-        <pointLight position={[0, 8, 0]} intensity={isLight ? 0.3 : 0.5} color="var(--color-accent-primary)" distance={50} decay={2} />
+        <directionalLight
+          position={[-20, 15, -20]}
+          intensity={palette.dirLight2Intensity}
+          color={palette.dirLight2}
+        />
+        <pointLight
+          position={[0, 8, 0]}
+          intensity={palette.pointLightIntensity}
+          color={palette.pointLight}
+          distance={50}
+          decay={2}
+        />
 
         {/* Ground Grid with Cadastral Coordinates */}
         <gridHelper
-          args={[160, 80, isLight ? 'var(--color-accent-primary)' : 'var(--color-accent-primary)', isLight ? 'var(--color-border-default)' : 'var(--color-border-default)']}
+          args={[160, 80, palette.gridPrimary, palette.gridSecondary]}
           position={[0, -0.05, 0]}
         />
 
@@ -591,29 +661,29 @@ export default function Viewer3D({
         {showBounds && (
           <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
             <ringGeometry args={[15, 15.3, 4]} />
-            <meshBasicMaterial color={isLight ? 'var(--color-accent-primary)' : 'var(--color-accent-primary)'} transparent opacity={0.85} />
+            <meshBasicMaterial color={palette.boundaryRing} transparent opacity={0.85} />
           </mesh>
         )}
 
         {/* Optional 3D Measurement Visual Grid Guide */}
         {measureMode && (
           <gridHelper
-            args={[30, 30, 'var(--color-status-warning)', 'var(--color-status-warning)']}
+            args={[30, 30, palette.measureGrid, palette.measureGrid]}
             position={[0, 0.04, 0]}
           />
         )}
 
         {/* Street Lights along Boundary */}
-        <StreetLight position={[-14, 0, -10]} rotation={[0, Math.PI / 2, 0]} />
-        <StreetLight position={[-14, 0, 10]} rotation={[0, Math.PI / 2, 0]} />
-        <StreetLight position={[14, 0, -10]} rotation={[0, -Math.PI / 2, 0]} />
-        <StreetLight position={[14, 0, 10]} rotation={[0, -Math.PI / 2, 0]} />
+        <StreetLight position={[-14, 0, -10]} rotation={[0, Math.PI / 2, 0]} palette={palette} />
+        <StreetLight position={[-14, 0, 10]} rotation={[0, Math.PI / 2, 0]} palette={palette} />
+        <StreetLight position={[14, 0, -10]} rotation={[0, -Math.PI / 2, 0]} palette={palette} />
+        <StreetLight position={[14, 0, 10]} rotation={[0, -Math.PI / 2, 0]} palette={palette} />
 
         {/* Landscape Trees */}
-        <Tree position={[-16, 0, -12]} scale={1.2} theme={theme} />
-        <Tree position={[-16, 0, 12]} scale={1.1} theme={theme} />
-        <Tree position={[16, 0, -12]} scale={1.2} theme={theme} />
-        <Tree position={[16, 0, 12]} scale={1.1} theme={theme} />
+        <Tree position={[-16, 0, -12]} scale={1.2} isLight={isLight} palette={palette} />
+        <Tree position={[-16, 0, 12]} scale={1.1} isLight={isLight} palette={palette} />
+        <Tree position={[16, 0, -12]} scale={1.2} isLight={isLight} palette={palette} />
+        <Tree position={[16, 0, 12]} scale={1.1} isLight={isLight} palette={palette} />
 
         {/* Volumetric Building Units */}
         <group position={[0, 0, 0]}>
@@ -629,12 +699,13 @@ export default function Viewer3D({
               viewMode={viewMode}
               isViolating={violatingUnitIds.has(unit.unit_id)}
               explodedOffset={explodedOffset}
-              theme={theme}
+              isLight={isLight}
+              palette={palette}
             />
           ))}
 
           {/* Procedural Rooftop Elements */}
-          <RooftopDetails position={[0, 15, 0]} />
+          <RooftopDetails position={[0, 15, 0]} palette={palette} />
         </group>
 
         {/* Adaptive Dynamic Camera Orbit Controls */}
