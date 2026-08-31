@@ -121,41 +121,60 @@ def generate_ultra_dense_indian_city():
                 continue
             block_centers.append((bx, bz))
 
-    # In each block, place 4 to 6 dense buildings facing the streets
+    # In each block, place dense buildings facing streets with organic irregular offsets
+    random.seed(101)
+    road_x_zones = [-90, -55, -20, 15, 50, 85]
+    road_z_zones = [-90, -55, -20, 15, 50, 85]
+
     for bx, bz in block_centers:
         sub_offsets = [
-            (-6.5, -6.5), (6.5, -6.5), (-6.5, 6.5), (6.5, 6.5), (0.0, -7.5)
+            (-6.5 + random.uniform(-1.5, 1.5), -6.5 + random.uniform(-1.5, 1.5)),
+            (6.5 + random.uniform(-1.5, 1.5), -6.5 + random.uniform(-1.5, 1.5)),
+            (-6.5 + random.uniform(-1.5, 1.5), 6.5 + random.uniform(-1.5, 1.5)),
+            (6.5 + random.uniform(-1.5, 1.5), 6.5 + random.uniform(-1.5, 1.5)),
+            (0.0 + random.uniform(-1.2, 1.2), -7.5 + random.uniform(-1.2, 1.2))
         ]
         
         for ox, oz in sub_offsets:
             cx = round(bx + ox, 1)
             cz = round(bz + oz, 1)
+
+            w = round(random.uniform(6.0, 8.5), 1)
+            d = round(random.uniform(6.0, 8.0), 1)
+
+            # Ensure minimum 5.5m clearance from all N-S and E-W road centerlines (road width = 6m)
+            for rx in road_x_zones:
+                if abs(cx - rx) < (w / 2.0 + 3.8):
+                    cx = rx + (w / 2.0 + 4.2) if cx >= rx else rx - (w / 2.0 + 4.2)
+
+            for rz in road_z_zones:
+                if abs(cz - rz) < (d / 2.0 + 3.8):
+                    cz = rz + (d / 2.0 + 4.2) if cz >= rz else rz - (d / 2.0 + 4.2)
+
+            # Diagonal highway clearance (y = -tan(30deg)*x => z + 0.577*x = 0)
+            diag_dist = abs(cz + 0.577 * cx) / math.sqrt(1 + 0.577*0.577)
+            if diag_dist < 8.5:
+                shift = (8.5 - diag_dist) + 2.0
+                cz += shift if cz >= 0 else -shift
+
+            cx = round(max(-105.0, min(105.0, cx)), 1)
+            cz = round(max(-105.0, min(105.0, cz)), 1)
             
-            # Determine building typology organically based on distance from city center
             dist = math.sqrt(cx*cx + cz*cz)
             
             if dist < 45:
-                # Commercial / Mixed High-Rise Tower (10 to 22 storeys)
                 b_type = "C" if random.random() > 0.4 else "R"
                 floors = random.choice([10, 12, 14, 16, 18, 22])
-                w = round(random.uniform(7.5, 9.5), 1)
-                d = round(random.uniform(7.0, 9.0), 1)
                 name = f"Cyber Hub Block C-{b_idx:02d}" if b_type == "C" else f"Skyline Tower T-{b_idx:02d}"
                 zone = "ZONE_3_COMMERCIAL" if b_type == "C" else "ZONE_1_HIGHRISE"
             elif dist < 85:
-                # Mid-Rise Residential & Plotted Complexes (4 to 8 storeys)
                 b_type = "R"
                 floors = random.choice([4, 5, 6, 7, 8])
-                w = round(random.uniform(6.5, 8.0), 1)
-                d = round(random.uniform(6.0, 7.5), 1)
                 name = f"Dwarka Enclave Block B-{b_idx:02d}"
                 zone = "ZONE_1_HIGHRISE"
             else:
-                # Dense Urban Village Abadi Dwellings (2 to 4 storeys)
                 b_type = "R"
                 floors = random.choice([2, 3, 4])
-                w = round(random.uniform(5.5, 6.8), 1)
-                d = round(random.uniform(5.2, 6.5), 1)
                 name = f"Khurrampur Abadi House #{b_idx}"
                 zone = "ZONE_2_PLOTTED"
 
@@ -166,7 +185,7 @@ def generate_ultra_dense_indian_city():
                 "zone": zone,
                 "domain": b_type,
                 "cx": cx, "cz": cz, "w": w, "d": d,
-                "rot": random.choice([0, 10, -15, 20]),
+                "rot": random.choice([0, 12, -18, 25, -30, 42]),
                 "floors": floors, "owner_idx": b_idx
             })
             b_idx += 1

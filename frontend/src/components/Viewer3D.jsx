@@ -54,13 +54,13 @@ export const VIEWER_PALETTES = {
   LIGHT: {
     bg: '#edf4ef',
     fog: '#edf4ef',
-    gridPrimary: '#b9d8ca',
-    gridSecondary: '#d8e8df',
-    groundPlane: '#f1f7f3',
-    roadAsphalt: '#dde5ed',
-    roadMarking: '#2e7d63',
-    roadCurb: '#94a3b8',
-    medianGrass: '#c1e7d4',
+    gridPrimary: '#cbd5e1',
+    gridSecondary: '#e2e8f0',
+    groundPlane: '#e2e8f0',
+    roadAsphalt: '#1e293b',            // Dark asphalt roads in Light Mode
+    roadMarking: '#38bdf8',
+    roadCurb: '#475569',
+    medianGrass: '#86efac',
     ambientLight: '#ffffff',
     ambientIntensity: 1.1,
     dirLight1: '#ffffff',
@@ -71,7 +71,7 @@ export const VIEWER_PALETTES = {
     pointLightIntensity: 8,
     boundaryRing: '#2e7d63',
     measureGrid: '#b45309',
-    unitDefault: '#5a6e78',           // Dark grey of slightly higher pigment in Light Mode
+    unitDefault: '#5a6e78',
     unitDefaultEmissive: '#334155',
     unitHighRise: '#475569',
     unitCommercial: '#52606d',
@@ -199,19 +199,7 @@ function SectorRoadNetwork({ palette, viewMode }) {
         </mesh>
       ))}
 
-      {/* Thinner Access Galis & Alleyways (3.5m wide) */}
-      {[-72, -38, -2, 32, 68].map((row_z, r_idx) =>
-        [-72, -38, -2, 32, 68].map((col_x, c_idx) => (
-          <mesh
-            key={`gali-${r_idx}-${c_idx}`}
-            position={[col_x, 0.012, row_z]}
-            rotation={[-Math.PI / 2, 0, 0]}
-          >
-            <planeGeometry args={[24.0, 3.5]} />
-            <meshStandardMaterial color="#334155" roughness={0.88} side={THREE.DoubleSide} />
-          </mesh>
-        ))
-      )}
+
 
       {/* Sector Boundary Ring Roads */}
       <mesh position={[0, 0, 115]} rotation={[-Math.PI / 2, 0, 0]}>
