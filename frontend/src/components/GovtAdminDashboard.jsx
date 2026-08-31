@@ -99,14 +99,14 @@ export default function GovtAdminDashboard({
 
   return (
     <div
-      className={`responsive-workspace fixed inset-0 z-50 flex flex-col font-sans overflow-hidden backdrop-blur-2xl transition-colors duration-500 ${
-        isLight ? 'bg-[var(--color-bg-app)]/95 text-slate-800' : 'bg-[var(--color-bg-app)]/95 text-slate-100'
+      className={`responsive-workspace fixed inset-0 z-50 flex flex-col font-sans overflow-hidden transition-colors duration-300 ${
+        isLight ? 'bg-[#edf4ef] text-slate-800' : 'bg-[#071216] text-slate-100'
       }`}
     >
       {/* Top Header */}
       <header
-        className={`responsive-workspace-header px-8 py-4 border-b flex items-center justify-between backdrop-blur-xl ${
-          isLight ? 'bg-white/90 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)]/90 border-[var(--color-border-default)]'
+        className={`responsive-workspace-header px-6 lg:px-8 py-3.5 border-b flex items-center justify-between backdrop-blur-xl ${
+          isLight ? 'bg-white/95 border-[var(--color-border-default)]' : 'bg-[var(--color-surface-1)]/95 border-[var(--color-border-default)]'
         }`}
       >
         <div className="flex items-center gap-6">
@@ -123,9 +123,9 @@ export default function GovtAdminDashboard({
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <div
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border font-mono text-xs ${
+            className={`hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl border font-mono text-xs ${
               isLight ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-300'
             }`}
           >
@@ -135,7 +135,20 @@ export default function GovtAdminDashboard({
 
           <button
             onClick={onClose}
-            className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-bold border transition-all cursor-pointer shadow-sm ${
+              isLight
+                ? 'bg-[var(--color-accent-primary)] text-white hover:bg-[var(--color-accent-primary-hover)]'
+                : 'bg-[var(--color-accent-primary)] text-[#071216] hover:bg-[#9ef3e2] shadow-[0_0_15px_rgba(126,231,210,0.3)]'
+            }`}
+          >
+            <Building className="w-4 h-4" />
+            <span>VIEW 3D DIGITAL TWIN</span>
+          </button>
+
+          <button
+            onClick={onClose}
+            aria-label="Close Compliance Center"
+            className={`p-2 rounded-xl border transition-colors cursor-pointer ${
               isLight
                 ? 'bg-white border-[var(--color-border-default)] text-slate-600 hover:text-[var(--color-accent-primary)]'
                 : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-400 hover:text-white'
