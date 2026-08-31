@@ -430,7 +430,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
         </div>
       </main>
 
-      <section id="landing-field-notes" className={`landing-field-notes relative z-20 mx-auto w-full max-w-[1480px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28 ${isLight ? 'landing-field-notes-light' : ''}`}>
+      <section id="landing-field-notes" className={`landing-field-notes relative z-20 mx-auto w-full max-w-[1480px] px-5 py-6 sm:px-8 lg:px-12 lg:py-8 ${isLight ? 'landing-field-notes-light' : ''}`}>
         <div className="landing-field-notes-intro">
           <div className="landing-section-kicker"><span className="landing-kicker-line" /><span>Field notes / 02</span></div>
           <h2 className="landing-section-title">One registry.<br /><span>Every dimension.</span></h2>
