@@ -358,25 +358,25 @@ export default function App() {
             <div className="absolute inset-0 pointer-events-none z-10 p-6 flex flex-col justify-between">
               {/* Top Row Markers */}
               <div className="flex justify-between items-start mt-20">
-                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#1B5E20]/70' : 'text-[#00D084]/60'}`}>
-                  <span className={`w-3 h-3 border-t-2 border-l-2 ${isLight ? 'border-[#1B5E20]' : 'border-[#00D084]'}`} />
+                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#2e7d63]/80' : 'text-[#7ee7d2]/70'}`}>
+                  <span className={`w-3 h-3 border-t-2 border-l-2 ${isLight ? 'border-[#2e7d63]' : 'border-[#7ee7d2]'}`} />
                   <span>GRID_01 / EPSG:4326 WGS84</span>
                 </div>
-                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#1B5E20]/70' : 'text-[#00D084]/60'}`}>
+                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#2e7d63]/80' : 'text-[#7ee7d2]/70'}`}>
                   <span>3D_CADASTRE_SYNC_ONLINE</span>
-                  <span className={`w-3 h-3 border-t-2 border-r-2 ${isLight ? 'border-[#1B5E20]' : 'border-[#00D084]'}`} />
+                  <span className={`w-3 h-3 border-t-2 border-r-2 ${isLight ? 'border-[#2e7d63]' : 'border-[#7ee7d2]'}`} />
                 </div>
               </div>
 
               {/* Bottom Row Markers */}
               <div className="flex justify-between items-end">
-                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#1B5E20]/70' : 'text-[#00D084]/60'}`}>
-                  <span className={`w-3 h-3 border-b-2 border-l-2 ${isLight ? 'border-[#1B5E20]' : 'border-[#00D084]'}`} />
+                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#2e7d63]/80' : 'text-[#7ee7d2]/70'}`}>
+                  <span className={`w-3 h-3 border-b-2 border-l-2 ${isLight ? 'border-[#2e7d63]' : 'border-[#7ee7d2]'}`} />
                   <span>ISO 19152:2024 LADM PART 2</span>
                 </div>
-                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#1B5E20]/70' : 'text-[#00D084]/60'}`}>
+                <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#2e7d63]/80' : 'text-[#7ee7d2]/70'}`}>
                   <span>VOLUMETRIC_TOLERANCE: 0.02m</span>
-                  <span className={`w-3 h-3 border-b-2 border-r-2 ${isLight ? 'border-[#1B5E20]' : 'border-[#00D084]'}`} />
+                  <span className={`w-3 h-3 border-b-2 border-r-2 ${isLight ? 'border-[#2e7d63]' : 'border-[#7ee7d2]'}`} />
                 </div>
               </div>
             </div>
@@ -532,23 +532,23 @@ export default function App() {
               isLight
                 ? toast.type === 'WARNING'
                   ? 'bg-amber-50 border-amber-300 text-amber-900 shadow-amber-500/10'
-                  : 'bg-white/95 border-[#C8E6C9] text-slate-800 shadow-[#1B5E20]/15'
+                  : 'bg-white/95 border-[#b9d8ca] text-[#173b36] shadow-[#2e7d63]/15'
                 : toast.type === 'WARNING'
                 ? 'bg-[#1C1205] border-amber-500/60 text-amber-300'
-                : 'bg-[#0B131E]/95 border-[#00D084]/60 text-slate-200'
+                : 'bg-[#071216]/95 border-[#7ee7d2]/40 text-[#f4f0e8]'
             }`}>
               <span className={`w-2.5 h-2.5 rounded-full ${
-                toast.type === 'SUCCESS' ? 'bg-[#00D084]' : toast.type === 'WARNING' ? 'bg-amber-500' : 'bg-emerald-400'
+                toast.type === 'SUCCESS' ? 'bg-[#7ee7d2]' : toast.type === 'WARNING' ? 'bg-amber-500' : 'bg-[#c8ff33]'
               } animate-ping`} />
               <div>
                 <span className={`font-bold mr-2 ${
                   toast.type === 'WARNING'
                     ? 'text-amber-500'
-                    : isLight ? 'text-[#1B5E20]' : 'text-[#00D084]'
+                    : isLight ? 'text-[#2e7d63]' : 'text-[#7ee7d2]'
                 }`}>
                   {toast.title}:
                 </span>
-                <span className={isLight ? 'text-slate-600' : 'text-slate-300'}>{toast.message}</span>
+                <span className={isLight ? 'text-[#4d6d64]' : 'text-[#a5c1b9]'}>{toast.message}</span>
               </div>
             </div>
           )}
