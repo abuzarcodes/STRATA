@@ -159,6 +159,11 @@ textarea {
 
 button {
   -webkit-tap-highlight-color: transparent;
+  background: transparent;
+  border: none;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
 }
 
 /* ═════════════════════════════════════════════════════════════════════

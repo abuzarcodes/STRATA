@@ -77,18 +77,18 @@ export default function RoleSelectPanel({ onSelectRole, onBack, theme = 'CYBER',
         </div>
 
         <div
-          className="hidden md:flex items-center gap-6 text-xs font-mono font-bold theme-text-muted"
+          className="hidden md:flex items-center gap-3 text-xs font-mono font-bold theme-text-muted"
         >
           <button
             onClick={() => onNavClick && onNavClick('about')}
-            className="cursor-pointer transition-colors theme-hover-accent"
+            className="cursor-pointer transition-all px-3 py-1.5 rounded-lg bg-transparent border-0 text-inherit hover:text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]"
           >
             About Platform
           </button>
-          <span>•</span>
+          <span className="opacity-40">•</span>
           <button
             onClick={() => onNavClick && onNavClick('documentation')}
-            className="cursor-pointer transition-colors theme-hover-accent"
+            className="cursor-pointer transition-all px-3 py-1.5 rounded-lg bg-transparent border-0 text-inherit hover:text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]"
           >
             Documentation
           </button>
