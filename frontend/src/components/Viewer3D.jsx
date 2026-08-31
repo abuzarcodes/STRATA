@@ -2,6 +2,7 @@ import React, { useRef, useMemo, useState, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Text, Html } from '@react-three/drei'
 import * as THREE from 'three'
+import lidarPointsData from '../data/lidarPoints.json'
 
 // Professional GIS Cadastral Hex Palettes
 export const VIEWER_PALETTES = {
@@ -95,6 +96,61 @@ export const VIEWER_PALETTES = {
     pole: '#475569',
     metroTube: '#0284c7'
   }
+}
+
+// ─── GPU LiDAR Point Cloud Layer (points.laz source) ────────────────────────
+function LidarPointCloud({ visible, isLight }) {
+  const pointsGeometry = useMemo(() => {
+    if (!lidarPointsData || lidarPointsData.length === 0) return null
+    const count = lidarPointsData.length
+    const positions = new Float32Array(count * 3)
+    const colors = new Float32Array(count * 3)
+
+    const colorLow = new THREE.Color(isLight ? '#0284c7' : '#38bdf8')
+    const colorMid = new THREE.Color(isLight ? '#16a34a' : '#4ade80')
+    const colorHigh = new THREE.Color(isLight ? '#ca8a04' : '#facc15')
+    const colorPeak = new THREE.Color(isLight ? '#dc2626' : '#f87171')
+
+    for (let i = 0; i < count; i++) {
+      const p = lidarPointsData[i]
+      positions[i * 3] = p.pos[0]
+      positions[i * 3 + 1] = p.pos[1]
+      positions[i * 3 + 2] = p.pos[2]
+
+      const t = Math.min(1.0, Math.max(0.0, p.pos[1] / 16.0))
+      let c = new THREE.Color()
+      if (t < 0.33) {
+        c.lerpColors(colorLow, colorMid, t / 0.33)
+      } else if (t < 0.66) {
+        c.lerpColors(colorMid, colorHigh, (t - 0.33) / 0.33)
+      } else {
+        c.lerpColors(colorHigh, colorPeak, (t - 0.66) / 0.34)
+      }
+
+      colors[i * 3] = c.r
+      colors[i * 3 + 1] = c.g
+      colors[i * 3 + 2] = c.b
+    }
+
+    const geom = new THREE.BufferGeometry()
+    geom.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+    geom.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+    return geom
+  }, [isLight])
+
+  if (!visible || !pointsGeometry) return null
+
+  return (
+    <points geometry={pointsGeometry}>
+      <pointsMaterial
+        size={isLight ? 0.38 : 0.48}
+        vertexColors={true}
+        transparent={true}
+        opacity={0.88}
+        sizeAttenuation={true}
+      />
+    </points>
+  )
 }
 
 // ─── Sector 10 Road Network & Urban Ground ──────────────────────────────────
@@ -282,26 +338,41 @@ function VolumetricUnit({
 
   const verticalExplode = unit.level > 0 ? unit.level * (explodedOffset * 0.3) : 0
 
-  // Construct BufferGeometry from vertices and faces
+  // Construct BufferGeometry from bounding box or vertices and faces
   const geometry = useMemo(() => {
-    const geom = new THREE.BufferGeometry()
-    const vertices = unit.vertices_local
-    const faces = unit.faces
-
-    const positions = []
-    for (let face of faces) {
-      const v0 = vertices[face[0]]
-      const v1 = vertices[face[1]]
-      const v2 = vertices[face[2]]
-
-      positions.push(v0[0], v0[2], -v0[1])
-      positions.push(v1[0], v1[2], -v1[1])
-      positions.push(v2[0], v2[2], -v2[1])
+    if (unit.bbox_local) {
+      const min = unit.bbox_local[0]
+      const max = unit.bbox_local[1]
+      const dx = Math.max(0.2, max[0] - min[0])
+      const dy = Math.max(0.2, max[1] - min[1])
+      const dz = Math.max(0.2, max[2] - min[2])
+      const geom = new THREE.BoxGeometry(dx, dy, dz)
+      geom.translate((min[0] + max[0]) / 2, (min[1] + max[1]) / 2, -(min[2] + max[2]) / 2)
+      return geom
     }
 
-    geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
-    geom.computeVertexNormals()
-    return geom
+    if (unit.vertices_local && unit.faces) {
+      const geom = new THREE.BufferGeometry()
+      const vertices = unit.vertices_local
+      const faces = unit.faces
+
+      const positions = []
+      for (let face of faces) {
+        const v0 = vertices[face[0]]
+        const v1 = vertices[face[1]]
+        const v2 = vertices[face[2]]
+
+        positions.push(v0[0], v0[2], -v0[1])
+        positions.push(v1[0], v1[2], -v1[1])
+        positions.push(v2[0], v2[2], -v2[1])
+      }
+
+      geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
+      geom.computeVertexNormals()
+      return geom
+    }
+
+    return new THREE.BoxGeometry(2, 2, 2)
   }, [unit])
 
   const edgesGeometry = useMemo(() => {
@@ -627,6 +698,9 @@ export default function Viewer3D({
             position={[0, 0.04, 0]}
           />
         )}
+
+        {/* GPU LiDAR Point Cloud Layer (points.laz source) */}
+        <LidarPointCloud visible={viewMode === 'LIDAR' || viewMode === 'HYBRID'} isLight={isLight} />
 
         {/* Volumetric Building Units across All Blocks */}
         <group position={[0, 0, 0]}>

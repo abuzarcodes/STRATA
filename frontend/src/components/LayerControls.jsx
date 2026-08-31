@@ -31,6 +31,14 @@ export default function LayerControls({
       badge: null
     },
     {
+      id: 'LIDAR',
+      label: 'LiDAR Cloud (LAS/LAZ)',
+      desc: '157.1M point cloud survey layer',
+      icon: Scan,
+      color: '#38bdf8',
+      badge: 'points.laz'
+    },
+    {
       id: 'ENCROACHMENT',
       label: 'FAR & Setback Audit',
       desc: 'Clashes & setback violations',

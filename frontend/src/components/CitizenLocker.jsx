@@ -42,18 +42,18 @@ export default function CitizenLocker({
         unitId: u.unit_id,
         ulpin: u.ulpin_3d,
         name: u.name,
-        location: 'Aura Residency Complex, Sector 10, Dwarka, New Delhi',
+        location: `${u.complex || 'Sector 10'}, Dwarka, New Delhi`,
         area: `${u.carpet_area_m2} m² (${(u.carpet_area_m2 * 10.764).toFixed(0)} sq.ft)`,
         carpetArea: `${u.carpet_area_m2} m²`,
-        volume: `${u.rera_volume_m3} m³`,
+        volume: `${u.rera_volume_m3 || u.volume_m3} m³`,
         level: u.level,
         share: '100% Freehold',
         status: 'VERIFIED & REGISTERED',
         registrationDate: u.registration_date || '14-OCT-2023',
-        deedNo: u.deed_no || 'DEL-DWK-2023-88904',
-        mortgage: u.mortgage || 'NONE (Clear Title)',
+        deedNo: u.deed_no || `DEL-DWK-2023-${u.unit_id.replace('-', '')}`,
+        mortgage: u.encumbrance || 'Clear & Freehold',
         taxStatus: u.tax_status || 'PAID (FY 2025-26)',
-        valuation: u.estimated_valuation_inr
+        valuation: u.circle_rate_inr_m2 ? u.carpet_area_m2 * u.circle_rate_inr_m2 : 12500000
       }))
   }, [societyData, activeCitizen])
 

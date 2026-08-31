@@ -51,6 +51,11 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# Large Point Cloud & Spatial Binaries (540MB+)
+*.laz
+*.las
+points.lazocal
+
 # Large media & extractor bundles
 *.mp4
 *.zip

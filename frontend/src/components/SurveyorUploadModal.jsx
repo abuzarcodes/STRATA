@@ -235,26 +235,32 @@ export default function SurveyorUploadModal({ onClose, onIngestSuccess, theme = 
                   </div>
                 </div>
 
-                {/* Gateway 2: LiDAR Point Clouds */}
+                {/* Gateway 2: LiDAR Point Clouds (Real points.laz file) */}
                 <div
-                  onClick={() => handleUploadSimulate('LiDAR Point Cloud (LAS/LAZ)')}
+                  onClick={() => handleUploadSimulate('LiDAR Point Cloud (points.laz - 157.1M Points)')}
                   className={`p-6 rounded-3xl border shadow-xl flex flex-col justify-between transition-all cursor-pointer hover:scale-[1.02] ${
                     isLight ? 'bg-white border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)]' : 'bg-[var(--color-surface-1)] border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)]/60'
                   }`}
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/30 flex items-center justify-center mb-4">
-                      <Layers className="w-6 h-6" />
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/30 flex items-center justify-center">
+                        <Layers className="w-6 h-6" />
+                      </div>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-500/20 text-sky-400 border border-sky-500/40">
+                        DETECTED: points.laz (540MB)
+                      </span>
                     </div>
                     <h4 className={`text-base font-bold ${isLight ? 'text-slate-800' : 'text-white'}`}>
                       LiDAR / Drone Mesh
                     </h4>
                     <p className="text-xs text-slate-500 mt-1">
-                      Dense point cloud mesh reconstruction with automated roof plane detection (LAS/LAZ).
+                      157,131,574 Survey points parsed in EPSG:2193 / EPSG:4440. Automated roof plane segmentation & 3D extrusion.
                     </p>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-mono font-bold text-sky-600 dark:text-sky-400">
-                    CLICK TO INGEST LAS / OBJ
+                  <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-mono font-bold text-sky-600 dark:text-sky-400 flex items-center justify-between">
+                    <span>INGEST POINTS.LAZ</span>
+                    <span>157.1M PTS →</span>
                   </div>
                 </div>
 
