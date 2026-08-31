@@ -98,49 +98,69 @@ export const VIEWER_PALETTES = {
 }
 
 // ─── Sector 10 Road Network & Urban Ground ──────────────────────────────────
-function SectorRoadNetwork({ palette }) {
+function SectorRoadNetwork({ palette, viewMode }) {
+  const isSubsurface = viewMode === 'SUBSURFACE' || viewMode === 'UTILITIES'
+
   return (
     <group position={[0, -0.02, 0]}>
       {/* Ground Substrate */}
       <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[130, 130]} />
-        <meshStandardMaterial color={palette.groundPlane} roughness={0.9} />
+        <meshStandardMaterial
+          color={palette.groundPlane}
+          roughness={0.9}
+          transparent={true}
+          opacity={isSubsurface ? 0.3 : 0.95}
+          side={THREE.DoubleSide}
+        />
       </mesh>
 
       {/* East-West Central Sector Avenue (Z = 0, Width = 8m, Length = 110m) */}
       <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[115, 8]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} />
+        <meshStandardMaterial
+          color={palette.roadAsphalt}
+          roughness={0.75}
+          transparent={isSubsurface}
+          opacity={isSubsurface ? 0.4 : 1.0}
+          side={THREE.DoubleSide}
+        />
       </mesh>
 
       {/* North-South Central Sector Avenue (X = 0, Width = 8m, Length = 110m) */}
       <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[8, 115]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} />
+        <meshStandardMaterial
+          color={palette.roadAsphalt}
+          roughness={0.75}
+          transparent={isSubsurface}
+          opacity={isSubsurface ? 0.4 : 1.0}
+          side={THREE.DoubleSide}
+        />
       </mesh>
 
       {/* North Perimeter Ring Road (Z = 52) */}
       <mesh position={[0, 0, 52]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[115, 6]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
       </mesh>
 
       {/* South Perimeter Ring Road (Z = -52) */}
       <mesh position={[0, 0, -52]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[115, 6]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
       </mesh>
 
       {/* West Perimeter Ring Road (X = -52) */}
       <mesh position={[-52, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[6, 115]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
       </mesh>
 
       {/* East Perimeter Ring Road (X = 52) */}
       <mesh position={[52, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[6, 115]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Center Dividing Medians */}
@@ -158,19 +178,19 @@ function SectorRoadNetwork({ palette }) {
         <React.Fragment key={i}>
           <mesh position={[offset * 1.5, 0.02, 5.5]} rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[0.8, 2.5]} />
-            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} />
+            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} side={THREE.DoubleSide} />
           </mesh>
           <mesh position={[offset * 1.5, 0.02, -5.5]} rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[0.8, 2.5]} />
-            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} />
+            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} side={THREE.DoubleSide} />
           </mesh>
           <mesh position={[5.5, 0.02, offset * 1.5]} rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[2.5, 0.8]} />
-            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} />
+            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} side={THREE.DoubleSide} />
           </mesh>
           <mesh position={[-5.5, 0.02, offset * 1.5]} rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[2.5, 0.8]} />
-            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} />
+            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} side={THREE.DoubleSide} />
           </mesh>
         </React.Fragment>
       ))}
@@ -491,6 +511,9 @@ function AdaptiveCameraController({ selectedUnit, cameraPreset, flyTarget }) {
       } else if (cameraPreset === 'OVERVIEW') {
         animCamPos.current.set(55, 60, 65)
         animTargetPos.current.set(0, 8, 0)
+      } else if (cameraPreset === 'SUBSURFACE' || cameraPreset === 'UNDERGROUND') {
+        animCamPos.current.set(32, -14, 40)
+        animTargetPos.current.set(0, -5, 0)
       }
     }
   }, [cameraPreset])
@@ -518,9 +541,10 @@ function AdaptiveCameraController({ selectedUnit, cameraPreset, flyTarget }) {
       makeDefault
       enableDamping
       dampingFactor={0.05}
-      maxPolarAngle={Math.PI / 2 - 0.02}
-      minDistance={10}
-      maxDistance={220}
+      minPolarAngle={0.01}
+      maxPolarAngle={Math.PI - 0.01}
+      minDistance={4}
+      maxDistance={250}
       onStart={() => {
         isTransitioning.current = false
       }}
@@ -591,7 +615,7 @@ export default function Viewer3D({
         />
 
         {/* Sector 10 Road Network */}
-        <SectorRoadNetwork palette={palette} />
+        <SectorRoadNetwork palette={palette} viewMode={viewMode} />
 
         {/* Subsurface Blue Line Metro Tube & Utility Network */}
         <SubsurfaceCorridor viewMode={viewMode} palette={palette} />
