@@ -239,12 +239,13 @@ export default function App() {
 
   const violationsCount = societyData?.audit_summary?.violation_count || 0
   const isLight = theme === 'LIGHT'
+  const isScrollablePhase = appPhase === 'LANDING' || appPhase === 'ABOUT' || appPhase === 'DOCUMENTATION'
 
   return (
     <div
       data-theme={theme}
       className={`theme-app responsive-app-shell w-screen h-screen relative font-sans transition-colors duration-500 ${
-        appPhase === 'ABOUT' || appPhase === 'DOCUMENTATION' ? 'overflow-y-auto' : 'overflow-hidden select-none'
+        isScrollablePhase ? 'overflow-y-auto overflow-x-hidden' : 'overflow-hidden select-none'
       }`}
     >
       {/* ── PRE-APP PHASES ────────────────────────────────────────────── */}
