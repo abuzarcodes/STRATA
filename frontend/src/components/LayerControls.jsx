@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Layers, AlertTriangle, Eye, Activity, ShieldCheck,
-  Zap, RefreshCw, Compass, Ruler, Scan, MapPin
+  Zap, RefreshCw, Compass, Ruler, Scan, MapPin, ChevronRight, ChevronLeft
 } from 'lucide-react'
 
 export default function LayerControls({
@@ -18,6 +18,7 @@ export default function LayerControls({
   onExplodedChange,
   theme = 'CYBER'
 }) {
+  const [isCollapsed, setIsCollapsed] = useState(false)
   const isLight = theme === 'LIGHT'
 
   const layers = [
@@ -55,11 +56,29 @@ export default function LayerControls({
     }
   ]
 
+  if (isCollapsed) {
+    return (
+      <button
+        onClick={() => setIsCollapsed(false)}
+        className={`pointer-events-auto p-3 rounded-2xl border shadow-2xl backdrop-blur-2xl flex items-center gap-2 font-mono text-xs font-bold transition-all duration-300 cursor-pointer ${
+          isLight
+            ? 'bg-white/95 border-[var(--color-border-default)] text-[var(--color-accent-primary)] hover:bg-[var(--color-surface-muted)]'
+            : 'bg-[var(--color-surface-1)]/95 border-[var(--color-border-default)] text-white hover:border-[var(--color-accent-primary)]'
+        }`}
+        title="Open Layer Controls"
+      >
+        <ChevronLeft className="w-4 h-4" />
+        <Layers className="w-4 h-4 text-[var(--color-accent-primary)]" />
+        <span>Layers & GIS Modes</span>
+      </button>
+    )
+  }
+
   return (
     <div
-      className="theme-surface w-72 rounded-3xl border shadow-2xl p-4 space-y-4 backdrop-blur-2xl transition-all duration-300"
+      className="theme-surface relative w-72 rounded-3xl border shadow-2xl p-4 space-y-4 backdrop-blur-2xl transition-all duration-300 pointer-events-auto"
     >
-      {/* Header */}
+      {/* Header & Collapse Toggle */}
       <div className="theme-divider flex items-center justify-between pb-2 border-b">
         <div className="flex items-center gap-2">
           <Layers className="w-4 h-4 theme-accent" />
@@ -67,9 +86,17 @@ export default function LayerControls({
             Layer Controls
           </span>
         </div>
-        <span className="theme-accent-surface text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">
-          LIVE 3D
-        </span>
+        <button
+          onClick={() => setIsCollapsed(true)}
+          className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
+            isLight
+              ? 'bg-[var(--color-surface-muted)] border-[var(--color-border-default)] text-slate-600 hover:text-[var(--color-accent-primary)]'
+              : 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-400 hover:text-white'
+          }`}
+          title="Hide Layer Controls"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Layer Modes List */}
@@ -100,14 +127,13 @@ export default function LayerControls({
                   <div className="text-[10px] text-slate-500">{l.desc}</div>
                 </div>
               </div>
-
               {l.badge && (
                 <span
-                  className="text-[9px] font-mono font-black px-2 py-0.5 rounded-full"
+                  className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border"
                   style={{
-                    backgroundColor: `color-mix(in srgb, ${l.color} 14%, transparent)`,
-                    color: l.color,
-                    border: `1px solid color-mix(in srgb, ${l.color} 32%, transparent)`
+                    backgroundColor: `${l.color}15`,
+                    borderColor: `${l.color}40`,
+                    color: l.color
                   }}
                 >
                   {l.badge}
@@ -118,84 +144,32 @@ export default function LayerControls({
         })}
       </div>
 
-      {/* Exploded View Slider */}
-      <div className="theme-divider pt-2 border-t">
-        <div className="flex items-center justify-between text-[11px] font-mono font-bold mb-1.5">
-          <span className="theme-text-secondary">3D Exploded View</span>
-          <span className="theme-accent">
-            {explodedOffset > 0 ? `+${(explodedOffset * 5).toFixed(0)}m Z` : 'OFF'}
-          </span>
+      {/* Camera & Measurement Controls */}
+      <div className="pt-2 border-t border-[var(--color-border-default)] space-y-2">
+        <div className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">
+          Spatial Tools
         </div>
-        <input
-          type="range"
-          min="0"
-          max="2.5"
-          step="0.1"
-          value={explodedOffset}
-          onChange={(e) => onExplodedChange && onExplodedChange(parseFloat(e.target.value))}
-          className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[var(--color-accent-primary)]"
-        />
-      </div>
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            onClick={onResetCamera}
+            className="p-2 rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-2)] text-[11px] font-mono font-bold flex items-center justify-center gap-1.5 hover:bg-[var(--color-surface-muted)] cursor-pointer"
+          >
+            <Compass className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" />
+            <span>Reset View</span>
+          </button>
 
-      {/* Quick Viewport Utilities */}
-      <div className="theme-divider pt-2 border-t grid grid-cols-4 gap-1.5">
-        <button
-          onClick={onResetCamera}
-          className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
-            isLight
-              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] hover:bg-[var(--color-surface-muted)] text-[var(--color-accent-primary)]'
-              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)] text-slate-300 hover:text-white'
-          }`}
-          title="Reset Camera Overview"
-        >
-          <Compass className="w-3.5 h-3.5" />
-          <span className="text-[9px] font-mono font-bold">Reset</span>
-        </button>
-
-        <button
-          onClick={onToggleMeasure}
-          className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
-            measureMode
-              ? 'bg-amber-500/20 border-amber-500 text-amber-500'
-              : isLight
-              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-700'
-              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-300'
-          }`}
-          title="Toggle 3D Coordinates Grid"
-        >
-          <Ruler className="w-3.5 h-3.5" />
-          <span className="text-[9px] font-mono font-bold">Grid</span>
-        </button>
-
-        <button
-          onClick={onToggleBounds}
-          className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
-            showBounds
-              ? isLight
-                ? 'bg-[var(--color-surface-muted)] border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
-                : 'bg-[var(--color-accent-primary)]/20 border-[var(--color-accent-primary)] text-[var(--color-accent-primary)]'
-              : isLight
-              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] text-slate-500'
-              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-slate-500'
-          }`}
-          title="Toggle Parcel Bounds"
-        >
-          <Scan className="w-3.5 h-3.5" />
-          <span className="text-[9px] font-mono font-bold">Bounds</span>
-        </button>
-
-        <button
-          onClick={onFocusCenter}
-          className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
-            isLight
-              ? 'bg-[var(--color-surface-2)] border-[var(--color-border-default)] hover:bg-[var(--color-surface-muted)] text-[var(--color-accent-primary)]'
-              : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] hover:border-[var(--color-accent-primary)] text-slate-300 hover:text-white'
-          }`}
-          title="Focus GPS Center"
-        >
-          <MapPin className="w-3.5 h-3.5" />
-          <span className="text-[9px] font-mono font-bold">Center</span>
-        </button>
+          <button
+            onClick={onToggleMeasure}
+            className={`p-2 rounded-xl border text-[11px] font-mono font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+              measureMode
+                ? 'bg-[var(--color-accent-primary)] text-slate-950 border-[var(--color-accent-primary)]'
+                : 'border-[var(--color-border-default)] bg-[var(--color-surface-2)] text-slate-300 hover:bg-[var(--color-surface-muted)]'
+            }`}
+          >
+            <Ruler className="w-3.5 h-3.5" />
+            <span>Measure Grid</span>
+          </button>
+        </div>
       </div>
     </div>
   )
