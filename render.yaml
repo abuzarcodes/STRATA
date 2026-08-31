@@ -37,10 +37,9 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-    envVars:
-      - key: VITE_SUPABASE_URL
+      - key: SUPABASE_URL
         value: https://wluiaprkdwkrlksxipra.supabase.co
-      - key: VITE_SUPABASE_ANON_KEY
+      - key: SUPABASE_ANON_KEY
         value: sb_publishable_2eQaKT4naFNwdSuFp8j7Rg_i1_YKyzD
-      - key: VITE_API_BASE_URL
+      - key: API_BASE_URL
         sync: false # Will point to https://strata-backend.onrender.com/api/v1
