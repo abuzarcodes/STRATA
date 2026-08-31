@@ -1015,6 +1015,7 @@ button {
 .strata-landing > .landing-grid-overlay,
 .strata-landing > .landing-vignette {
   position: fixed;
+  pointer-events: none !important;
 }
 
 .landing-hero-section {

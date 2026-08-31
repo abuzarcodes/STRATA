@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import {
-  ArrowDownRight,
   ArrowRight,
   Box,
   Check,
@@ -334,13 +333,12 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
       <div className="landing-ambient landing-ambient-two" />
       <div className="landing-noise" />
 
-      <div className="landing-canvas-layer fixed inset-0 z-0 overflow-hidden">
+      <div className="landing-canvas-layer fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <Canvas
           camera={{ position: [40, 31, 50], fov: 38 }}
           dpr={[1, 1.5]}
           gl={{ antialias: true, alpha: true }}
-          style={{ touchAction: 'pan-y' }}
-          onPointerMissed={handleScanPulse}
+          style={{ pointerEvents: 'none' }}
         >
           <color attach="background" args={[isLight ? '#edf4ef' : '#071216']} />
           <fog attach="fog" args={[isLight ? '#edf4ef' : '#071216', 48, 138]} />
@@ -397,7 +395,7 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
         </div>
       </header>
 
-      <main className="landing-hero-section pointer-events-none relative z-10 mx-auto flex min-h-0 w-full max-w-[1480px] flex-1 flex-col justify-center px-5 pb-7 pt-2 sm:px-8 lg:px-12 lg:pb-10">
+      <main className="landing-hero-section relative z-10 mx-auto flex min-h-0 w-full max-w-[1480px] flex-1 flex-col justify-center px-5 pb-7 pt-2 sm:px-8 lg:px-12 lg:pb-10">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(480px,1.1fr)] lg:gap-16">
           <section className="max-w-[650px]">
             <div className={`landing-kicker landing-reveal ${isLight ? 'landing-kicker-light' : ''}`}>
@@ -416,14 +414,10 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
               STRATA turns layered property records into a living 3D registry—so rights, boundaries, and the spaces between them are finally legible.
             </p>
 
-            <div className="landing-hero-actions landing-reveal delay-3 pointer-events-auto">
+            <div className="landing-hero-actions landing-reveal delay-3">
               <button onClick={onScrollBegin} className="landing-primary-action">
                 <span>Enter the registry</span>
                 <ArrowRight size={17} />
-              </button>
-              <button onClick={() => document.getElementById('landing-field-notes')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className={`landing-secondary-action ${isLight ? 'landing-secondary-action-light' : ''}`}>
-                <span>Read the field notes</span>
-                <ArrowDownRight size={17} />
               </button>
             </div>
 
