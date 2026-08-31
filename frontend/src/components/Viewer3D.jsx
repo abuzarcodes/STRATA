@@ -224,10 +224,27 @@ function SectorRoadNetwork({ palette, viewMode }) {
         <meshStandardMaterial color={palette.roadAsphalt} roughness={0.8} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* Plotted Villa Cul-de-sac Lane (Z = 28, X > 0) */}
-      <mesh position={[32, 0.01, 28]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[48, 5.5]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.8} side={THREE.DoubleSide} />
+      {/* Plotted Urban Village Alley Network: Khurrampur Marg & Galis (NE Quadrant) */}
+      <mesh position={[30, 0.01, 20]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[44, 4.0]} />
+        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[30, 0.01, 28.5]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[44, 3.2]} />
+        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[30, 0.01, 37.5]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[44, 3.0]} />
+        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
+      </mesh>
+      {/* Intersecting Village Micro-Alleys */}
+      <mesh position={[19.5, 0.01, 30]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[3.0, 32]} />
+        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[35.0, 0.01, 30]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[2.8, 32]} />
+        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
       </mesh>
 
       {/* North Perimeter Ring Road (Z = 58) */}
