@@ -171,7 +171,7 @@ function SectorRoadNetwork({ palette, viewMode }) {
         />
       </mesh>
 
-      {/* Main Diagonal Organic Arterial Highway (Khurrampur-Dwarka Expressway) */}
+      {/* Main Diagonal Arterial Highway (Khurrampur-Dwarka Expressway) */}
       <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 6]} receiveShadow>
         <planeGeometry args={[260, 10]} />
         <meshStandardMaterial
@@ -183,27 +183,35 @@ function SectorRoadNetwork({ palette, viewMode }) {
         />
       </mesh>
 
-      {/* Secondary Organic Feeder Avenue 1 (North-South Organic Axis) */}
-      <mesh position={[-35, 0.01, 0]} rotation={[-Math.PI / 2, 0, -Math.PI / 12]} receiveShadow>
-        <planeGeometry args={[8, 240]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.78} side={THREE.DoubleSide} />
-      </mesh>
+      {/* Secondary North-South Feeder Avenues (6m wide) */}
+      {[-90, -55, -20, 15, 50, 85].map((x, i) => (
+        <mesh key={`ns-${i}`} position={[x, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+          <planeGeometry args={[6.0, 240]} />
+          <meshStandardMaterial color={palette.roadAsphalt} roughness={0.78} side={THREE.DoubleSide} />
+        </mesh>
+      ))}
 
-      {/* Secondary Organic Feeder Avenue 2 (East-West Organic Axis) */}
-      <mesh position={[20, 0.01, -40]} rotation={[-Math.PI / 2, 0, Math.PI / 8]} receiveShadow>
-        <planeGeometry args={[220, 7.5]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.78} side={THREE.DoubleSide} />
-      </mesh>
+      {/* Secondary East-West Feeder Avenues (6m wide) */}
+      {[-90, -55, -20, 15, 50, 85].map((z, i) => (
+        <mesh key={`ew-${i}`} position={[0, 0.01, z]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+          <planeGeometry args={[240, 6.0]} />
+          <meshStandardMaterial color={palette.roadAsphalt} roughness={0.78} side={THREE.DoubleSide} />
+        </mesh>
+      ))}
 
-      {/* Khurrampur Village Organic Street Lanes & Galis */}
-      <mesh position={[45, 0.01, 35]} rotation={[-Math.PI / 2, 0, -Math.PI / 6]}>
-        <planeGeometry args={[120, 4.5]} />
-        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
-      </mesh>
-      <mesh position={[-45, 0.01, -35]} rotation={[-Math.PI / 2, 0, Math.PI / 4]}>
-        <planeGeometry args={[110, 4.5]} />
-        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
-      </mesh>
+      {/* Thinner Access Galis & Alleyways (3.5m wide) */}
+      {[-72, -38, -2, 32, 68].map((row_z, r_idx) =>
+        [-72, -38, -2, 32, 68].map((col_x, c_idx) => (
+          <mesh
+            key={`gali-${r_idx}-${c_idx}`}
+            position={[col_x, 0.012, row_z]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          >
+            <planeGeometry args={[24.0, 3.5]} />
+            <meshStandardMaterial color="#334155" roughness={0.88} side={THREE.DoubleSide} />
+          </mesh>
+        ))
+      )}
 
       {/* Sector Boundary Ring Roads */}
       <mesh position={[0, 0, 115]} rotation={[-Math.PI / 2, 0, 0]}>
