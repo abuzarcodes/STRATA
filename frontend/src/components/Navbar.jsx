@@ -202,57 +202,50 @@ export default function Navbar({
 
       {/* Right Controls & Role Management */}
       <div className="flex items-center gap-3">
-        {/* Role Pill Switcher */}
+        {/* Authenticated Persona & Role Pill */}
         <div className="relative">
           <button
             onClick={() => setIsRoleMenuOpen(!isRoleMenuOpen)}
-              className="theme-surface theme-hover-surface px-3 py-1.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer shadow-sm"
+            className="theme-surface theme-hover-surface px-3 py-1.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer shadow-sm"
           >
             <RoleIcon className="w-4 h-4" style={{ color: currentRole.color }} />
             <span>{currentRole.label}</span>
             <ChevronDown className="w-3 h-3 text-slate-400" />
           </button>
 
-          {/* Role Dropdown */}
+          {/* Session Details & Sign Out Modal */}
           {isRoleMenuOpen && (
             <div
-              className="theme-surface absolute top-full right-0 mt-2 w-56 rounded-2xl border shadow-2xl overflow-hidden z-50 backdrop-blur-2xl p-1.5 space-y-1"
+              className="theme-surface absolute top-full right-0 mt-2 w-64 rounded-2xl border shadow-2xl overflow-hidden z-50 backdrop-blur-2xl p-3 space-y-3"
             >
-              <div className="px-3 py-1.5 text-[10px] font-mono font-bold text-slate-500 uppercase">
-                Switch Stakeholder Persona
+              <div>
+                <div className="text-[10px] font-mono font-bold text-slate-500 uppercase">
+                  Authenticated Session
+                </div>
+                <div className="text-xs font-bold theme-text-primary mt-0.5">
+                  {currentRole.label}
+                </div>
+                <div className="flex items-center gap-1.5 mt-1 text-[10px] font-mono text-emerald-500">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>SESSION VERIFIED & LOCKED</span>
+                </div>
               </div>
 
-              {Object.entries(roleConfigs).map(([rKey, rCfg]) => {
-                const Icon = rCfg.icon
-                const isSelected = activeRole === rKey
-                return (
-                  <button
-                    key={rKey}
-                    onClick={() => {
-                      onSelectRole(rKey)
-                      setIsRoleMenuOpen(false)
-                    }}
-                    className={`w-full p-2.5 rounded-xl text-left text-xs font-mono font-bold flex items-center justify-between transition-all cursor-pointer ${isSelected ? 'theme-accent-surface' : 'theme-text-secondary theme-hover-surface'}`}
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <Icon className="w-4 h-4" style={{ color: rCfg.color }} />
-                      <span>{rCfg.label}</span>
-                    </div>
-                    {isSelected && <Check className="w-3.5 h-3.5" />}
-                  </button>
-                )
-              })}
+              <div className="p-2.5 rounded-xl bg-[var(--color-surface-2)] border border-[var(--color-border-default)] text-[11px] font-mono text-slate-400 space-y-1">
+                <div>Role Access: <strong className="text-slate-200">{currentRole.badge}</strong></div>
+                <div>Status: <strong className="text-emerald-400">Authorized</strong></div>
+              </div>
 
-              <div className="theme-divider pt-1.5 mt-1 border-t">
+              <div className="theme-divider pt-2 border-t">
                 <button
                   onClick={() => {
                     setIsRoleMenuOpen(false)
                     if (onOpenRoleSelect) onOpenRoleSelect()
                   }}
-                  className="theme-text-secondary theme-hover-surface w-full p-2 rounded-xl text-left text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer"
+                  className="w-full p-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
                   <LogOut className="w-3.5 h-3.5" />
-                  <span>Change Persona / Sign Out</span>
+                  <span>Sign Out / Switch Role</span>
                 </button>
               </div>
             </div>

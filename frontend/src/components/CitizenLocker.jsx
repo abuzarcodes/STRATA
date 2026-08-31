@@ -160,22 +160,12 @@ export default function CitizenLocker({
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Citizen Switcher Dropdown */}
-          <div className="flex items-center gap-2">
-            <UserCheck className="w-3.5 h-3.5 theme-accent" />
-            <select
-              value={activeCitizen}
-              onChange={(e) => onSelectCitizen && onSelectCitizen(e.target.value)}
-              className={`px-3 py-1.5 rounded-xl border font-mono text-xs font-bold appearance-none cursor-pointer focus:outline-none ${
-                isLight ? 'bg-white border-[var(--color-border-default)] text-slate-800' : 'bg-[var(--color-surface-3)] border-[var(--color-border-default)] text-white'
-              }`}
-            >
-              {citizenOptions.map((c) => (
-                <option key={c.name} value={c.name}>
-                  {c.name} ({c.id})
-                </option>
-              ))}
-            </select>
+          {/* Authenticated Citizen Badge */}
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[var(--color-accent-primary)]/40 bg-[var(--color-accent-primary)]/10 text-xs font-mono font-bold">
+            <UserCheck className="w-3.5 h-3.5 text-[var(--color-accent-primary)]" />
+            <span className={isLight ? 'text-slate-800' : 'text-white'}>
+              {currentCitizenObj.name} ({currentCitizenObj.id})
+            </span>
           </div>
 
           <button
