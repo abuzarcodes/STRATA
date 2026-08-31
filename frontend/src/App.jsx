@@ -351,6 +351,7 @@ export default function App() {
           <Navbar
             societyData={societyData}
             activeRole={activeRole}
+            activeCitizen={activeCitizen}
             onSelectRole={handleRoleChange}
             onOpenRoleSelect={() => setAppPhase('ROLE_SELECT')}
             searchQuery={searchQuery}

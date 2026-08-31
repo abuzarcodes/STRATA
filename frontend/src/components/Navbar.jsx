@@ -10,6 +10,7 @@ import StrataLogo from './StrataLogo'
 export default function Navbar({
   societyData,
   activeRole = 'CITIZEN',
+  activeCitizen = 'Deepak Joshi',
   onSelectRole,
   onOpenRoleSelect,
   searchQuery,
@@ -44,10 +45,10 @@ export default function Navbar({
   }, [searchQuery, societyData])
 
   const roleConfigs = {
-    CITIZEN: { label: 'Public Explorer', icon: Compass, color: 'var(--color-accent-primary)', badge: 'PUBLIC' },
-    OWNER: { label: 'Property Owner', icon: Lock, color: 'var(--color-status-info)', badge: 'OWNER' },
-    SURVEYOR: { label: 'Licensed Surveyor', icon: HardHat, color: '#A855F7', badge: 'SURVEYOR' },
-    GOVT: { label: 'Revenue Admin', icon: Scale, color: 'var(--color-status-warning)', badge: 'GOVT' }
+    CITIZEN: { label: 'Public Citizen (Guest)', icon: Compass, color: 'var(--color-accent-primary)', badge: 'PUBLIC' },
+    OWNER: { label: `${activeCitizen} (Owner)`, icon: Lock, color: 'var(--color-status-info)', badge: 'OWNER' },
+    SURVEYOR: { label: 'Er. Alok Saxena (Surveyor)', icon: HardHat, color: '#A855F7', badge: 'SURVEYOR' },
+    GOVT: { label: 'SDM Dwarka (Revenue Officer)', icon: Scale, color: 'var(--color-status-warning)', badge: 'GOVT' }
   }
 
   const currentRole = roleConfigs[activeRole] || roleConfigs.CITIZEN
