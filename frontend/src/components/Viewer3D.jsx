@@ -161,94 +161,139 @@ function SectorRoadNetwork({ palette, viewMode }) {
     <group position={[0, -0.02, 0]}>
       {/* Ground Substrate */}
       <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[130, 130]} />
+        <planeGeometry args={[140, 140]} />
         <meshStandardMaterial
           color={palette.groundPlane}
-          roughness={0.9}
+          roughness={0.92}
           transparent={true}
-          opacity={isSubsurface ? 0.3 : 0.95}
+          opacity={isSubsurface ? 0.3 : 0.96}
           side={THREE.DoubleSide}
         />
       </mesh>
 
-      {/* East-West Central Sector Avenue (Z = 0, Width = 8m, Length = 110m) */}
+      {/* East-West Central Sector Boulevard (Z = 0, Width = 8m) */}
       <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[115, 8]} />
+        <planeGeometry args={[120, 8]} />
         <meshStandardMaterial
           color={palette.roadAsphalt}
           roughness={0.75}
           transparent={isSubsurface}
-          opacity={isSubsurface ? 0.4 : 1.0}
+          opacity={isSubsurface ? 0.35 : 1.0}
           side={THREE.DoubleSide}
         />
       </mesh>
 
-      {/* North-South Central Sector Avenue (X = 0, Width = 8m, Length = 110m) */}
+      {/* North-South Central Sector Boulevard (X = 0, Width = 8m) */}
       <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[8, 115]} />
+        <planeGeometry args={[8, 120]} />
         <meshStandardMaterial
           color={palette.roadAsphalt}
           roughness={0.75}
           transparent={isSubsurface}
-          opacity={isSubsurface ? 0.4 : 1.0}
+          opacity={isSubsurface ? 0.35 : 1.0}
           side={THREE.DoubleSide}
         />
       </mesh>
 
-      {/* North Perimeter Ring Road (Z = 52) */}
-      <mesh position={[0, 0, 52]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[115, 6]} />
+      {/* Central Sector Roundabout Rotary Ring (Radius = 9m) */}
+      <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[5.5, 9.5, 36]} />
         <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* South Perimeter Ring Road (Z = -52) */}
-      <mesh position={[0, 0, -52]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[115, 6]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
-      </mesh>
-
-      {/* West Perimeter Ring Road (X = -52) */}
-      <mesh position={[-52, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[6, 115]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
-      </mesh>
-
-      {/* East Perimeter Ring Road (X = 52) */}
-      <mesh position={[52, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[6, 115]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
-      </mesh>
-
-      {/* Center Dividing Medians */}
-      <mesh position={[0, 0.05, 0]}>
-        <boxGeometry args={[115, 0.1, 0.5]} />
+      {/* Central Roundabout Green Island */}
+      <mesh position={[0, 0.08, 0]}>
+        <cylinderGeometry args={[5.2, 5.2, 0.16, 32]} />
         <meshStandardMaterial color={palette.medianGrass} roughness={0.8} />
       </mesh>
-      <mesh position={[0, 0.05, 0]}>
-        <boxGeometry args={[0.5, 0.1, 115]} />
-        <meshStandardMaterial color={palette.medianGrass} roughness={0.8} />
+      {/* Central Monument / Landmark Spire */}
+      <mesh position={[0, 1.6, 0]}>
+        <cylinderGeometry args={[0.2, 0.6, 3.2, 8]} />
+        <meshStandardMaterial color={palette.boundaryRing} roughness={0.3} metalness={0.4} />
       </mesh>
 
-      {/* Pedestrian Crosswalks at Central Intersection */}
-      {[-2, -1, 1, 2].map((offset, i) => (
-        <React.Fragment key={i}>
-          <mesh position={[offset * 1.5, 0.02, 5.5]} rotation={[-Math.PI / 2, 0, 0]}>
-            <planeGeometry args={[0.8, 2.5]} />
-            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} side={THREE.DoubleSide} />
+      {/* Residential Access Street (X = -28, Z > 0) */}
+      <mesh position={[-28, 0.01, 32]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[5.5, 48]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.8} side={THREE.DoubleSide} />
+      </mesh>
+
+      {/* Commercial Avenue (Z = -28, X > 0) */}
+      <mesh position={[32, 0.01, -28]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[50, 6.5]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.8} side={THREE.DoubleSide} />
+      </mesh>
+
+      {/* Plotted Villa Cul-de-sac Lane (Z = 28, X > 0) */}
+      <mesh position={[32, 0.01, 28]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[48, 5.5]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.8} side={THREE.DoubleSide} />
+      </mesh>
+
+      {/* North Perimeter Ring Road (Z = 58) */}
+      <mesh position={[0, 0, 58]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[120, 6]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
+      </mesh>
+
+      {/* South Perimeter Ring Road (Z = -58) */}
+      <mesh position={[0, 0, -58]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[120, 6]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
+      </mesh>
+
+      {/* West Perimeter Ring Road (X = -58) */}
+      <mesh position={[-58, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[6, 120]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
+      </mesh>
+
+      {/* East Perimeter Ring Road (X = 58) */}
+      <mesh position={[58, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[6, 120]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
+      </mesh>
+
+      {/* Central Sector Community Green Park (At X=-2, Z=-26) */}
+      <group position={[-2, 0.04, -26]}>
+        <mesh receiveShadow>
+          <boxGeometry args={[8, 0.08, 18]} />
+          <meshStandardMaterial color={palette.medianGrass} roughness={0.85} />
+        </mesh>
+        {/* Walking jogging track perimeter */}
+        <mesh position={[0, 0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[7.2, 17.2]} />
+          <meshBasicMaterial color="#a78bfa" transparent opacity={0.25} side={THREE.DoubleSide} />
+        </mesh>
+      </group>
+
+      {/* Organic Urban Tree Clusters */}
+      {[
+        [-5, 8], [-5, 16], [-5, 24], [-5, 34], [-5, 42],
+        [5, 8], [5, 18], [5, 32], [5, 44],
+        [-8, -8], [-8, -20], [-8, -34], [-8, -46],
+        [8, -8], [8, -20], [8, -36], [8, -48],
+        [-20, 5], [-35, 5], [-48, 5],
+        [20, 5], [35, 5], [48, 5],
+        [-20, -5], [-35, -5], [-48, -5],
+        [20, -5], [35, -5], [48, -5],
+        [0, 2], [2, -1], [-2, -2]
+      ].map(([tx, tz], idx) => (
+        <group key={idx} position={[tx, 0, tz]}>
+          {/* Trunk */}
+          <mesh position={[0, 0.6, 0]}>
+            <cylinderGeometry args={[0.08, 0.12, 1.2, 6]} />
+            <meshStandardMaterial color={palette.treeTrunk} roughness={0.9} />
           </mesh>
-          <mesh position={[offset * 1.5, 0.02, -5.5]} rotation={[-Math.PI / 2, 0, 0]}>
-            <planeGeometry args={[0.8, 2.5]} />
-            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} side={THREE.DoubleSide} />
+          {/* Foliage */}
+          <mesh position={[0, 1.4, 0]}>
+            <dodecahedronGeometry args={[idx % 2 === 0 ? 0.75 : 0.6, 0]} />
+            <meshStandardMaterial
+              color={idx % 2 === 0 ? palette.treeFoliage1 : palette.treeFoliage2}
+              roughness={0.8}
+            />
           </mesh>
-          <mesh position={[5.5, 0.02, offset * 1.5]} rotation={[-Math.PI / 2, 0, 0]}>
-            <planeGeometry args={[2.5, 0.8]} />
-            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} side={THREE.DoubleSide} />
-          </mesh>
-          <mesh position={[-5.5, 0.02, offset * 1.5]} rotation={[-Math.PI / 2, 0, 0]}>
-            <planeGeometry args={[2.5, 0.8]} />
-            <meshBasicMaterial color={palette.roadMarking} transparent opacity={0.6} side={THREE.DoubleSide} />
-          </mesh>
-        </React.Fragment>
+        </group>
       ))}
     </group>
   )
