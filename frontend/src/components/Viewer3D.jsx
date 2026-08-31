@@ -159,9 +159,9 @@ function SectorRoadNetwork({ palette, viewMode }) {
 
   return (
     <group position={[0, -0.02, 0]}>
-      {/* Ground Substrate */}
+      {/* Expanded Ground Substrate (260m x 260m) */}
       <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[140, 140]} />
+        <planeGeometry args={[260, 260]} />
         <meshStandardMaterial
           color={palette.groundPlane}
           roughness={0.92}
@@ -171,9 +171,9 @@ function SectorRoadNetwork({ palette, viewMode }) {
         />
       </mesh>
 
-      {/* East-West Central Sector Boulevard (Z = 0, Width = 8m) */}
-      <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[120, 8]} />
+      {/* Main Diagonal Organic Arterial Highway (Khurrampur-Dwarka Expressway) */}
+      <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 6]} receiveShadow>
+        <planeGeometry args={[260, 10]} />
         <meshStandardMaterial
           color={palette.roadAsphalt}
           roughness={0.75}
@@ -183,128 +183,72 @@ function SectorRoadNetwork({ palette, viewMode }) {
         />
       </mesh>
 
-      {/* North-South Central Sector Boulevard (X = 0, Width = 8m) */}
-      <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[8, 120]} />
-        <meshStandardMaterial
-          color={palette.roadAsphalt}
-          roughness={0.75}
-          transparent={isSubsurface}
-          opacity={isSubsurface ? 0.35 : 1.0}
-          side={THREE.DoubleSide}
-        />
+      {/* Secondary Organic Feeder Avenue 1 (North-South Organic Axis) */}
+      <mesh position={[-35, 0.01, 0]} rotation={[-Math.PI / 2, 0, -Math.PI / 12]} receiveShadow>
+        <planeGeometry args={[8, 240]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.78} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* Central Sector Roundabout Rotary Ring (Radius = 9m) */}
-      <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[5.5, 9.5, 36]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
+      {/* Secondary Organic Feeder Avenue 2 (East-West Organic Axis) */}
+      <mesh position={[20, 0.01, -40]} rotation={[-Math.PI / 2, 0, Math.PI / 8]} receiveShadow>
+        <planeGeometry args={[220, 7.5]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.78} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* Central Roundabout Green Island */}
-      <mesh position={[0, 0.08, 0]}>
-        <cylinderGeometry args={[5.2, 5.2, 0.16, 32]} />
-        <meshStandardMaterial color={palette.medianGrass} roughness={0.8} />
-      </mesh>
-      {/* Central Monument / Landmark Spire */}
-      <mesh position={[0, 1.6, 0]}>
-        <cylinderGeometry args={[0.2, 0.6, 3.2, 8]} />
-        <meshStandardMaterial color={palette.boundaryRing} roughness={0.3} metalness={0.4} />
-      </mesh>
-
-      {/* Residential Access Street (X = -28, Z > 0) */}
-      <mesh position={[-28, 0.01, 32]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[5.5, 48]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.8} side={THREE.DoubleSide} />
-      </mesh>
-
-      {/* Commercial Avenue (Z = -28, X > 0) */}
-      <mesh position={[32, 0.01, -28]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[50, 6.5]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.8} side={THREE.DoubleSide} />
-      </mesh>
-
-      {/* Plotted Urban Village Alley Network: Khurrampur Marg & Galis (NE Quadrant) */}
-      <mesh position={[30, 0.01, 20]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[44, 4.0]} />
+      {/* Khurrampur Village Organic Street Lanes & Galis */}
+      <mesh position={[45, 0.01, 35]} rotation={[-Math.PI / 2, 0, -Math.PI / 6]}>
+        <planeGeometry args={[120, 4.5]} />
         <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
       </mesh>
-      <mesh position={[30, 0.01, 28.5]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[44, 3.2]} />
-        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
-      </mesh>
-      <mesh position={[30, 0.01, 37.5]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[44, 3.0]} />
-        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
-      </mesh>
-      {/* Intersecting Village Micro-Alleys */}
-      <mesh position={[19.5, 0.01, 30]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[3.0, 32]} />
-        <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
-      </mesh>
-      <mesh position={[35.0, 0.01, 30]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[2.8, 32]} />
+      <mesh position={[-45, 0.01, -35]} rotation={[-Math.PI / 2, 0, Math.PI / 4]}>
+        <planeGeometry args={[110, 4.5]} />
         <meshStandardMaterial color="#334155" roughness={0.85} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* North Perimeter Ring Road (Z = 58) */}
-      <mesh position={[0, 0, 58]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[120, 6]} />
+      {/* Sector Boundary Ring Roads */}
+      <mesh position={[0, 0, 115]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[240, 6]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[0, 0, -115]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[240, 6]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[-115, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[6, 240]} />
+        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[115, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[6, 240]} />
         <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* South Perimeter Ring Road (Z = -58) */}
-      <mesh position={[0, 0, -58]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[120, 6]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
-      </mesh>
-
-      {/* West Perimeter Ring Road (X = -58) */}
-      <mesh position={[-58, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[6, 120]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
-      </mesh>
-
-      {/* East Perimeter Ring Road (X = 58) */}
-      <mesh position={[58, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[6, 120]} />
-        <meshStandardMaterial color={palette.roadAsphalt} roughness={0.75} side={THREE.DoubleSide} />
-      </mesh>
-
-      {/* Central Sector Community Green Park (At X=-2, Z=-26) */}
-      <group position={[-2, 0.04, -26]}>
+      {/* Central Sector Park & Open Green Buffer */}
+      <group position={[-10, 0.04, 15]}>
         <mesh receiveShadow>
-          <boxGeometry args={[8, 0.08, 18]} />
+          <boxGeometry args={[25, 0.08, 35]} />
           <meshStandardMaterial color={palette.medianGrass} roughness={0.85} />
         </mesh>
-        {/* Walking jogging track perimeter */}
         <mesh position={[0, 0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[7.2, 17.2]} />
+          <planeGeometry args={[23, 33]} />
           <meshBasicMaterial color="#a78bfa" transparent opacity={0.25} side={THREE.DoubleSide} />
         </mesh>
       </group>
 
-      {/* Organic Urban Tree Clusters */}
+      {/* Organic Urban Tree Clusters Spread Across the 240m Map */}
       {[
-        [-5, 8], [-5, 16], [-5, 24], [-5, 34], [-5, 42],
-        [5, 8], [5, 18], [5, 32], [5, 44],
-        [-8, -8], [-8, -20], [-8, -34], [-8, -46],
-        [8, -8], [8, -20], [8, -36], [8, -48],
-        [-20, 5], [-35, 5], [-48, 5],
-        [20, 5], [35, 5], [48, 5],
-        [-20, -5], [-35, -5], [-48, -5],
-        [20, -5], [35, -5], [48, -5],
-        [0, 2], [2, -1], [-2, -2]
+        [-80, 20], [-60, 40], [-40, 60], [-20, 80], [0, 95], [30, 70], [60, 85], [90, 40],
+        [-90, -30], [-70, -50], [-40, -70], [-10, -85], [20, -90], [50, -75], [80, -60],
+        [-15, 20], [-5, 30], [-15, -25], [10, -15], [35, 10], [55, -20], [-65, -10],
+        [75, 15], [-35, -20], [25, 45], [-50, 10], [40, -45], [-75, 75], [85, -85]
       ].map(([tx, tz], idx) => (
         <group key={idx} position={[tx, 0, tz]}>
-          {/* Trunk */}
-          <mesh position={[0, 0.6, 0]}>
-            <cylinderGeometry args={[0.08, 0.12, 1.2, 6]} />
+          <mesh position={[0, 0.7, 0]}>
+            <cylinderGeometry args={[0.1, 0.15, 1.4, 6]} />
             <meshStandardMaterial color={palette.treeTrunk} roughness={0.9} />
           </mesh>
-          {/* Foliage */}
-          <mesh position={[0, 1.4, 0]}>
-            <dodecahedronGeometry args={[idx % 2 === 0 ? 0.75 : 0.6, 0]} />
+          <mesh position={[0, 1.6, 0]}>
+            <dodecahedronGeometry args={[idx % 2 === 0 ? 0.95 : 0.75, 0]} />
             <meshStandardMaterial
               color={idx % 2 === 0 ? palette.treeFoliage1 : palette.treeFoliage2}
               roughness={0.8}
@@ -315,6 +259,8 @@ function SectorRoadNetwork({ palette, viewMode }) {
     </group>
   )
 }
+
+
 
 // ─── Subsurface Blue Line Metro Tube & Utility Conduits ─────────────────────
 function SubsurfaceCorridor({ viewMode, palette }) {
