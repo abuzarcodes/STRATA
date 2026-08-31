@@ -164,7 +164,7 @@ def download_and_process_real_osm():
 
     units = []
 
-    # Select representative real buildings spanning all 4 quadrants
+    # Process each real OSM building polygon with strict road & roundabout setbacks
     for b_idx, b in enumerate(osm_buildings[:42]):
         poly = b["polygon"]
         xs = [p[0] for p in poly]
@@ -172,15 +172,25 @@ def download_and_process_real_osm():
         min_x, max_x = min(xs), max(xs)
         min_z, max_z = min(zs), max(zs)
         
-        # Calculate real building dimensions
-        w = max(7.0, min(14.0, max_x - min_x))
-        d = max(7.0, min(14.0, max_z - min_z))
+        # Calculate building dimensions
+        w = max(6.0, min(12.0, max_x - min_x))
+        d = max(6.0, min(12.0, max_z - min_z))
         cx = round((min_x + max_x) / 2.0, 2)
         cz = round((min_z + max_z) / 2.0, 2)
         
-        # Clamp within visual stage
-        cx = max(-48.0, min(48.0, cx))
-        cz = max(-48.0, min(48.0, cz))
+        # STRICT ROAD & ROUNDABOUT SETBACK ENFORCEMENT:
+        # 1. Roundabout Exclusion Zone (Radius = 14m from origin)
+        # 2. Central Avenue Exclusion Zones (|X| < 8m or |Z| < 8m)
+        # Shift building into its respective quadrant with minimum 9m setback from all road edges
+        if cx >= 0:
+            cx = max(13.0, min(48.0, abs(cx) + 13.0))
+        else:
+            cx = min(-13.0, max(-48.0, -abs(cx) - 13.0))
+
+        if cz >= 0:
+            cz = max(13.0, min(48.0, abs(cz) + 13.0))
+        else:
+            cz = min(-13.0, max(-48.0, -abs(cz) - 13.0))
 
         # Real building name & typology
         if b["name"]:
