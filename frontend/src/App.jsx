@@ -318,11 +318,11 @@ export default function App() {
           />
 
           {/* Sub-Header Top Telemetry Bar */}
-          <div className="theme-surface responsive-telemetry absolute top-16 left-0 right-0 z-20 px-8 py-2 border-b flex items-center justify-between text-[11px] font-mono backdrop-blur-md transition-colors duration-300">
+          <div className="theme-surface responsive-telemetry absolute top-16 left-0 right-0 z-20 h-8 px-6 border-b flex items-center justify-between text-[11px] font-mono backdrop-blur-md transition-colors duration-300">
             <div className="flex items-center gap-2">
-                  <span className="font-bold theme-text-primary">DL-DWR-SEC10-07</span>
+              <span className="font-bold theme-text-primary">DL-DWR-SEC10-07</span>
               <span className="text-slate-400">/</span>
-                  <span className="font-bold theme-accent">PARCEL-IND280145987621</span>
+              <span className="font-bold theme-accent">PARCEL-IND280145987621</span>
             </div>
             <div className="flex items-center gap-6">
               <div>
@@ -357,7 +357,7 @@ export default function App() {
             {/* HUD Viewport Framing & Corner Crosshairs */}
             <div className="absolute inset-0 pointer-events-none z-10 p-6 flex flex-col justify-between">
               {/* Top Row Markers */}
-              <div className="flex justify-between items-start mt-20">
+              <div className="flex justify-between items-start mt-[104px]">
                 <div className={`flex items-center gap-2 font-mono text-[10px] ${isLight ? 'text-[#2e7d63]/80' : 'text-[#7ee7d2]/70'}`}>
                   <span className={`w-3 h-3 border-t-2 border-l-2 ${isLight ? 'border-[#2e7d63]' : 'border-[#7ee7d2]'}`} />
                   <span>GRID_01 / EPSG:4326 WGS84</span>
@@ -383,7 +383,7 @@ export default function App() {
           </div>
 
           {/* Left Panel: Public Location Search & Floor Slicer */}
-          <div className="responsive-left-panel absolute top-28 left-6 z-20 transition-all duration-300">
+          <div className="responsive-left-panel absolute top-[106px] left-6 z-20 transition-all duration-300 max-h-[calc(100vh-124px)]">
             {showLeftSearch && (
               <PublicLocationSearch
                 societyData={societyData}
@@ -399,7 +399,7 @@ export default function App() {
           </div>
 
           {/* Right Panel: View Mode Selector */}
-          <div className="responsive-right-panel absolute top-28 right-6 z-20 transition-all duration-300">
+          <div className="responsive-right-panel absolute top-[106px] right-6 z-20 transition-all duration-300 max-h-[calc(100vh-124px)]">
             {!selectedUnit && (
               <LayerControls
                 viewMode={viewMode}
