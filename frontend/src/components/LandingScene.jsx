@@ -334,8 +334,14 @@ export default function LandingScene({ onScrollBegin, theme = 'CYBER', onToggleT
       <div className="landing-ambient landing-ambient-two" />
       <div className="landing-noise" />
 
-      <div className="landing-canvas-layer absolute inset-0 z-0 overflow-hidden">
-          <Canvas camera={{ position: [40, 31, 50], fov: 38 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }} onPointerMissed={handleScanPulse}>
+      <div className="landing-canvas-layer fixed inset-0 z-0 overflow-hidden">
+        <Canvas
+          camera={{ position: [40, 31, 50], fov: 38 }}
+          dpr={[1, 1.5]}
+          gl={{ antialias: true, alpha: true }}
+          style={{ touchAction: 'pan-y' }}
+          onPointerMissed={handleScanPulse}
+        >
           <color attach="background" args={[isLight ? '#edf4ef' : '#071216']} />
           <fog attach="fog" args={[isLight ? '#edf4ef' : '#071216', 48, 138]} />
           <ambientLight intensity={isLight ? 1.1 : 0.55} />

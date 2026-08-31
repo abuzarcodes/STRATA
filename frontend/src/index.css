@@ -151,12 +151,11 @@ button {
   --landing-hot: #c8ff33;
   position: relative;
   display: flex;
-  min-height: 100vh;
+  min-height: 100%;
   width: 100%;
   flex-direction: column;
   overflow-x: hidden;
-  overflow-y: auto;
-  min-height: 100svh;
+  overflow-y: visible;
   scroll-behavior: smooth;
   background: var(--landing-bg);
   color: var(--landing-text);
@@ -1177,7 +1176,7 @@ button {
 
 
 @media (max-width: 1023px) {
-  .strata-landing { overflow-y: auto; }
+  .strata-landing { overflow-y: visible; }
   .landing-grid-overlay { background-size: 54px 54px; }
   .landing-vignette { background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), transparent 0, rgba(4, 11, 14, 0.12) 18%, rgba(4, 11, 14, 0.72) 100%); }
   .landing-headline { max-width: 630px; }

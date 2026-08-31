@@ -245,7 +245,7 @@ export default function App() {
     <div
       data-theme={theme}
       className={`theme-app responsive-app-shell w-screen h-screen relative font-sans transition-colors duration-500 ${
-        isScrollablePhase ? 'overflow-y-auto overflow-x-hidden' : 'overflow-hidden select-none'
+        isScrollablePhase ? 'overflow-y-auto overflow-x-hidden scroll-smooth' : 'overflow-hidden select-none'
       }`}
     >
       {/* ── PRE-APP PHASES ────────────────────────────────────────────── */}
