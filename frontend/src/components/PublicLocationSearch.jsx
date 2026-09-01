@@ -188,7 +188,7 @@ export default function PublicLocationSearch({
               {selectedZone.unitCount} Buildings
             </span>
           </div>
-          <div className="relative">
+          <div className="relative flex items-center">
             <select
               value={selectedZoneId}
               onChange={(e) => handleZoneChange(e.target.value)}
@@ -204,7 +204,9 @@ export default function PublicLocationSearch({
                 </option>
               ))}
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+              <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+            </div>
           </div>
         </div>
 

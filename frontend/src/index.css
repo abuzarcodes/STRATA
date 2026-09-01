@@ -128,8 +128,15 @@
 .theme-status-danger { color: var(--color-status-danger); }
 .theme-status-info { color: var(--color-status-info); }
 
-* {
+*, ::before, ::after {
   box-sizing: border-box;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
 }
 
 html,

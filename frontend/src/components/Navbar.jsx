@@ -129,10 +129,10 @@ export default function Navbar({
 
       {/* Global 3D-ULPIN Instant Omnibar */}
       <div className="relative flex-1 max-w-md mx-2" ref={searchRef}>
-        <div className="relative">
-          <Search
-            className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 theme-accent"
-          />
+        <div className="relative flex items-center">
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none theme-accent">
+            <Search className="w-4 h-4" />
+          </div>
           <input
             id="cadastre-search-input"
             name="cadastreSearch"
@@ -147,11 +147,13 @@ export default function Navbar({
             }}
             className="theme-input theme-focus w-full pl-10 pr-9 py-2 rounded-xl border text-xs font-mono transition-all focus:outline-none"
           />
-          <span
-            className="theme-surface-secondary absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono px-1.5 py-0.5 rounded border theme-text-muted"
-          >
-            /
-          </span>
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <span
+              className="theme-surface-secondary text-[10px] font-mono px-1.5 py-0.5 rounded border theme-text-muted"
+            >
+              /
+            </span>
+          </div>
         </div>
 
         {/* Live Search Autocomplete Dropdown */}
