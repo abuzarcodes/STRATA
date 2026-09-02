@@ -507,8 +507,8 @@ function VolumetricUnit({
         />
       </lineSegments>
 
-      {/* Reticle Focus Indicator when selected */}
-      {isSelected && (
+      {/* Reticle Focus Indicator when selected or when auditing violations */}
+      {(isSelected || (isViolating && (viewMode === 'ENCROACHMENT' || viewMode === 'AUDIT'))) && (
         <SelectedReticle
           position={[unit.centroid_local[0], unit.centroid_local[2], -unit.centroid_local[1]]}
           isViolating={isViolating}
@@ -517,16 +517,24 @@ function VolumetricUnit({
       )}
 
       {/* Floating 3D Spatial Tag */}
-      {(isSelected || (isHovered && isFloorVisible)) && (
+      {(isSelected || (isHovered && isFloorVisible) || (isViolating && (viewMode === 'ENCROACHMENT' || viewMode === 'AUDIT'))) && (
         <Html
-          position={[unit.centroid_local[0], unit.centroid_local[2] + 2.0, -unit.centroid_local[1]]}
+          position={[unit.centroid_local[0], unit.centroid_local[2] + (isViolating ? 2.8 : 2.0), -unit.centroid_local[1]]}
           center
           distanceFactor={55}
         >
-          <div className="pointer-events-none px-3 py-1 rounded-xl bg-[var(--color-surface-1)]/95 border border-[var(--color-accent-primary)] text-[10px] font-mono theme-text-primary shadow-2xl backdrop-blur-md whitespace-nowrap flex items-center gap-2 animate-in fade-in zoom-in-90 duration-150">
-            <span className={`w-2 h-2 rounded-full ${isViolating ? 'bg-rose-500' : 'bg-[var(--color-accent-primary)]'} animate-ping`} />
-            <span className="font-bold theme-accent">{unit.name}</span>
-            <span className="theme-text-muted">({unit.owner})</span>
+          <div className={`pointer-events-none px-3 py-1.5 rounded-xl text-[10px] font-mono shadow-2xl backdrop-blur-md whitespace-nowrap flex items-center gap-2 animate-in fade-in zoom-in-90 duration-150 ${
+            isViolating
+              ? 'bg-rose-950/95 border border-rose-500 text-rose-200 shadow-[0_0_20px_rgba(244,63,94,0.45)]'
+              : 'bg-[var(--color-surface-1)]/95 border border-[var(--color-accent-primary)] theme-text-primary'
+          }`}>
+            <span className={`w-2 h-2 rounded-full ${isViolating ? 'bg-rose-500 animate-ping' : 'bg-[var(--color-accent-primary)]'}`} />
+            <span className={`font-bold ${isViolating ? 'text-rose-400' : 'theme-accent'}`}>
+              {isViolating ? `⚠️ ${String(unit.violation?.violation_type || unit.violation?.type || 'SETBACK_VIOLATION').replace(/_/g, ' ')}` : unit.name}
+            </span>
+            <span className={isViolating ? 'text-rose-300 font-semibold' : 'theme-text-muted'}>
+              {isViolating ? `(+${unit.violation?.excess_volume_m3 || 18.5} m³)` : `(${unit.owner})`}
+            </span>
           </div>
         </Html>
       )}
@@ -555,13 +563,14 @@ function AdaptiveCameraController({ selectedUnit, cameraPreset, flyTarget }) {
         const ty = selectedUnit.centroid_local[2] !== undefined ? selectedUnit.centroid_local[2] : (selectedUnit.level * 2.0)
         const tz = -selectedUnit.centroid_local[1]
 
+        const camDist = cameraPreset === 'ENCROACHMENT' ? 14 : 22
         animTargetPos.current.set(tx, ty, tz)
-        animCamPos.current.set(tx + 22, ty + 18, tz + 26)
+        animCamPos.current.set(tx + camDist, ty + camDist * 0.75, tz + camDist * 1.15)
       }
     } else {
       lastSelectedId.current = null
     }
-  }, [selectedUnit])
+  }, [selectedUnit, cameraPreset])
 
   useEffect(() => {
     if (flyTarget && flyTarget.targetPosition) {

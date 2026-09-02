@@ -53,7 +53,8 @@ export default function CitizenLocker({
         deedNo: u.deed_no || `DEL-DWK-2023-${u.unit_id.replace('-', '')}`,
         mortgage: u.encumbrance || 'Clear & Freehold',
         taxStatus: u.tax_status || 'PAID (FY 2025-26)',
-        valuation: u.circle_rate_inr_m2 ? u.carpet_area_m2 * u.circle_rate_inr_m2 : 12500000
+        valuation: u.circle_rate_inr_m2 ? u.carpet_area_m2 * u.circle_rate_inr_m2 : 12500000,
+        violation: u.violation
       }))
   }, [societyData, activeCitizen])
 
@@ -284,6 +285,23 @@ export default function CitizenLocker({
                           {prop.name}
                         </h4>
                         <p className="text-xs text-slate-500 mt-1">{prop.location}</p>
+
+                        {prop.violation?.has_violation && (
+                          <div className="mt-3 p-3 rounded-2xl border bg-rose-500/10 border-rose-500/30 text-rose-500 text-xs font-mono flex items-start gap-2">
+                            <span className="text-sm">⚠️</span>
+                            <div>
+                              <div className="font-bold uppercase tracking-wider">
+                                {String(prop.violation.violation_type || prop.violation.type).replace(/_/g, ' ')}
+                              </div>
+                              <div className="text-[11px] text-rose-600 dark:text-rose-400 mt-0.5">
+                                {prop.violation.description}
+                              </div>
+                              <div className="text-[10px] text-slate-500 mt-1">
+                                Excess Vol: +{prop.violation.excess_volume_m3} m³ • Penalty: ₹{prop.violation.penalty_inr?.toLocaleString()}
+                              </div>
+                            </div>
+                          </div>
+                        )}
 
                         <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
                           <div>

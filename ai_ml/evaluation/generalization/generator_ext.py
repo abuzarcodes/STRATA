@@ -27,7 +27,8 @@ class ExtendedSceneGenerator:
         dropout_type: str = "random",
         has_vegetation: bool = False,
         has_clutter: bool = False,
-        scene_extent_m: float = 80.0
+        scene_extent_m: float = 80.0,
+        setback_encroachment_type: str = None
     ) -> Dict[str, Any]:
         rng = self.rng
 
@@ -110,6 +111,33 @@ class ExtendedSceneGenerator:
                 facade_pts_list.append(np.column_stack([np.full(len(fy_g.flatten()), x_f), fy_g.flatten(), fz_g.flatten()]))
 
             all_b_pts = np.vstack([roof_pts] + facade_pts_list)
+
+            if b_idx == 0 and setback_encroachment_type:
+                encroach_pts = []
+                if setback_encroachment_type == "cantilever_overhang":
+                    # 1. Air-Rights Setback Encroachment (Upper floor balcony extending +2.0m outward)
+                    ox = np.arange(b_x_start + 1.0, b_x_end - 1.0, b_res)
+                    oy = np.arange(b_y_start - 2.0, b_y_start, b_res)
+                    ox_g, oy_g = np.meshgrid(ox, oy)
+                    oz = ground_z_base + min(b_height * 0.6, 9.0)
+                    encroach_pts.append(np.column_stack([ox_g.flatten(), oy_g.flatten(), np.full(len(ox_g.flatten()), oz)]))
+                elif setback_encroachment_type == "ground_extension":
+                    # 2. Ground Coverage / Front Setback Encroachment (Ground floor extending +2.5m onto setback)
+                    ox = np.arange(b_x_start, b_x_end, b_res)
+                    oy = np.arange(b_y_start - 2.5, b_y_start, b_res)
+                    ox_g, oy_g = np.meshgrid(ox, oy)
+                    oz = ground_z_base + 3.0
+                    encroach_pts.append(np.column_stack([ox_g.flatten(), oy_g.flatten(), np.full(len(ox_g.flatten()), oz)]))
+                elif setback_encroachment_type == "unauthorized_rooftop":
+                    # 3. Unauthorized Rooftop Penthouse (+3.2m extra floor above approved height)
+                    rx_roof = np.arange(b_x_start + 1.5, b_x_end - 1.5, b_res)
+                    ry_roof = np.arange(b_y_start + 1.5, b_y_end - 1.5, b_res)
+                    rx_rg, ry_rg = np.meshgrid(rx_roof, ry_roof)
+                    rz_extra = ground_z_base + b_height + 3.2
+                    encroach_pts.append(np.column_stack([rx_rg.flatten(), ry_rg.flatten(), np.full(len(rx_rg.flatten()), rz_extra)]))
+
+                if encroach_pts:
+                    all_b_pts = np.vstack([all_b_pts] + encroach_pts)
 
             if footprint_type == "rotated":
                 angle_rad = np.radians(15.0 * (b_idx + 1))
@@ -215,6 +243,18 @@ class ExtendedSceneGenerator:
                 "setback_m": setback_m,
                 "footprint_type": footprint_type,
                 "terrain_slope_deg": terrain_slope_deg,
-                "target_density_pts_per_sqm": target_density_pts_per_sqm
+                "target_density_pts_per_sqm": target_density_pts_per_sqm,
+                "setback_encroachment_type": setback_encroachment_type
             }
         }
+
+    def generate_unauthorized_building_scene(self, scenario: str = "cantilever_overhang") -> Dict[str, Any]:
+        """
+        Generates specialized 3D LiDAR point clouds representing statutory setback breaches
+        and unauthorized building construction examples:
+        1. 'cantilever_overhang': Upper floor balcony/cantilever projecting 2.0m into mandatory road setback
+        2. 'ground_extension': Ground-level commercial extension encroaching 2.5m onto pedestrian sidewalk
+        3. 'unauthorized_rooftop': Unauthorized rooftop penthouse violating permissible height & vertical setback
+        """
+        return self.generate_scene(num_buildings=2, setback_m=2.0, setback_encroachment_type=scenario)
+

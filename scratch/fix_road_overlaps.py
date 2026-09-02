@@ -248,40 +248,71 @@ def fix_all_road_overlaps():
                         owner = CITIZENS[(o_idx * 7 + fl * 3 + ord(f_letter)) % len(CITIZENS)]
                         enc = random.choice(ENCUMBRANCES)
 
-                        has_viol = (b_idx == 5 and fl == 4 and f_letter == "B")
-                        viol_info = {
-                            "has_violation": has_viol,
-                            "type": "UNAUTHORIZED_BALCONY_EXTENSION" if has_viol else "NONE",
-                            "excess_volume_m3": 14.5 if has_viol else 0.0,
-                            "penalty_inr": 125000 if has_viol else 0
-                        }
+                        is_encroachment_1 = (b_code == "B021" and fl == 4 and f_letter == "B")
+                        if is_encroachment_1:
+                            has_viol = True
+                            viol_info = {
+                                "has_violation": True,
+                                "type": "AIR_RIGHTS_SETBACK_ENCROACHMENT",
+                                "violation_type": "AIR_RIGHTS_SETBACK_ENCROACHMENT",
+                                "severity": "HIGH",
+                                "description": "Cantilevered balcony on Level 4 extends 2.1m beyond approved parcel boundary into statutory street setback air-rights corridor.",
+                                "domain": "A",
+                                "floor_level": 4,
+                                "encroachment_area_m2": 6.8,
+                                "excess_volume_m3": 18.5,
+                                "encroachment_volume_m3": 18.5,
+                                "penalty_inr": 185000,
+                                "statutory_reference": "Delhi Building Byelaws 2016 § 7.14 (Setback Air-Rights)"
+                            }
+                            u_name = f"Flat {flat_no} (Cantilever Balcony Setback Encroachment), {b_name}"
+                            u_owner = "Rajesh Kumar"
+                            u_owner_details = {"name": "Rajesh Kumar", "aadhaar": "XXXX-XXXX-9124", "pan": "BKLPQ5678M", "phone": "+91 98112 34567"}
+                            min_x = round(cx + ox - fw / 2.0, 2)
+                            max_x = round(cx + ox + fw / 2.0 + 2.1, 2)  # Physical cantilever overhang
+                            min_z = round(cz + oz - fd / 2.0, 2)
+                            max_z = round(cz + oz + fd / 2.0, 2)
+                            b_dims = [round(max_x - min_x, 2), round(fd, 2), 1.4]
+                            c_local = [round((min_x + max_x) / 2.0, 2), round(cz + oz, 2), round(floor_y, 2)]
+                        else:
+                            has_viol = False
+                            viol_info = {"has_violation": False, "type": "NONE"}
+                            u_name = f"Flat {flat_no} ({f_type}), {b_name}"
+                            u_owner = owner["name"]
+                            u_owner_details = owner
+                            min_x = round(cx + ox - fw / 2.0, 2)
+                            max_x = round(cx + ox + fw / 2.0, 2)
+                            min_z = round(cz + oz - fd / 2.0, 2)
+                            max_z = round(cz + oz + fd / 2.0, 2)
+                            b_dims = [round(fw, 2), round(fd, 2), 1.4]
+                            c_local = [round(cx + ox, 2), round(cz + oz, 2), round(floor_y, 2)]
 
                         units.append({
                             "unit_id": u_id,
                             "ulpin_3d": ulpin,
-                            "name": f"Flat {flat_no} ({f_type}), {b_name}",
+                            "name": u_name,
                             "complex": b["complex"],
                             "type": f"Residential {f_type}",
                             "domain": "R",
                             "level": fl,
                             "zone": zone,
                             "floor_type": "APARTMENT",
-                            "owner": owner["name"],
-                            "owner_details": owner,
+                            "owner": u_owner,
+                            "owner_details": u_owner_details,
                             "carpet_area_m2": area,
                             "rera_volume_m3": vol,
-                            "volume_m3": vol + (14.5 if has_viol else 0.0),
+                            "volume_m3": vol + (18.5 if has_viol else 0.0),
                             "encumbrance": enc["status"],
                             "mortgage_bank": enc["bank"],
                             "circle_rate_inr_m2": 118000,
                             "property_tax_inr": round(area * 185),
                             "registration_date": "10-JUN-2022",
                             "bbox_local": [
-                                [round(cx + ox - fw / 2.0, 2), round(floor_y - 0.7, 2), round(cz + oz - fd / 2.0, 2)],
-                                [round(cx + ox + fw / 2.0, 2), round(floor_y + 0.7, 2), round(cz + oz + fd / 2.0, 2)]
+                                [min_x, round(floor_y - 0.7, 2), min_z],
+                                [max_x, round(floor_y + 0.7, 2), max_z]
                             ],
-                            "centroid_local": [round(cx + ox, 2), round(cz + oz, 2), round(floor_y, 2)],
-                            "dimensions": [round(fw, 2), round(fd, 2), 1.4],
+                            "centroid_local": c_local,
+                            "dimensions": b_dims,
                             "violation": viol_info
                         })
         elif domain == "C":
@@ -291,33 +322,74 @@ def fix_all_road_overlaps():
                 ulpin = f"IND280145987621-{b_code}-L{fl:02d}"
                 owner_corp = CORPORATES[(o_idx + fl) % len(CORPORATES)]
 
+                is_encroachment_2 = (b_code == "B041" and fl == 1)
+                if is_encroachment_2:
+                    has_viol = True
+                    viol_info = {
+                        "has_violation": True,
+                        "type": "GROUND_COVERAGE_SETBACK_ENCROACHMENT",
+                        "violation_type": "GROUND_COVERAGE_SETBACK_ENCROACHMENT",
+                        "severity": "CRITICAL",
+                        "description": "Unauthorized permanent commercial retail frontage & glass foyer encroaching 2.5m past mandatory front plot setback onto public pedestrian sidewalk.",
+                        "domain": "G",
+                        "floor_level": 1,
+                        "encroachment_area_m2": 15.5,
+                        "excess_volume_m3": 34.2,
+                        "encroachment_volume_m3": 34.2,
+                        "penalty_inr": 340000,
+                        "statutory_reference": "MPD 2041 § 12.3 (Ground Coverage & Mandatory Front Setback)"
+                    }
+                    u_name = f"Ground Floor Showroom & Cafe (Sidewalk Setback Encroachment), {b_name}"
+                    u_type = "Commercial Retail Showroom"
+                    u_owner = "Deepak Joshi"
+                    u_owner_details = {"name": "Deepak Joshi", "aadhaar": "XXXX-XXXX-8849", "pan": "ABCDE1234F", "phone": "+91 98101 23456"}
+                    min_x = round(cx - w / 2.0, 2)
+                    max_x = round(cx + w / 2.0, 2)
+                    min_z = round(cz - d / 2.0, 2)
+                    max_z = round(cz + d / 2.0 + 2.5, 2)  # Extrude 2.5m forward onto sidewalk setback
+                    b_dims = [round(w, 2), round(max_z - min_z, 2), 2.0]
+                    c_local = [cx, round((min_z + max_z) / 2.0, 2), round(floor_y, 2)]
+                else:
+                    has_viol = False
+                    viol_info = {"has_violation": False, "type": "NONE"}
+                    u_name = f"Level {fl} Corporate Office, {b_name}"
+                    u_type = "Corporate Office Suite"
+                    u_owner = owner_corp
+                    u_owner_details = {"name": owner_corp, "category": "Corporate Entity"}
+                    min_x = round(cx - w / 2.0, 2)
+                    max_x = round(cx + w / 2.0, 2)
+                    min_z = round(cz - d / 2.0, 2)
+                    max_z = round(cz + d / 2.0, 2)
+                    b_dims = [round(w, 2), round(d, 2), 2.0]
+                    c_local = [cx, cz, round(floor_y, 2)]
+
                 units.append({
                     "unit_id": u_id,
                     "ulpin_3d": ulpin,
-                    "name": f"Level {fl} Corporate Office, {b_name}",
+                    "name": u_name,
                     "complex": b["complex"],
-                    "type": "Corporate Office Suite",
+                    "type": u_type,
                     "domain": "C",
                     "level": fl,
                     "zone": zone,
                     "floor_type": "OFFICE",
-                    "owner": owner_corp,
-                    "owner_details": {"name": owner_corp, "category": "Corporate Entity"},
+                    "owner": u_owner,
+                    "owner_details": u_owner_details,
                     "carpet_area_m2": round(w * d * 4.0, 1),
                     "rera_volume_m3": round(w * d * 10.0, 1),
-                    "volume_m3": round(w * d * 10.0, 1),
+                    "volume_m3": round(w * d * 10.0 + (34.2 if has_viol else 0.0), 1),
                     "encumbrance": "Clear & Freehold",
                     "mortgage_bank": None,
                     "circle_rate_inr_m2": 245000,
                     "property_tax_inr": 280000,
                     "registration_date": "10-JAN-2020",
                     "bbox_local": [
-                        [round(cx - w / 2.0, 2), round(floor_y - 1.0, 2), round(cz - d / 2.0, 2)],
-                        [round(cx + w / 2.0, 2), round(floor_y + 1.0, 2), round(cz + d / 2.0, 2)]
+                        [min_x, round(floor_y - 1.0, 2), min_z],
+                        [max_x, round(floor_y + 1.0, 2), max_z]
                     ],
-                    "centroid_local": [cx, cz, round(floor_y, 2)],
-                    "dimensions": [round(w, 2), round(d, 2), 2.0],
-                    "violation": {"has_violation": False, "type": "NONE"}
+                    "centroid_local": c_local,
+                    "dimensions": b_dims,
+                    "violation": viol_info
                 })
         else:
             for fl in range(1, floors + 1):
@@ -327,21 +399,52 @@ def fix_all_road_overlaps():
                 owner = CITIZENS[o_idx % len(CITIZENS)]
                 enc = random.choice(ENCUMBRANCES)
 
+                is_encroachment_3 = (b_code == "B020" and fl == 5)
+                if is_encroachment_3:
+                    has_viol = True
+                    viol_info = {
+                        "has_violation": True,
+                        "type": "UNAUTHORIZED_ROOFTOP_CONSTRUCTION",
+                        "violation_type": "UNAUTHORIZED_ROOFTOP_CONSTRUCTION",
+                        "severity": "CRITICAL",
+                        "description": "Unauthorized 5th floor rooftop penthouse & covered terrace constructed without MCD municipal sanction, violating maximum permissible height and vertical angular setback.",
+                        "domain": "V",
+                        "floor_level": 5,
+                        "encroachment_area_m2": 24.0,
+                        "excess_volume_m3": 58.0,
+                        "encroachment_volume_m3": 58.0,
+                        "penalty_inr": 580000,
+                        "statutory_reference": "Unified Building Byelaws § 3.2.1 (Unauthorized Vertical Construction)"
+                    }
+                    u_name = f"Rooftop Sky Duplex (Unauthorized Construction), {b_name}"
+                    u_type = "Unauthorized Rooftop Residence"
+                    u_floor_type = "UNAUTHORIZED_PENTHOUSE"
+                    u_owner = "Vikram Malhotra"
+                    u_owner_details = {"name": "Vikram Malhotra", "aadhaar": "XXXX-XXXX-4562", "pan": "DVWXY3456P", "phone": "+91 98194 56789"}
+                else:
+                    has_viol = False
+                    viol_info = {"has_violation": False, "type": "NONE"}
+                    u_name = f"Floor {fl} Dwelling, {b_name}"
+                    u_type = "Urban Residence"
+                    u_floor_type = "INDEPENDENT_FLOOR"
+                    u_owner = owner["name"]
+                    u_owner_details = owner
+
                 units.append({
                     "unit_id": u_id,
                     "ulpin_3d": ulpin,
-                    "name": f"Floor {fl} Dwelling, {b_name}",
+                    "name": u_name,
                     "complex": b["complex"],
-                    "type": "Urban Residence",
+                    "type": u_type,
                     "domain": "R",
                     "level": fl,
                     "zone": zone,
-                    "floor_type": "INDEPENDENT_FLOOR",
-                    "owner": owner["name"],
-                    "owner_details": owner,
+                    "floor_type": u_floor_type,
+                    "owner": u_owner,
+                    "owner_details": u_owner_details,
                     "carpet_area_m2": round(w * d * 3.6, 1),
                     "rera_volume_m3": round(w * d * 10.5, 1),
-                    "volume_m3": round(w * d * 10.5, 1),
+                    "volume_m3": round(w * d * 10.5 + (58.0 if has_viol else 0.0), 1),
                     "encumbrance": enc["status"],
                     "mortgage_bank": enc["bank"],
                     "circle_rate_inr_m2": 145000,
@@ -353,7 +456,7 @@ def fix_all_road_overlaps():
                     ],
                     "centroid_local": [cx, cz, round(floor_y, 2)],
                     "dimensions": [round(w, 2), round(d, 2), 1.9],
-                    "violation": {"has_violation": False, "type": "NONE"}
+                    "violation": viol_info
                 })
 
     # Subsurface Corridor
@@ -411,6 +514,18 @@ def fix_all_road_overlaps():
     ]
     units.extend(subsurface)
 
+    violations = [u for u in units if u.get("violation", {}).get("has_violation")]
+    audit_summary = {
+        "total_audited_units": len(units),
+        "compliant_units": len(units) - len(violations),
+        "violation_count": len(violations),
+        "air_rights_violations": [v for v in violations if v.get("violation", {}).get("type") == "AIR_RIGHTS_SETBACK_ENCROACHMENT"],
+        "ground_setback_violations": [v for v in violations if v.get("violation", {}).get("type") == "GROUND_COVERAGE_SETBACK_ENCROACHMENT"],
+        "unauthorized_construction": [v for v in violations if v.get("violation", {}).get("type") == "UNAUTHORIZED_ROOFTOP_CONSTRUCTION"],
+        "total_excess_volume_m3": round(sum(v.get("violation", {}).get("excess_volume_m3", 0) for v in violations), 1),
+        "total_penalty_inr": sum(v.get("violation", {}).get("penalty_inr", 0) for v in violations)
+    }
+
     master_cadastre = {
         "metadata": {
             "version": "10.0.0",
@@ -458,6 +573,7 @@ def fix_all_road_overlaps():
                 "centroid": [0, -5, 0]
             }
         ],
+        "audit_summary": audit_summary,
         "units": units
     }
 

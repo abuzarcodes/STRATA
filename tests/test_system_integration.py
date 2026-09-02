@@ -97,3 +97,31 @@ def test_13_production_pipeline_inference():
     pts = np.array([[0,0,0], [10,10,10], [5,5,5]], dtype=float)
     res = pipeline.run_inference(pts, scene_id='PIPELINE_TEST')
     assert 'status' in res
+
+def test_14_unauthorized_cantilever_setback_overhang():
+    """Validates pipeline candidate extraction on an air-rights setback encroachment scene."""
+    pipeline = ProductionPipeline(device='cpu')
+    gen = ExtendedSceneGenerator(seed=9914)
+    sc = gen.generate_unauthorized_building_scene(scenario='cantilever_overhang')
+    res = pipeline.run_inference(sc['points_xyz'], intensity=sc['features_5d'][:, 4], scene_id='SCENARIO_SETBACK_AIR_RIGHTS')
+    assert 'hierarchy' in res
+    assert res['hierarchy']['summary']['total_detected_buildings'] >= 1
+
+def test_15_unauthorized_ground_setback_extension():
+    """Validates pipeline candidate extraction on a ground coverage / front setback encroachment scene."""
+    pipeline = ProductionPipeline(device='cpu')
+    gen = ExtendedSceneGenerator(seed=9915)
+    sc = gen.generate_unauthorized_building_scene(scenario='ground_extension')
+    res = pipeline.run_inference(sc['points_xyz'], intensity=sc['features_5d'][:, 4], scene_id='SCENARIO_SETBACK_GROUND')
+    assert 'hierarchy' in res
+    assert res['hierarchy']['summary']['total_detected_buildings'] >= 1
+
+def test_16_unauthorized_rooftop_construction():
+    """Validates pipeline candidate extraction on an unauthorized rooftop construction scene."""
+    pipeline = ProductionPipeline(device='cpu')
+    gen = ExtendedSceneGenerator(seed=9916)
+    sc = gen.generate_unauthorized_building_scene(scenario='unauthorized_rooftop')
+    res = pipeline.run_inference(sc['points_xyz'], intensity=sc['features_5d'][:, 4], scene_id='SCENARIO_UNAUTHORIZED_ROOFTOP')
+    assert 'hierarchy' in res
+    assert res['hierarchy']['summary']['total_detected_buildings'] >= 1
+

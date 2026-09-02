@@ -117,15 +117,16 @@ def generate_indian_settlement_scene(seed=2026):
     instances_list.append(np.full(len(b2_all), 2, dtype=int))
 
     # -------------------------------------------------------------
-    # BUILDING 3: L-Shaped Corner Mixed-Use Building with Courtyard
+    # BUILDING 3: L-Shaped Corner Mixed-Use Building with Ground Setback Encroachment
     # Bounding Box: X: 15.0 to 32.0, Y: 25.0 to 42.0 (17m x 17m)
     # Wing A (South): X: 15 to 32, Y: 25 to 32, Height: 10.2m (3 storeys)
     # Wing B (West):  X: 15 to 22, Y: 32 to 42, Height: 10.2m (3 storeys)
-    # (Leaving X: 22 to 32, Y: 32 to 42 as Open-To-Sky Courtyard)
+    # Ground Coverage Encroachment: Ground floor retail porch extending 2.5m into front setback (Y: 22.5 to 25.0)
     # -------------------------------------------------------------
     b3_wing_a = sample_box_volume_and_facades(15.0, 32.0, 25.0, 32.0, 0.0, 10.2, density_pts_sqm=30.0, rng=rng)
     b3_wing_b = sample_box_volume_and_facades(15.0, 22.0, 32.0, 42.0, 0.0, 10.2, density_pts_sqm=30.0, rng=rng)
-    b3_all = np.vstack([b3_wing_a, b3_wing_b])
+    b3_encroach = sample_box_volume_and_facades(16.0, 28.0, 22.5, 25.0, 0.0, 3.5, density_pts_sqm=28.0, rng=rng)
+    b3_all = np.vstack([b3_wing_a, b3_wing_b, b3_encroach])
     points_list.append(b3_all)
     semantics_list.append(np.ones(len(b3_all), dtype=int))
     instances_list.append(np.full(len(b3_all), 3, dtype=int))
@@ -157,9 +158,9 @@ def main():
     intensity = scene["intensity"]
     print(f"\n[1] Generated Synthetic 3D LiDAR Scene:")
     print(f"    - Total Points        : {len(pts):,}")
-    print(f"    - Building 1 (Builder): 4 Storeys (13.5m) + 1.5m Cantilever Balcony + Sintex Tank")
-    print(f"    - Building 2 (House)  : 2 Storeys (6.5m) with 0.8m Alley Setback (Tight Gap)")
-    print(f"    - Building 3 (L-Shape): 3 Storeys (10.2m) with Internal OTS Courtyard")
+    print(f"    - Building 1 (Builder): 4 Storeys (13.5m) + 1.5m Cantilever Balcony Air-Rights Setback Overhang")
+    print(f"    - Building 2 (House)  : 2 Storeys (6.5m) with 0.8m Alley Setback Breach (Tight Gap)")
+    print(f"    - Building 3 (L-Shape): 3 Storeys (10.2m) with 2.5m Commercial Ground Setback Encroachment Porch")
 
     # Run frozen Production Pipeline
     print(f"\n[2] Executing Frozen PointNet++ MSG Dual-Head + HDBSCAN Pipeline...")
